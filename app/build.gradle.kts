@@ -6,9 +6,16 @@
  * User Manual available at https://docs.gradle.org/7.4/userguide/building_java_projects.html
  */
 
+import org.gradle.internal.os.OperatingSystem
+
 plugins {
-    // Apply the application plugin to add support for building a CLI application in Java.
-    application
+    java // add support for Java
+	// Apply the application plugin to add support for building a CLI application
+	// You can run your app via task "run": ./gradlew run
+	application
+	// Adds task 'shadowJar' to export a runnable jar .
+	// The runnable jar will be found in build/libs/projectname-all.jar
+	id("com.github.johnrengelman.shadow") version "5.2.0"
 }
 
 repositories {
@@ -16,20 +23,72 @@ repositories {
     mavenCentral()
 }
 
+val javaFXModules = listOf("base", "controls", "fxml", "swing", "graphics")
+val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
+val javaFxVersion = 15
+val lwjglVersion = "3.3.1"
+val lwjglNatives = Pair(
+	System.getProperty("os.name")!!,
+	System.getProperty("os.arch")!!
+).let { (name, arch) ->
+	when {
+		arrayOf("Linux", "FreeBSD", "SunOS", "Unit").any { name.startsWith(it) } ->
+			if (arrayOf("arm", "aarch64").any { arch.startsWith(it) })
+				"natives-linux${if (arch.contains("64") || arch.startsWith("armv8")) "-arm64" else "-arm32"}"
+			else
+				"natives-linux"
+		arrayOf("Mac OS X", "Darwin").any { name.startsWith(it) }                ->
+			"natives-macos${if (arch.startsWith("aarch64")) "-arm64" else ""}"
+		arrayOf("Windows").any { name.startsWith(it) }                           ->
+			if (arch.contains("64"))
+				"natives-windows${if (arch.startsWith("aarch64")) "-arm64" else ""}"
+			else
+				"natives-windows-x86"
+		else -> throw Error("Unrecognized or unsupported platform. Please set \"lwjglNatives\" manually")
+	}
+}
+
+
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:30.1.1-jre")
+    implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
+    
+    // JavaFX
+    for (platform in supportedPlatforms) {
+		for (module in javaFXModules) {
+			implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
+		}
+	}
+     
+    // LWJGL   
+    implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
+    implementation("org.lwjgl", "lwjgl")
+	implementation("org.lwjgl", "lwjgl-assimp")
+	implementation("org.lwjgl", "lwjgl-glfw")
+	implementation("org.lwjgl", "lwjgl-openal")
+	implementation("org.lwjgl", "lwjgl-opengl")
+	implementation("org.lwjgl", "lwjgl-stb")
+	runtimeOnly("org.lwjgl", "lwjgl", classifier = lwjglNatives)
+	runtimeOnly("org.lwjgl", "lwjgl-assimp", classifier = lwjglNatives)
+	runtimeOnly("org.lwjgl", "lwjgl-glfw", classifier = lwjglNatives)
+	runtimeOnly("org.lwjgl", "lwjgl-openal", classifier = lwjglNatives)
+	runtimeOnly("org.lwjgl", "lwjgl-opengl", classifier = lwjglNatives)
+	runtimeOnly("org.lwjgl", "lwjgl-stb", classifier = lwjglNatives)
+	
+	// JUnit
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.4.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.4.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 }
 
-application {
-    // Define the main class for the application.
-    mainClass.set("saudio.sim.App")
+application { 
+	mainClassName = "soundp.sim.App" 
 }
 
-tasks.named<Test>("test") {
-    // Use JUnit Platform for unit tests.
+tasks.withType<Test> {
     useJUnitPlatform()
 }
