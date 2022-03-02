@@ -5,3 +5,15 @@
 build
 
 app/bin/
+
+# LaTeX
+*.toc
+*.synctex.gz
+*.synctex.bbl
+*.synctex.blg
+*.log
+*.out
+Report.pdf
+*.aux
+*.bbl
+*.blg
