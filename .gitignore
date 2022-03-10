@@ -3,8 +3,9 @@
 
 # Ignore Gradle build output directory
 build
+bin/
 
-app/bin/
+.idea
 
 # LaTeX
 *.toc
