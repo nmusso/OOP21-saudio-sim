@@ -103,7 +103,7 @@ dependencies {
 
 application { 
     // Define the main class for the application.
-    mainClass.set("soundp.sim.App")
+    mainClass.set("controller.AppMain")
 }
 
 java {
