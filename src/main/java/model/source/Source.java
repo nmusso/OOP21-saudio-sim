@@ -1,6 +1,6 @@
 package model.source;
 
-import model.uility.Vec3f;
+import model.utility.Vec3f;
 
 public interface Source {
     

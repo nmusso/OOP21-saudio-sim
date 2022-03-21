@@ -1,4 +1,4 @@
-package model.uility;
+package model.utility;
 
 public interface Vec3f {
     

@@ -1,6 +1,6 @@
 package model.listener;
 
-import model.uility.Vec3f;
+import model.utility.Vec3f;
 
 public interface SimpleListener {
     

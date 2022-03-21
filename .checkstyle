@@ -4,10 +4,7 @@
   <local-check-config name="oop" location="config/checkstyle/checkstyle.xml" type="project" description="">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <local-check-config name="Checkstyle config" location="config/checkstyle/checkstyle.xml" type="project" description="">
-    <additional-data name="protect-config-file" value="false"/>
-  </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="Checkstyle config" local="true">
+  <fileset name="all" enabled="true" check-config-name="oop" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>
