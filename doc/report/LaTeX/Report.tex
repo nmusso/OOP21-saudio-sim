@@ -40,12 +40,13 @@ Invece con ambiente dinamico ci si riferisce ad un sistema di cui si possono spo
 \end{itemize}
 
 \section{Analisi e modello del dominio}
-desc
+SaudioSim dovrà essere in grado di scegliere una traccia audio che potrà essere modificata da un equalizzatore, posizionare le sorgenti e il punto di ascolto. Il Listener e le Sources dovranno essere collocate in uno spazio definito dall' Environment. Inoltre le Sources dovranno riprodurre le tracce associate a dei Buffer.
 %
+Uno dei principali problemi è quello di simulare in modo realistico l'ascolto in relazione a: posizione del Listener, dimensione dello Spazio, posizione e tipo di Sources. Tra le maggiori difficoltà c'è quella di applicare filtri alle tracce.
 \begin{figure}[H]
 \centering{}
 \includegraphics{img/analysis.pdf}
-\caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro}
+\caption{ TODO(with MVC) Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro}
 \label{img:analysis}
 \end{figure}
 
