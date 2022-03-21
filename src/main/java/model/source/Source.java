@@ -1,5 +1,7 @@
 package model.source;
 
+import model.uility.Vec3f;
+
 public interface Source {
     
     int getId();
@@ -12,7 +14,7 @@ public interface Source {
     
     boolean isPlaying();
     
-    int setPosition(Vec3f position);
+    void setPosition(Vec3f position);
     
     Vec3f getPositioin();
 }
