@@ -2,17 +2,17 @@ package model.source;
 
 public interface Source {
     
-    public int getId();
+    int getId();
     
-    public void play();
+    void play();
     
-    public void pause();
+    void pause();
     
-    public void stop();
+    void stop();
     
-    public boolean isPlaying();
+    boolean isPlaying();
     
-    public int setPosition(Vec3f position);
+    int setPosition(Vec3f position);
     
-    public Vec3f getPositioin();
+    Vec3f getPositioin();
 }

@@ -2,7 +2,7 @@ package model.source;
 
 public interface SourceFactory {
     
-    public Source createBasicSource();
+    Source createBasicSource();
     
-    public Source createAdvancedSource();
+    Source createAdvancedSource();
 }
