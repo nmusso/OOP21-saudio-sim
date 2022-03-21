@@ -19,7 +19,7 @@ public class AppTest {
         
         @Test
         public void testBasic3() {
-                assertEquals(42, Integer.sum(10, 23));
+                assertEquals(42, Integer.sum(19, 23));
         }
 
 }
