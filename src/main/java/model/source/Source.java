@@ -31,6 +31,21 @@ public interface Source {
     void stop();
 
     /**
+     * Returns true if the source is playing, false otherwise.
+     * 
+     * @return boolean
+     */
+    boolean isPlaying();
+
+    /**
+     * Generate the Source with the buffer.
+     * 
+     * @param buffer
+     * @return this
+     */
+    Source generateSource(int buffer);
+
+    /**
      * Sets the position of the Source.
      * 
      * @param position
@@ -42,5 +57,5 @@ public interface Source {
      * 
      * @return position
      */
-    Vec3f getPositioin();
+    Vec3f getPosition();
 }

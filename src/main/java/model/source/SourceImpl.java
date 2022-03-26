@@ -27,6 +27,11 @@ public class SourceImpl implements Source {
         this.isPlaying = false;
     }
 
+    public SourceImpl(final int id) {
+        this.id = id;
+        this.isPlaying = false;
+    }
+
     /**
      * @inheritDoc
      */
@@ -40,6 +45,7 @@ public class SourceImpl implements Source {
      */
     @Override
     public void play() {
+        isPlaying = true;
         alSourcePlay(this.id);
     }
 
@@ -48,6 +54,7 @@ public class SourceImpl implements Source {
      */
     @Override
     public void pause() {
+        isPlaying = false;
         alSourcePause(id);
     }
 
@@ -56,6 +63,7 @@ public class SourceImpl implements Source {
      */
     @Override
     public void stop() {
+        isPlaying = false;
         alSourceStop(id);
     }
 
@@ -63,15 +71,33 @@ public class SourceImpl implements Source {
      * @inheritDoc
      */
     @Override
-    public void setPosition(final Vec3f position) {
-        alSource3f(this.id, AL_POSITION, position.getX(), position.getY(), position.getZ());
+    public boolean isPlaying() {
+        return isPlaying;
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public Vec3f getPositioin() {
+    public Source generateSource(final int  buffer) {
+        alSourcei(this.id, AL_BUFFER, buffer);
+        return this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setPosition(final Vec3f position) {
+        this.position = position;
+        alSource3f(this.id, AL_POSITION, this.position.getX(), this.position.getY(), this.position.getZ());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public Vec3f getPosition() {
         return this.position;
     }
 

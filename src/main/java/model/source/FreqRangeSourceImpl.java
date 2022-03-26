@@ -8,7 +8,7 @@ public abstract class FreqRangeSourceImpl extends SourceImpl implements FreqRang
 
     public FreqRangeSourceImpl(final int id, final Vec3f position, final SourceType type) {
         super(id, position);
-        this.type = type;
+        setType(type);
     }
 
     /**
@@ -24,6 +24,8 @@ public abstract class FreqRangeSourceImpl extends SourceImpl implements FreqRang
      */
     @Override
     public void setType(final SourceType type) {
+        this.type = type;
+
         switch (type) {
             case LOW:
                 //TODO
