@@ -19,32 +19,57 @@ public class SourceImpl implements Source {
 
     private int id;
     private Vec3f position;
+    private boolean isPlaying;
 
+    public SourceImpl(final int id, final Vec3f position) {
+        this.id = id;
+        this.position = position;
+        this.isPlaying = false;
+    }
+
+    /**
+     * @inheritDoc
+     */
     @Override
     public int getId() {
         return this.id;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void play() {
         alSourcePlay(this.id);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void pause() {
         alSourcePause(id);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void stop() {
         alSourceStop(id);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void setPosition(final Vec3f position) {
         alSource3f(this.id, AL_POSITION, position.getX(), position.getY(), position.getZ());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public Vec3f getPositioin() {
         return this.position;
