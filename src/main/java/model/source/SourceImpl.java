@@ -15,7 +15,7 @@ import static org.lwjgl.openal.EXTEfx.*;
 import org.lwjgl.openal.EXTEfx;
 
 
-public final class SourceImpl implements Source {
+public class SourceImpl implements Source {
 
     private int id;
     private Vec3f position;
