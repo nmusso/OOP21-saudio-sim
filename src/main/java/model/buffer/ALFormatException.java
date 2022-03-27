@@ -11,6 +11,10 @@ public final class ALFormatException extends RuntimeException {
         super(error);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String toString() {
         return "Error: the file is not a 8 or 16 bit mono/stereo audio file";
     }

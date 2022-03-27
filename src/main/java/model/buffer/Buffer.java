@@ -10,7 +10,7 @@ public interface Buffer {
      * 
      * @return The ID of the buffer
      */
-    int getBufferID();
+    int getID();
 
     /**
      * 
@@ -20,11 +20,10 @@ public interface Buffer {
 
     /**
      * 
-     * @param file The path of the audio file from which the buffer will be generated 
      * @return The ID of the generated buffer
      * @throws FileNotFoundException
      * @throws UnsupportedAudioFileException
      * @throws IOException
      */
-    int generateBuffer(String file) throws FileNotFoundException, UnsupportedAudioFileException, IOException;
+    int generateBuffer() throws FileNotFoundException, UnsupportedAudioFileException, IOException;
 }
