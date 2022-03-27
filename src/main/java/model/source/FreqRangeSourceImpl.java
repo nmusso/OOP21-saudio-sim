@@ -6,8 +6,8 @@ public abstract class FreqRangeSourceImpl extends SourceImpl implements FreqRang
 
     private SourceType type;
 
-    public FreqRangeSourceImpl(final int id, final Vec3f position, final SourceType type) {
-        super(id, position);
+    public FreqRangeSourceImpl(final Vec3f position, final SourceType type) {
+        super(position);
         setType(type);
     }
 

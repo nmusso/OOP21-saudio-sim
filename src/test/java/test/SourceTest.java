@@ -15,7 +15,7 @@ public class SourceTest {
 
     @Test
     public void testBasicPlayPauseStop() {
-        final Source s = new SourceImpl(0);
+        final Source s = new SourceImpl();
         //final Buffer b = new BufferImpl();
         //s.generateSource(b.generateBuffer())
 
@@ -30,7 +30,7 @@ public class SourceTest {
 
     @Test
     public void testAdvancedPlayPauseStop() {
-        final Source s = new SourceImpl(0);
+        final Source s = new SourceImpl();
         //final Buffer b = new BufferImpl();
         //s.generateSource(b.generateBuffer())
 
@@ -50,7 +50,7 @@ public class SourceTest {
     @Test
     public void testBasicChangePosition() {
         //TODO initialize (waiting for AudioManager class) 
-        final Source s = new SourceImpl(0, new Vec3f(0.0f, 0.0f, 0.0f));
+        final Source s = new SourceImpl(new Vec3f(0.0f, 0.0f, 0.0f));
 
         assertEquals(s.getPosition(), new Vec3f(0.0f, 0.0f, 0.0f));
         Vec3f pos = new Vec3f(1.0f, -10.0f, 0.5f);

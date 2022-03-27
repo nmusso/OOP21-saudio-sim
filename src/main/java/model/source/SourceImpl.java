@@ -19,17 +19,16 @@ public class SourceImpl implements Source {
 
     private int id;
     private Vec3f position;
-    private boolean isPlaying;
+    private boolean isPlaying = false;
 
-    public SourceImpl(final int id, final Vec3f position) {
-        this.id = id;
-        this.position = position;
-        this.isPlaying = false;
+    public SourceImpl() {
+        this.id = alGenSources();
+        this.setPosition(new Vec3f(0.0f, 0.0f, 0.0f));
     }
 
-    public SourceImpl(final int id) {
-        this.id = id;
-        this.isPlaying = false;
+    public SourceImpl(final Vec3f position) {
+        this.id = alGenSources();
+        this.setPosition(position);
     }
 
     /**
