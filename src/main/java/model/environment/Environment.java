@@ -23,6 +23,12 @@ public interface Environment {
     * 
     *
     */
+    void addSource(Source s);
+    /**
+    *
+    * 
+    *
+    */
     List<Source> getPlayingSources();
     /**
     *

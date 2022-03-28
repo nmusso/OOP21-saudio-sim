@@ -9,7 +9,7 @@ import model.source.Source;
 
 public class EnvironmentImpl implements Environment {
     private List<Source> sources;
-    private SimpleListener listener;
+    private final SimpleListener listener;
     private Space space;
 
     /**
@@ -96,5 +96,14 @@ public class EnvironmentImpl implements Environment {
     @Override
     public void stopAllSources() {
         this.sources.forEach(s -> s.stop());
+    }
+    /**
+    *
+    * 
+    *
+    */
+    @Override
+    public void addSource(final Source s) {
+        this.sources.add(s);
     }
 }

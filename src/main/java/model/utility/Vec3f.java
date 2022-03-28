@@ -13,6 +13,11 @@ public class Vec3f {
         this.y = y;
         this.z = z;
     }
+    public Vec3f(final float pos) {
+        this.x = pos;
+        this.y = pos;
+        this.z = pos;
+    }
 
     /**
      * Returns the x of the position.
