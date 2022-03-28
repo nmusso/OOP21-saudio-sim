@@ -14,4 +14,6 @@ public interface Environment {
     List<Source> getPlayingSources();
     
     SimpleListener getListener();
+    
+    Space getSpace();
 }

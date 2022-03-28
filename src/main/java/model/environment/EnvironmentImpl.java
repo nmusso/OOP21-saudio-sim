@@ -14,7 +14,7 @@ public class EnvironmentImpl implements Environment {
 
     /**
     *
-    * @inheritDoc
+    * 
     *
     */
     public EnvironmentImpl(final List<Source> sources, final SimpleListener listener, final Space space) {
@@ -23,10 +23,21 @@ public class EnvironmentImpl implements Environment {
         this.listener = listener;
         this.space = space;
     }
+    /**
+    *
+    * 
+    *
+    */
+    public EnvironmentImpl(final List<Source> sources, final SimpleListener listener) {
+        super();
+        this.sources = sources;
+        this.listener = listener;
+        this.space = new SpaceImpl(10, 10);
+    }
 
     /**
     *
-    * @inheritDoc
+    * 
     *
     */
     @Override
@@ -35,7 +46,7 @@ public class EnvironmentImpl implements Environment {
     }
     /**
     *
-    * @inheritDoc
+    * 
     *
     */
     @Override
@@ -44,7 +55,7 @@ public class EnvironmentImpl implements Environment {
     }
     /**
     *
-    * @inheritDoc
+    * 
     *
     */
     @Override
@@ -53,11 +64,20 @@ public class EnvironmentImpl implements Environment {
     }
     /**
     *
-    * @inheritDoc
+    * 
     *
     */
     @Override
     public SimpleListener getListener() {
         return this.listener;
+    }
+    /**
+    *
+    * 
+    *
+    */
+    @Override
+    public Space getSpace() {
+       return this.space;
     }
 }
