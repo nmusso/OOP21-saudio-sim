@@ -3,28 +3,29 @@ package model.environment;
 import model.filters.FilterEffects;
 
 public interface Space {
+
     /**
     *
-    * 
-    *
+    * @return filterEffect in the space
     */
-     FilterEffects getFilterEffects();
+     FilterEffects getFilterEffect();
+
      /**
      *
-     * 
+     * modify or ad filterEffects.
      *
      */
-     void setFilterEffects(FilterEffects newfilter);
+     void setFilterEffect(FilterEffects newfilter);
+
      /**
      *
-     * 
-     *
+     * @return max lenght.
      */
      float getLenght();
+
      /**
      *
-     * 
-     *
+     * @return max width.
      */
      float getWidth();
 }
