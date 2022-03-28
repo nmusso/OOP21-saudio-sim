@@ -1,10 +1,12 @@
 package model.environment;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import model.listener.SimpleListener;
+import model.listener.SimpleListenerImpl;
 import model.source.Source;
 
 public class EnvironmentImpl implements Environment {
@@ -32,6 +34,17 @@ public class EnvironmentImpl implements Environment {
         super();
         this.sources = sources;
         this.listener = listener;
+        this.space = new SpaceImpl(10, 10);
+    }
+    /**
+    *
+    * 
+    *
+    */
+    public EnvironmentImpl() {
+        super();
+        this.sources = new LinkedList<Source>();
+        this.listener = new SimpleListenerImpl();
         this.space = new SpaceImpl(10, 10);
     }
     /**
