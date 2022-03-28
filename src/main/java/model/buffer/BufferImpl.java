@@ -97,7 +97,7 @@ public class BufferImpl implements Buffer {
         case 1:
             return (format.getSampleSizeInBits() == 8) ? AL_FORMAT_MONO8 : AL_FORMAT_MONO16;
         case 2:
-            return (format.getSampleSizeInBits() == 8) ? AL_FORMAT_STEREO8 : AL_FORMAT_STEREO16;
+            throw new ALFormatException("Stereo not supported");
         default:
             return -1;
         }
