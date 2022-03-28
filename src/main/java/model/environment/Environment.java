@@ -7,8 +7,6 @@ import model.source.Source;
 
 public interface Environment {
     
-    int getIdEnvironment();
-    
     List<Source> getAllSources();
     
     Source getXSource(int x);

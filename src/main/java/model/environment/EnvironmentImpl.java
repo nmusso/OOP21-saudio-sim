@@ -2,12 +2,12 @@ package model.environment;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import model.listener.SimpleListener;
 import model.source.Source;
 
 public class EnvironmentImpl implements Environment {
-    private int id;
     private List<Source> sources;
     private SimpleListener listener;
     private Space space;
@@ -17,22 +17,13 @@ public class EnvironmentImpl implements Environment {
     * @inheritDoc
     *
     */
-    public EnvironmentImpl(final int id, final List<Source> sources, final SimpleListener listener, final Space space) {
+    public EnvironmentImpl(final List<Source> sources, final SimpleListener listener, final Space space) {
         super();
-        this.id = id;
         this.sources = sources;
         this.listener = listener;
         this.space = space;
     }
-    /**
-    *
-    * @inheritDoc
-    *
-    */
-    @Override
-    public int getIdEnvironment() {
-        return this.id;
-    }
+
     /**
     *
     * @inheritDoc
@@ -58,7 +49,7 @@ public class EnvironmentImpl implements Environment {
     */
     @Override
     public List<Source> getPlayingSources() {
-        return null; //this.sources.stream().filter(s -> s.isPlaying())
+        return this.sources.stream().filter(s -> s.isPlaying()).collect(Collectors.toList());
     }
     /**
     *
