@@ -4,26 +4,21 @@ import model.utility.Vec3f;
 import static org.lwjgl.openal.AL10.*;
 import static org.lwjgl.openal.AL11.*;
 import org.lwjgl.openal.*;
-import static org.lwjgl.openal.ALC10.*;
 import static javax.sound.sampled.AudioSystem.*;
 import java.io.*;
 import javax.sound.sampled.*;
-import org.lwjgl.BufferUtils;
 import java.nio.*;
-import org.lwjgl.openal.EXTEfx; 
-import static org.lwjgl.openal.EXTEfx.*; 
-import org.lwjgl.openal.EXTEfx;
 
 
 public class SourceImpl implements Source {
 
-    private int id;
+    private final int id;
     private Vec3f position;
-    private boolean isPlaying = false;
+    private boolean isPlaying;
 
     public SourceImpl() {
         this.id = alGenSources();
-        this.setPosition(new Vec3f(0.0f, 0.0f, 0.0f));
+        this.setPosition(new Vec3f(0.0f));
     }
 
     public SourceImpl(final Vec3f position) {
@@ -87,7 +82,7 @@ public class SourceImpl implements Source {
      * @inheritDoc
      */
     @Override
-    public void setPosition(final Vec3f position) {
+    public final void setPosition(final Vec3f position) {
         this.position = position;
         alSource3f(this.id, AL_POSITION, this.position.getX(), this.position.getY(), this.position.getZ());
     }

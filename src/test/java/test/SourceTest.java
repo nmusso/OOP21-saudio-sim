@@ -4,20 +4,44 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import model.buffer.Buffer;
+import model.environment.Environment;
+import model.environment.EnvironmentImpl;
+import model.listener.SimpleListener;
+import model.listener.SimpleListenerImpl;
 import model.source.*;
+import model.AudioManager.AudioManager;
 import model.buffer.*;
 import model.utility.*;
 
-public class SourceTest {
+class SourceTest {
+
+    private final Source s = new SourceImpl();
+
+    @BeforeAll
+    static void init() {
+        AudioManager.initContext();
+    }
+
+    private void genSource() {
+        final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
+        try {
+            s.generateSource(b.generateBuffer());
+        } catch (UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
-    public void testBasicPlayPauseStop() {
-        final Source s = new SourceImpl();
-        //final Buffer b = new BufferImpl();
-        //s.generateSource(b.generateBuffer())
+    void testBasicPlayPauseStop() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
+        genSource();
 
         s.play();
         assertTrue(s.isPlaying());
@@ -29,10 +53,8 @@ public class SourceTest {
     }
 
     @Test
-    public void testAdvancedPlayPauseStop() {
-        final Source s = new SourceImpl();
-        //final Buffer b = new BufferImpl();
-        //s.generateSource(b.generateBuffer())
+    void testAdvancedPlayPauseStop() {
+        genSource();
 
         s.play();
         s.pause();
@@ -48,12 +70,15 @@ public class SourceTest {
     }
 
     @Test
-    public void testBasicChangePosition() {
-        //TODO initialize (waiting for AudioManager class) 
-        final Source s = new SourceImpl(new Vec3f(0.0f, 0.0f, 0.0f));
+    void testBasicChangePosition() {
+        genSource();
+        final float x = 1.0f;
+        final float y = -10.0f;
+        final float z = 0.5f;
 
-        assertEquals(s.getPosition(), new Vec3f(0.0f, 0.0f, 0.0f));
-        Vec3f pos = new Vec3f(1.0f, -10.0f, 0.5f);
+        final Source s = new SourceImpl(new Vec3f(0.0f));
+        assertEquals(s.getPosition(), new Vec3f(0.0f));
+        final Vec3f pos = new Vec3f(x, y, z);
         s.setPosition(pos);
         assertEquals(s.getPosition(), pos);
     }
