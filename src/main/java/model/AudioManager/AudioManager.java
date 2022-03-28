@@ -6,20 +6,19 @@ import static javax.sound.sampled.AudioSystem.*;
 import static org.lwjgl.openal.AL10.*;
 import static org.lwjgl.openal.ALC10.*;
 
-public class AudioManager {
-    private Context context;
-    private ALCCapabilities alcCapabilities;
-    private ALCapabilities alCapabilities;
-    public AudioManager() {
-        initContext();
-        alcCapabilities = ALC.createCapabilities(context.getDevice().getId());
-        alCapabilities = AL.createCapabilities(alcCapabilities);
-        AL.setCurrentProcess(this.alCapabilities);
+public final class AudioManager {
+    private static Context context;
+    private static ALCCapabilities alcCapabilities;
+    private static ALCapabilities alCapabilities;
+    private AudioManager() {
     }
 
-    private void initContext() {
-        Device device = new Device();
+    public static void initContext() {
+        final Device device = new Device();
         context = new Context(device);
         alcMakeContextCurrent(context.getId());
+        alcCapabilities = ALC.createCapabilities(context.getDevice().getId());
+        alCapabilities = AL.createCapabilities(alcCapabilities);
+        AL.setCurrentProcess(alCapabilities);
     }
 }

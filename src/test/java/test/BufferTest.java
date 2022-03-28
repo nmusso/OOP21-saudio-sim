@@ -22,7 +22,7 @@ class BufferTest {
 
     @BeforeAll
     static void init() {
-        final AudioManager am = new AudioManager();
+        AudioManager.initContext();
     }
 
     @Test

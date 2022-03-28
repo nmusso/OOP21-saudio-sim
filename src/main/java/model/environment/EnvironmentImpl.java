@@ -34,7 +34,6 @@ public class EnvironmentImpl implements Environment {
         this.listener = listener;
         this.space = new SpaceImpl(10, 10);
     }
-
     /**
     *
     * 
@@ -79,5 +78,23 @@ public class EnvironmentImpl implements Environment {
     @Override
     public Space getSpace() {
        return this.space;
+    }
+    /**
+    *
+    * 
+    *
+    */
+    @Override
+    public void playAllSources() {
+        this.sources.forEach(s -> s.play());
+    }
+    /**
+    *
+    * 
+    *
+    */
+    @Override
+    public void stopAllSources() {
+        this.sources.forEach(s -> s.stop());
     }
 }

@@ -6,14 +6,46 @@ import model.listener.SimpleListener;
 import model.source.Source;
 
 public interface Environment {
-    
+    /**
+    *
+    * 
+    *
+    */
     List<Source> getAllSources();
-    
+    /**
+    *
+    * 
+    *
+    */
     Source getXSource(int x);
-    
+    /**
+    *
+    * 
+    *
+    */
     List<Source> getPlayingSources();
-    
+    /**
+    *
+    * 
+    *
+    */
     SimpleListener getListener();
-    
+    /**
+    *
+    * 
+    *
+    */
     Space getSpace();
+    /**
+    *
+    * 
+    *
+    */
+    void playAllSources();
+    /**
+    *
+    * 
+    *
+    */
+    void stopAllSources();
 }

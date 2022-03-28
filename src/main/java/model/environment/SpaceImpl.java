@@ -25,7 +25,6 @@ public class SpaceImpl implements Space {
         super();
         this.filter = filter;
     }
-
     /**
     *
     * 
