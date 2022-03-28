@@ -6,7 +6,7 @@ public interface Space {
 
      FilterEffects getFilterEffects();
      
-     void setFilterEffects(FilterEffects filter);
+     void setFilterEffects(FilterEffects newfilter);
      
      float getLenght();
      
