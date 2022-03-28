@@ -2,13 +2,18 @@ package model.source;
 
 import model.utility.Vec3f;
 
-public abstract class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
+public class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
 
     private SourceType type;
 
+    public FreqRangeSourceImpl(final SourceType type) {
+        super();
+        this.setType(type);
+    }
+
     public FreqRangeSourceImpl(final Vec3f position, final SourceType type) {
         super(position);
-        setType(type);
+        this.setType(type);
     }
 
     /**
@@ -23,18 +28,18 @@ public abstract class FreqRangeSourceImpl extends SourceImpl implements FreqRang
      * @inheritDoc
      */
     @Override
-    public void setType(final SourceType type) {
+    public final void setType(final SourceType type) {
         this.type = type;
 
         switch (type) {
             case LOW:
-                //TODO
+                //TODO (waiting musso)
                 break;
             case MID:
-                //TODO
+                //TODO (waiting musso)
                 break;
             case HIGH:
-                //TODO
+                //TODO (waiting musso)
                 break;
             default:
                 break;
