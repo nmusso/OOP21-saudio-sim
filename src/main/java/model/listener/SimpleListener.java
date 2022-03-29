@@ -1,39 +1,52 @@
 package model.listener;
 
+import model.AudioManager.Context;
 import model.utility.Vec3f;
 
 public interface SimpleListener {
-    
+
+    /**
+     * 
+     * @return the id of this listener 
+     */
+    int getId();
+
+    /**
+     * 
+     * @return context where this listener is usable
+     */
+    Context getCurrentContext();
+
     /**
      * Set the position (x,y,z) of the listener.
      * @param pos vector of 3 float that representing x,y,z value.
      */
-    void setPosition(final Vec3f pos);
-    
+    void setPosition(Vec3f pos);
+
     /**
      * 
      * @return vector of 3 float that representing x,y,z value.
      */
     Vec3f getPosition();
-    
+
     /**
      * 
      * @param at
      * @param up
-     */    
-    void setOrientation(final Vec3f at, final Vec3f up);
-    
+     */
+    void setOrientation(Vec3f at, Vec3f up);
+
     /**
      * 
      * @return at vector 
      */
     Vec3f getAtOrientation();
-    
+
     /**
-     *  
+     * 
      * @return up vector
      */
     Vec3f getUpOrientation();
-    
+
 
 }
