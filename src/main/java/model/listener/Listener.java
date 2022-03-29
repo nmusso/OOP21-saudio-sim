@@ -3,7 +3,7 @@ package model.listener;
 import model.AudioManager.Context;
 import model.utility.Vec3f;
 
-public interface SimpleListener {
+public interface Listener {
 
     /**
      * 

@@ -8,7 +8,7 @@ import static org.lwjgl.openal.AL10.alListenerfv;
 
 
 
-public class SimpleListenerImpl implements SimpleListener {
+public class ListenerImpl implements Listener {
 
     private final int id;
     private final Context context;
@@ -18,7 +18,7 @@ public class SimpleListenerImpl implements SimpleListener {
 
 
 
-    SimpleListenerImpl(final int id, final Context context) {
+    ListenerImpl(final int id, final Context context) {
         this.id = id;
         this.context = context;
         this.setPosition(new Vec3f(0.0f, 0.0f, 0.0f));

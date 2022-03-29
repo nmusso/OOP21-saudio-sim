@@ -5,23 +5,23 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import model.listener.SimpleListener;
-import model.listener.SimpleListenerImpl;
+import model.listener.Listener;
+import model.listener.ListenerImpl;
 import model.source.Source;
 
 public class EnvironmentImpl implements Environment {
     private final List<Source> sources;
-    private final SimpleListener listener;
+    private final Listener listener;
     private final Space space;
 
-    public EnvironmentImpl(final List<Source> sources, final SimpleListener listener, final Space space) {
+    public EnvironmentImpl(final List<Source> sources, final Listener listener, final Space space) {
         super();
         this.sources = sources;
         this.listener = listener;
         this.space = space;
     }
 
-    public EnvironmentImpl(final List<Source> sources, final SimpleListener listener) {
+    public EnvironmentImpl(final List<Source> sources, final Listener listener) {
         super();
         this.sources = sources;
         this.listener = listener;
@@ -31,7 +31,7 @@ public class EnvironmentImpl implements Environment {
     public EnvironmentImpl() {
         super();
         this.sources = new LinkedList<Source>();
-        this.listener = new SimpleListenerImpl();
+        this.listener = new ListenerImpl();
         this.space = new SpaceImpl(10, 10);
     }
 
@@ -67,7 +67,7 @@ public class EnvironmentImpl implements Environment {
     *{@inheritDoc}
     */
     @Override
-    public SimpleListener getListener() {
+    public Listener getListener() {
         return this.listener;
     }
 

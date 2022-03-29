@@ -2,7 +2,7 @@ package model.environment;
 
 import java.util.List;
 
-import model.listener.SimpleListener;
+import model.listener.Listener;
 import model.source.Source;
 
 public interface EnvironmentFactory {
@@ -14,7 +14,7 @@ public interface EnvironmentFactory {
     * @param space
     * @return Environment
     */
-    Environment createMonoEnvironment(Source mono, SimpleListener listener, Space space);
+    Environment createMonoEnvironment(Source mono, Listener listener, Space space);
 
     /**
     * create an Environment with a unmodifiable stereo source.
@@ -23,7 +23,7 @@ public interface EnvironmentFactory {
     * @param space
     * @return Environment
     */
-    Environment createStereoEnvironment(Source left, Source right, SimpleListener listener, Space space);
+    Environment createStereoEnvironment(Source left, Source right, Listener listener, Space space);
 
     /**
     * create an Environment with multiple sources.
@@ -32,12 +32,12 @@ public interface EnvironmentFactory {
     * @param space
     * @return Environment
     */
-    Environment createNEnvironment(List<Source> sources, SimpleListener listener, Space space);
+    Environment createNEnvironment(List<Source> sources, Listener listener, Space space);
     /**
      * create an Environment with default space.
      * @param list of Sources
      * @param listener
      * @return Environment
      */
-     Environment createEnvironmentDefaultSpace(List<Source> sources, SimpleListener listener);
+     Environment createEnvironmentDefaultSpace(List<Source> sources, Listener listener);
 }

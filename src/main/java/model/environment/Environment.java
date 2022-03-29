@@ -2,7 +2,7 @@ package model.environment;
 
 import java.util.List;
 
-import model.listener.SimpleListener;
+import model.listener.Listener;
 import model.source.Source;
 
 public interface Environment {
@@ -35,7 +35,7 @@ public interface Environment {
     * 
     * @return listener
     */
-    SimpleListener getListener();
+    Listener getListener();
 
     /**
     *
