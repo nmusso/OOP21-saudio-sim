@@ -5,11 +5,6 @@ import model.utility.Vec3f;
 
 public interface Listener {
 
-    /**
-     * 
-     * @return the id of this listener 
-     */
-    int getId();
 
     /**
      * 

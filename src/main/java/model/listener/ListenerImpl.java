@@ -10,7 +10,6 @@ import static org.lwjgl.openal.AL10.alListenerfv;
 
 public class ListenerImpl implements Listener {
 
-    private final int id;
     private final Context context;
     private Vec3f position;
     private Vec3f atOrientation;
@@ -18,11 +17,22 @@ public class ListenerImpl implements Listener {
 
 
 
-    ListenerImpl(final int id, final Context context) {
-        this.id = id;
+    ListenerImpl(final Context context) {
         this.context = context;
         this.setPosition(new Vec3f(0.0f, 0.0f, 0.0f));
         this.setOrientation(new Vec3f(0.0f, 1.0f, 0.0f), new Vec3f(0.0f, 0.0f, 1.0f));
+    }
+
+    ListenerImpl(final Context context, final Vec3f position) {
+        this.context = context;
+        this.setPosition(position);
+        this.setOrientation(new Vec3f(0.0f, 1.0f, 0.0f), new Vec3f(0.0f, 0.0f, 1.0f));
+    }
+
+    ListenerImpl(final Context context, final Vec3f position, final Vec3f at, final Vec3f up) {
+        this.context = context;
+        this.setPosition(position);
+        this.setOrientation(at, up);
     }
 
 
@@ -77,14 +87,6 @@ public class ListenerImpl implements Listener {
         return this.upOrientation;
     }
 
-    /**
-     * 
-     *@inheritDoc
-     */
-    @Override
-    public int getId() {
-        return this.id;
-    }
 
     /**
      * 
