@@ -1,7 +1,10 @@
 package model.audiomanager;
 
-import org.lwjgl.openal.*;
-import static org.lwjgl.openal.ALC10.*;
+import org.lwjgl.openal.ALCapabilities;
+import org.lwjgl.openal.ALCCapabilities;
+import org.lwjgl.openal.AL;
+import org.lwjgl.openal.ALC;
+import static org.lwjgl.openal.ALC10.alcMakeContextCurrent;
 
 public final class AudioManager {
     private static Context context;

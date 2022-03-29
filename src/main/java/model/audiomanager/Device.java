@@ -1,13 +1,14 @@
 package model.audiomanager;
 
-import static org.lwjgl.openal.ALC10.*;
+import static org.lwjgl.openal.ALC10.alcOpenDevice;
+import static org.lwjgl.openal.ALC10.alcCloseDevice;
 
 public class Device {
 
     private final long id;
 
     public Device() {
-        id = alcOpenDevice((java.lang.CharSequence) null);
+        id = alcOpenDevice((CharSequence) null);
     }
     /**
     *

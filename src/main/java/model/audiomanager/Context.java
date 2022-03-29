@@ -1,6 +1,8 @@
 package model.audiomanager;
 
-import static org.lwjgl.openal.ALC10.*;
+import static org.lwjgl.openal.ALC10.alcCreateContext;
+import static org.lwjgl.openal.ALC10.alcDestroyContext;
+import static org.lwjgl.openal.ALC10.alcSuspendContext;
 
 import java.nio.IntBuffer;
 import java.util.Objects;
