@@ -5,7 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import model.audiomanager.AudioManager;
 import model.listener.Listener;
+import model.listener.ListenerFactory;
+import model.listener.ListenerFactoryImpl;
 import model.listener.ListenerImpl;
 import model.source.Source;
 
@@ -30,8 +33,9 @@ public class EnvironmentImpl implements Environment {
 
     public EnvironmentImpl() {
         super();
+        final ListenerFactory listFac = new ListenerFactoryImpl();
         this.sources = new LinkedList<Source>();
-        this.listener = new ListenerImpl();
+        this.listener = listFac.createListener(AudioManager.getContext());
         this.space = new SpaceImpl(10, 10);
     }
 

@@ -1,9 +1,6 @@
-package model.AudioManager;
+package model.audiomanager;
 
-import javax.sound.sampled.*;
 import org.lwjgl.openal.*;
-import static javax.sound.sampled.AudioSystem.*;
-import static org.lwjgl.openal.AL10.*;
 import static org.lwjgl.openal.ALC10.*;
 
 public final class AudioManager {

@@ -1,4 +1,4 @@
-package model.AudioManager;
+package model.audiomanager;
 
 import static org.lwjgl.openal.ALC10.*;
 
@@ -8,42 +8,34 @@ import java.util.Objects;
 public class Context {
     private final Device device;
     private final long id;
-    /**
-    *
-    * @inheritDoc
-    *
-    */
+
     public Context(final Device device) {
         id = alcCreateContext(device.getId(), (IntBuffer) null);
         this.device = device;
     }
     /**
     *
-    * @inheritDoc
-    *
+    * @return id of Context
     */
     public long getId() {
         return this.id;
     }
     /**
     *
-    * @inheritDoc
-    *
+    * @return device
     */
     public Device getDevice() {
         return this.device;
     }
     /**
-    *
-    * @inheritDoc
+    * Destroy this context.
     *
     */
     public void destroy() {
         alcDestroyContext(id);
     }
     /**
-    *
-    * @inheritDoc
+    * Suspend this context.
     *
     */
     public void suspend() {
@@ -52,8 +44,7 @@ public class Context {
 
     /**
     *
-    * @inheritDoc
-    *
+    * @return the hashcode of context generate by ID
     */
     @Override
     public int hashCode() {
@@ -62,8 +53,7 @@ public class Context {
 
     /**
     *
-    * @inheritDoc
-    *
+    *@return boolean, true if the obj is equals to this context
     */
     @Override
     public boolean equals(final Object obj) {

@@ -17,7 +17,7 @@ import model.environment.EnvironmentImpl;
 import model.listener.Listener;
 import model.listener.ListenerImpl;
 import model.source.*;
-import model.AudioManager.AudioManager;
+import model.audiomanager.AudioManager;
 import model.buffer.*;
 import model.utility.*;
 

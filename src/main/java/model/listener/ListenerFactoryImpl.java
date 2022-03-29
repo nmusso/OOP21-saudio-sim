@@ -3,7 +3,7 @@ package model.listener;
 import java.util.HashMap;
 import java.util.Map;
 
-import model.AudioManager.Context;
+import model.audiomanager.Context;
 import model.utility.Vec3f;
 
 public class ListenerFactoryImpl implements ListenerFactory {

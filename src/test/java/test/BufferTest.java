@@ -11,9 +11,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import model.audiomanager.AudioManager;
 import model.buffer.BufferFactory;
 import model.buffer.BufferFactoryImpl;
-import model.AudioManager.AudioManager;
 
 class BufferTest {
 

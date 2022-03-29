@@ -13,20 +13,22 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import model.AudioManager.AudioManager;
+import model.audiomanager.AudioManager;
 import model.buffer.Buffer;
 import model.buffer.BufferImpl;
 import model.environment.Environment;
 import model.environment.EnvironmentImpl;
 import model.listener.Listener;
-import model.listener.ListenerImpl;
+import model.listener.ListenerFactory;
+import model.listener.ListenerFactoryImpl;
 import model.source.Source;
 import model.source.SourceImpl;
 
 class EnvironmentTest {
 
     private final List<Source> sources = new LinkedList<>();
-    private final Listener listener = new ListenerImpl();
+    private final ListenerFactory listFac = new ListenerFactoryImpl();
+    private final Listener listener = listFac.createListener(AudioManager.getContext());
 
     @BeforeAll
     static void init() {

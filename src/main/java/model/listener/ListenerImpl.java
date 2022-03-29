@@ -1,6 +1,6 @@
 package model.listener;
 
-import model.AudioManager.Context;
+import model.audiomanager.Context;
 import model.utility.Vec3f;
 import org.lwjgl.openal.AL10;
 import static org.lwjgl.openal.AL10.alListener3f;

@@ -1,29 +1,23 @@
-package model.AudioManager;
+package model.audiomanager;
 
 import static org.lwjgl.openal.ALC10.*;
 
 public class Device {
 
     private final long id;
-    /**
-    *
-    * @inheritDoc
-    *
-    */
+
     public Device() {
         id = alcOpenDevice((java.lang.CharSequence) null);
     }
     /**
     *
-    * @inheritDoc
-    *
+    * @return id of device
     */
     public long getId() {
         return this.id;
     }
     /**
-    *
-    * @inheritDoc
+    * Close this device.
     *
     */
     public void close() {
