@@ -21,4 +21,8 @@ public final class AudioManager {
         alCapabilities = AL.createCapabilities(alcCapabilities);
         AL.setCurrentProcess(alCapabilities);
     }
+
+    public static Context getContext() {
+        return context;
+    }
 }
