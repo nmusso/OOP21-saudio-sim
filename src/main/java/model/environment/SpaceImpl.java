@@ -1,9 +1,9 @@
 package model.environment;
 
-import model.filters.FilterEffects;
+import model.extension.Extension;
 
 public class SpaceImpl implements Space {
-    private FilterEffects filter;
+    private Extension filter;
     private float maxLenght;
     private float maxWidth;
 
@@ -13,7 +13,7 @@ public class SpaceImpl implements Space {
         this.maxWidth = maxWidth;
     }
 
-    public SpaceImpl(final float maxLenght, final float maxWidth, final FilterEffects filter) {
+    public SpaceImpl(final float maxLenght, final float maxWidth, final Extension filter) {
         super();
         this.filter = filter;
     }
@@ -23,7 +23,7 @@ public class SpaceImpl implements Space {
     *{@inheritDoc}
     */
     @Override
-    public FilterEffects getFilterEffect() {
+    public Extension getFilterEffect() {
         return filter;
     }
 
@@ -32,7 +32,7 @@ public class SpaceImpl implements Space {
     *{@inheritDoc}
     */
     @Override
-    public void setFilterEffect(final FilterEffects newFilter) {
+    public void setFilterEffect(final Extension newFilter) {
         this.filter = newFilter;
     }
 

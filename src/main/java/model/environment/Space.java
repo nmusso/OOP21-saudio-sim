@@ -1,6 +1,6 @@
 package model.environment;
 
-import model.filters.FilterEffects;
+import model.extension.Extension;
 
 public interface Space {
 
@@ -8,14 +8,14 @@ public interface Space {
     *
     * @return filterEffect in the space
     */
-     FilterEffects getFilterEffect();
+     Extension getFilterEffect();
 
      /**
      *
      * modify or ad filterEffects.
      *
      */
-     void setFilterEffect(FilterEffects newfilter);
+     void setFilterEffect(Extension newfilter);
 
      /**
      *
