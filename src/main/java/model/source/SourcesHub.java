@@ -35,7 +35,7 @@ public interface SourcesHub {
      * @param position
      * @return Source with the specified position
      */
-    Source getSourceByPos(Vec3f position);
+    Source getSourceFromPos(Vec3f position);
 
     /**
      * Add the Source s to the SourcesHub.

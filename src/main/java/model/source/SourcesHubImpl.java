@@ -52,7 +52,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public Source getSourceByPos(final Vec3f position) {
+    public Source getSourceFromPos(final Vec3f position) {
         return this.sources.stream().filter(s -> s.getPosition().equals(position)).findAny().get();
     }
 
