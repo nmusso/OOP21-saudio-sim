@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -17,6 +20,8 @@ import model.audiomanager.AudioManager;
 import model.buffer.Buffer;
 import model.buffer.BufferImpl;
 import model.environment.Environment;
+import model.environment.EnvironmentFactory;
+import model.environment.EnvironmentFactoryImpl;
 import model.environment.EnvironmentImpl;
 import model.listener.Listener;
 import model.listener.ListenerFactory;
@@ -26,9 +31,10 @@ import model.source.SourceImpl;
 
 class EnvironmentTest {
 
-    private final List<Source> sources = new LinkedList<>();
+    private final Set<Source> sources = new HashSet<Source>();
     private final ListenerFactory listFac = new ListenerFactoryImpl();
     private final Listener listener = listFac.createListener(AudioManager.getContext());
+    private final EnvironmentFactory envFac = new EnvironmentFactoryImpl();
 
     @BeforeAll
     static void init() {
@@ -48,40 +54,45 @@ class EnvironmentTest {
     void  testSimplePlayStop() {
         sources.add(genSource(new SourceImpl()));
         sources.add(genSource(new SourceImpl()));
-        final Environment env = new EnvironmentImpl(sources.stream().collect(Collectors.toList()), listener);
+        final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
-        env.playAllSources();
-        assertEquals(env.getPlayingSources(), sources);
-        env.stopAllSources();
-        assertNotEquals(env.getPlayingSources(), sources);
+        env.getSourceHub().playAll();
+        assertEquals(env.getSourceHub().getPalying(), sources);
+        env.getSourceHub().stopAll();
+        assertNotEquals(env.getSourceHub().getPalying(), sources);
     }
 
     @Test
     void testAddSource() {
         sources.add(genSource(new SourceImpl()));
         sources.add(genSource(new SourceImpl()));
-        final Environment env = new EnvironmentImpl(sources.stream().collect(Collectors.toList()), listener);
 
-        assertEquals(env.getAllSources().size(), sources.size());
-        env.addSource(genSource(new SourceImpl()));
-        assertEquals(env.getAllSources().size(), sources.size() + 1);
+        final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
+
+        assertEquals(env.getSourceHub().getAll().size(), sources.size());
+        env.getSourceHub().addSource((genSource(new SourceImpl())));
+        assertEquals(env.getSourceHub().getAll().size(), sources.size() + 1);
     }
 
     @Test
     void testGetX() {
-        sources.add(genSource(new SourceImpl()));
-        sources.add(genSource(new SourceImpl()));
-        sources.add(genSource(new SourceImpl()));
-        final Environment env = new EnvironmentImpl(sources.stream().collect(Collectors.toList()), listener);
+        final Source source1 = genSource(new SourceImpl());
+        final Source source2 = genSource(new SourceImpl());
+        final Source source3 = genSource(new SourceImpl());
+        sources.add(source1);
+        sources.add(source2);
+        sources.add(source3);
+        final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
-        assertEquals(env.getXSource(1), sources.get(1));
-        assertEquals(env.getXSource(2), sources.get(2));
-        assertNotEquals(env.getXSource(1), sources.get(2));
+        System.out.println(source1.getId());
+        assertEquals(env.getSourceHub().getSource(1), source1);
+        assertEquals(env.getSourceHub().getSource(2), source2);
+        assertNotEquals(env.getSourceHub().getSource(1), source2);
     }
 
     @Test
     void testSpace() {
-        final Environment env = new EnvironmentImpl(sources.stream().collect(Collectors.toList()), listener);
+        final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         assertEquals(env.getSpace().getLenght(), 10.0f);
         assertNotEquals(env.getSpace().getWidth(), 2.0f);
@@ -89,7 +100,7 @@ class EnvironmentTest {
 
     @Test
     void testListener() {
-        final Environment env = new EnvironmentImpl(sources.stream().collect(Collectors.toList()), listener);
+        final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         assertEquals(env.getListener(), listener);
     }

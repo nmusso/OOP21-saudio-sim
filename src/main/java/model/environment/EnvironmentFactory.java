@@ -1,7 +1,7 @@
 package model.environment;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import model.listener.Listener;
 import model.source.Source;
@@ -33,5 +33,29 @@ public interface EnvironmentFactory {
     * @param space
     * @return Environment
     */
-    Environment createNEnvironment(List<Source> sources, Listener listener, Optional<Space> space);
+    Environment createNEnvironment(Set<Source> sources, Listener listener, Optional<Space> space);
+
+    /**
+    * create an Environment with specific set, like Cinema.
+    * @return Environment
+    */
+    Environment createCinemaEnvironment();
+
+    /**
+    * create an Environment with specific set, like Concert.
+    * @return Environment
+    */
+    Environment createConcertEnvironment();
+
+    /**
+    * create an Environment with specific set, like Stadium.
+    * @return Environment
+    */
+    Environment createStadiumEnvironment();
+
+    /**
+    * create an Environment with specific set, like HIFI HOME STUDIO.
+    * @return Environment
+    */
+    Environment createHIFIEnvironment();
 }

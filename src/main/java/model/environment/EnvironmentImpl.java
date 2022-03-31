@@ -1,70 +1,35 @@
 package model.environment;
 
 import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Set;
 
-import model.audiomanager.AudioManager;
+import model.extension.effect.ALEffect;
 import model.listener.Listener;
-import model.listener.ListenerFactory;
-import model.listener.ListenerFactoryImpl;
-import model.listener.ListenerImpl;
-import model.source.Source;
+import model.source.SourcesHub;
+import model.utility.Vec3f;
 
 public class EnvironmentImpl implements Environment {
-    private final List<Source> sources;
+    private final SourcesHub sourcesHub;
     private final Listener listener;
     private final Space space;
+    private final Set<ALEffect> effect;
 
-    public EnvironmentImpl(final List<Source> sources, final Listener listener, final Space space) {
+    public EnvironmentImpl(final SourcesHub sourcesHub, final Listener listener, final Space space) {
         super();
-        this.sources = sources;
+        this.sourcesHub = sourcesHub;
         this.listener = listener;
         this.space = space;
+        this.effect = new HashSet<ALEffect>();
     }
 
-    public EnvironmentImpl(final List<Source> sources, final Listener listener) {
-        super();
-        this.sources = sources;
-        this.listener = listener;
-        this.space = new SpaceImpl(10, 10);
-    }
-
-    public EnvironmentImpl() {
-        super();
-        final ListenerFactory listFac = new ListenerFactoryImpl();
-        this.sources = new LinkedList<Source>();
-        this.listener = listFac.createListener(AudioManager.getContext());
-        this.space = new SpaceImpl(10, 10);
-    }
-
-    /**
-    * 
-    *{@inheritDoc}
-    */
-    @Override
-    public List<Source> getAllSources() {
-        return Collections.unmodifiableList(this.sources);
-    }
-
-    /**
-    * 
-    *{@inheritDoc}
-    */
-    @Override
-    public Source getXSource(final int x) {
-        return this.sources.get(x);
-    }
-
-    /**
-    * 
-    *{@inheritDoc}
-    */
-    @Override
-    public List<Source> getPlayingSources() {
-        return this.sources.stream().filter(s -> s.isPlaying()).collect(Collectors.toList());
-    }
+//    public EnvironmentImpl() {
+//        super();
+//        final ListenerFactory listFac = new ListenerFactoryImpl();
+//        //TODO this.sourcesHub = 
+//        this.listener = listFac.createListener(AudioManager.getContext());
+//        this.space = new SpaceImpl(10, 10);
+//    }
 
     /**
     * 
@@ -85,29 +50,62 @@ public class EnvironmentImpl implements Environment {
     }
 
     /**
-    * 
-    *{@inheritDoc}
-    */
+     * 
+     *{@inheritDoc}
+     */
     @Override
-    public void playAllSources() {
-        this.sources.forEach(s -> s.play());
+    public SourcesHub getSourceHub() {
+        return this.sourcesHub;
     }
 
     /**
-    * 
-    *{@inheritDoc}
-    */
+     * 
+     *{@inheritDoc}
+     */
     @Override
-    public void stopAllSources() {
-        this.sources.forEach(s -> s.stop());
+    public void moveSourceWithID(final int id, final Vec3f pos) {
+        if (this.space.isAvailable(pos)) {
+            this.sourcesHub.getSource(id).setPosition(pos);
+        }
     }
 
     /**
-    * 
-    *{@inheritDoc}
-    */
+     * 
+     *{@inheritDoc}
+     */
     @Override
-    public void addSource(final Source s) {
-        this.sources.add(s);
+    public void moveSourceWithVec3f(final Vec3f oldPos, final Vec3f newPos) {
+        if (this.space.isAvailable(newPos)) {
+            this.sourcesHub.getSourceFromPos(oldPos).setPosition(newPos);
+        }
     }
+
+    /**
+     * 
+     *{@inheritDoc}
+     */
+    @Override
+    public void setEffect(final ALEffect effect, final float level) {
+        this.effect.add(effect);
+        this.sourcesHub.applyFilter(effect, level);
+    }
+
+    /**
+     * 
+     *{@inheritDoc}
+     */
+    @Override
+    public void removeEffect(final ALEffect effect) {
+        this.effect.remove(effect);
+        //this.sourcesHub.removeFilter(effect);
+    }
+    /**
+     * 
+     *{@inheritDoc}
+     */
+    @Override
+    public Set<ALEffect> getEffectSet() {
+        return Collections.unmodifiableSet(this.effect);
+    }
+
 }

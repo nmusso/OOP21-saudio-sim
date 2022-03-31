@@ -1,22 +1,14 @@
 package model.environment;
 
-import model.extension.Extension;
+import model.utility.Vec3f;
 
 public interface Space {
 
-    /**
-    *
-    * @return filterEffect in the space
-    */
-     Extension getFilterEffect();
-
      /**
      *
-     * modify or ad filterEffects.
-     *
+     * @return scale.
      */
-     void setFilterEffect(Extension newfilter);
-
+     float getScale();
      /**
      *
      * @return max lenght.
@@ -28,4 +20,10 @@ public interface Space {
      * @return max width.
      */
      float getWidth();
+
+     /**
+     *
+     * TODO.
+     */
+     boolean isAvailable(Vec3f pos);
 }

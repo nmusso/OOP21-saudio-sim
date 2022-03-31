@@ -1,35 +1,19 @@
 package model.environment;
 
-import java.util.List;
+import java.util.Set;
 
+import model.extension.effect.ALEffect;
 import model.listener.Listener;
-import model.source.Source;
+import model.source.SourcesHub;
+import model.utility.Vec3f;
 
 public interface Environment {
 
     /**
     *
-    * @return A list of all sources
+    * @return TODO
     */
-    List<Source> getAllSources();
- 
-    /**
-    * 
-    * @return Only source at index X
-    */
-    Source getXSource(int x);
- 
-    /**
-    * @param The source to add
-    * 
-    */
-    void addSource(Source s);
-
-    /**
-    * 
-    * @return A list of only playing sources
-    */
-    List<Source> getPlayingSources();
+    SourcesHub getSourceHub();
 
     /**
     * 
@@ -44,14 +28,32 @@ public interface Environment {
     Space getSpace();
 
     /**
-    *
-    * Starts playback on all sources.
+    * move the selected source with id to pos.
+    * 
     */
-    void playAllSources();
+    void moveSourceWithID(int id, Vec3f pos);
+
+    /**
+     * move the selected source with id to pos.
+     * 
+     */
+     void moveSourceWithVec3f(Vec3f oldPos, Vec3f newPos);
 
      /**
-    *
-    * Stop playback on all sources.
-    */
-    void stopAllSources();
+      * TODO.
+      * 
+      */
+     void setEffect(ALEffect effect, float level);
+
+     /**
+      * TODO.
+      * 
+      */
+     void removeEffect(ALEffect effect);
+
+     /**
+      * TODO.
+      * 
+      */
+     Set<ALEffect> getEffectSet();
 }

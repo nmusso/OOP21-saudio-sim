@@ -1,39 +1,17 @@
 package model.environment;
 
-import model.extension.Extension;
+import model.utility.Vec3f;
 
 public class SpaceImpl implements Space {
-    private Extension filter;
-    private float maxLenght;
-    private float maxWidth;
+    private final float scale;
+    private final float maxLenght;
+    private final float maxWidth;
 
-    public SpaceImpl(final float maxLenght, final float maxWidth) {
+    public SpaceImpl(final float maxLenght, final float maxWidth, final float scale) {
         super();
         this.maxLenght = maxLenght;
         this.maxWidth = maxWidth;
-    }
-
-    public SpaceImpl(final float maxLenght, final float maxWidth, final Extension filter) {
-        super();
-        this.filter = filter;
-    }
-
-    /**
-    *
-    *{@inheritDoc}
-    */
-    @Override
-    public Extension getFilterEffect() {
-        return filter;
-    }
-
-    /**
-    *
-    *{@inheritDoc}
-    */
-    @Override
-    public void setFilterEffect(final Extension newFilter) {
-        this.filter = newFilter;
+        this.scale = scale;
     }
 
     /**
@@ -54,4 +32,24 @@ public class SpaceImpl implements Space {
         return this.maxWidth;
     }
 
+    /**
+    *
+    *{@inheritDoc}
+    */
+    @Override
+    public float getScale() {
+        return this.scale;
+    }
+
+    /**
+    *
+    *{@inheritDoc}
+    */
+    @Override
+    public boolean isAvailable(final Vec3f pos) {
+        if ((pos.getX() > 0f || pos.getX() < maxLenght) && (pos.getY() > 0f || pos.getY() < maxWidth)) {
+            return true;
+        }
+        return false;
+    }
 }

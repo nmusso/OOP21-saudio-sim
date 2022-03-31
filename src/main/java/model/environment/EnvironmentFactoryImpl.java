@@ -1,42 +1,89 @@
 package model.environment;
 
 import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import model.listener.Listener;
 import model.source.Source;
+import model.source.SourcesHubFactory;
+import model.source.SourcesHubFactoryImpl;
 
 public class EnvironmentFactoryImpl implements EnvironmentFactory {
 
+    private final SourcesHubFactory sourceHubFac = new SourcesHubFactoryImpl();
+    private SpaceFactory spaceFac = new SpaceFactoryImpl();
+
     /**
-     * 
-     *{@inheritDoc}
-     */
+    *
+    *{@inheritDoc}
+    */
     @Override
     public Environment createMonoEnvironment(final Source mono, final Listener listener, final Optional<Space> space) {
-        return new EnvironmentImpl(Collections.singletonList(mono), listener, space.get());
+        return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(Collections.singletonList(mono).stream().collect(Collectors.toSet())), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
     }
 
     /**
-     * 
-     *{@inheritDoc}
-     */
+    *
+    *{@inheritDoc}
+    */
     @Override
     public Environment createStereoEnvironment(final Source left, final Source right, final Listener listener, final Optional<Space> space) {
-        final List<Source> sources = new LinkedList<Source>();
+        final Set<Source> sources = new HashSet<>();
         sources.add(left);
         sources.add(right);
-        return new EnvironmentImpl(sources, listener, space.get());
+        return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(sources), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
     }
 
     /**
-     * 
-     *{@inheritDoc}
-     */
+    *
+    *{@inheritDoc}
+    */
     @Override
-    public Environment createNEnvironment(final List<Source> sources, final Listener listener, final Optional<Space> space) {
-        return new EnvironmentImpl(sources, listener, space.get());
+    public Environment createNEnvironment(final Set<Source> sources, final Listener listener, final Optional<Space> space) {
+        return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(sources), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
     }
+
+    /**
+    *
+    *{@inheritDoc}
+    */
+    @Override
+    public Environment createCinemaEnvironment() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /**
+    *
+    *{@inheritDoc}
+    */
+    @Override
+    public Environment createConcertEnvironment() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /**
+    *
+    *{@inheritDoc}
+    */
+    @Override
+    public Environment createStadiumEnvironment() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    /**
+    *
+    *{@inheritDoc}
+    */
+    @Override
+    public Environment createHIFIEnvironment() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }
