@@ -29,4 +29,11 @@ public class Effect implements Extension {
         alSource3i(source.getId(), AL_AUXILIARY_SEND_FILTER, slot.get(0), 0, AL_FILTER_NULL);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void remove(final ALEffect effect) {
+        alDeleteEffects(effect.getEffect());
+    }
 }
