@@ -1,4 +1,4 @@
-package model.source;
+package model.source.hub;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import model.extension.effect.ALEffect;
 import model.extension.effect.EffectManager;
+import model.source.Source;
 import model.utility.Vec3f;
 
 public class SourcesHubImpl implements SourcesHub {

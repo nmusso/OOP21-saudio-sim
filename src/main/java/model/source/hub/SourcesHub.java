@@ -1,8 +1,9 @@
-package model.source;
+package model.source.hub;
 
 import java.util.Set;
 
 import model.extension.effect.ALEffect;
+import model.source.Source;
 import model.utility.Vec3f;
 
 public interface SourcesHub {
