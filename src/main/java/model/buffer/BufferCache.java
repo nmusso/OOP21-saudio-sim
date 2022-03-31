@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.sound.sampled.UnsupportedAudioFileException;
+import static org.lwjgl.openal.AL10.alDeleteBuffers;
 
 public final class BufferCache {
 
@@ -53,5 +53,12 @@ public final class BufferCache {
         }
 
         return buf;
+    }
+
+    public void emptyCache() {
+        buffers.forEach((path, buf) -> {
+            alDeleteBuffers(buf.getID());
+            buffers.remove(path);
+        });
     }
 }
