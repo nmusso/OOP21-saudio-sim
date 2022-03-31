@@ -1,6 +1,8 @@
-package model.source;
+package model.source.hub;
 
 import java.util.Set;
+
+import model.source.Source;
 
 public class SourcesHubFactoryImpl implements SourcesHubFactory {
 
