@@ -10,7 +10,7 @@ public interface Source {
      * 
      * @return id
      */
-    int getId();
+    Integer getId();
 
     /**
      * Starts playback.
@@ -58,4 +58,10 @@ public interface Source {
      * @return position
      */
     Vec3f getPosition();
+
+    /**
+     * Delete the source.
+     * 
+     */
+    void delete();
 }

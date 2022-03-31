@@ -12,7 +12,7 @@ import java.nio.*;
 
 public class SourceImpl implements Source {
 
-    private final int id;
+    private final Integer id;
     private Vec3f position;
     private boolean isPlaying;
 
@@ -30,7 +30,7 @@ public class SourceImpl implements Source {
      * @inheritDoc
      */
     @Override
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
@@ -93,6 +93,11 @@ public class SourceImpl implements Source {
     @Override
     public Vec3f getPosition() {
         return this.position;
+    }
+
+    @Override
+    public void delete() {
+        alDeleteSources(this.id);
     }
 
 }

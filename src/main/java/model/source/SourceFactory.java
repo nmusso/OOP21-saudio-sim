@@ -7,28 +7,28 @@ public interface SourceFactory {
     /**
      * Create a basic Source at the position (0.0f, 0.0f, 0.0f).
      * 
-     * @return Source
+     * @return Source at the position (0.0f, 0.0f, 0.0f)
      */
     Source createSource();
 
     /**
      * Create a basic Source in the specified position.
      * 
-     * @return Source
+     * @return Source in the specified position
      */
-    Source createSourceWPos(Vec3f position);
+    Source createSourceWithPos(Vec3f position);
 
     /**
      * Create a Source with a given Frequency Range.
      * 
-     * @return Source
+     * @return Source with a given Frequency Range
      */
     Source createFreqRangeSource(SourceType type);
 
     /**
      * Create a Source with a given Frequency Range in the specified position.
      * 
-     * @return Source
+     * @return Source with a given Frequency Range in the specified position
      */
-    Source createFreqRangeSourceWPos(Vec3f position, SourceType type);
+    Source createFreqRangeSourceWithPos(Vec3f position, SourceType type);
 }

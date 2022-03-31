@@ -16,7 +16,7 @@ public class SourceFactoryImpl implements SourceFactory {
      * @inheritDoc
      */
     @Override
-    public Source createSourceWPos(final Vec3f position) {
+    public Source createSourceWithPos(final Vec3f position) {
         return new SourceImpl(position);
     }
 
@@ -32,7 +32,7 @@ public class SourceFactoryImpl implements SourceFactory {
      * @inheritDoc
      */
     @Override
-    public Source createFreqRangeSourceWPos(final Vec3f position, final SourceType type) {
+    public Source createFreqRangeSourceWithPos(final Vec3f position, final SourceType type) {
         return new FreqRangeSourceImpl(position, type);
     }
  
