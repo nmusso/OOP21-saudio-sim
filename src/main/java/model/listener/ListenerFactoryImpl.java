@@ -22,6 +22,9 @@ public class ListenerFactoryImpl implements ListenerFactory {
      */
     @Override
     public Listener createListenerWhitPos(final Context context, final Vec3f position) {
+        if (this.listeners.containsKey(context)) {
+            this.listeners.get(context).setPosition(position);
+        }
         this.listeners.putIfAbsent(context, new ListenerImpl(context, position));
         return this.listeners.get(context);
     }
@@ -31,6 +34,10 @@ public class ListenerFactoryImpl implements ListenerFactory {
      */
     @Override
     public Listener createListenerOriented(final Context context, final  Vec3f position, final  Vec3f at, final  Vec3f up) {
+        if (this.listeners.containsKey(context)) {
+            this.listeners.get(context).setPosition(position);
+            this.listeners.get(context).setOrientation(at, up);
+        }
         this.listeners.putIfAbsent(context, new ListenerImpl(context));
         return this.listeners.get(context);
     }
