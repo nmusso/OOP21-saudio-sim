@@ -3,16 +3,29 @@ package model.audiomanager;
 import static org.lwjgl.openal.ALC10.alcCreateContext;
 import static org.lwjgl.openal.ALC10.alcDestroyContext;
 import static org.lwjgl.openal.ALC10.alcSuspendContext;
+import static org.lwjgl.openal.EXTEfx.ALC_MAX_AUXILIARY_SENDS;
 
 import java.nio.IntBuffer;
 import java.util.Objects;
+
+import org.lwjgl.BufferUtils;
+
+import model.extension.effect.ALEffect;
 
 public class Context {
     private final Device device;
     private final long id;
 
     public Context(final Device device) {
-        id = alcCreateContext(device.getId(), (IntBuffer) null);
+        final IntBuffer contextAttribList = BufferUtils.createIntBuffer(3);
+        // ALC_MAX_AUXILIARY_SENDS won't go above compile-time max. Set to compile-time max if greater.
+        contextAttribList.put(ALC_MAX_AUXILIARY_SENDS);
+        contextAttribList.put(ALEffect.values().length);
+
+        contextAttribList.put(0);
+        contextAttribList.flip();
+
+        id = alcCreateContext(device.getId(), contextAttribList);
         this.device = device;
     }
     /**

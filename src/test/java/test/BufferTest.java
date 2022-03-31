@@ -15,6 +15,7 @@ import model.audiomanager.AudioManager;
 import model.buffer.Buffer;
 import model.buffer.BufferFactory;
 import model.buffer.BufferFactoryImpl;
+import model.extension.effect.ALEffect;
 
 class BufferTest {
 
@@ -48,10 +49,10 @@ class BufferTest {
         Buffer buffer;
         int same;
 
-        buffer = factory.createBuffer(PATH + "DriftMono.wav");
+        buffer = factory.createBuffer(PATH + "EyeTiger.wav");
         assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
         same = buffer.getID();
-        buffer = factory.createBuffer(PATH + "DriftMono.wav");
+        buffer = factory.createBuffer(PATH + "EyeTiger.wav");
         assertEquals(same, buffer.getID());
 
         buffer = factory.createBuffer(PATH + "Battle.wav");

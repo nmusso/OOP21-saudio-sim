@@ -6,5 +6,5 @@ import model.source.Source;
 
 public interface Extension {
     void apply(ALEffect effect, Source source, float val);
-    void remove(ALEffect effect);
+    void remove(Source source);
 }
