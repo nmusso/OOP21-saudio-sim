@@ -1,6 +1,8 @@
 package model.extension;
 
+//import java.util.function.Consumer;
+import model.source.Source;
+
 public interface Extension {
-    void set(Extension type, int attr, int val);
-    void apply(int val, int source);
+    void apply(Source source);
 }

@@ -1,5 +1,5 @@
 package model.extension.filter;
 
-public class Highpass extends Filter {
+public class Highpass {
 
 }

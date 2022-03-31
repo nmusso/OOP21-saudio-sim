@@ -1,5 +1,7 @@
 package model.extension.filter;
 
-public class Bandpass extends Filter {
+import model.source.Source;
+
+public class Bandpass {
 
 }
