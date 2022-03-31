@@ -8,7 +8,7 @@ import static org.lwjgl.openal.EXTEfx.*;
 
 import java.nio.IntBuffer;
 
-public class Effect implements Extension {
+public class EffectManager implements Extension {
 
     /**
      * {@inheritDoc}
