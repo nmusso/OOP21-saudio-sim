@@ -68,7 +68,7 @@ public class BufferImpl implements Buffer {
 
 
         final BufferCache bc = BufferCache.getInstance();
-        bc.addToCache(file, id);
+        bc.addToCache(file, this);
         return id;
     }
 

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import model.audiomanager.AudioManager;
+import model.buffer.Buffer;
 import model.buffer.BufferFactory;
 import model.buffer.BufferFactoryImpl;
 
@@ -29,33 +30,34 @@ class BufferTest {
     void testGenerate() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         final BufferFactory factory = new BufferFactoryImpl();
 
-        int id = factory.createBuffer(PATH + "DriftMono.wav");
-        assertNotEquals(0, id, ERROR_GENERATE);
-        id = factory.createBuffer(PATH + "InnoItalia.wav");
-        assertNotEquals(0, id, ERROR_GENERATE);
-        id = factory.createBuffer(PATH + "Battle.wav");
-        assertNotEquals(0, id, ERROR_GENERATE);
-        id = factory.createBuffer(PATH + "EyeTiger.wav");
-        assertNotEquals(0, id, ERROR_GENERATE);
-        id = factory.createBuffer(PATH + "DriftMono.wav");
-        assertNotEquals(0, id, ERROR_GENERATE);
+        Buffer buffer = factory.createBuffer(PATH + "DriftMono.wav");
+        assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
+        buffer = factory.createBuffer(PATH + "InnoItalia.wav");
+        assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
+        buffer = factory.createBuffer(PATH + "Battle.wav");
+        assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
+        buffer = factory.createBuffer(PATH + "EyeTiger.wav");
+        assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
+        buffer = factory.createBuffer(PATH + "DriftMono.wav");
+        assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
     }
 
     @Test
     void testGenerateFromCache() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         final BufferFactory factory = new BufferFactoryImpl();
-        int same, id;
+        Buffer buffer;
+        int same;
 
-        id = factory.createBuffer(PATH + "DriftMono.wav");
-        assertNotEquals(0, id, ERROR_GENERATE);
-        same = id;
-        id = factory.createBuffer(PATH + "DriftMono.wav");
-        assertEquals(same, id);
+        buffer = factory.createBuffer(PATH + "DriftMono.wav");
+        assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
+        same = buffer.getID();
+        buffer = factory.createBuffer(PATH + "DriftMono.wav");
+        assertEquals(same, buffer.getID());
 
-        id = factory.createBuffer(PATH + "Battle.wav");
-        assertNotEquals(same, id, ERROR_GENERATE);
-        same = id;
-        id = factory.createBuffer(PATH + "Battle.wav");
-        assertEquals(same, id);
+        buffer = factory.createBuffer(PATH + "Battle.wav");
+        assertNotEquals(same, buffer.getID(), ERROR_GENERATE);
+        same = buffer.getID();
+        buffer = factory.createBuffer(PATH + "Battle.wav");
+        assertEquals(same, buffer.getID());
     }
 }

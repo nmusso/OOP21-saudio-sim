@@ -13,7 +13,7 @@ public class BufferFactoryImpl implements BufferFactory {
      * {@inheritDoc}
      */
     @Override
-    public int createBuffer(final String file) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
+    public Buffer createBuffer(final String file) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         return bc.getBuffer(file);
     }
 }

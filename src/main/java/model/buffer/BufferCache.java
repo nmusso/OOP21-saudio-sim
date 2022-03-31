@@ -9,7 +9,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public final class BufferCache {
 
-    private final Map<String, Integer> buffers = new HashMap<>();
+    private final Map<String, Buffer> buffers = new HashMap<>();
 
     private static class BufferHolder {
         private static final BufferCache INSTANCE = new BufferCache();
@@ -30,8 +30,8 @@ public final class BufferCache {
      * @param path The path of the file
      * @param buffer The ID of the buffer associated to the path
      */
-    public void addToCache(final String path, final int bufferID) {
-        buffers.put(path, bufferID);
+    public void addToCache(final String path, final Buffer buffer) {
+        buffers.put(path, buffer);
     }
 
     /**
@@ -42,8 +42,16 @@ public final class BufferCache {
      * @throws UnsupportedAudioFileException
      * @throws IOException
      */
-    public int getBuffer(final String path) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        final Buffer b = new BufferImpl(path);
-        return buffers.containsKey(path) ? buffers.get(path) : b.generateBuffer();
+    public Buffer getBuffer(final String path) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
+        final Buffer buf;
+
+        if (buffers.containsKey(path)) {
+            buf = buffers.get(path); 
+        } else {
+            buf = new BufferImpl(path);
+            buf.generateBuffer();
+        }
+
+        return buf;
     }
 }

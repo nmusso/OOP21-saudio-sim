@@ -14,5 +14,5 @@ public interface BufferFactory {
      * @throws UnsupportedAudioFileException
      * @throws IOException
      */
-    int createBuffer(String file) throws FileNotFoundException, UnsupportedAudioFileException, IOException;
+    Buffer createBuffer(String file) throws FileNotFoundException, UnsupportedAudioFileException, IOException;
 }

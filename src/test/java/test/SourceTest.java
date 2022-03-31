@@ -33,7 +33,8 @@ class SourceTest {
     private void genSource() {
         final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
         try {
-            s.generateSource(b.generateBuffer());
+            b.generateBuffer();
+            s.generateSource(b.getID());
         } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
         }
