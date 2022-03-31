@@ -67,11 +67,12 @@ public interface SourcesHub {
     void stopAll();
 
     /**
-     * Apply the effect to all sources.
-     * 
-     * @param effect
-     */
-    void applyFilter(ALEffect effect);
+    * Apply the effect to all sources with the specified value.
+    * 
+    * @param effect
+    * @param value
+    */
+    void applyFilter(ALEffect effect, float value);
 
     /**
      * Removes the filter from all sources.

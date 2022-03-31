@@ -95,6 +95,9 @@ public class SourceImpl implements Source {
         return this.position;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void delete() {
         alDeleteSources(this.id);

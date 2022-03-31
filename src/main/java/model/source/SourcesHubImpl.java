@@ -5,19 +5,23 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import model.extension.effect.EffectList;
+import model.extension.effect.ALEffect;
+import model.extension.effect.EffectManager;
 import model.utility.Vec3f;
 
 public class SourcesHubImpl implements SourcesHub {
 
     private final Set<Source> sources;
+    private final EffectManager effectManager;
 
     public SourcesHubImpl() {
         this.sources = new HashSet<>();
+        this.effectManager = new EffectManager();
     }
 
     public SourcesHubImpl(final Set<Source> sources) {
         this.sources = sources;
+        this.effectManager = new EffectManager();
     }
 
     /**
@@ -96,13 +100,16 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public void applyFilter(final EffectList effect) {
-        // TODO waiting musso
+    public void applyFilter(final ALEffect effect, final float value) {
+        this.sources.forEach(s -> this.effectManager.apply(effect, s, value));
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public void removeFilter(final EffectList effect) {
-        // TODO waiting musso
+    public void removeFilter(final ALEffect effect) {
+        this.effectManager.remove(effect);
     }
 
     /**

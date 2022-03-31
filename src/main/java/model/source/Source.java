@@ -14,19 +14,16 @@ public interface Source {
 
     /**
      * Starts playback.
-     * 
      */
     void play();
 
     /**
      * Pauses playback.
-     * 
      */
     void pause();
 
     /**
      * Stop playback.
-     * 
      */
     void stop();
 
@@ -61,7 +58,6 @@ public interface Source {
 
     /**
      * Delete the source.
-     * 
      */
     void delete();
 }
