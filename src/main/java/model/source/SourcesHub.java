@@ -2,7 +2,7 @@ package model.source;
 
 import java.util.Set;
 
-import model.extension.effect.Effect;
+import model.extension.effect.ALEffect;
 import model.utility.Vec3f;
 
 public interface SourcesHub {
@@ -71,14 +71,14 @@ public interface SourcesHub {
      * 
      * @param effect
      */
-    void applyFilter(Effect effect);
+    void applyFilter(ALEffect effect);
 
     /**
      * Removes the filter from all sources.
      * 
      * @param effect
      */
-    void removeFilter(Effect effect);
+    void removeFilter(ALEffect effect);
 
     /**
      * Delete all sources.

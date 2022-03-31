@@ -4,7 +4,7 @@ import static org.lwjgl.openal.AL11.*;
 import static org.lwjgl.openal.ALC10.*;
 import static org.lwjgl.openal.EXTEfx.*;
 
-public enum Effect {
+public enum ALEffect {
     /**
      * Chorus effect.
      */
@@ -36,7 +36,7 @@ public enum Effect {
     private final float minValue;
     private final float maxValue;
 
-    Effect(final int effect, final int attr, final float def, final float min, final float max) {
+    ALEffect(final int effect, final int attr, final float def, final float min, final float max) {
         this.effect = effect;
         this.attribute = attr;
         this.defaultValue = def;
