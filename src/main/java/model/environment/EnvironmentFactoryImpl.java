@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 import model.listener.Listener;
 import model.source.Source;
-import model.source.SourcesHubFactory;
-import model.source.SourcesHubFactoryImpl;
+import model.source.hub.SourcesHubFactory;
+import model.source.hub.SourcesHubFactoryImpl;
 
 public class EnvironmentFactoryImpl implements EnvironmentFactory {
 

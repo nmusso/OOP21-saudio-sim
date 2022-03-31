@@ -6,7 +6,7 @@ import java.util.Set;
 
 import model.extension.effect.ALEffect;
 import model.listener.Listener;
-import model.source.SourcesHub;
+import model.source.hub.SourcesHub;
 import model.utility.Vec3f;
 
 public class EnvironmentImpl implements Environment {

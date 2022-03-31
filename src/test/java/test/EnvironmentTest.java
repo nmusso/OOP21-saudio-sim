@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +20,6 @@ import model.buffer.BufferImpl;
 import model.environment.Environment;
 import model.environment.EnvironmentFactory;
 import model.environment.EnvironmentFactoryImpl;
-import model.environment.EnvironmentImpl;
 import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
