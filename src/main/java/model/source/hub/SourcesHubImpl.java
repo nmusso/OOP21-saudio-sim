@@ -6,23 +6,23 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import model.effect.ALEffect;
-import model.effect.EffectManager;
+import model.effect.EffectManagerImpl;
 import model.source.Source;
 import model.utility.Vec3f;
 
 public class SourcesHubImpl implements SourcesHub {
 
     private final Set<Source> sources;
-    private final EffectManager effectManager;
+    private final EffectManagerImpl effectManager;
 
     public SourcesHubImpl() {
         this.sources = new HashSet<>();
-        this.effectManager = new EffectManager();
+        this.effectManager = new EffectManagerImpl();
     }
 
     public SourcesHubImpl(final Set<Source> sources) {
         this.sources = sources;
-        this.effectManager = new EffectManager();
+        this.effectManager = new EffectManagerImpl();
     }
 
     /**
