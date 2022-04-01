@@ -109,8 +109,8 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public void removeFilter(final ALEffect effect) {
-        this.effectManager.remove(effect);
+    public void removeFilter() {
+        this.sources.forEach(s -> this.effectManager.remove(s));
     }
 
     /**

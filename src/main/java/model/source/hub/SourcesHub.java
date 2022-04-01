@@ -80,7 +80,7 @@ public interface SourcesHub {
      * 
      * @param effect
      */
-    void removeFilter(ALEffect effect);
+    void removeFilter();
 
     /**
      * Delete all sources.
