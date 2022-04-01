@@ -86,7 +86,7 @@ public class BufferImpl implements Buffer {
     }
 
     /**
-     * 
+     * Return if the format of the file is Mono 8 or 16 bit.
      * @param format  the property of the AudioInputStream, as AudioFormat
      * @return the format and bit of the file as AL constants
      */
@@ -102,10 +102,10 @@ public class BufferImpl implements Buffer {
     }
 
     /**
-     * 
-     * @param file The path of the file
-     * @return The loaded file
-     * @throws FileNotFoundException
+     * Load file from path.
+     * @param file  the path of the file
+     * @return the loaded file
+     * @throws FileNotFoundException if file does not exists
      */
     private File loadFile(final String file) throws FileNotFoundException {
         final File f = new File(file);
