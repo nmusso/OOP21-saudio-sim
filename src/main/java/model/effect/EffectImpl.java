@@ -12,14 +12,14 @@ public class EffectImpl extends AbstractEffect {
     @Override
     public void apply(final ALEffects alEffect, final Source source, final float val) {
         initEffectBuffer();
-        final var effect = getEffect();
-        final var slot = getSlot();
+        final int effect = getEffect().get(0);
+        final int slot = getSlot().get(0);
 
-        alEffecti(effect.get(0), AL_EFFECT_TYPE, alEffect.getEffect());
-        alEffectf(effect.get(0), alEffect.getAttribute(), val);
-        alAuxiliaryEffectSloti(slot.get(0), AL_EFFECTSLOT_EFFECT, effect.get(0));
+        alEffecti(effect, AL_EFFECT_TYPE, alEffect.getEffect());
+        alEffectf(effect, alEffect.getAttribute(), val);
+        alAuxiliaryEffectSloti(slot, AL_EFFECTSLOT_EFFECT, effect);
 
-        setOnSource(source, slot.get(0), alEffect.getNumber());
+        setOnSource(source, slot, alEffect.getNumber());
     }
 
     /**

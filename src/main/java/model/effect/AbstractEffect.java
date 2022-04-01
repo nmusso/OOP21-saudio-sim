@@ -46,14 +46,14 @@ public abstract class AbstractEffect implements Effect {
     }
 
     /**
-     * {@link AbstractEffect#slot}.
+     * @return {@link AbstractEffect#slot}.
      */
     protected IntBuffer getSlot() {
         return slot;
     }
 
     /**
-     * {@link AbstractEffect#effect}.
+     * @return {@link AbstractEffect#effect}.
      */
     protected IntBuffer getEffect() {
         return effect;
