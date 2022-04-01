@@ -31,15 +31,15 @@ class BufferTest {
     void testGenerate() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         final BufferFactory factory = new BufferFactoryImpl();
 
-        Buffer buffer = factory.createBuffer(PATH + "DriftMono.wav");
+        Buffer buffer = factory.createBufferFromPath(PATH + "DriftMono.wav");
         assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
-        buffer = factory.createBuffer(PATH + "InnoItalia.wav");
+        buffer = factory.createBufferFromPath(PATH + "InnoItalia.wav");
         assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
-        buffer = factory.createBuffer(PATH + "Battle.wav");
+        buffer = factory.createBufferFromPath(PATH + "Battle.wav");
         assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
-        buffer = factory.createBuffer(PATH + "EyeTiger.wav");
+        buffer = factory.createBufferFromPath(PATH + "EyeTiger.wav");
         assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
-        buffer = factory.createBuffer(PATH + "DriftMono.wav");
+        buffer = factory.createBufferFromPath(PATH + "DriftMono.wav");
         assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
     }
 
@@ -49,16 +49,16 @@ class BufferTest {
         Buffer buffer;
         int same;
 
-        buffer = factory.createBuffer(PATH + "EyeTiger.wav");
+        buffer = factory.createBufferFromPath(PATH + "EyeTiger.wav");
         assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
         same = buffer.getID();
-        buffer = factory.createBuffer(PATH + "EyeTiger.wav");
+        buffer = factory.createBufferFromPath(PATH + "EyeTiger.wav");
         assertEquals(same, buffer.getID());
 
-        buffer = factory.createBuffer(PATH + "Battle.wav");
+        buffer = factory.createBufferFromPath(PATH + "Battle.wav");
         assertNotEquals(same, buffer.getID(), ERROR_GENERATE);
         same = buffer.getID();
-        buffer = factory.createBuffer(PATH + "Battle.wav");
+        buffer = factory.createBufferFromPath(PATH + "Battle.wav");
         assertEquals(same, buffer.getID());
     }
 }
