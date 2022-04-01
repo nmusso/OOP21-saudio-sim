@@ -43,7 +43,11 @@ public class MainView extends Application {
 	public void start(Stage mainStage) throws Exception {
 		mainStage.setTitle("Collector");
 		Parent root = FXMLLoader.load(getClass().getResource("provafxml.fxml"));
-		 Scene scene = new Scene(root);
+		Scene scene = new Scene(root);
+		Button btnsource = (Button) scene.lookup("#addSource");
+		btnsource.setOnAction((ActionEvent event) -> {
+                  System.out.println("add Source");
+                });
 	        //set transparent
 	        scene.setFill(Color.TRANSPARENT);
 	        mainStage.setScene(scene);
