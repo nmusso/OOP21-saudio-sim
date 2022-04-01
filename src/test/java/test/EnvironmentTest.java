@@ -24,6 +24,8 @@ import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
 import model.source.Source;
+import model.source.SourceFactory;
+import model.source.SourceFactoryImpl;
 import model.source.SourceImpl;
 
 class EnvironmentTest {
@@ -31,6 +33,8 @@ class EnvironmentTest {
     private final Set<Source> sources = new HashSet<Source>();
     private final ListenerFactory listFac = new ListenerFactoryImpl();
     private final Listener listener = listFac.createListener(AudioManager.getContext());
+    //private final SourceFactory sourceFac = new SourceFactoryImpl();
+    //TODO Utilizza sourceFac
     private final EnvironmentFactory envFac = new EnvironmentFactoryImpl();
 
     @BeforeAll
@@ -81,7 +85,6 @@ class EnvironmentTest {
         sources.add(source3);
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
-        System.out.println(source1.getId());
         assertEquals(env.getSourceHub().getSource(1), source1);
         assertEquals(env.getSourceHub().getSource(2), source2);
         assertNotEquals(env.getSourceHub().getSource(1), source2);
