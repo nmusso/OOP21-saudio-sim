@@ -88,12 +88,12 @@
             <Pane prefHeight="130.0" prefWidth="250.0" />
             <Pane layoutX="250.0" prefHeight="130.0" prefWidth="192.0">
                <children>
-                  <Button fx:id="addSource" layoutY="14.0" mnemonicParsing="false" onMouseDragEntered="#addSourceEnter" text="ADD SOURCE" />
+                  <Button fx:id="addSource" layoutY="14.0" mnemonicParsing="false" text="ADD SOURCE" />
                   <RadioButton layoutY="48.0" mnemonicParsing="false" text="Basic" />
                   <RadioButton layoutY="65.0" mnemonicParsing="false" text="High" />
                   <RadioButton layoutY="102.0" mnemonicParsing="false" text="Bass" />
                   <RadioButton layoutY="85.0" mnemonicParsing="false" text="Mid" />
-                  <Button fx:id="B" layoutX="136.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#clickB" prefHeight="50.0" prefWidth="40.0" text="B" />
+                  <Button  layoutX="136.0" layoutY="66.0" mnemonicParsing="false"  prefHeight="50.0" prefWidth="40.0" text="B" />
                </children>
             </Pane>
       </children>
