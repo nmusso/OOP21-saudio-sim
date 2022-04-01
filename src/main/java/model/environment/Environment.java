@@ -2,7 +2,7 @@ package model.environment;
 
 import java.util.Set;
 
-import model.extension.effect.ALEffect;
+import model.effect.ALEffect;
 import model.listener.Listener;
 import model.source.hub.SourcesHub;
 import model.utility.Vec3f;

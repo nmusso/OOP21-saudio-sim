@@ -1,6 +1,5 @@
-package model.extension.effect;
+package model.effect;
 
-import model.extension.Extension;
 import model.source.Source;
 import static org.lwjgl.openal.AL11.*;
 import static org.lwjgl.openal.ALC10.*;
@@ -8,7 +7,7 @@ import static org.lwjgl.openal.EXTEfx.*;
 
 import java.nio.IntBuffer;
 
-public class EffectManager implements Extension {
+public class EffectManager implements Effect {
 
     private IntBuffer slot;
     private IntBuffer effect;
@@ -23,25 +22,25 @@ public class EffectManager implements Extension {
         alEffectf(effect.get(0), alEffect.getAttribute(), val);
         alAuxiliaryEffectSloti(slot.get(0), AL_EFFECTSLOT_EFFECT, effect.get(0));
 
-        setOnSource(source, slot.get(0));
+        setOnSource(source, slot.get(0), alEffect.getNumber());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void remove(final Source source) {
+    public void remove(final ALEffect alEffect, final Source source) {
         initEffectBuffer();
 
         alEffecti(effect.get(0), AL_EFFECT_TYPE, AL_EFFECT_NULL);
         alAuxiliaryEffectSloti(slot.get(0), AL_EFFECTSLOT_EFFECT, effect.get(0));
 
-        setOnSource(source, slot.get(0));
+        setOnSource(source, slot.get(0), alEffect.getNumber());
     }
 
-    private void setOnSource(final Source source, final int slot) {
+    private void setOnSource(final Source source, final int slot, final int num) {
         alSourcei(source.getId(), AL_DIRECT_FILTER, AL_FILTER_NULL);
-        alSource3i(source.getId(), AL_AUXILIARY_SEND_FILTER, slot, 0, AL_FILTER_NULL);
+        alSource3i(source.getId(), AL_AUXILIARY_SEND_FILTER, slot, num, AL_FILTER_NULL);
     }
 
     private void initEffectBuffer() {

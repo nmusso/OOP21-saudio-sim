@@ -15,7 +15,7 @@ import model.audiomanager.AudioManager;
 import model.buffer.Buffer;
 import model.buffer.BufferFactory;
 import model.buffer.BufferFactoryImpl;
-import model.extension.effect.ALEffect;
+import model.effect.ALEffect;
 
 class BufferTest {
 

@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import model.extension.effect.ALEffect;
+import model.effect.ALEffect;
 import model.listener.Listener;
 import model.source.hub.SourcesHub;
 import model.utility.Vec3f;

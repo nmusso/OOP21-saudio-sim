@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import model.extension.effect.ALEffect;
-import model.extension.effect.EffectManager;
+import model.effect.ALEffect;
+import model.effect.EffectManager;
 import model.source.Source;
 import model.utility.Vec3f;
 
@@ -109,8 +109,8 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public void removeFilter() {
-        this.sources.forEach(s -> this.effectManager.remove(s));
+    public void removeFilter(final ALEffect effect) {
+        this.sources.forEach(s -> this.effectManager.remove(effect, s));
     }
 
     /**

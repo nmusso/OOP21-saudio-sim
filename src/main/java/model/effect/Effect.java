@@ -1,10 +1,9 @@
-package model.extension;
+package model.effect;
 
-import model.extension.effect.ALEffect;
 //import java.util.function.Consumer;
 import model.source.Source;
 
-public interface Extension {
+public interface Effect {
     void apply(ALEffect effect, Source source, float val);
-    void remove(Source source);
+    void remove(ALEffect effect, Source source);
 }
