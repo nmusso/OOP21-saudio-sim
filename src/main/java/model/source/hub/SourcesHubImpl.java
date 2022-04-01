@@ -5,24 +5,24 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import model.effect.ALEffect;
-import model.effect.EffectManagerImpl;
+import model.effect.ALEffects;
+import model.effect.EffectImpl;
 import model.source.Source;
 import model.utility.Vec3f;
 
 public class SourcesHubImpl implements SourcesHub {
 
     private final Set<Source> sources;
-    private final EffectManagerImpl effectManager;
+    private final EffectImpl effectManager;
 
     public SourcesHubImpl() {
         this.sources = new HashSet<>();
-        this.effectManager = new EffectManagerImpl();
+        this.effectManager = new EffectImpl();
     }
 
     public SourcesHubImpl(final Set<Source> sources) {
         this.sources = sources;
-        this.effectManager = new EffectManagerImpl();
+        this.effectManager = new EffectImpl();
     }
 
     /**
@@ -101,7 +101,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public void applyFilter(final ALEffect effect, final float value) {
+    public void applyFilter(final ALEffects effect, final float value) {
         this.sources.forEach(s -> this.effectManager.apply(effect, s, value));
     }
 
@@ -109,7 +109,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public void removeFilter(final ALEffect effect) {
+    public void removeFilter(final ALEffects effect) {
         this.sources.forEach(s -> this.effectManager.remove(effect, s));
     }
 

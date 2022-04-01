@@ -2,7 +2,7 @@ package model.environment;
 
 import java.util.Set;
 
-import model.effect.ALEffect;
+import model.effect.ALEffects;
 import model.listener.Listener;
 import model.source.hub.SourcesHub;
 import model.utility.Vec3f;
@@ -43,17 +43,17 @@ public interface Environment {
       * TODO.
       * 
       */
-     void setEffect(ALEffect effect, float level);
+     void setEffect(ALEffects effect, float level);
 
      /**
       * TODO.
       * 
       */
-     void removeEffect(ALEffect effect);
+     void removeEffect(ALEffects effect);
 
      /**
       * TODO.
       * 
       */
-     Set<ALEffect> getEffectSet();
+     Set<ALEffects> getEffectSet();
 }

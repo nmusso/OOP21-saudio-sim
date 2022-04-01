@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import model.effect.ALEffect;
+import model.effect.ALEffects;
 import model.listener.Listener;
 import model.source.hub.SourcesHub;
 import model.utility.Vec3f;
@@ -13,14 +13,14 @@ public class EnvironmentImpl implements Environment {
     private final SourcesHub sourcesHub;
     private final Listener listener;
     private final Space space;
-    private final Set<ALEffect> effect;
+    private final Set<ALEffects> effect;
 
     public EnvironmentImpl(final SourcesHub sourcesHub, final Listener listener, final Space space) {
         super();
         this.sourcesHub = sourcesHub;
         this.listener = listener;
         this.space = space;
-        this.effect = new HashSet<ALEffect>();
+        this.effect = new HashSet<ALEffects>();
     }
 
 //    public EnvironmentImpl() {
@@ -85,7 +85,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void setEffect(final ALEffect effect, final float level) {
+    public void setEffect(final ALEffects effect, final float level) {
         this.effect.add(effect);
         this.sourcesHub.applyFilter(effect, level);
     }
@@ -95,7 +95,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void removeEffect(final ALEffect effect) {
+    public void removeEffect(final ALEffects effect) {
         this.effect.remove(effect);
         //this.sourcesHub.removeFilter(effect);
     }
@@ -104,7 +104,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public Set<ALEffect> getEffectSet() {
+    public Set<ALEffects> getEffectSet() {
         return Collections.unmodifiableSet(this.effect);
     }
 
