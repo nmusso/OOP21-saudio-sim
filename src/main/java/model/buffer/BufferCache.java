@@ -19,7 +19,7 @@ public final class BufferCache {
 
     /**
      * 
-     * @return The instance of the singleton
+     * @return the instance of the singleton
      */
     public static BufferCache getInstance() {
         return BufferHolder.INSTANCE;
@@ -27,8 +27,8 @@ public final class BufferCache {
 
     /**
      * 
-     * @param path The path of the file
-     * @param buffer The ID of the buffer associated to the path
+     * @param path  the path of the file
+     * @param buffer  the ID of the buffer associated to the path
      */
     public void addToCache(final String path, final Buffer buffer) {
         buffers.put(path, buffer);
@@ -36,11 +36,11 @@ public final class BufferCache {
 
     /**
      * 
-     * @param path The path of the file
-     * @return The ID of the buffer associated to the path, got from cache or created by BufferImpl
-     * @throws FileNotFoundException
-     * @throws UnsupportedAudioFileException
-     * @throws IOException
+     * @param path  the path of the file
+     * @return the ID of the buffer associated to the path, got from cache or created by BufferImpl
+     * @throws FileNotFoundException if file does not exists
+     * @throws UnsupportedAudioFileException if the type of the file is not supported
+     * @throws IOException if an error occur during read
      */
     public Buffer getBuffer(final String path) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         final Buffer buf;
@@ -55,6 +55,9 @@ public final class BufferCache {
         return buf;
     }
 
+    /**
+     * Clear the buffer cache.
+     */
     public void emptyCache() {
         buffers.forEach((path, buf) -> {
             alDeleteBuffers(buf.getID());

@@ -74,7 +74,7 @@ public class BufferImpl implements Buffer {
 
     /**
      * 
-     * @param byteArray the byte array read from the AudioInputStream
+     * @param byteArray  the byte array read from the AudioInputStream
      * @return the flipped byte array as ByteBuffer
      */
     private ByteBuffer getAudioBuffer(final byte[] byteArray) {
@@ -87,8 +87,8 @@ public class BufferImpl implements Buffer {
 
     /**
      * 
-     * @param format The property of the AudioInputStream, as AudioFormat
-     * @return The format and bit of the file as AL constants
+     * @param format  the property of the AudioInputStream, as AudioFormat
+     * @return the format and bit of the file as AL constants
      */
     private int getALFormat(final AudioFormat format) {
         switch (format.getChannels()) {
