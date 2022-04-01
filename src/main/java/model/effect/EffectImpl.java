@@ -19,7 +19,7 @@ public class EffectImpl extends AbstractEffect {
         alEffectf(effect, alEffect.getAttribute(), val);
         alAuxiliaryEffectSloti(slot, AL_EFFECTSLOT_EFFECT, effect);
 
-        setOnSource(source, slot, alEffect.getNumber());
+        setOnSource(source, slot, alEffect.ordinal());
     }
 
     /**
@@ -34,6 +34,6 @@ public class EffectImpl extends AbstractEffect {
         alEffecti(effect.get(0), AL_EFFECT_TYPE, AL_EFFECT_NULL);
         alAuxiliaryEffectSloti(slot.get(0), AL_EFFECTSLOT_EFFECT, effect.get(0));
 
-        setOnSource(source, slot.get(0), alEffect.getNumber());
+        setOnSource(source, slot.get(0), alEffect.ordinal());
     }
 }
