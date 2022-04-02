@@ -4,6 +4,8 @@ import model.source.Source;
 import model.source.SourceType;
 import static org.lwjgl.openal.EXTEfx.*;
 
+import java.util.List;
+
 public class FilterImpl extends AbstractFilter {
 
     /**
@@ -11,15 +13,17 @@ public class FilterImpl extends AbstractFilter {
      */
     @Override
     public void applyFilter(final Source source, final SourceType type) {
+        initFilterBuffer();
+
         switch (type) {
         case LOW:
-            lowpass(source);
+            apply(source, AL_FILTER_LOWPASS, List.of(AL_LOWPASS_GAIN, AL_LOWPASS_GAINHF), LOWPASS_VALUE);
             break;
         case MID:
-            bandpass(source);
+            apply(source, AL_FILTER_BANDPASS, List.of(AL_BANDPASS_GAIN, AL_BANDPASS_GAINLF, AL_BANDPASS_GAINHF), BANDPASS_VALUE);
             break;
         case HIGH:
-            highpass(source);
+            apply(source, AL_FILTER_HIGHPASS, List.of(AL_HIGHPASS_GAIN, AL_HIGHPASS_GAINLF), HIGHPASS_VALUE);
             break;
         default:
             break;
@@ -27,50 +31,20 @@ public class FilterImpl extends AbstractFilter {
     }
 
     /**
-     * Apply lowpass filter on source.
+     * Apply the specified type of filter to the source.
      * @param source  the source
+     * @param type  the type of the filter (lowpass, bandpass, highpass)
+     * @param attributes  the attributes of the filter
+     * @param value  the value for the filter, got from interface
      */
-    private void lowpass(final Source source) {
-        initFilterBuffer();
+    private void apply(final Source source, final int type, final List<Integer> attributes, final float value) {
         final int filter = getFilter().get(0);
+        alFilteri(filter, AL_FILTER_TYPE, type);
 
-        alFilteri(filter, AL_FILTER_TYPE, AL_FILTER_LOWPASS);
-        alFilterf(filter, AL_LOWPASS_GAIN, LOWPASS_VALUE);
-        alFilterf(filter, AL_LOWPASS_GAINHF, LOWPASS_VALUE);
+        for (final int attr : attributes) {
+            alFilterf(filter, attr, value);
+        }
 
         setOnSource(filter, source);
-    }
-
-    /**
-     * Apply highpass filter on source.
-     * @param source  the source
-     */
-    public void highpass(final Source source) {
-        initFilterBuffer();
-        final int filter = getFilter().get(0);
-
-        alFilteri(filter, AL_FILTER_TYPE, AL_FILTER_HIGHPASS);
-        alFilterf(filter, AL_HIGHPASS_GAIN, HIGHPASS_VALUE);
-        alFilterf(filter, AL_HIGHPASS_GAINLF, HIGHPASS_VALUE);
-
-        setOnSource(filter, source);
-
-    }
-
-    /**
-     * Apply bandpass filter on source.
-     * @param source  the source
-     */
-    public void bandpass(final Source source) {
-        initFilterBuffer();
-        final int filter = getFilter().get(0);
-
-        alFilteri(filter, AL_FILTER_TYPE, AL_FILTER_BANDPASS);
-        alFilterf(filter, AL_BANDPASS_GAIN, BANDPASS_VALUE);
-        alFilterf(filter, AL_BANDPASS_GAINLF, BANDPASS_VALUE);
-        alFilterf(filter, AL_BANDPASS_GAINHF, BANDPASS_VALUE);
-
-        setOnSource(filter, source);
-
     }
 }
