@@ -21,10 +21,12 @@ public class BufferImpl implements Buffer {
 
     private final int id;
     private final String file;
+    private boolean generated;
 
     public BufferImpl(final String file) {
-        id = alGenBuffers();
+        this.id = alGenBuffers();
         this.file = file;
+        this.generated = false;
     }
 
     /**
@@ -48,27 +50,29 @@ public class BufferImpl implements Buffer {
      */
     @Override
     public int generateBuffer() throws UnsupportedAudioFileException, IOException {
-        try (AudioInputStream stream = getAudioInputStream(loadFile(file))) {
-            final var format = stream.getFormat();
-            final int sampleSize = getALFormat(format);
+        if (!this.generated) {
+            try (AudioInputStream stream = getAudioInputStream(loadFile(file))) {
+                final var format = stream.getFormat();
+                final int sampleSize = getALFormat(format);
 
-            if (sampleSize == -1) {
-                throw new ALFormatException("Can't handle format");
+                if (sampleSize == -1) {
+                    throw new ALFormatException("Can't handle format");
+                }
+
+                final byte[] byteArray = new byte[stream.available()];
+                stream.read(byteArray);
+                final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
+
+                alBufferData(id, sampleSize, audioBuffer, (int) format.getSampleRate());
+                stream.close();
+            } catch (UnsupportedAudioFileException | IOException e) {
+                e.printStackTrace();
             }
 
-            final byte[] byteArray = new byte[stream.available()];
-            stream.read(byteArray);
-            final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
-
-            alBufferData(id, sampleSize, audioBuffer, (int) format.getSampleRate());
-            stream.close();
-        } catch (UnsupportedAudioFileException | IOException e) {
-            e.printStackTrace();
+            final BufferCache bc = BufferCache.INSTANCE;
+            bc.addToCache(file, this);
         }
 
-
-        final BufferCache bc = BufferCache.getInstance();
-        bc.addToCache(file, this);
         return id;
     }
 

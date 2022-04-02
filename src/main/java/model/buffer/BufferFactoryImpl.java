@@ -7,7 +7,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class BufferFactoryImpl implements BufferFactory {
 
-    private final BufferCache bc = BufferCache.getInstance();
+    private final BufferCache bc = BufferCache.INSTANCE;
 
     /**
      * {@inheritDoc}

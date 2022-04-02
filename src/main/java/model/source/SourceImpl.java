@@ -73,7 +73,7 @@ public class SourceImpl implements Source {
      * @inheritDoc
      */
     @Override
-    public Source generateSource(final int  buffer) {
+    public Source generateSource(final int buffer) {
         alSourcei(this.id, AL_BUFFER, buffer);
         return this;
     }

@@ -7,26 +7,15 @@ import java.util.Map;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import static org.lwjgl.openal.AL10.alDeleteBuffers;
 
-public final class BufferCache {
-
+public enum BufferCache {
+    /**
+     * BufferCache instance.
+     */
+    INSTANCE;
     private final Map<String, Buffer> buffers = new HashMap<>();
 
-    private static class BufferHolder {
-        private static final BufferCache INSTANCE = new BufferCache();
-    }
-
-    private BufferCache() { }
-
     /**
-     * 
-     * @return the instance of the singleton
-     */
-    public static BufferCache getInstance() {
-        return BufferHolder.INSTANCE;
-    }
-
-    /**
-     * 
+     * Add the buffer to the cache.
      * @param path  the path of the file
      * @param buffer  the ID of the buffer associated to the path
      */
