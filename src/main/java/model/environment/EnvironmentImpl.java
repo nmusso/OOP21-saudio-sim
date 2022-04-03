@@ -3,7 +3,6 @@ package model.environment;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import model.effect.ALEffects;
@@ -23,7 +22,7 @@ public class EnvironmentImpl implements Environment {
         this.sourcesHub = sourcesHub;
         this.listener = listener;
         this.space = space;
-        this.effect = new HashSet<ALEffects>();
+        this.effect = new HashSet<>();
 
         //check pos of sources
         // TODO  eliminare le source nella stessa posizione
@@ -84,7 +83,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void setEffect(final ALEffects effect, final float level) {
+    public void addEffect(final ALEffects effect, final float level) {
         this.effect.add(effect);
         this.sourcesHub.applyFilter(effect, level);
     }

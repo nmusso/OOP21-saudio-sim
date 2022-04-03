@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import model.audiomanager.AudioManager;
 import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
@@ -21,9 +20,9 @@ import model.utility.Vec3f;
 public class EnvironmentFactoryImpl implements EnvironmentFactory {
 
     private final SourcesHubFactory sourceHubFac = new SourcesHubFactoryImpl();
-    private SpaceFactory spaceFac = new SpaceFactoryImpl();
-    private final SourceFactory sourceFac = new SourceFactoryImpl();
-    private final ListenerFactory listenerFac = new ListenerFactoryImpl();
+    private final SpaceFactory spaceFac = new SpaceFactoryImpl();
+    //private final SourceFactory sourceFac = new SourceFactoryImpl();
+    //private final ListenerFactory listenerFac = new ListenerFactoryImpl();
 
     /**
     *
@@ -61,15 +60,17 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     */
     @Override
     public Environment createCinemaEnvironment() {
-        final SourcesHub sh = sourceHubFac.createSourcesHub();
-        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 15, 0)));
-        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 10, 0)));
-        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 5, 0)));
-        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(25, 15, 0)));
-        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(25, 10, 0)));
-        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(25, 5, 0)));
-
-        return new EnvironmentImpl(sh, listenerFac.createListener(AudioManager.getContext()), spaceFac.createcustomizedSpace(25f, 15f, 1f));
+        // TODO
+//        final SourcesHub sh = sourceHubFac.createSourcesHub();
+//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 15, 0)));
+//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 10, 0)));
+//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 5, 0)));
+//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(25, 15, 0)));
+//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(25, 10, 0)));
+//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(25, 5, 0)));
+//
+//        return new EnvironmentImpl(sh, listenerFac.createListener(AudioManager.getContext()), spaceFac.createcustomizedSpace(25f, 15f, 1f));
+        return null;
     }
 
     /**

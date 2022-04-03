@@ -9,7 +9,8 @@ public class SpaceImpl implements Space {
     private final float scale;
     private final float maxLenght;
     private final float maxWidth;
-    private final Set<Vec3f> posElements;
+    private final Set<Vec3f> posElements; 
+    //TODO siamo sicuri di tenere le posizioni qui, forse mglio i source hub.
 
     public SpaceImpl(final float maxLenght, final float maxWidth, final float scale) {
         super();
@@ -60,8 +61,9 @@ public class SpaceImpl implements Space {
     }
 
     /**
-    *
-    * TODO .
+    *check if the position is out of range.
+    *@param vec3f pos to check
+    * @return true if pos is ok
     */
     private boolean checkBorder(final Vec3f pos) {
         if ((pos.getX() > 0f || pos.getX() < maxLenght) && (pos.getY() > 0f || pos.getY() < maxWidth)) {
@@ -71,8 +73,9 @@ public class SpaceImpl implements Space {
     }
 
     /**
-    *
-    * TODO .
+    * check busy positions. 
+    * @param vec3f pos to check
+    * @return true if pos is free else false
     */
     private boolean checkBusyPos(final Vec3f pos) {
         if (posElements.contains(pos)) {
