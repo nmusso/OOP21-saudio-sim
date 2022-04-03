@@ -36,34 +36,6 @@ public interface Environment {
     void addSourceToSourceHub(Source source);
 
     /**
-     * remove source in that position.
-     * 
-     * @param source to add
-     */
-    void removeSourceFromSourceHubWithVec3f(Vec3f posSource);
-
-    /**
-     * remove source in that position.
-     * 
-     * @param source to add
-     */
-    void removeSourceFromSourceHubWithId(int idSource);
-
-    /**
-     * move the selected source with id to pos.
-     * @param id of source
-     * @param new pos
-     */
-    void moveSourceWithID(int id, Vec3f pos);
-
-    /**
-     * move the selected source with id to pos.
-     * @param old pos of source to move
-     * @param new pos
-     */
-    void moveSourceWithVec3f(Vec3f oldPos, Vec3f newPos);
-
-    /**
      * add effect.
      * @param effect to add
      * @param level of "power" of effect
@@ -81,4 +53,19 @@ public interface Environment {
      * @return a set of all activeEffect in environment
      */
     Set<ALEffects> getEffectSet();
+
+    /**
+     * remove source. 
+     * 
+     * @param source to remove
+     */
+    void removeSourceFromSourceHub(Source sourceToRemove);
+
+
+    /**
+     * move the selected source to pos.
+     * @param  source
+     * @param new pos
+     */
+    void moveSource(Source source, Vec3f pos);
 }

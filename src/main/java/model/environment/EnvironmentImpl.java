@@ -61,46 +61,6 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void moveSourceWithID(final int id, final Vec3f pos) {
-        final Source sourceToMove = this.sourcesHub.getSource(id);
-        final int signX = (sourceToMove.getPosition().getX() + pos.getX()) < 0 ? -1 : 1;
-        final int signY = (sourceToMove.getPosition().getY() + pos.getY()) < 0 ? -1 : 1;
-        if (this.space.isAvailable(pos)) {
-            sourceToMove.setPosition(pos);
-        } else if (Math.abs(sourceToMove.getPosition().getX() - pos.getX()) < Math.abs(sourceToMove.getPosition().getY() - pos.getY())) {
-            this.moveSourceWithID(id, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY(), pos.getZ()));
-        } else if (Math.abs(sourceToMove.getPosition().getX() - pos.getX()) > Math.abs(sourceToMove.getPosition().getY() - pos.getY())) {
-            this.moveSourceWithID(id, new Vec3f(pos.getX(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
-        } else {
-            this.moveSourceWithID(id, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
-        }
-    }
-
-    /**
-     * 
-     *{@inheritDoc}
-     */
-    @Override
-    public void moveSourceWithVec3f(final Vec3f oldPos, final Vec3f newPos) {
-        final Source sourceToMove = this.sourcesHub.getSourceFromPos(oldPos);
-        final int signX = (sourceToMove.getPosition().getX() + newPos.getX()) < 0 ? -1 : 1;
-        final int signY = (sourceToMove.getPosition().getY() + newPos.getY()) < 0 ? -1 : 1;
-        if (this.space.isAvailable(newPos)) {
-            sourceToMove.setPosition(newPos);
-        } else if (Math.abs(sourceToMove.getPosition().getX() - newPos.getX()) < Math.abs(sourceToMove.getPosition().getY() - newPos.getY())) {
-            this.moveSourceWithVec3f(oldPos, new Vec3f(newPos.getX() + signX * this.space.getScale(), newPos.getY(), newPos.getZ()));
-        } else if (Math.abs(sourceToMove.getPosition().getX() - newPos.getX()) > Math.abs(sourceToMove.getPosition().getY() - newPos.getY())) {
-            this.moveSourceWithVec3f(oldPos, new Vec3f(newPos.getX(), newPos.getY() + signY * this.space.getScale(), newPos.getZ()));
-        } else {
-            this.moveSourceWithVec3f(oldPos, new Vec3f(newPos.getX() + signX * this.space.getScale(), newPos.getY() + signY * this.space.getScale(), newPos.getZ()));
-        }
-    }
-
-    /**
-     * 
-     *{@inheritDoc}
-     */
-    @Override
     public void addEffect(final ALEffects effect, final float level) {
         this.effect.add(effect);
         this.sourcesHub.applyFilter(effect, level);
@@ -142,9 +102,9 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void removeSourceFromSourceHubWithVec3f(final Vec3f posSource) {
-        space.removeSourcePos(posSource);
-        sourcesHub.removeSource(sourcesHub.getSourceFromPos(posSource));
+    public void removeSourceFromSourceHub(final Source sourceToRemove) {
+        this.space.removeSourcePos(sourceToRemove.getPosition());
+        this.sourcesHub.removeSource(sourceToRemove);
     }
 
     /**
@@ -152,10 +112,19 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void removeSourceFromSourceHubWithId(final int idSource) {
-        final Source toDelete = sourcesHub.getSource(idSource);
-        space.removeSourcePos(toDelete.getPosition());
-        sourcesHub.removeSource(toDelete);
+    public void moveSource(final Source source, final Vec3f pos) {
+        final int signX = (source.getPosition().getX() + pos.getX()) < 0 ? -1 : 1;
+        final int signY = (source.getPosition().getY() + pos.getY()) < 0 ? -1 : 1;
+        if (this.space.isAvailable(pos)) {
+            source.setPosition(pos);
+        } else if (Math.abs(source.getPosition().getX() - pos.getX()) < Math.abs(source.getPosition().getY() - pos.getY())) {
+            this.moveSource(source, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY(), pos.getZ()));
+        } else if (Math.abs(source.getPosition().getX() - pos.getX()) > Math.abs(source.getPosition().getY() - pos.getY())) {
+            this.moveSource(source, new Vec3f(pos.getX(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
+        } else {
+            this.moveSource(source, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
+        }
     }
+
 
 }
