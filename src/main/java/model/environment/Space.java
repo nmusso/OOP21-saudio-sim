@@ -23,7 +23,14 @@ public interface Space {
 
      /**
      *
-     * TODO.
+     * TODO .
+     * if yes -> add the position to log
      */
      boolean isAvailable(Vec3f pos);
+
+     /**
+     * remove source.
+     * @param pos to delete
+     */
+     void removeSourcePos(Vec3f pos);
 }
