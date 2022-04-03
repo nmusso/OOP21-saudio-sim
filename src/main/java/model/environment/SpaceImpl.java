@@ -60,6 +60,10 @@ public class SpaceImpl implements Space {
        return false;
     }
 
+    // TODO abilitiare il controllo con lo scale.
+    // di conseguenza deve cercare in altre posizioni vicino a quella definita come false
+    // con uno sfasamento di this.scale appena ne trova una libera la mette li.
+
     /**
     *check if the position is out of range.
     *@param vec3f pos to check

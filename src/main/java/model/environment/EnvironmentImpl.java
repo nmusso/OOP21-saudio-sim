@@ -63,6 +63,7 @@ public class EnvironmentImpl implements Environment {
     @Override
     public void moveSourceWithID(final int id, final Vec3f pos) {
         if (this.space.isAvailable(pos)) {
+         // TODO controlla sfasamento "venendo dalla posizione vecchia"
             this.sourcesHub.getSource(id).setPosition(pos);
         }
     }
@@ -74,6 +75,7 @@ public class EnvironmentImpl implements Environment {
     @Override
     public void moveSourceWithVec3f(final Vec3f oldPos, final Vec3f newPos) {
         if (this.space.isAvailable(newPos)) {
+            // TODO controlla sfasamento "venendo dalla posizione vecchia"
             this.sourcesHub.getSourceFromPos(oldPos).setPosition(newPos);
         }
     }
@@ -114,6 +116,7 @@ public class EnvironmentImpl implements Environment {
     @Override
     public void addSourceToSourceHub(final Source source) {
         if (space.isAvailable(source.getPosition())) {
+           // TODO controlla sfasamento "sotto poi sopra poi sinistra poi destra"
             sourcesHub.addSource(source);
         }
     }
