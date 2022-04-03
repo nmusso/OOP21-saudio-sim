@@ -6,6 +6,7 @@ import java.util.Optional;
 import model.utility.Vec3f;
 
 public class DropplerPlugin extends AbstractPlugin {
+    private final PluginType type = PluginType.DROPPLER_PLUGIN;
     private Vec3f velocity;
 
     public DropplerPlugin() {
@@ -30,8 +31,7 @@ public class DropplerPlugin extends AbstractPlugin {
      */
     @Override
     public PluginType getType() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.type;
     }
 
     @Override

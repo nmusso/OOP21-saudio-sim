@@ -24,15 +24,16 @@ public class PluginManager {
      * 
      * @return
      */
-    Listener getListener() {
+    public Listener getListener() {
         return this.listener;
     }
 
+    /*TODO review two same plug-ins cannot be added*/
     /**
      * 
      * @param plugins
      */
-    void addPlugin(final Plugin...plugins) {
+    public void addPlugin(final Plugin...plugins) {
         this.plugins.addAll(Stream.of(plugins).collect(Collectors.toSet()));
     }
 
@@ -42,11 +43,11 @@ public class PluginManager {
      * @param plugin
      * @return
      */
-    Optional<Plugin> getPlugin(final PluginType plugin) {
-        return this.plugins.stream().filter(p -> p.getType().equals(plugin))
-                                  .findAny()
-                                  .map(p -> Optional.of(p))
-                                  .get();
+    public Optional<Plugin> getPlugin(final PluginType plugin) {
+        return this.plugins.stream().filter(p -> p.getType() == plugin)
+                                  .findAny();
+                                  /*.map(p -> Optional.of(p))
+                                  .get();*/
 
     }
 }
