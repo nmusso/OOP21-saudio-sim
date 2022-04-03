@@ -1,4 +1,8 @@
-package model.listener;
+package model.listener.plugin;
+
+import java.util.Optional;
+import model.utility.Vec3f;
+
 
 public interface Plugin {
 
@@ -21,8 +25,28 @@ public interface Plugin {
 
     /**
      * 
-     * @return the Listener associated with this plug-in
+     * @return the type of the plug-in
      */
-    Listener getListener();
+    PluginType getType();
+
+    /**
+     * 
+     * @param value
+     */
+    void setParameters(Parameters value);
+
+    /**
+     * 
+     * @param type
+     * @return
+     */
+    Optional<Vec3f> getVectValue(PluginType type);
+
+    /**
+     * 
+     * @param type
+     * @return
+     */
+    Optional<Float> getFloatValue(PluginType type);
 
 }

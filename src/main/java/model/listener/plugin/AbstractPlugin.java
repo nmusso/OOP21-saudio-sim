@@ -1,14 +1,11 @@
-package model.listener;
+package model.listener.plugin;
+
 
 
 public abstract class AbstractPlugin implements Plugin {
 
     private Boolean isEnabled;
-    private final Listener listener;
 
-    public AbstractPlugin(final Listener listener) {
-        this.listener = listener;
-    }
 
     /**
      * {@inheritDoc}
@@ -33,13 +30,6 @@ public abstract class AbstractPlugin implements Plugin {
 
     public abstract void saveSettings();
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Listener getListener() {
-        return this.listener;
-    }
 
     /**
      * {@inheritDoc}
