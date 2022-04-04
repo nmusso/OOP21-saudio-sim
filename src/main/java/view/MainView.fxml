@@ -42,9 +42,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerTest">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ControllerTest">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="445.0" prefWidth="707.0" VBox.vgrow="ALWAYS">
       <children>
             <Pane layoutX="14.0" layoutY="14.0" prefHeight="130.0" prefWidth="200.0" style="-fx-border-color: #3399FF;">
                <children>
@@ -71,7 +71,12 @@
                   <Canvas fx:id="cnsSpace" height="237.0" width="393.0" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
-            <Pane layoutX="426.0" layoutY="14.0" prefHeight="130.0" prefWidth="200.0" style="-fx-border-color: #3399FF;" />
+            <Pane layoutX="426.0" layoutY="14.0" prefHeight="130.0" prefWidth="200.0" style="-fx-border-color: #3399FF;">
+               <children>
+                  <Button layoutX="30.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleFinestra1" text="ApriFinestra1" />
+                  <Button layoutX="30.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleFinestra2" text="ApriFinestra2" />
+               </children></Pane>
+            <BorderPane fx:id="borderPaneTest" layoutX="426.0" layoutY="167.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black;" />
       </children>
     </AnchorPane>
   </children>
