@@ -1,5 +1,11 @@
 package view;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import controller.ControllerTest;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +20,6 @@ import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import model.audiomanager.AudioManager;
 
 public class MainView extends Application {
 
@@ -27,11 +32,9 @@ public class MainView extends Application {
         mainStage.setTitle("Collector");
         final Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
         final Scene scene = new Scene(root);
-        Button btnPlay = (Button) scene.lookup("#btnPlay");
-        
-        AudioManager.initContext();
-        
-        
+        final Button btnPlay = (Button) scene.lookup("#btnPlay");
+        final Button btnPause = (Button) scene.lookup("#btnPause");
+
         mainStage.setScene(scene);
         mainStage.show();
     }
