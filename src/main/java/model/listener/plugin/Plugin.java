@@ -40,13 +40,13 @@ public interface Plugin {
      * @param type
      * @return
      */
-    Optional<Vec3f> getVectValue(PluginType type);
+    Optional<Vec3f> getVectValue(ParameterType type);
 
     /**
      * 
      * @param type
      * @return
      */
-    Optional<Float> getFloatValue(PluginType type);
+    Optional<Float> getFloatValue(ParameterType type);
 
 }

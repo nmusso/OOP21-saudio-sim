@@ -44,7 +44,7 @@ public class DropplerPlugin extends AbstractPlugin {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Vec3f> getVectValue(final PluginType type) {
+    public Optional<Vec3f> getVectValue(final ParameterType type) {
         // TODO Auto-generated method stub
         return Optional.empty();
     }
@@ -53,7 +53,7 @@ public class DropplerPlugin extends AbstractPlugin {
      * {@inheritDoc}
      */
     @Override
-    public Optional<Float> getFloatValue(final PluginType type) {
+    public Optional<Float> getFloatValue(final ParameterType type) {
         // TODO Auto-generated method stub
         return Optional.empty();
     }
