@@ -53,16 +53,13 @@ class TestPluginListener {
         mng.addPlugin(drp);
         mng.getPlugin(PluginType.DROPPLER_PLUGIN).ifPresent(p -> p.setParameters(drpParam));
 
-        assertEquals(drp.getFloatValue(ParameterType.DROPPLER_LV).get(), drpParam.getFloatValue(ParameterType.DROPPLER_LV).get());
+        assertEquals(drp.getFloatValue(ParameterType.DROPPLER_LV), drpParam.getFloatValue(ParameterType.DROPPLER_LV));
         assertEquals(drp.getFloatValue(ParameterType.DB_LV), Optional.empty());
         assertEquals(drpParam.getFloatValue(ParameterType.DB_LV), Optional.empty());
 
-
-        /*assertThrows(NoSuchElementException.class, () -> mng.getPlugin(PluginType.DROPPLER_PLUGIN)
-                                                            .orElseThrow()
-                                                            .setParameters(drpParam));*/
-
     }
+
+
 }
 
 

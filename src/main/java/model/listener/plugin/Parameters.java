@@ -8,7 +8,12 @@ import model.utility.Pair;
 
 public class Parameters {
     private final Optional<List<Pair<ParameterType, Vec3f>>> vectorValues;
-    private final Optional<List<Pair<ParameterType, Float>>> floatValues;
+    private  Optional<List<Pair<ParameterType, Float>>> floatValues;
+
+    public Parameters() {
+        this.floatValues = Optional.empty();
+        this.vectorValues = Optional.empty();
+    }
 
     public Parameters(final ParameterType type, final float value) {
         floatValues = Optional.of(List.of(new Pair<>(type, value)));
@@ -27,20 +32,21 @@ public class Parameters {
     };
 
 
-    /*TODO reivew value type not present*/
+    /*TODO review value type not present or floatValues is Optional.empty()*/
     /**
      * 
      * @param type
      * @return
      */
     public Optional<Float> getFloatValue(final ParameterType type) {
-            return Optional.of(floatValues.get().stream()
-                            .filter(x -> x.getX().equals(type))
-                            .findFirst()
-                            .get()
-                            .getY());
-    }
+        return this.floatValues.isPresent() ? this.floatValues.get().stream()
+                                                                    .filter(x -> x.getX().equals(type))
+                                                                    .findFirst()
+                                                                    .map(p -> p.getY())
+                                                                    .or(() -> Optional.empty())
+                                            : Optional.empty();
 
+    }
 
 
 }
