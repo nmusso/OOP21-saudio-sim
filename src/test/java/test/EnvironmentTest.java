@@ -30,7 +30,7 @@ import model.source.SourceImpl;
 
 class EnvironmentTest {
 
-    private final Set<Source> sources = new HashSet<Source>();
+    private final Set<Source> sources = new HashSet<>();
     private final ListenerFactory listFac = new ListenerFactoryImpl();
     private final Listener listener = listFac.createListener(AudioManager.getContext());
     //private final SourceFactory sourceFac = new SourceFactoryImpl();
