@@ -8,10 +8,11 @@ import model.utility.Vec3f;
 public class DropplerPlugin extends AbstractPlugin {
     private final PluginType type = PluginType.DROPPLER_PLUGIN;
     private Vec3f velocity;
+    private float dropplerLv;
 
     public DropplerPlugin() {
         this.velocity = new Vec3f(0.0f, 0.0f, 0.0f);
-        // TODO Auto-generated constructor stub
+        this.dropplerLv = 1.0f;
     }
 
     @Override
@@ -34,9 +35,12 @@ public class DropplerPlugin extends AbstractPlugin {
         return this.type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setParameters(final Parameters value) {
-        // TODO Auto-generated method stub
+        this.dropplerLv = value.getFloatValue(ParameterType.DROPPLER_LV).orElse(1.0f);
 
     }
 
@@ -45,7 +49,6 @@ public class DropplerPlugin extends AbstractPlugin {
      */
     @Override
     public Optional<Vec3f> getVectValue(final ParameterType type) {
-        // TODO Auto-generated method stub
         return Optional.empty();
     }
 
@@ -54,8 +57,7 @@ public class DropplerPlugin extends AbstractPlugin {
      */
     @Override
     public Optional<Float> getFloatValue(final ParameterType type) {
-        // TODO Auto-generated method stub
-        return Optional.empty();
+        return type.equals(ParameterType.DROPPLER_LV) ? Optional.of(this.dropplerLv) : Optional.empty();
     }
 
 }

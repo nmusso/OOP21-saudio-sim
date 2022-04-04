@@ -21,9 +21,9 @@ public class Parameters {
     }
 
 
-    public Parameters() {
+    public Parameters(final ParameterType type, final Float param1) {
         this.vectorValues = Optional.empty(); 
-        this.floatValues = Optional.empty();
+        this.floatValues = Optional.of(List.of(new Pair<>(type, param1)));
     };
 
 
