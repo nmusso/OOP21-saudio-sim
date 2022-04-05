@@ -15,7 +15,7 @@ import model.buffer.Buffer;
 import model.buffer.BufferImpl;
 import model.source.Source;
 import model.source.SourceImpl;
-import view.MultipleFxmlTest;
+import view.utility.PageLoader;
 
 public class ControllerTest implements Initializable {
     @FXML private ComboBox<String> cmbTitleMusic;
@@ -29,7 +29,7 @@ public class ControllerTest implements Initializable {
     public final void initialize(final URL location, final ResourceBundle resources) {
         AudioManager.initContext();
 
-        final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
+        final Buffer b = new BufferImpl("src/main/resources/songs/InnoItalia.wav");
         s = new SourceImpl();
 
         try {
@@ -51,13 +51,13 @@ public class ControllerTest implements Initializable {
     }
 
     @FXML public final void handleFinestra1(final Event event) {
-        final MultipleFxmlTest test = new  MultipleFxmlTest();
+        final PageLoader test = new  PageLoader();
         final Pane view = test.getPage("finestra1.fxml");
         borderPaneTest.setCenter(view);
     }
 
     @FXML public final void handleFinestra2(final Event event) {
-        final MultipleFxmlTest test = new  MultipleFxmlTest();
+        final PageLoader test = new  PageLoader();
         final Pane view = test.getPage("finestra2.fxml");
         borderPaneTest.setCenter(view);
     }
