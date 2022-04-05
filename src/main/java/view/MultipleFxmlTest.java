@@ -1,6 +1,7 @@
 package view;
 
-import java.net.URL;
+import java.io.File;
+import java.io.FileInputStream;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
@@ -8,17 +9,21 @@ import javafx.scene.layout.Pane;
 public class MultipleFxmlTest {
 
     private Pane view;
-    
-    public Pane getPage (final String fileName ) {
-        
+    private static final String FXML_PATH = "src/main/resources/fxml/";
+
+    /**
+    *
+    *
+    */
+    public Pane getPage(final String fileName) {
+        final FXMLLoader loader = new FXMLLoader();
         try {
-             URL fileUrl = MainView.class.getResource(fileName);
-             view = new FXMLLoader().load(fileUrl);
+             view = loader.load(new FileInputStream(new File(FXML_PATH + fileName)));
         } catch (Exception e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         } 
         return view;
     }
-    
+
 }
