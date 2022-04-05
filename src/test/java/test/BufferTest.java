@@ -19,7 +19,7 @@ import model.effect.ALEffects;
 
 class BufferTest {
 
-    private static final String PATH = "src/main/resources/";
+    private static final String PATH = "src/main/resources/songs/";
     private static final String ERROR_GENERATE = "Buffer not generated correctly";
 
     @BeforeAll
