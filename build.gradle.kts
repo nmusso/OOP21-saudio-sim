@@ -103,7 +103,7 @@ dependencies {
 
 application { 
     // Define the main class for the application.
-    mainClass.set("controller.AppMain")
+    mainClass.set("launcher.ApplicationLauncher")
 }
 
 java {
