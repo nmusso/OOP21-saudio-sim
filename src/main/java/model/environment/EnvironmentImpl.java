@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import model.effect.ALEffects;
 import model.listener.Listener;
+import model.source.FreqRangeSource;
 import model.source.Source;
 import model.source.hub.SourcesHub;
 import model.utility.Vec3f;
@@ -90,7 +91,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void addSourceToSourceHub(final Source source) {
+    public void addSourceToSourceHub(final FreqRangeSource source) {
         if (space.isAvailable(source.getPosition())) {
             sourcesHub.addSource(source);
         }
@@ -102,7 +103,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void removeSourceFromSourceHub(final Source sourceToRemove) {
+    public void removeSourceFromSourceHub(final FreqRangeSource sourceToRemove) {
         this.space.removeSourcePos(sourceToRemove.getPosition());
         this.sourcesHub.removeSource(sourceToRemove);
     }
@@ -112,7 +113,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void moveSource(final Source source, final Vec3f pos) {
+    public void moveSource(final FreqRangeSource source, final Vec3f pos) {
         final int signX = (source.getPosition().getX() + pos.getX()) < 0 ? -1 : 1;
         final int signY = (source.getPosition().getY() + pos.getY()) < 0 ? -1 : 1;
         if (this.space.isAvailable(pos)) {
