@@ -12,5 +12,9 @@ public enum SourceType {
     /**
      *  High range type.
      */
-    HIGH;
+    HIGH,
+    /**
+     *  Full range type.
+     */
+    FULL;
 }

@@ -2,7 +2,7 @@ package model.source.hub;
 
 import java.util.Set;
 
-import model.source.Source;
+import model.source.FreqRangeSource;
 
 public interface SourcesHubFactory {
 
@@ -18,5 +18,5 @@ public interface SourcesHubFactory {
      * 
      * @return SourcesHub from Set of Sources
      */
-    SourcesHub createSourceHubFromSet(Set<Source> sources);
+    SourcesHub createSourceHubFromSet(Set<FreqRangeSource> sources);
 }

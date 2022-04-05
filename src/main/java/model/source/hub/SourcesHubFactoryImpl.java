@@ -2,7 +2,7 @@ package model.source.hub;
 
 import java.util.Set;
 
-import model.source.Source;
+import model.source.FreqRangeSource;
 
 public class SourcesHubFactoryImpl implements SourcesHubFactory {
 
@@ -18,7 +18,7 @@ public class SourcesHubFactoryImpl implements SourcesHubFactory {
      * @inheritDoc
      */
     @Override
-    public SourcesHub createSourceHubFromSet(final Set<Source> sources) {
+    public SourcesHub createSourceHubFromSet(final Set<FreqRangeSource> sources) {
         return new SourcesHubImpl(sources);
     }
 

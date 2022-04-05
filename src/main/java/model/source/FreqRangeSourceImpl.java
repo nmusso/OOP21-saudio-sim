@@ -41,6 +41,9 @@ public class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
             case HIGH:
                 //TODO (waiting musso)
                 break;
+            case FULL:
+                //TODO (waiting musso)
+                break;
             default:
                 break;
         }

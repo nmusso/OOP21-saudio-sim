@@ -3,6 +3,7 @@ package model.source.hub;
 import java.util.Set;
 
 import model.effect.ALEffects;
+import model.source.FreqRangeSource;
 import model.source.Source;
 import model.utility.Vec3f;
 
@@ -13,14 +14,14 @@ public interface SourcesHub {
      * 
      * @return Set of All Sources
      */
-    Set<Source> getAll();
+    Set<FreqRangeSource> getAll();
 
     /**
      * Gets the Sources they are playing.
      * 
      * @return Set of Sources that are playing
      */
-    Set<Source> getPalying();
+    Set<FreqRangeSource> getPalying();
 
     /**
      * Gets the Source with the specified id.
@@ -28,7 +29,7 @@ public interface SourcesHub {
      * @param id
      * @return Source with the specified id
      */
-    Source getSource(Integer id);
+    FreqRangeSource getSource(Integer id);
 
     /**
      * Gets the Source with the specified position.
@@ -36,21 +37,21 @@ public interface SourcesHub {
      * @param position
      * @return Source with the specified position
      */
-    Source getSourceFromPos(Vec3f position);
+    FreqRangeSource getSourceFromPos(Vec3f position);
 
     /**
      * Add the Source s to the SourcesHub.
      * 
      * @param s
      */
-    void addSource(Source s);
+    void addSource(FreqRangeSource s);
 
     /**
      * Remove the Source s to the SourcesHub.
      * 
      * @param s
      */
-    void removeSource(Source s);
+    void removeSource(FreqRangeSource s);
 
     /**
      * Play all sources.
