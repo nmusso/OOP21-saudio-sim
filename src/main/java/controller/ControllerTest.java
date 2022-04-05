@@ -25,18 +25,15 @@ public class ControllerTest implements Initializable {
     public ControllerTest() {
     }
 
-    /**
-     * Init.
-     */
     @Override
-    public void initialize(final URL location, final ResourceBundle resources) {
+    public final void initialize(final URL location, final ResourceBundle resources) {
         AudioManager.initContext();
 
         final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
         s = new SourceImpl();
 
         try {
-            s.generateSource(b.generateBuffer());
+            s.generateSource(b.getID());
         } catch (Exception e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();

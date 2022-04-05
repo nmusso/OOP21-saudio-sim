@@ -11,6 +11,10 @@ public final class ALFormatException extends RuntimeException {
         super(error);
     }
 
+    public ALFormatException(final String error, final Throwable cause) {
+        super(error, cause);
+    }
+
     /**
      * {@inheritDoc}
      */

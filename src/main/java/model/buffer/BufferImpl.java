@@ -26,7 +26,11 @@ public class BufferImpl implements Buffer {
     public BufferImpl(final String file) {
         this.id = alGenBuffers();
         this.file = file;
-        this.generated = false;
+        try {
+            generateBuffer();
+        } catch (UnsupportedAudioFileException | IOException e) {
+            throw new ALFormatException("error while generating buffer", e);
+        }
     }
 
     /**
@@ -46,18 +50,17 @@ public class BufferImpl implements Buffer {
     }
 
     /**
-     * {@inheritDoc}
+     * Generate the buffer from the path passed in the constructor.
+     * @return the ID of the generated buffer
+     * @throws FileNotFoundException if file does not exists
+     * @throws UnsupportedAudioFileException if the type of the file is not supported
+     * @throws IOException if an error occur during read
      */
-    @Override
-    public int generateBuffer() throws UnsupportedAudioFileException, IOException {
+    private int generateBuffer() throws UnsupportedAudioFileException, IOException {
         if (!this.generated) {
             try (AudioInputStream stream = getAudioInputStream(loadFile(file))) {
                 final var format = stream.getFormat();
                 final int sampleSize = getALFormat(format);
-
-                if (sampleSize == -1) {
-                    throw new ALFormatException("Can't handle format");
-                }
 
                 final byte[] byteArray = new byte[stream.available()];
                 stream.read(byteArray);
@@ -65,19 +68,17 @@ public class BufferImpl implements Buffer {
 
                 alBufferData(id, sampleSize, audioBuffer, (int) format.getSampleRate());
                 stream.close();
+                generated = true;
             } catch (UnsupportedAudioFileException | IOException e) {
                 e.printStackTrace();
             }
-
-            final BufferCache bc = BufferCache.INSTANCE;
-            bc.addToCache(file, this);
         }
 
         return id;
     }
 
     /**
-     * 
+     * Return a flipper ByteBuffer from a byte array.
      * @param byteArray  the byte array read from the AudioInputStream
      * @return the flipped byte array as ByteBuffer
      */
@@ -101,7 +102,7 @@ public class BufferImpl implements Buffer {
         case 2:
             throw new ALFormatException("Stereo not supported");
         default:
-            return -1;
+            throw new ALFormatException("Can't handle format");
         }
     }
 

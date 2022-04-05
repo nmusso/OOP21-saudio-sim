@@ -32,25 +32,19 @@ public enum BufferCache {
      * @throws IOException if an error occur during read
      */
     public Buffer getBuffer(final String path) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        final Buffer buf;
-
-        if (buffers.containsKey(path)) {
-            buf = buffers.get(path); 
-        } else {
-            buf = new BufferImpl(path);
-            buf.generateBuffer();
+        if (!buffers.containsKey(path)) {
+            final Buffer buf = new BufferImpl(path);
+            buffers.put(path, buf);
         }
 
-        return buf;
+        return buffers.get(path);
     }
 
     /**
      * Clear the buffer cache.
      */
     public void emptyCache() {
-        buffers.forEach((path, buf) -> {
-            alDeleteBuffers(buf.getID());
-            buffers.remove(path);
-        });
+        buffers.forEach((path, buf) -> alDeleteBuffers(buf.getID()));
+        buffers.clear();
     }
 }
