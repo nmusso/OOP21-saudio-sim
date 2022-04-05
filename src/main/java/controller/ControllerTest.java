@@ -49,18 +49,16 @@ public class ControllerTest implements Initializable {
     @FXML public final void handlePause(final Event event) {
         s.pause();
     }
-    
+
     @FXML public final void handleFinestra1(final Event event) {
         final MultipleFxmlTest test = new  MultipleFxmlTest();
-        Pane view = test.getPage("finestra1.fxml");
+        final Pane view = test.getPage("finestra1.fxml");
         borderPaneTest.setCenter(view);
     }
-    
+
     @FXML public final void handleFinestra2(final Event event) {
         final MultipleFxmlTest test = new  MultipleFxmlTest();
-        Pane view = test.getPage("finestra2.fxml");
+        final Pane view = test.getPage("finestra2.fxml");
         borderPaneTest.setCenter(view);
     }
-    
-    
 }

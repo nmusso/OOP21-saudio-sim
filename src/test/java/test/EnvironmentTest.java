@@ -42,7 +42,7 @@ class EnvironmentTest {
         AudioManager.initContext();
     }
     private Source genSource(final Source s) {
-        final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
+        final Buffer b = new BufferImpl("src/main/resources/songs/DriftMono.wav");
         s.generateSource(b.getID());
         return s;
     }
