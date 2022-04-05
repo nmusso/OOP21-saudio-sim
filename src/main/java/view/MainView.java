@@ -1,7 +1,10 @@
 package view;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -22,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
+    private static final String FXML_PATH = "src/main/resources/fxml/MainView.fxml";
 
     /**
      * 
@@ -30,7 +34,8 @@ public class MainView extends Application {
     @Override
     public void start(final Stage mainStage) throws Exception {
         mainStage.setTitle("Collector");
-        final Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+        final FXMLLoader loader = new FXMLLoader();
+        final Parent root = loader.load(new FileInputStream(new File(FXML_PATH)));
         final Scene scene = new Scene(root);
         final Button btnPlay = (Button) scene.lookup("#btnPlay");
         final Button btnPause = (Button) scene.lookup("#btnPause");
