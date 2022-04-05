@@ -23,25 +23,28 @@ import model.environment.EnvironmentFactoryImpl;
 import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
+import model.source.FreqRangeSource;
+import model.source.FreqRangeSourceImpl;
 import model.source.Source;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
 import model.source.SourceImpl;
+import model.source.SourceType;
 
 class EnvironmentTest {
 
-    private final Set<Source> sources = new HashSet<>();
+    private final Set<FreqRangeSource> sources = new HashSet<>();
     private final ListenerFactory listFac = new ListenerFactoryImpl();
     private final Listener listener = listFac.createListener(AudioManager.getContext());
     //private final SourceFactory sourceFac = new SourceFactoryImpl();
-    //TODO Utilizza sourceFac
     private final EnvironmentFactory envFac = new EnvironmentFactoryImpl();
 
     @BeforeAll
     static void init() {
         AudioManager.initContext();
     }
-    private Source genSource(final Source s) {
+
+    private FreqRangeSource genSource(final FreqRangeSource s) {
         final Buffer b = new BufferImpl("src/main/resources/songs/DriftMono.wav");
         s.generateSource(b.getID());
         return s;
@@ -49,8 +52,8 @@ class EnvironmentTest {
 
     @Test
     void  testSimplePlayStop() {
-        sources.add(genSource(new SourceImpl()));
-        sources.add(genSource(new SourceImpl()));
+        sources.add(genSource(new FreqRangeSourceImpl(SourceType.FULL)));
+        sources.add(genSource(new FreqRangeSourceImpl(SourceType.FULL)));
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         env.getSourceHub().playAll();
@@ -61,21 +64,21 @@ class EnvironmentTest {
 
     @Test
     void testAddSource() {
-        sources.add(genSource(new SourceImpl()));
-        sources.add(genSource(new SourceImpl()));
+        sources.add(genSource(new FreqRangeSourceImpl(SourceType.FULL)));
+        sources.add(genSource(new FreqRangeSourceImpl(SourceType.FULL)));
 
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         assertEquals(env.getSourceHub().getAll().size(), sources.size());
-        env.getSourceHub().addSource((genSource(new SourceImpl())));
+        env.getSourceHub().addSource((genSource(new FreqRangeSourceImpl(SourceType.FULL))));
         assertEquals(env.getSourceHub().getAll().size(), sources.size() + 1);
     }
 
     @Test
     void testGetX() {
-        final Source source1 = genSource(new SourceImpl());
-        final Source source2 = genSource(new SourceImpl());
-        final Source source3 = genSource(new SourceImpl());
+        final FreqRangeSource source1 = genSource(new FreqRangeSourceImpl(SourceType.FULL));
+        final FreqRangeSource source2 = genSource(new FreqRangeSourceImpl(SourceType.FULL));
+        final FreqRangeSource source3 = genSource(new FreqRangeSourceImpl(SourceType.FULL));
         sources.add(source1);
         sources.add(source2);
         sources.add(source3);
