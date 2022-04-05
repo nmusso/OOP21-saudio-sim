@@ -5,10 +5,10 @@ import java.util.Optional;
 import model.utility.Vec3f;
 import model.utility.Pair;
 
-
+/*TODO remove optional and initialize List to empty ArrayList*/
 public class Parameters {
     private final Optional<List<Pair<ParameterType, Vec3f>>> vectorValues;
-    private  Optional<List<Pair<ParameterType, Float>>> floatValues;
+    private final Optional<List<Pair<ParameterType, Float>>> floatValues;
 
     public Parameters() {
         this.floatValues = Optional.empty();

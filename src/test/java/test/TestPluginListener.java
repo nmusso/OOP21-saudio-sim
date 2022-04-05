@@ -2,9 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -59,7 +57,21 @@ class TestPluginListener {
 
     }
 
+    @Test
+    void testParameter2() {
+        final Listener lst = lsFactory.createListener(AudioManager.getContext());
+        final PluginManager mng = new PluginManager(lst);
+        final DropplerPlugin drp = new DropplerPlugin();
+        final Parameters drpParam = new Parameters();
 
+        mng.addPlugin(drp);
+        mng.getPlugin(PluginType.DROPPLER_PLUGIN).ifPresent(p -> p.setParameters(drpParam));
+
+        /*1.0f is default value*/
+        assertEquals(drp.getFloatValue(ParameterType.DROPPLER_LV), Optional.of(1.0f));
+        assertEquals(drp.getFloatValue(ParameterType.DB_LV), Optional.empty());
+        assertEquals(drpParam.getFloatValue(ParameterType.DB_LV), Optional.empty());
+    }
 }
 
 
