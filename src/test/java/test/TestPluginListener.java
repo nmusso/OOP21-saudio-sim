@@ -55,25 +55,18 @@ class TestPluginListener {
         assertEquals(drp.getFloatValue(ParameterType.DB_LV), Optional.empty());
         assertEquals(drpParam.getFloatValue(ParameterType.DB_LV), Optional.empty());
 
-    }
+        final Parameters drpParam2 = new Parameters();
 
-    @Test
-    void testParameter2() {
-        final Listener lst = lsFactory.createListener(AudioManager.getContext());
-        final PluginManager mng = new PluginManager(lst);
-        final DropplerPlugin drp = new DropplerPlugin();
-        final Parameters drpParam = new Parameters();
-
-        mng.addPlugin(drp);
-        mng.getPlugin(PluginType.DROPPLER_PLUGIN).ifPresent(p -> p.setParameters(drpParam));
+        mng.getPlugin(PluginType.DROPPLER_PLUGIN).ifPresent(p -> p.setParameters(drpParam2));
 
         /*1.0f is default value*/
         assertEquals(drp.getFloatValue(ParameterType.DROPPLER_LV), Optional.of(1.0f));
         assertEquals(drp.getFloatValue(ParameterType.DB_LV), Optional.empty());
-        assertEquals(drpParam.getFloatValue(ParameterType.DB_LV), Optional.empty());
-    }
-}
+        assertEquals(drpParam2.getFloatValue(ParameterType.DB_LV), Optional.empty());
 
+    }
+
+}
 
 
 
