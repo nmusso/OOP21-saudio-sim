@@ -31,6 +31,19 @@ public class FilterImpl extends AbstractFilter {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeFilter(final Source source) {
+        initFilterBuffer();
+        final int filter = getFilter().get(0);
+
+        alFilteri(filter, AL_FILTER_TYPE, AL_FILTER_NULL);
+
+        setOnSource(filter, source);
+    }
+
+    /**
      * Apply the specified type of filter to the source.
      * @param source  the source
      * @param type  the type of the filter (lowpass, bandpass, highpass)

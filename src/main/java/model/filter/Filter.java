@@ -24,4 +24,10 @@ public interface Filter {
      * @param type  the type of the filter
      */
     void applyFilter(Source source, SourceType type);
+
+    /**
+     * Remove the filter from the source.
+     * @param source  the source
+     */
+    void removeFilter(Source source);
 }
