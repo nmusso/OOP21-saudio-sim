@@ -24,6 +24,7 @@ import model.utility.*;
 class SourceTest {
 
     private final Source s = new SourceImpl();
+    private final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
 
     @BeforeAll
     static void init() {
@@ -31,13 +32,7 @@ class SourceTest {
     }
 
     private void genSource() {
-        final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
-        try {
-            b.generateBuffer();
-            s.generateSource(b.getID());
-        } catch (UnsupportedAudioFileException | IOException e) {
-            e.printStackTrace();
-        }
+        s.generateSource(b.getID());
     }
 
     @Test
