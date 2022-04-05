@@ -43,11 +43,7 @@ class EnvironmentTest {
     }
     private Source genSource(final Source s) {
         final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
-        try {
-            s.generateSource(b.generateBuffer());
-        } catch (UnsupportedAudioFileException | IOException e) {
-            e.printStackTrace();
-        }
+        s.generateSource(b.getID());
         return s;
     }
 
