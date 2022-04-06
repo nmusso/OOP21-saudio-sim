@@ -25,9 +25,6 @@ public class FilterImpl extends AbstractFilter {
         case HIGH:
             apply(source, AL_FILTER_HIGHPASS, List.of(AL_HIGHPASS_GAIN, AL_HIGHPASS_GAINLF), HIGHPASS_VALUE);
             break;
-        case FULL:
-            removeFilter(source);
-            break;
         default:
             break;
         }
