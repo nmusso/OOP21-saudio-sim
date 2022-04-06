@@ -8,9 +8,8 @@ import javafx.fxml.Initializable;
 public class EnvironmentController implements Initializable {
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-        
+    public void initialize(final URL location, final ResourceBundle resources) {
+            
     }
 
 }

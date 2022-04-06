@@ -8,20 +8,19 @@ import javafx.scene.layout.Pane;
 
 public class PageLoader {
 
-    private static Pane view;
-
     /**
     *
     */
-    public static Pane getPage(final String fileName) {
+    public static <E> E getPage(final String fileName) {
+        E element = null;
         final FXMLLoader loader = new FXMLLoader();
         try {
-             view = loader.load(new FileInputStream(new File(fileName)));
+             element = loader.load(new FileInputStream(new File(fileName)));
         } catch (Exception e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         } 
-        return view;
+        return element;
     }
 
 }
