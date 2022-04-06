@@ -18,19 +18,19 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitMenuButton layoutX="63.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleAddPlugin" text="Add Plugin">
+                        <SplitMenuButton fx:id="splitMenuPlugin" layoutX="65.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleAddPlugin" prefHeight="23.0" prefWidth="105.0">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="DropplerPlugin" />
-                            <MenuItem mnemonicParsing="false" text="SoundMeterPlugin" />
+                            <MenuItem fx:id="DropplerPluginSelection" mnemonicParsing="false" onAction="#handleSelectPlugin" text="DropplerPlugin" />
+                            <MenuItem fx:id="SoundMeterPluginSelection" mnemonicParsing="false" onAction="#handleSelectPlugin" text="SoundMeterPlugin" />
                           </items>
                         </SplitMenuButton>
-                        <Label layoutX="62.0" layoutY="14.0" text="Position" />
+                        <Label layoutX="86.0" layoutY="14.0" text="Position" />
                         <Label layoutX="26.0" layoutY="47.0" text="X :" />
                         <Label layoutX="109.0" layoutY="47.0" text="Y :" />
                         <Label layoutX="133.0" layoutY="47.0" text="1.0" />
                         <Label layoutX="50.0" layoutY="47.0" text="2.0" />
-                        <Label layoutX="69.0" layoutY="95.0" text="Orientation" />
-                        <Slider layoutX="31.0" layoutY="124.0" />
+                        <Label layoutX="85.0" layoutY="95.0" text="Orientation" />
+                        <Slider layoutX="47.0" layoutY="124.0" />
                      </children>
                   </AnchorPane>
             </content>
