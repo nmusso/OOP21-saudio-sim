@@ -15,7 +15,7 @@ public class MainController implements Initializable {
     private static final double PROP = 0.45;
     private static final String FXML_PATH = "src/main/resources/fxml/";
     private final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-    private final double contHeight = screen.getHeight() * 0.75;
+    private final double contHeight = screen.getHeight() * 0.5;
     private final double contWidth = contHeight * 1.75;
     @FXML private BorderPane listenerPane;
     @FXML private BorderPane sourcePane;
