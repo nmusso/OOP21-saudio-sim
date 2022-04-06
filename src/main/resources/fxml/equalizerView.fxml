@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EqualizerController">
    <children>
       <GridPane prefHeight="362.0" prefWidth="558.0">
         <columnConstraints>
@@ -66,7 +65,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <ToggleButton fx:id="btnTurn" mnemonicParsing="false" text="Turn on" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <ToggleButton fx:id="btnTurn" mnemonicParsing="false" onAction="#handlePress" text="Turn on" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>
