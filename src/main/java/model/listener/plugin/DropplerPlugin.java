@@ -59,5 +59,9 @@ public class DropplerPlugin extends AbstractPlugin {
     public Optional<Float> getFloatValue(final ParameterType type) {
         return type.equals(ParameterType.DROPPLER_LV) ? Optional.of(this.dropplerLv) : Optional.empty();
     }
+    
+    public Float getDropplerLv() {
+        return this.dropplerLv;
+    }
 
 }
