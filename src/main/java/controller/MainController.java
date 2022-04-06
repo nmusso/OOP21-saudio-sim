@@ -23,9 +23,6 @@ public class MainController implements Initializable {
     @FXML private BorderPane environmentPane;
     @FXML private VBox container;
 
-    public MainController() {
-    }
-
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
         container.setPrefSize(contWidth, contHeight);
