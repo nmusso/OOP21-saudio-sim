@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
+import model.source.FreqRangeSource;
+import model.source.SourceType;
 
 public class SourceController implements Initializable {
     @FXML private Button btnAddSpeaker;
@@ -19,40 +21,45 @@ public class SourceController implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        System.out.println("SourceController: hello!");
-        //TODO
+
     }
 
     @FXML private void handleAddSpeaker(final Event event) {
-        System.out.println("SourceController: AddSpeaker()");
-      //TODO
+        //TODO Add speaker from SourceHub in Environment
     }
 
     @FXML private void handleRemoveSpeaker(final Event event) {
-        System.out.println("SourceController: RemoveSpeaker()");
-        //btnAddSpeaker.setDisable(true);
-        //TODO
+        FreqRangeSource speaker = this.getSelectedSpeaker();
+
+        //TODO Remove speaker from SourceHub in Environment
     }
 
     @FXML private void handleRadioButtonChanged(final Event event) {
-        System.out.println("SourceController: RadioButtonSelected()");
+        FreqRangeSource speaker = this.getSelectedSpeaker();
 
         switch (((RadioButton) event.getSource()).getId()) {
             case "rbtnDefault":
-                //TODO
+                speaker.setType(SourceType.FULL);
                 break;
             case "rbtnTweeter":
-                //TODO
+                speaker.setType(SourceType.HIGH);
                 break;
             case "rbtnMidRange":
-                //TODO
+                speaker.setType(SourceType.MID);
                 break;
             case "rbtnWoofer":
-                //TODO
+                speaker.setType(SourceType.LOW);
                 break;
             default:
                 break;
         }
+    }
 
+    private void speakerSelected(final  FreqRangeSource speaker) {
+        //rbtnWoofer.setSelected(true);
+    }
+
+    private FreqRangeSource getSelectedSpeaker() {
+        return null;
     }
 }

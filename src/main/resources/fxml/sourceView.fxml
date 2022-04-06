@@ -35,7 +35,7 @@
             <RadioButton fx:id="rbtnTweeter" mnemonicParsing="false" onAction="#handleRadioButtonChanged" text="Tweeter (High Freq.)" toggleGroup="$SpeakerRange" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
             <RadioButton fx:id="rbtnMidRange" mnemonicParsing="false" onAction="#handleRadioButtonChanged" text="Mid-range (Medium Freq.)" toggleGroup="$SpeakerRange" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <RadioButton fx:id="rbtnWoofer" mnemonicParsing="false" onAction="#handleRadioButtonChanged" text="Woofer (Low Freq.)" toggleGroup="$SpeakerRange" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
-            <Label text="Speakers" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Label text="Speaker" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
    </children>
