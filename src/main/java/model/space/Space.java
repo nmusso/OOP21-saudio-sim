@@ -1,4 +1,4 @@
-package model.environment;
+package model.space;
 
 import model.utility.Vec3f;
 

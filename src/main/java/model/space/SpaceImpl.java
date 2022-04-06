@@ -1,4 +1,4 @@
-package model.environment;
+package model.space;
 
 import java.util.HashSet;
 import java.util.Set;

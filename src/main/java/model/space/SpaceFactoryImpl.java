@@ -1,4 +1,4 @@
-package model.environment;
+package model.space;
 
 public class SpaceFactoryImpl  implements SpaceFactory {
 

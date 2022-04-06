@@ -6,6 +6,7 @@ import java.util.Set;
 import model.listener.Listener;
 import model.source.FreqRangeSource;
 import model.source.Source;
+import model.space.Space;
 
 public interface EnvironmentFactory {
 

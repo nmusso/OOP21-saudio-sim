@@ -16,6 +16,9 @@ import model.source.SourceFactoryImpl;
 import model.source.hub.SourcesHub;
 import model.source.hub.SourcesHubFactory;
 import model.source.hub.SourcesHubFactoryImpl;
+import model.space.Space;
+import model.space.SpaceFactory;
+import model.space.SpaceFactoryImpl;
 import model.utility.Vec3f;
 
 public class EnvironmentFactoryImpl implements EnvironmentFactory {

@@ -7,6 +7,7 @@ import model.listener.Listener;
 import model.source.FreqRangeSource;
 import model.source.Source;
 import model.source.hub.SourcesHub;
+import model.space.Space;
 import model.utility.Vec3f;
 
 public interface Environment {
