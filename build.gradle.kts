@@ -86,6 +86,9 @@ dependencies {
 	runtimeOnly("org.lwjgl", "lwjgl-opengl", classifier = lwjglNatives)
 	runtimeOnly("org.lwjgl", "lwjgl-stb", classifier = lwjglNatives)
 	
+	//ClassGraph
+	implementation("io.github.classgraph:classgraph:4.8.143")
+	
 	/*
      * Simple Logging Facade for Java (SLF4J) with Apache Log4j
      * See: http://www.slf4j.org/
