@@ -23,7 +23,7 @@ public class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
      */
     @Override
     public SourceType getType() {
-        return type;
+        return this.type;
     }
 
     /**
@@ -32,7 +32,12 @@ public class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
     @Override
     public final void setType(final SourceType type) {
         this.type = type;
-        filter.applyFilter(this, type);
+
+        if (type.equals(SourceType.FULL)) {
+            this.filter.removeFilter(this);
+        } else {
+            this.filter.applyFilter(this, type);
+        }
     }
 
 }
