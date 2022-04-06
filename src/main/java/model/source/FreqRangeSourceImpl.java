@@ -1,10 +1,12 @@
 package model.source;
 
+import model.filter.Filter;
 import model.utility.Vec3f;
 
 public class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
 
     private SourceType type;
+    private Filter filter;
 
     public FreqRangeSourceImpl(final SourceType type) {
         super();
@@ -30,23 +32,7 @@ public class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
     @Override
     public final void setType(final SourceType type) {
         this.type = type;
-
-        switch (type) {
-            case LOW:
-                //TODO (waiting musso)
-                break;
-            case MID:
-                //TODO (waiting musso)
-                break;
-            case HIGH:
-                //TODO (waiting musso)
-                break;
-            case FULL:
-                //TODO (waiting musso)
-                break;
-            default:
-                break;
-        }
+        filter.applyFilter(this, type);
     }
 
 }
