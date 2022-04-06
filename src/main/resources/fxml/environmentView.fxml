@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -14,13 +16,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="426.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox prefHeight="426.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnvironmentController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane HBox.hgrow="ALWAYS">
          <children>
             <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <GridPane prefHeight="60.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
+                  <GridPane VBox.vgrow="ALWAYS">
                      <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="157.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="126.0" minWidth="0.0" prefWidth="41.0" />
@@ -35,7 +37,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="01" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="lblIdEnv" text="01" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -45,10 +47,10 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="+" GridPane.columnIndex="1" />
+                        <Button fx:id="btnAddEnv" mnemonicParsing="false" text="+" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
-                  <GridPane alignment="CENTER" prefHeight="147.0" prefWidth="183.0" VBox.vgrow="SOMETIMES">
+                  <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
                      <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="124.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.0" minWidth="10.0" prefWidth="76.0" />
@@ -79,7 +81,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <GridPane alignment="CENTER" prefHeight="58.0" prefWidth="200.0" VBox.vgrow="SOMETIMES">
+                  <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
                      <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" percentWidth="0.0" prefWidth="200.0" />
                      </columnConstraints>
@@ -93,10 +95,10 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox prefHeight="25.0" prefWidth="143.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <ComboBox prefWidth="92.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <GridPane VBox.vgrow="SOMETIMES">
+                  <GridPane VBox.vgrow="ALWAYS">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -105,19 +107,31 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Button" GridPane.halignment="CENTER" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Button" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Button minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Load" GridPane.halignment="CENTER" />
+                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Export" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane style="-fx-border-color: green;" HBox.hgrow="SOMETIMES">
+      <AnchorPane style="-fx-border-color: green;" HBox.hgrow="ALWAYS">
          <children>
-            <TabPane layoutX="1.0" prefHeight="398.0" prefWidth="482.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TabPane layoutX="1.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <tabs>
-                  <Tab text="Environment 01" />
+                  <Tab text="Environment 01">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <Canvas focusTraversable="true" height="396.0" layoutX="5.0" layoutY="6.0" width="549.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </Canvas>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
                </tabs>
             </TabPane>
          </children>
