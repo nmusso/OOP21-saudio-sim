@@ -42,22 +42,22 @@
          <children>
             <AnchorPane layoutX="24.0" layoutY="14.0" prefHeight="185.0" prefWidth="284.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <BorderPane fx:id="equalizerPane" layoutX="-1.0" prefHeight="186.0" prefWidth="284.0" style="-fx-background-color: red;" />
+                  <BorderPane fx:id="equalizerPane" layoutX="-1.0" prefHeight="186.0" prefWidth="284.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="334.0" layoutY="193.0" prefHeight="166.0" prefWidth="275.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <children>
-                  <BorderPane fx:id="listenerPane" layoutX="-1.0" prefHeight="166.0" prefWidth="275.0" style="-fx-background-color: blue;" />
+                  <BorderPane fx:id="listenerPane" layoutX="-1.0" prefHeight="166.0" prefWidth="275.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="274.0" layoutY="24.0" prefHeight="186.0" prefWidth="275.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <BorderPane fx:id="sourcePane" layoutX="-1.0" prefHeight="186.0" prefWidth="275.0" style="-fx-background-color: yellow;" />
+                  <BorderPane fx:id="sourcePane" layoutX="-1.0" prefHeight="186.0" prefWidth="275.0" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="24.0" layoutY="230.0" prefHeight="166.0" prefWidth="284.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0">
                <children>
-                  <BorderPane fx:id="environmentPane" layoutX="-1.0" prefHeight="166.0" prefWidth="284.0" style="-fx-background-color: orange;" />
+                  <BorderPane fx:id="environmentPane" layoutX="-1.0" prefHeight="166.0" prefWidth="284.0" />
                </children>
             </AnchorPane>
          </children>
