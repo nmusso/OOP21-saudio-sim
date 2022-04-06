@@ -36,7 +36,7 @@ class EnvironmentTest {
     private final Set<FreqRangeSource> sources = new HashSet<>();
     private final ListenerFactory listFac = new ListenerFactoryImpl();
     private final Listener listener = listFac.createListener(AudioManager.getContext());
-    //private final SourceFactory sourceFac = new SourceFactoryImpl();
+    private final SourceFactory sourceFac = new SourceFactoryImpl();
     private final EnvironmentFactory envFac = new EnvironmentFactoryImpl();
 
     @BeforeAll
@@ -52,8 +52,8 @@ class EnvironmentTest {
 
     @Test
     void  testSimplePlayStop() {
-        sources.add(genSource(new FreqRangeSourceImpl(SourceType.FULL)));
-        sources.add(genSource(new FreqRangeSourceImpl(SourceType.FULL)));
+        sources.add(genSource(sourceFac.createFreqRangeSource()));
+        sources.add(genSource(sourceFac.createFreqRangeSource()));
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         env.getSourceHub().playAll();
@@ -64,21 +64,21 @@ class EnvironmentTest {
 
     @Test
     void testAddSource() {
-        sources.add(genSource(new FreqRangeSourceImpl(SourceType.FULL)));
-        sources.add(genSource(new FreqRangeSourceImpl(SourceType.FULL)));
+        sources.add(genSource(sourceFac.createFreqRangeSource()));
+        sources.add(genSource(sourceFac.createFreqRangeSource()));
 
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         assertEquals(env.getSourceHub().getAll().size(), sources.size());
-        env.getSourceHub().addSource((genSource(new FreqRangeSourceImpl(SourceType.FULL))));
+        env.getSourceHub().addSource((genSource(sourceFac.createFreqRangeSource())));
         assertEquals(env.getSourceHub().getAll().size(), sources.size() + 1);
     }
 
     @Test
     void testGetX() {
-        final FreqRangeSource source1 = genSource(new FreqRangeSourceImpl(SourceType.FULL));
-        final FreqRangeSource source2 = genSource(new FreqRangeSourceImpl(SourceType.FULL));
-        final FreqRangeSource source3 = genSource(new FreqRangeSourceImpl(SourceType.FULL));
+        final FreqRangeSource source1 = genSource(sourceFac.createFreqRangeSource());
+        final FreqRangeSource source2 = genSource(sourceFac.createFreqRangeSource());
+        final FreqRangeSource source3 = genSource(sourceFac.createFreqRangeSource());
         sources.add(source1);
         sources.add(source2);
         sources.add(source3);
@@ -96,6 +96,9 @@ class EnvironmentTest {
         assertEquals(env.getSpace().getLenght(), 10.0f);
         assertNotEquals(env.getSpace().getWidth(), 2.0f);
     }
+
+    //TODO test busy pos
+
 
     @Test
     void testListener() {
