@@ -1,7 +1,11 @@
 package controller;
 
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -21,29 +25,40 @@ public class ListenerController implements Initializable {
     @FXML private TabPane listenerPane;
     @FXML private MenuItem it;
     @FXML private SplitMenuButton splitMenuPlugin;
+    private static final String FXML_PATH = "src/main/resources/fxml/";
 
+
+    /**
+     * 
+     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         /*TODO con ClassGraph ricercare tutte le classi dei plugin ed aggiungerle in splitMenuPlugin*/
-        EventHandler<ActionEvent> eh = (x) -> { 
-            System.out.println("PluginX"  + x.getSource());
+
+        final EventHandler<ActionEvent> eh = (x) -> { 
+            final MenuItem thisItem = (MenuItem) (x.getSource());
+            splitMenuPlugin.setText(thisItem.getText());
+            thisItem.setDisable(true);
             };
-        MenuItem item = new MenuItem("PluginX");
+
+        MenuItem item = new MenuItem("DropplerPlugin");
         item.setOnAction(eh);
         splitMenuPlugin.getItems().add(item);
 
 
+
     }
 
-    @FXML public final void handleAddPlugin(final Event event) {
+    /*TODO review getText is ""*/
+    @FXML public final void handleAddPlugin(final Event event) throws ClassNotFoundException {
+        final Tab plugin = PageLoader.getPage(FXML_PATH + splitMenuPlugin.getText() + ".fxml");
+        listenerPane.getTabs().add(plugin);
 
+        splitMenuPlugin.setText("");
     }
 
     @FXML public final void handleSelectPlugin(final Event event) {
-        final Tab drp = PageLoader.getPage("src/main/resources/fxml/DropplerPlugin.fxml");
-        MenuItem item = (MenuItem) event.getSource();
-        item.setDisable(true);
-        listenerPane.getTabs().add(drp);
+
     }
 
 }

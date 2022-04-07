@@ -20,8 +20,7 @@
                      <children>
                         <SplitMenuButton fx:id="splitMenuPlugin" layoutX="65.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleAddPlugin" prefHeight="23.0" prefWidth="105.0">
                           <items>
-                            <MenuItem fx:id="DropplerPluginSelection" mnemonicParsing="false" onAction="#handleSelectPlugin" text="DropplerPlugin" />
-                            <MenuItem fx:id="SoundMeterPluginSelection" mnemonicParsing="false" onAction="#handleSelectPlugin" text="SoundMeterPlugin" />
+                            
                           </items>
                         </SplitMenuButton>
                         <Label layoutX="86.0" layoutY="14.0" text="Position" />
