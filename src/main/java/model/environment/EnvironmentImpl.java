@@ -28,7 +28,7 @@ public class EnvironmentImpl implements Environment {
 
         //check pos of sources
         // TODO  eliminare le source nella stessa posizione
-        this.sourcesHub.getAll().stream().filter(s -> !this.space.isAvailable(s.getPosition())).collect(Collectors.toSet());
+        //this.sourcesHub.getAll().stream().filter(s -> !this.space.isAvailable(s.getPosition())).collect(Collectors.toSet());
     }
 
     /**
@@ -92,11 +92,13 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void addSourceToSourceHub(final FreqRangeSource source) {
-        if (space.isAvailable(source.getPosition())) {
+    public boolean addSourceToSourceHub(final FreqRangeSource source) {
+        //TODO usando math.round per ora puo andare solo nei punti interi
+        if (space.isAvailable(source.getPosition(),sourcesHub.getAll().stream().map(s -> s.getPosition()).collect(Collectors.toSet()))) {
             sourcesHub.addSource(source);
+            return true;
         }
-        //TODO se sbagliato restituire false
+        return false;
     }
 
     /**
@@ -105,7 +107,6 @@ public class EnvironmentImpl implements Environment {
      */
     @Override
     public void removeSourceFromSourceHub(final FreqRangeSource sourceToRemove) {
-        this.space.removeSourcePos(sourceToRemove.getPosition());
         this.sourcesHub.removeSource(sourceToRemove);
     }
 
@@ -115,17 +116,19 @@ public class EnvironmentImpl implements Environment {
      */
     @Override
     public void moveSource(final FreqRangeSource source, final Vec3f pos) {
-        final int signX = (source.getPosition().getX() + pos.getX()) < 0 ? -1 : 1;
-        final int signY = (source.getPosition().getY() + pos.getY()) < 0 ? -1 : 1;
-        if (this.space.isAvailable(pos)) {
-            source.setPosition(pos);
-        } else if (Math.abs(source.getPosition().getX() - pos.getX()) < Math.abs(source.getPosition().getY() - pos.getY())) {
-            this.moveSource(source, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY(), pos.getZ()));
-        } else if (Math.abs(source.getPosition().getX() - pos.getX()) > Math.abs(source.getPosition().getY() - pos.getY())) {
-            this.moveSource(source, new Vec3f(pos.getX(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
-        } else {
-            this.moveSource(source, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
-        }
+//        final int signX = (source.getPosition().getX() + pos.getX()) < 0 ? -1 : 1;
+//        final int signY = (source.getPosition().getY() + pos.getY()) < 0 ? -1 : 1;
+//        if (this.space.isAvailable(pos)) {
+//            source.setPosition(pos);
+//        } else if (Math.abs(source.getPosition().getX() - pos.getX()) < Math.abs(source.getPosition().getY() - pos.getY())) {
+//            this.moveSource(source, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY(), pos.getZ()));
+//        } else if (Math.abs(source.getPosition().getX() - pos.getX()) > Math.abs(source.getPosition().getY() - pos.getY())) {
+//            this.moveSource(source, new Vec3f(pos.getX(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
+//        } else {
+//            this.moveSource(source, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
+//        }
+        
+        //TODO se non è occupata bene altrimenti inviare un allert che non sposta niente
     }
 
 
