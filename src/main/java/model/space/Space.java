@@ -1,5 +1,7 @@
 package model.space;
 
+import java.util.Set;
+
 import model.utility.Vec3f;
 
 public interface Space {
@@ -26,11 +28,6 @@ public interface Space {
      * TODO .
      * if yes -> add the position to log
      */
-     boolean isAvailable(Vec3f pos);
+     boolean isAvailable(Vec3f pos, Set<Vec3f> position);
 
-     /**
-     * remove source.
-     * @param pos to delete
-     */
-     void removeSourcePos(Vec3f pos);
 }

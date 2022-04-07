@@ -9,7 +9,6 @@ public class SpaceImpl implements Space {
     private final float scale;
     private final float maxLenght;
     private final float maxWidth;
-    private final Set<Vec3f> posElements; 
     //TODO siamo sicuri di tenere le posizioni qui, forse mglio i source hub.
 
     public SpaceImpl(final float maxLenght, final float maxWidth, final float scale) {
@@ -17,7 +16,6 @@ public class SpaceImpl implements Space {
         this.maxLenght = maxLenght;
         this.maxWidth = maxWidth;
         this.scale = scale;
-        posElements = new HashSet<>();
     }
 
     /**
@@ -52,9 +50,8 @@ public class SpaceImpl implements Space {
     *{@inheritDoc}
     */
     @Override
-    public boolean isAvailable(final Vec3f pos) {
-       if (checkBorder(pos) && checkBusyPos(pos)) {
-           posElements.add(pos);
+    public boolean isAvailable(final Vec3f pos, final Set<Vec3f> positions) {
+       if (checkBorder(pos) && checkBusyPos(pos,positions)) {
            return true;
        }
        return false;
@@ -70,10 +67,7 @@ public class SpaceImpl implements Space {
     * @return true if pos is ok
     */
     private boolean checkBorder(final Vec3f pos) {
-        if ((pos.getX() > 0f || pos.getX() < maxLenght) && (pos.getY() > 0f || pos.getY() < maxWidth)) {
-            return true;
-        }
-        return false;
+        return ((pos.getX() > 0f || pos.getX() < maxLenght) && (pos.getY() > 0f || pos.getY() < maxWidth));
     }
 
     /**
@@ -81,19 +75,8 @@ public class SpaceImpl implements Space {
     * @param vec3f pos to check
     * @return true if pos is free else false
     */
-    private boolean checkBusyPos(final Vec3f pos) {
-        if (posElements.contains(pos)) {
-            return false;
-        }
-        return true;
+    private boolean checkBusyPos(final Vec3f pos, final Set<Vec3f> position) {
+        return !position.contains(pos);
     }
 
-    /**
-    *
-    * {@inheritDoc}
-    */
-    @Override
-    public void removeSourcePos(final Vec3f pos) {
-        posElements.remove(pos);
-    }
 }

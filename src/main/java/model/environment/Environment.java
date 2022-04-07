@@ -35,7 +35,7 @@ public interface Environment {
      * 
      * @param source to add
      */
-    void addSourceToSourceHub(FreqRangeSource source);
+    boolean addSourceToSourceHub(FreqRangeSource source);
 
     /**
      * add effect.
