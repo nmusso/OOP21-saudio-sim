@@ -30,32 +30,26 @@ public class MainControllerView implements Initializable {
     @FXML private BorderPane spaceConfigPane;
     @FXML private VBox container;
     private MainControllerApplication ctrMain;
-
-    private static final Set<Environment> environments = new HashSet<>();
-
-    static Set<Environment> getEnviroments() {
-        return environments;
-    }
+//      METODO STATICO DI SALVATAGGIO
+//    private static final Set<Environment> environments = new HashSet<>();
+//
+//    static Set<Environment> getEnviroments() {
+//        return environments;
+//    }
 
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
         container.setPrefSize(contWidth, contHeight);
-        setPane(listenerPane, FXML_PATH + "listenerView.fxml");
-        setPane(sourcePane, FXML_PATH + "sourceView.fxml");
-        setPane(equalizerPane, FXML_PATH + "equalizerView.fxml");
-        setPane(environmentPane, FXML_PATH + "environmentView.fxml");
-        setPane(spaceConfigPane, FXML_PATH + "spaceConfig.fxml");
     }
 
     private void setPane(final BorderPane pane, final String path) {
         final Optional<Pair<Pane, ControllerView>> infoElm = PageLoader.getPage(path);
-//      pane.setPrefSize(contWidth * PROP, contHeight * PROP);
-//      view.setPrefSize(contWidth * PROP, contHeight * PROP);
+      pane.setPrefSize(contWidth * PROP, contHeight * PROP);
+      infoElm.get().getX().setPrefSize(contWidth * PROP, contHeight * PROP);
         infoElm.ifPresent(x -> {
             pane.setCenter(x.getX());
             x.getY().setControllerApplication(this.ctrMain); /*TODO control if ctrMain is null*/
         });
-
     }
 
     /**
@@ -64,5 +58,18 @@ public class MainControllerView implements Initializable {
      */
     public void setControllerApp(final MainControllerApplication ctrMain) {
         this.ctrMain = ctrMain;
+        this.initializePanes();
+    }
+
+    /**
+     * 
+     * @param ctrMain
+     */
+    private void initializePanes() {
+        setPane(listenerPane, FXML_PATH + "listenerView.fxml");
+        setPane(sourcePane, FXML_PATH + "sourceView.fxml");
+        setPane(equalizerPane, FXML_PATH + "equalizerView.fxml");
+        setPane(environmentPane, FXML_PATH + "environmentView.fxml");
+        setPane(spaceConfigPane, FXML_PATH + "spaceConfig.fxml");
     }
 }
