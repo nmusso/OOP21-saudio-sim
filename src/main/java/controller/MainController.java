@@ -1,7 +1,10 @@
 package controller;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javafx.fxml.FXML;
@@ -9,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import model.environment.Environment;
 import view.utility.PageLoader;
 
 public class MainController implements Initializable {
@@ -21,7 +25,14 @@ public class MainController implements Initializable {
     @FXML private BorderPane sourcePane;
     @FXML private BorderPane equalizerPane;
     @FXML private BorderPane environmentPane;
+    @FXML private BorderPane spaceConfigPane;
     @FXML private VBox container;
+
+    private static final Set<Environment> environments = new HashSet<>();
+
+    static Set<Environment> getEnviroments() {
+        return environments;
+    }
 
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
@@ -30,12 +41,13 @@ public class MainController implements Initializable {
         setPane(sourcePane, FXML_PATH + "sourceView.fxml");
         setPane(equalizerPane, FXML_PATH + "equalizerView.fxml");
         setPane(environmentPane, FXML_PATH + "environmentView.fxml");
+        setPane(spaceConfigPane, FXML_PATH + "spaceConfig.fxml");
     }
 
     private void setPane(final BorderPane pane, final String path) {
         final Pane view = PageLoader.getPage(path);
-        pane.setPrefSize(contWidth * PROP, contHeight * PROP);
-        view.setPrefSize(contWidth * PROP, contHeight * PROP);
+//       pane.setPrefSize(contWidth * PROP, contHeight * PROP);
+//       view.setPrefSize(contWidth * PROP, contHeight * PROP);
         pane.setCenter(view);
     }
 }

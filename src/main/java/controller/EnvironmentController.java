@@ -9,7 +9,6 @@ public class EnvironmentController implements Initializable {
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-
     }
 
 }
