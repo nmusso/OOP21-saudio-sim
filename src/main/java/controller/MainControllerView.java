@@ -2,6 +2,7 @@ package controller;
 
 import java.net.URL;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -13,9 +14,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.environment.Environment;
+import model.utility.Pair;
 import view.utility.PageLoader;
 
-public class MainController implements Initializable {
+public class MainControllerView implements Initializable {
     private static final double PROP = 0.45;
     private static final String FXML_PATH = "src/main/resources/fxml/";
     private final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -27,6 +29,7 @@ public class MainController implements Initializable {
     @FXML private BorderPane environmentPane;
     @FXML private BorderPane spaceConfigPane;
     @FXML private VBox container;
+    private MainControllerApplication ctrMain;
 
     private static final Set<Environment> environments = new HashSet<>();
 
@@ -45,9 +48,21 @@ public class MainController implements Initializable {
     }
 
     private void setPane(final BorderPane pane, final String path) {
-        final Pane view = PageLoader.getPage(path);
+        final Optional<Pair<Pane, ControllerView>> infoElm = PageLoader.getPage(path);
 //      pane.setPrefSize(contWidth * PROP, contHeight * PROP);
 //      view.setPrefSize(contWidth * PROP, contHeight * PROP);
-        pane.setCenter(view);
+        infoElm.ifPresent(x -> {
+            pane.setCenter(x.getX());
+            x.getY().setControllerApplication(this.ctrMain); /*TODO control if ctrMain is null*/
+        });
+
+    }
+
+    /**
+     * 
+     * @param ctrMain
+     */
+    public void setControllerApp(final MainControllerApplication ctrMain) {
+        this.ctrMain = ctrMain;
     }
 }

@@ -1,11 +1,7 @@
 package controller;
 
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -20,12 +16,13 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import view.utility.PageLoader;
 
-public class ListenerController implements Initializable {
+public class ListenerControllerView implements Initializable, ControllerView {
     @FXML private Button btn;
     @FXML private TabPane listenerPane;
     @FXML private MenuItem it;
     @FXML private SplitMenuButton splitMenuPlugin;
     private static final String FXML_PATH = "src/main/resources/fxml/";
+    private ListenerControllerApplication ctrListener;
 
 
     /**
@@ -41,7 +38,7 @@ public class ListenerController implements Initializable {
             thisItem.setDisable(true);
             };
 
-        MenuItem item = new MenuItem("DropplerPlugin");
+        final MenuItem item = new MenuItem("DropplerPlugin");
         item.setOnAction(eh);
         splitMenuPlugin.getItems().add(item);
 
@@ -59,6 +56,14 @@ public class ListenerController implements Initializable {
 
     @FXML public final void handleSelectPlugin(final Event event) {
 
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setControllerApplication(final MainControllerApplication ctrMain) {
+        this.ctrListener = ctrMain.getListenerCtr();
     }
 
 }
