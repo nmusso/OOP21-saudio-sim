@@ -2,10 +2,7 @@ package controller;
 
 
 import java.net.URL;
-<<<<<<< HEAD:src/main/java/controller/ListenerController.java
 import java.util.Optional;
-=======
->>>>>>> d01066a2f8f163964cf399d911c5bb67f9923333:src/main/java/controller/ListenerControllerView.java
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -21,11 +18,8 @@ import javafx.scene.control.TabPane;
 import model.utility.Pair;
 import view.utility.PageLoader;
 
-<<<<<<< HEAD:src/main/java/controller/ListenerController.java
+
 public class ListenerController implements Initializable, ControllerView {
-=======
-public class ListenerControllerView implements Initializable, ControllerView {
->>>>>>> d01066a2f8f163964cf399d911c5bb67f9923333:src/main/java/controller/ListenerControllerView.java
     @FXML private Button btn;
     @FXML private TabPane listenerPane;
     @FXML private MenuItem it;
