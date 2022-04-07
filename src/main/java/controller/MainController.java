@@ -46,8 +46,8 @@ public class MainController implements Initializable {
 
     private void setPane(final BorderPane pane, final String path) {
         final Pane view = PageLoader.getPage(path);
-//       pane.setPrefSize(contWidth * PROP, contHeight * PROP);
-//       view.setPrefSize(contWidth * PROP, contHeight * PROP);
+//      pane.setPrefSize(contWidth * PROP, contHeight * PROP);
+//      view.setPrefSize(contWidth * PROP, contHeight * PROP);
         pane.setCenter(view);
     }
 }

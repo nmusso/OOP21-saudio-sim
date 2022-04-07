@@ -48,7 +48,7 @@
                 <ColumnConstraints hgrow="ALWAYS" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints vgrow="ALWAYS" />
+                <RowConstraints percentHeight="33.0" vgrow="ALWAYS" />
                 <RowConstraints vgrow="ALWAYS" />
               </rowConstraints>
                <children>
