@@ -22,9 +22,11 @@ public class EqualizerController implements Initializable {
 
     @FXML private GridPane slidersPane;
     @FXML private ToggleButton btnTurn;
+    private EqualizerControllerApplication ctrl;
 
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
+        ctrl = new EqualizerControllerApplication();
         for (final Slider slider : getSliders()) {
             final Optional<ALEffects> effect = getEffect(slider.getId());
             if (effect.isPresent()) {
@@ -51,6 +53,14 @@ public class EqualizerController implements Initializable {
         }
 
         getSliders().forEach(s -> s.setDisable(!state));
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public EqualizerControllerApplication getController() {
+        return ctrl;
     }
 
     private Optional<ALEffects> getEffect(final String id) {
