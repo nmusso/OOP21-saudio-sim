@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EqualizerController">
+<VBox fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="557.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EqualizerController">
    <children>
-      <GridPane prefHeight="269.0" prefWidth="558.0">
+      <GridPane VBox.vgrow="ALWAYS">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.20001220703125" minWidth="10.0" prefWidth="88.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.3999786376953" minWidth="10.0" prefWidth="406.4" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="413.3999786376953" minWidth="10.0" prefWidth="63.80000000000001" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="88.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="406.4" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="63.80000000000001" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="84.60001220703126" minHeight="10.0" prefHeight="42.999993896484376" vgrow="SOMETIMES" />
