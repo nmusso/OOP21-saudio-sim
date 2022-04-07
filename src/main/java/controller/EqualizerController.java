@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import model.effect.ALEffects;
 
-public class EqualizerController implements Initializable {
+public class EqualizerController implements Initializable, ControllerView {
 
     @FXML private GridPane slidersPane;
     @FXML private ToggleButton btnTurn;
@@ -91,5 +91,11 @@ public class EqualizerController implements Initializable {
             }
         });
         return sliders;
+    }
+
+    @Override
+    public void setControllerApplication(final MainControllerApplication ctrMain) {
+        // TODO Auto-generated method stub
+
     }
 }

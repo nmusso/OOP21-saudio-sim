@@ -11,7 +11,7 @@ import javafx.scene.control.RadioButton;
 import model.source.FreqRangeSource;
 import model.source.SourceType;
 
-public class SourceController implements Initializable {
+public class SourceController implements Initializable, ControllerView {
     @FXML private Button btnAddSpeaker;
     @FXML private Button btnRemoveSpeaker;
     @FXML private RadioButton rbtnDefault;
@@ -61,5 +61,11 @@ public class SourceController implements Initializable {
 
     private FreqRangeSource getSelectedSpeaker() {
         return null;
+    }
+
+    @Override
+    public void setControllerApplication(final MainControllerApplication ctrMain) {
+        // TODO Auto-generated method stub
+
     }
 }
