@@ -14,9 +14,9 @@
    <children>
       <GridPane VBox.vgrow="ALWAYS">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="88.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="406.4" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="63.80000000000001" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="88.0" />
+          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="406.4" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="63.80000000000001" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="84.60001220703126" minHeight="10.0" prefHeight="42.999993896484376" vgrow="SOMETIMES" />

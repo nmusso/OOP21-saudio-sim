@@ -65,7 +65,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     @Override
     public Environment createCinemaEnvironment() {
         // TODO
-//        final SourcesHub sh = sourceHubFac.createSourcesHub();
+//        final SourcesHub sh = sourceHubFac.createSourcesHub();        
 //        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 15, 0)));
 //        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 10, 0)));
 //        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 5, 0)));

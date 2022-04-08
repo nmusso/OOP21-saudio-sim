@@ -57,9 +57,9 @@ class EnvironmentTest {
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         env.getSourceHub().playAll();
-        assertEquals(env.getSourceHub().getPalying(), sources);
+        assertEquals(env.getSourceHub().getPlaying(), sources);
         env.getSourceHub().stopAll();
-        assertNotEquals(env.getSourceHub().getPalying(), sources);
+        assertNotEquals(env.getSourceHub().getPlaying(), sources);
     }
 
     @Test
