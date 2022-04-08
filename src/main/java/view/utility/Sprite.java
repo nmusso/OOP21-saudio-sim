@@ -9,6 +9,39 @@ import javafx.scene.canvas.*;
 public class Sprite {
     private Vector position;
     private Vector velocity;
+    public TypeSprite getSpriteType() {
+        return spriteType;
+    }
+
+    public void setSpriteType(TypeSprite spriteType) {
+        this.spriteType = spriteType;
+    }
+
+    private TypeSprite spriteType;
+    public Vector getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vector position) {
+        this.position = position;
+    }
+
+    public Vector getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(Vector velocity) {
+        this.velocity = velocity;
+    }
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
     private Rectangle size;
     private Texture texture;
     private boolean visible;
@@ -20,9 +53,9 @@ public class Sprite {
     public Sprite() {
         position = new Vector(0, 0);
         velocity = new Vector(0, 0);
-        size = new Rectangle();
+        setSize(new Rectangle());
         // make rectangle share same position data as this sprite
-        size.setPosition(position);
+        getSize().setPosition(position);
         // by default, all sprites are visible
         visible = true;
     }
@@ -35,9 +68,9 @@ public class Sprite {
      */
     public Sprite(final double x, final double y) {
         position = new Vector(x, y);
-        size = new Rectangle();
+        setSize(new Rectangle());
         // make rectangle share same position data as this sprite
-        size.setPosition(position);
+        getSize().setPosition(position);
         // by default, all sprites are visible
         visible = true;
     }
@@ -72,7 +105,7 @@ public class Sprite {
     public void setTexture(final Texture tex) {
         texture = tex;
         // by default, set rectangle size to image size
-        size.setSize(tex.getRegion().getWidth(), tex.getRegion().getHeight());
+        getSize().setSize(tex.getRegion().getWidth(), tex.getRegion().getHeight());
     }
 
     /**
@@ -94,7 +127,7 @@ public class Sprite {
      */
     public void draw(final  GraphicsContext context) {
         if (visible) {
-            context.drawImage(texture.getImage(), position.getX(), position.getY(), size.getWidth(), size.getHeight());
+            context.drawImage(texture.getImage(), position.getX(), position.getY(), getSize().getWidth(), getSize().getHeight());
         }
     }
 
@@ -116,7 +149,15 @@ public class Sprite {
      * @return true, if sprites overlap
      */
     public boolean overlap(final Sprite other) {
-        return this.size.overlap(other.size);
+        return this.getSize().overlap(other.getSize());
+    }
+
+    public Rectangle getSize() {
+        return size;
+    }
+
+    public void setSize(Rectangle size) {
+        this.size = size;
     }
 
 }

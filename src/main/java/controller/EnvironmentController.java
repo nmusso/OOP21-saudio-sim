@@ -33,5 +33,7 @@ public class EnvironmentController {
         final SourceFactory sourceFac = new SourceFactoryImpl();
         final ListenerFactory listenerFac = new ListenerFactoryImpl();
         this.environment = envFac.createMonoEnvironment(sourceFac.createFreqRangeSource(), listenerFac.createListener(AudioManager.getContext()), Optional.empty());
+        //listenerCtrl.setCurrentListener(environment.getListener);
     }
+
 }

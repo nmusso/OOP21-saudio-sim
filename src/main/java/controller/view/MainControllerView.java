@@ -71,7 +71,7 @@ public class MainControllerView implements Initializable {
         setPane(listenerPane, FXML_PATH + "listenerView.fxml");
         setPane(sourcePane, FXML_PATH + "sourceView.fxml");
         setPane(equalizerPane, FXML_PATH + "equalizerView.fxml");
-        setPane(environmentPane, FXML_PATH + "environmentView.fxml");
         setPane(spaceConfigPane, FXML_PATH + "spaceConfig.fxml");
+        setPane(environmentPane, FXML_PATH + "environmentView.fxml");
     }
 }
