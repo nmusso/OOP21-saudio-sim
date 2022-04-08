@@ -3,8 +3,8 @@ package view;
 import java.io.File;
 import java.io.FileInputStream;
 
-import controller.MainControllerApplication;
-import controller.MainControllerView;
+import controller.MainController;
+import controller.view.MainControllerView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +20,7 @@ public class MainView extends Application {
      */
     @Override
     public void start(final Stage mainStage) throws Exception {
-        final MainControllerApplication ctrMainApp = new MainControllerApplication();
+        final MainController ctrMainApp = new MainController();
         mainStage.setTitle("Collector");
 
         final FXMLLoader loader = new FXMLLoader();

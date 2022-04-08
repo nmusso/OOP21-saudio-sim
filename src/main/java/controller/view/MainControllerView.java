@@ -1,10 +1,12 @@
-package controller;
+package controller.view;
 
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+import controller.MainController;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -29,7 +31,7 @@ public class MainControllerView implements Initializable {
     @FXML private BorderPane environmentPane;
     @FXML private BorderPane spaceConfigPane;
     @FXML private VBox container;
-    private MainControllerApplication ctrMain;
+    private MainController ctrMain;
 //      METODO STATICO DI SALVATAGGIO
 //    private static final Set<Environment> environments = new HashSet<>();
 //
@@ -44,8 +46,8 @@ public class MainControllerView implements Initializable {
 
     private void setPane(final BorderPane pane, final String path) {
         final Optional<Pair<Pane, ControllerView>> infoElm = PageLoader.getPage(path);
-      pane.setPrefSize(contWidth * PROP, contHeight * PROP);
-      infoElm.get().getX().setPrefSize(contWidth * PROP, contHeight * PROP);
+//      pane.setPrefSize(contWidth * PROP, contHeight * PROP);
+//      infoElm.get().getX().setPrefSize(contWidth * PROP, contHeight * PROP);
         infoElm.ifPresent(x -> {
             pane.setCenter(x.getX());
             x.getY().setControllerApplication(this.ctrMain); /*TODO control if ctrMain is null*/
@@ -56,7 +58,7 @@ public class MainControllerView implements Initializable {
      * 
      * @param ctrMain
      */
-    public void setControllerApp(final MainControllerApplication ctrMain) {
+    public void setControllerApp(final MainController ctrMain) {
         this.ctrMain = ctrMain;
         this.initializePanes();
     }

@@ -1,8 +1,9 @@
-package controller;
+package controller.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.MainController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +12,7 @@ import javafx.scene.control.RadioButton;
 import model.source.FreqRangeSource;
 import model.source.SourceType;
 
-public class SourceController implements Initializable, ControllerView {
+public class SourceControllerView implements Initializable, ControllerView {
     @FXML private Button btnAddSpeaker;
     @FXML private Button btnRemoveSpeaker;
     @FXML private RadioButton rbtnDefault;
@@ -64,7 +65,7 @@ public class SourceController implements Initializable, ControllerView {
     }
 
     @Override
-    public void setControllerApplication(final MainControllerApplication ctrMain) {
+    public void setControllerApplication(final MainController ctrMain) {
         // TODO Auto-generated method stub
 
     }
