@@ -38,7 +38,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public Set<FreqRangeSource> getPalying() {
+    public Set<FreqRangeSource> getPlaying() {
         return this.sources.stream().filter(Source::isPlaying).collect(Collectors.toSet());
     }
 

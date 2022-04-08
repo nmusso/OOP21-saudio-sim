@@ -21,7 +21,7 @@ public interface SourcesHub {
      * 
      * @return Set of Sources that are playing
      */
-    Set<FreqRangeSource> getPalying();
+    Set<FreqRangeSource> getPlaying();
 
     /**
      * Gets the Source with the specified id.
