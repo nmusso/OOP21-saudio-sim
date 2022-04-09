@@ -21,7 +21,6 @@ public class BufferImpl implements Buffer {
 
     private final int id;
     private final String file;
-    private boolean generated;
 
     public BufferImpl(final String file) {
         this.id = alGenBuffers();
@@ -57,21 +56,18 @@ public class BufferImpl implements Buffer {
      * @throws IOException if an error occur during read
      */
     private int generateBuffer() throws UnsupportedAudioFileException, IOException {
-        if (!this.generated) {
-            try (AudioInputStream stream = getAudioInputStream(loadFile(file))) {
-                final var format = stream.getFormat();
-                final int sampleSize = getALFormat(format);
+        try (AudioInputStream stream = getAudioInputStream(loadFile(file))) {
+            final var format = stream.getFormat();
+            final int sampleSize = getALFormat(format);
 
-                final byte[] byteArray = new byte[stream.available()];
-                stream.read(byteArray);
-                final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
+            final byte[] byteArray = new byte[stream.available()];
+            stream.read(byteArray);
+            final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
 
-                alBufferData(id, sampleSize, audioBuffer, (int) format.getSampleRate());
-                stream.close();
-                generated = true;
-            } catch (UnsupportedAudioFileException | IOException e) {
-                e.printStackTrace();
-            }
+            alBufferData(id, sampleSize, audioBuffer, (int) format.getSampleRate());
+            stream.close();
+        } catch (UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
         }
 
         return id;
@@ -120,5 +116,14 @@ public class BufferImpl implements Buffer {
         }
 
         return f;
+    }
+
+    /**
+     * Return a string with the id of the buffer and the name of the file.
+     */
+    @Override
+    public String toString() {
+        final var parts = file.substring(file.lastIndexOf(System.getProperty("file.separator")));
+        return "Buffer " + this.id + ": " + parts;
     }
 }
