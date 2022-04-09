@@ -41,12 +41,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Slider fx:id="sldReverb" disable="true" orientation="VERTICAL" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Slider fx:id="sldChorus" disable="true" orientation="VERTICAL" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Slider fx:id="sldDistortion" disable="true" orientation="VERTICAL" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Slider fx:id="sldFlanger" disable="true" orientation="VERTICAL" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Slider fx:id="sldEcho" disable="true" orientation="VERTICAL" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <Slider fx:id="sldPitch" disable="true" orientation="VERTICAL" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Slider fx:id="sldReverb" disable="true" orientation="VERTICAL" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <Slider fx:id="sldChorus" disable="true" orientation="VERTICAL" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <Slider fx:id="sldDistortion" disable="true" orientation="VERTICAL" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <Slider fx:id="sldFlanger" disable="true" orientation="VERTICAL" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <Slider fx:id="sldEcho" disable="true" orientation="VERTICAL" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                        <Slider fx:id="sldPitch" disable="true" orientation="VERTICAL" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                      </children>
                   </GridPane>
                </children>

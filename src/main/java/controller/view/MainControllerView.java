@@ -30,8 +30,10 @@ public class MainControllerView implements Initializable {
     @FXML private BorderPane equalizerPane;
     @FXML private BorderPane environmentPane;
     @FXML private BorderPane spaceConfigPane;
+    @FXML private BorderPane songPane;
     @FXML private VBox container;
     private MainController ctrMain;
+
 //      METODO STATICO DI SALVATAGGIO
 //    private static final Set<Environment> environments = new HashSet<>();
 //
@@ -70,6 +72,7 @@ public class MainControllerView implements Initializable {
     private void initializePanes() {
         setPane(listenerPane, FXML_PATH + "listenerView.fxml");
         setPane(sourcePane, FXML_PATH + "sourceView.fxml");
+        setPane(songPane, FXML_PATH + "songView.fxml");
         setPane(equalizerPane, FXML_PATH + "equalizerView.fxml");
         setPane(spaceConfigPane, FXML_PATH + "spaceConfig.fxml");
         setPane(environmentPane, FXML_PATH + "environmentView.fxml");

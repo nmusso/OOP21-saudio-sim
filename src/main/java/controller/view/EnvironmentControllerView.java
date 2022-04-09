@@ -1,8 +1,5 @@
 package controller.view;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Optional;
@@ -29,7 +26,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     private EnvironmentControllerView remote;
     @FXML
     private Canvas canvas;
+    @FXML
     private AnchorPane conteinerCanvas;
+    @FXML
     private GraphicsContext contextView;
     private Sprite lastSelect;
 
@@ -44,14 +43,22 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         remote = new EnvironmentControllerView();
         sprites = new HashSet<>();
 
-        System.out.println();
+        System.out.println(conteinerCanvas.getProperties());
+
+        conteinerCanvas.widthProperty().addListener((obs, oldVal, newVal) -> {
+            canvas.setWidth(newVal.doubleValue());
+        });
+
+        conteinerCanvas.heightProperty().addListener((obs, oldVal, newVal) -> {
+            canvas.setHeight(newVal.doubleValue());
+        });
 
         contextView = canvas.getGraphicsContext2D();
 
         // TODO Metterci lo spriteType
         addSprite(TypeSprite.LISTENER);
-//        addSprite(TypeSprite.SOURCEFULL);
-//        addSprite(TypeSprite.SOURCEMID);
+        addSprite(TypeSprite.SOURCEFULL);
+        addSprite(TypeSprite.SOURCEMID);
 
         // ascolta il drag
         canvas.setOnMouseDragged(event -> {
@@ -87,10 +94,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             Pair<Double, Double> newPos = new Pair<>(
                     ((MouseEvent) event).getX() - (temp.get().getSize().getWidth() / 2),
                     ((MouseEvent) event).getY() - (temp.get().getSize().getHeight() / 2));
-
-            if (temp.get() == lastSelect
-                    || !sprites.stream().filter(s -> s.overlap(temp.get())).findAny().isPresent()) {
-                sprites.stream().forEach(s -> s.getClass());
+            final Optional<Sprite> test = sprites.stream().filter(s -> s.overlap(temp.get())).findAny();
+            //TODO cambia questo if
+            if (!test.isPresent() || test.get() == temp.get()) {
                 temp.get().setPosition(newPos.getX(), newPos.getY());
                 lastSelect = temp.get();
             } else {

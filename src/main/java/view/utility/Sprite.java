@@ -191,5 +191,4 @@ public class Sprite {
     public void setSize(final Rectangle size) {
         this.size = size;
     }
-
 }
