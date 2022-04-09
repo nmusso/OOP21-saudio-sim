@@ -8,13 +8,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.SourceControllerView">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.SourceControllerView">
    <children>
       <GridPane VBox.vgrow="ALWAYS">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.199951171875" minWidth="10.0" prefWidth="182.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="439.2" minWidth="0.0" prefWidth="226.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="439.2" minWidth="0.0" prefWidth="138.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="182.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="226.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="40.0" prefWidth="226.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" percentWidth="25.0" prefWidth="138.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="ALWAYS" />
@@ -25,14 +26,14 @@
         </rowConstraints>
          <children>
             <Button fx:id="btnAddSpeaker" mnemonicParsing="false" onAction="#handleAddSpeaker" text="Add Speaker" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Button fx:id="btnRemoveSpeaker" mnemonicParsing="false" onAction="#handleRemoveSpeaker" text="Remove" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <RadioButton fx:id="rbtnDefault" mnemonicParsing="false" onAction="#handleRadioButtonChanged" selected="true" text="Default" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <Button fx:id="btnRemoveSpeaker" mnemonicParsing="false" onAction="#handleRemoveSpeaker" text="Remove" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <RadioButton fx:id="rbtnDefault" mnemonicParsing="false" onAction="#handleRadioButtonChanged" selected="true" text="Default" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <toggleGroup>
                   <ToggleGroup fx:id="SpeakerRange" />
                </toggleGroup></RadioButton>
-            <RadioButton fx:id="rbtnTweeter" mnemonicParsing="false" onAction="#handleRadioButtonChanged" text="Tweeter (High Freq.)" toggleGroup="$SpeakerRange" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-            <RadioButton fx:id="rbtnMidRange" mnemonicParsing="false" onAction="#handleRadioButtonChanged" text="Mid-range (Medium Freq.)" toggleGroup="$SpeakerRange" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <RadioButton fx:id="rbtnWoofer" mnemonicParsing="false" onAction="#handleRadioButtonChanged" text="Woofer (Low Freq.)" toggleGroup="$SpeakerRange" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+            <RadioButton fx:id="rbtnTweeter" mnemonicParsing="false" onAction="#handleRadioButtonChanged" text="Tweeter (High Freq.)" toggleGroup="$SpeakerRange" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <RadioButton fx:id="rbtnMidRange" mnemonicParsing="false" onAction="#handleRadioButtonChanged" text="Mid-range (Medium Freq.)" toggleGroup="$SpeakerRange" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <RadioButton fx:id="rbtnWoofer" mnemonicParsing="false" onAction="#handleRadioButtonChanged" text="Woofer (Low Freq.)" toggleGroup="$SpeakerRange" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
          </children>
       </GridPane>
    </children>
