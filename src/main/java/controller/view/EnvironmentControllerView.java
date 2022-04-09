@@ -43,8 +43,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         remote = new EnvironmentControllerView();
         sprites = new HashSet<>();
 
-        System.out.println(conteinerCanvas.getProperties());
-
         conteinerCanvas.widthProperty().addListener((obs, oldVal, newVal) -> {
             canvas.setWidth(newVal.doubleValue());
         });
@@ -57,8 +55,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
         // TODO Metterci lo spriteType
         addSprite(TypeSprite.LISTENER);
-        addSprite(TypeSprite.SOURCEFULL);
-        addSprite(TypeSprite.SOURCEMID);
+//        addSprite(TypeSprite.SOURCEFULL);
+//        addSprite(TypeSprite.SOURCEMID);
 
         // ascolta il drag
         canvas.setOnMouseDragged(event -> {

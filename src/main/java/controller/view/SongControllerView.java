@@ -27,5 +27,4 @@ public class SongControllerView implements Initializable, ControllerView {
         // TODO Auto-generated method stub
 
     }
-
 }
