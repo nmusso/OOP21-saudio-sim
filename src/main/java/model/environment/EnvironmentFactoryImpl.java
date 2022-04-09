@@ -7,19 +7,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import model.listener.Listener;
-import model.listener.ListenerFactory;
-import model.listener.ListenerFactoryImpl;
 import model.source.FreqRangeSource;
-import model.source.Source;
-import model.source.SourceFactory;
-import model.source.SourceFactoryImpl;
-import model.source.hub.SourcesHub;
 import model.source.hub.SourcesHubFactory;
 import model.source.hub.SourcesHubFactoryImpl;
 import model.space.Space;
 import model.space.SpaceFactory;
 import model.space.SpaceFactoryImpl;
-import model.utility.Vec3f;
 
 public class EnvironmentFactoryImpl implements EnvironmentFactory {
 
@@ -64,8 +57,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     */
     @Override
     public Environment createCinemaEnvironment() {
-        // TODO
-//        final SourcesHub sh = sourceHubFac.createSourcesHub();        
+//        final SourcesHub sh = sourceHubFac.createSourcesHub();
 //        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 15, 0)));
 //        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 10, 0)));
 //        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 5, 0)));

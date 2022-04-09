@@ -3,12 +3,10 @@ package model.environment;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import model.effect.ALEffects;
 import model.listener.Listener;
 import model.source.FreqRangeSource;
-import model.source.Source;
 import model.source.hub.SourcesHub;
 import model.space.Space;
 import model.utility.Vec3f;
@@ -25,10 +23,6 @@ public class EnvironmentImpl implements Environment {
         this.listener = listener;
         this.space = space;
         this.effect = new HashSet<>();
-
-        //check pos of sources
-        // TODO  eliminare le source nella stessa posizione
-        //this.sourcesHub.getAll().stream().filter(s -> !this.space.isAvailable(s.getPosition())).collect(Collectors.toSet());
     }
 
     /**
@@ -92,13 +86,15 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public boolean addSourceToSourceHub(final FreqRangeSource source) {
+    public void addSourceToSourceHub(final FreqRangeSource source) {
         //TODO usando math.round per ora puo andare solo nei punti interi
-        if (space.isAvailable(source.getPosition(),sourcesHub.getAll().stream().map(s -> s.getPosition()).collect(Collectors.toSet()))) {
-            sourcesHub.addSource(source);
-            return true;
-        }
-        return false;
+//        if (space.isAvailable(source.getPosition(),sourcesHub.getAll().stream().map(s -> s.getPosition()).collect(Collectors.toSet()))) {
+//            sourcesHub.addSource(source);
+//            return true;
+//        }
+//        return false;
+//        NON SERVE IL CONTROLLO DELLA POSIIZONE PERCHE FATTO DALLA CANVAS.
+        sourcesHub.addSource(source);
     }
 
     /**
@@ -127,8 +123,9 @@ public class EnvironmentImpl implements Environment {
 //        } else {
 //            this.moveSource(source, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
 //        }
-        
-        //TODO se non è occupata bene altrimenti inviare un allert che non sposta niente
+        //TODO se non è occupata bene altrimenti inviare un allert che non sposta niente\
+        //TODO Controllo posizione fatto dallla canvas 
+        this.sourcesHub.getSource(source.getId()).setPosition(pos);
     }
 
 

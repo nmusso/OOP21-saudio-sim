@@ -1,6 +1,5 @@
 package model.space;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import model.utility.Vec3f;
@@ -9,7 +8,6 @@ public class SpaceImpl implements Space {
     private final float scale;
     private final float maxLenght;
     private final float maxWidth;
-    //TODO siamo sicuri di tenere le posizioni qui, forse mglio i source hub.
 
     public SpaceImpl(final float maxLenght, final float maxWidth, final float scale) {
         super();
@@ -51,15 +49,8 @@ public class SpaceImpl implements Space {
     */
     @Override
     public boolean isAvailable(final Vec3f pos, final Set<Vec3f> positions) {
-       if (checkBorder(pos) && checkBusyPos(pos,positions)) {
-           return true;
-       }
-       return false;
+       return (checkBorder(pos) && checkBusyPos(pos, positions));
     }
-
-    // TODO abilitiare il controllo con lo scale.
-    // di conseguenza deve cercare in altre posizioni vicino a quella definita come false
-    // con uno sfasamento di this.scale appena ne trova una libera la mette li.
 
     /**
     *check if the position is out of range.

@@ -5,7 +5,6 @@ import java.util.Set;
 import model.effect.ALEffects;
 import model.listener.Listener;
 import model.source.FreqRangeSource;
-import model.source.Source;
 import model.source.hub.SourcesHub;
 import model.space.Space;
 import model.utility.Vec3f;
@@ -35,7 +34,7 @@ public interface Environment {
      * 
      * @param source to add
      */
-    boolean addSourceToSourceHub(FreqRangeSource source);
+    void addSourceToSourceHub(FreqRangeSource source);
 
     /**
      * add effect.

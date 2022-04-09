@@ -9,35 +9,61 @@ import javafx.scene.canvas.*;
 public class Sprite {
     private Vector position;
     private Vector velocity;
+
+    /**
+    *
+    */
     public TypeSprite getSpriteType() {
         return spriteType;
     }
 
-    public void setSpriteType(TypeSprite spriteType) {
+    /**
+    *
+    */
+    public void setSpriteType(final TypeSprite spriteType) {
         this.spriteType = spriteType;
+        this.setTexture(new Texture(spriteType.toString()));
     }
 
     private TypeSprite spriteType;
+    /**
+    *
+    */
     public Vector getPosition() {
         return position;
     }
 
-    public void setPosition(Vector position) {
+    /**
+    *
+    */
+    public void setPosition(final Vector position) {
         this.position = position;
     }
 
+    /**
+    *
+    */
     public Vector getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(Vector velocity) {
+    /**
+    *
+    */
+    public void setVelocity(final Vector velocity) {
         this.velocity = velocity;
     }
 
+    /**
+    *
+    */
     public Texture getTexture() {
         return texture;
     }
 
+    /**
+     *
+     */
     public boolean isVisible() {
         return visible;
     }
@@ -152,11 +178,17 @@ public class Sprite {
         return this.getSize().overlap(other.getSize());
     }
 
+    /**
+    *
+    */
     public Rectangle getSize() {
         return size;
     }
 
-    public void setSize(Rectangle size) {
+    /**
+    *
+    */
+    public void setSize(final Rectangle size) {
         this.size = size;
     }
 

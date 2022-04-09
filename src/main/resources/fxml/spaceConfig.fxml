@@ -32,7 +32,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button fx:id="btnAddEnv" mnemonicParsing="false" onAction="#handleTestStart" text="+" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Button fx:id="btnAddEnv" mnemonicParsing="false" onAction="#handleBtnAddEnv" text="+" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
             <Label fx:id="lblIdEnv" text="01" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="14.0" />
@@ -51,9 +51,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Spinner editable="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-            <Spinner editable="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
-            <Spinner disable="true" editable="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
+            <Spinner fx:id="spnSizeLenght" editable="true" onMouseClicked="#handleClikSpnLenght" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+            <Spinner fx:id="spnSizeWidth" editable="true" onMouseClicked="#handleClikSpnWidth" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+            <Spinner fx:id="spnScale" disable="true" editable="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
             <Label text="Set Lenght(X) m." GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                <font>
                   <Font size="14.0" />
@@ -85,7 +85,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox prefWidth="92.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <ComboBox fx:id="cmbPreset" onAction="#handleCmbPreset" prefWidth="92.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
          </children>
       </GridPane>
       <GridPane VBox.vgrow="ALWAYS">
@@ -97,8 +97,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Load" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Export" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+            <Button disable="true" minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Load" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+            <Button disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Export" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
          </children>
       </GridPane>
    </children>

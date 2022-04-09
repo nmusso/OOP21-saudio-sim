@@ -1,5 +1,8 @@
 package controller.view;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Optional;
@@ -15,6 +18,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import model.utility.Pair;
 import view.utility.Rectangle;
 import view.utility.Sprite;
 import view.utility.Texture;
@@ -29,7 +33,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     private GraphicsContext contextView;
     private Sprite lastSelect;
 
-    private Set<Sprite> sprites;
+    private static Set<Sprite> sprites;
 
     /**
      * 
@@ -44,10 +48,10 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
         contextView = canvas.getGraphicsContext2D();
 
-        //TODO Metterci lo spriteType
-        addSprite(TypeSprite.SOURCEFULL);
-        addSprite(TypeSprite.SOURCEMID);
+        // TODO Metterci lo spriteType
         addSprite(TypeSprite.LISTENER);
+//        addSprite(TypeSprite.SOURCEFULL);
+//        addSprite(TypeSprite.SOURCEMID);
 
         // ascolta il drag
         canvas.setOnMouseDragged(event -> {
@@ -75,31 +79,44 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     }
 
     private void moveSprite(final Event event) {
-        final Optional<Sprite> temp = sprites.stream().filter(s -> s.getSize().overlap(new Rectangle(((MouseEvent) event).getX(), ((MouseEvent) event).getY(), 0.0, 0.0))).findFirst();
+        final Optional<Sprite> temp = sprites.stream()
+                .filter(s -> s.getSize()
+                        .overlap(new Rectangle(((MouseEvent) event).getX(), ((MouseEvent) event).getY(), 0.0, 0.0)))
+                .findFirst();
         if (temp.isPresent()) {
-            temp.get().setPosition(((MouseEvent) event).getX() - (temp.get().getSize().getWidth() / 2),
+            Pair<Double, Double> newPos = new Pair<>(
+                    ((MouseEvent) event).getX() - (temp.get().getSize().getWidth() / 2),
                     ((MouseEvent) event).getY() - (temp.get().getSize().getHeight() / 2));
-            System.out.println(temp.get().getSpriteType().toString());
-            lastSelect = temp.get();
-         }
-    }
 
-    @Override
-    public void setControllerApplication(final MainController ctrMain) {
-        // TODO Auto-generated method stub
+            if (temp.get() == lastSelect
+                    || !sprites.stream().filter(s -> s.overlap(temp.get())).findAny().isPresent()) {
+                sprites.stream().forEach(s -> s.getClass());
+                temp.get().setPosition(newPos.getX(), newPos.getY());
+                lastSelect = temp.get();
+            } else {
+                System.out.println("overlap");
+                System.out.println(lastSelect.getSpriteType().toString());
+            }
+        }
     }
 
     /**
      * 
-     * TODO AGGIUNGERE IL TIPO ALLA SPRITE.
+     * 
      */
-    public void addSprite(/*type*/ final TypeSprite type) {
+    public void addSprite(/* type */ final TypeSprite type) {
         final Sprite sprite = new Sprite();
         sprite.setSpriteType(type);
         sprite.setPosition(canvas.getHeight() / 2, canvas.getWidth() / 2);
-        final Texture tx = new Texture(type.toString() + ".png");
+        final Texture tx = new Texture(type.toString());
         sprite.setTexture(tx);
         sprite.draw(contextView);
         sprites.add(sprite);
+        lastSelect = sprite;
+    }
+
+    @Override
+    public void setControllerApplication(final MainController ctrMain) {
+
     }
 }
