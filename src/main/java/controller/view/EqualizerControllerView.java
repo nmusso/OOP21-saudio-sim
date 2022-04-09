@@ -1,23 +1,17 @@
 package controller.view;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import controller.EqualizerController;
+import java.util.stream.Collectors;
 import controller.MainController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import model.effect.ALEffects;
 
 public class EqualizerControllerView implements Initializable, ControllerView {
@@ -29,20 +23,21 @@ public class EqualizerControllerView implements Initializable, ControllerView {
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
         ctrl = new EqualizerControllerView();
-        for (final Slider slider : getSliders()) {
+
+        getSliders().forEach(slider -> {
             final Optional<ALEffects> effect = getEffect(slider.getId());
             if (effect.isPresent()) {
                 final var eff = effect.get();
                 slider.setMin(eff.getMinValue());
                 slider.setMax(eff.getMaxValue());
-                slider.valueProperty().addListener((obs, old, newValue) -> {
-                    // MainController.getSources().foreach(s -> s.applyFilter(s, eff,
-                    // newValue.floatValue()));
-                });
             }
-        }
+        });
     }
 
+    /**
+     * Change color to the toggle button and enable/disable the sliders.
+     * @param event  the event who triggered the method
+     */
     @FXML public final void handlePress(final Event event) {
         final boolean state = btnTurn.isSelected();
 
@@ -85,22 +80,18 @@ public class EqualizerControllerView implements Initializable, ControllerView {
     }
 
     private List<Slider> getSliders() {
-        final List<Slider> sliders = new ArrayList<>();
-
-        slidersPane.getChildren().forEach(s -> {
-            if (s instanceof Slider) {
-                sliders.add((Slider) s);
-            }
-        });
-        return sliders;
+        return slidersPane.getChildren().stream()
+                .filter(node -> node instanceof Slider)
+                .map(node -> (Slider) node)
+                .collect(Collectors.toList());
     }
 
-    @FXML public final void testClickSlider(final Event event) {
-        Slider tempSlider = null; 
+    @FXML public final void clickSlider(final Event event) {
+        Slider tempSlider; 
         if (event.getSource() instanceof Slider) {
             tempSlider = (Slider) event.getSource();
+            System.out.println(event.getSource() + " -> " + tempSlider.getValue());
         }
-        System.out.println(event.getSource() + " -> " + tempSlider.getValue());
     }
 
     @Override
