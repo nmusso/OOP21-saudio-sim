@@ -86,7 +86,7 @@ public class EqualizerControllerView implements Initializable, ControllerView {
                 .collect(Collectors.toList());
     }
 
-    @FXML public final void clickSlider(final Event event) {
+    @FXML public final void changeSlider(final Event event) {
         Slider tempSlider; 
         if (event.getSource() instanceof Slider) {
             tempSlider = (Slider) event.getSource();
