@@ -23,7 +23,7 @@
             <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="169.40000610351564" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ToggleButton fx:id="btnTurn" mnemonicParsing="false" onAction="#handlePress" style="-fx-background-color: #F06249;" text="Turn on" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+            <ToggleButton fx:id="btnTurn" mnemonicParsing="false" onAction="#handlePress" style="-fx-background-color: #F06249;" text="OFF" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
             <GridPane fx:id="slidersPane" prefHeight="160.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -38,12 +38,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Slider fx:id="sldReverb" disable="true" onMouseClicked="#changeSlider" orientation="VERTICAL" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                  <Slider fx:id="sldChorus" disable="true" onMouseClicked="#changeSlider" orientation="VERTICAL" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                  <Slider fx:id="sldDistortion" disable="true" onMouseClicked="#changeSlider" orientation="VERTICAL" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                  <Slider fx:id="sldFlanger" disable="true" onMouseClicked="#changeSlider" orientation="VERTICAL" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                  <Slider fx:id="sldEcho" disable="true" onMouseClicked="#changeSlider" orientation="VERTICAL" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                  <Slider fx:id="sldPitch" disable="true" onMouseClicked="#changeSlider" orientation="VERTICAL" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Slider fx:id="sldReverb" disable="true" orientation="VERTICAL" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Slider fx:id="sldChorus" disable="true" orientation="VERTICAL" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Slider fx:id="sldDistortion" disable="true" orientation="VERTICAL" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Slider fx:id="sldFlanger" disable="true" orientation="VERTICAL" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Slider fx:id="sldEcho" disable="true" orientation="VERTICAL" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Slider fx:id="sldPitch" disable="true" orientation="VERTICAL" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                   <Label text="Reverb" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
                      <font>
                         <Font name="System Bold" size="12.800000190734863" />

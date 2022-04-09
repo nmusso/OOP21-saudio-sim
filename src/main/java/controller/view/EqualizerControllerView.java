@@ -30,6 +30,9 @@ public class EqualizerControllerView implements Initializable, ControllerView {
                 final var eff = effect.get();
                 slider.setMin(eff.getMinValue());
                 slider.setMax(eff.getMaxValue());
+                slider.valueProperty().addListener((obs, oldVal, newVal) -> {
+                    // MainController.getSources().foreach(s -> s.applyFilter(s, eff, newVal));
+                });
             }
         });
     }
@@ -42,10 +45,10 @@ public class EqualizerControllerView implements Initializable, ControllerView {
         final boolean state = btnTurn.isSelected();
 
         if (!state) {
-            btnTurn.setText("Turn on");
+            btnTurn.setText("OFF");
             btnTurn.setStyle("-fx-background-color: #F06249");
         } else {
-            btnTurn.setText("Turn off");
+            btnTurn.setText("ON");
             btnTurn.setStyle("-fx-background-color: #6CF049");
         }
 
@@ -84,13 +87,6 @@ public class EqualizerControllerView implements Initializable, ControllerView {
                 .filter(node -> node instanceof Slider)
                 .map(node -> (Slider) node)
                 .collect(Collectors.toList());
-    }
-
-    @FXML public final void changeSlider(final Event event) {
-
-        final Slider slider = (Slider) event.getSource();
-        final var effect = getEffect(slider.getId());
-        // MainController.getSources().foreach(s -> s.applyFilter(s, effect, slider.getValue()));
     }
 
     @Override
