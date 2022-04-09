@@ -87,11 +87,10 @@ public class EqualizerControllerView implements Initializable, ControllerView {
     }
 
     @FXML public final void changeSlider(final Event event) {
-        Slider tempSlider; 
-        if (event.getSource() instanceof Slider) {
-            tempSlider = (Slider) event.getSource();
-            System.out.println(event.getSource() + " -> " + tempSlider.getValue());
-        }
+
+        final Slider slider = (Slider) event.getSource();
+        final var effect = getEffect(slider.getId());
+        // MainController.getSources().foreach(s -> s.applyFilter(s, effect, slider.getValue()));
     }
 
     @Override
