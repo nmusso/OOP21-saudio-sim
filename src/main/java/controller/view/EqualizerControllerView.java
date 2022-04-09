@@ -95,6 +95,14 @@ public class EqualizerControllerView implements Initializable, ControllerView {
         return sliders;
     }
 
+    @FXML public final void testClickSlider(final Event event) {
+        Slider tempSlider = null; 
+        if (event.getSource() instanceof Slider) {
+            tempSlider = (Slider) event.getSource();
+        }
+        System.out.println(event.getSource() + " -> " + tempSlider.getValue());
+    }
+
     @Override
     public void setControllerApplication(final MainController ctrMain) {
         // TODO Auto-generated method stub
