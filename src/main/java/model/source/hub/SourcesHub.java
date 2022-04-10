@@ -4,7 +4,6 @@ import java.util.Set;
 
 import model.effect.ALEffects;
 import model.source.FreqRangeSource;
-import model.source.Source;
 import model.utility.Vec3f;
 
 public interface SourcesHub {

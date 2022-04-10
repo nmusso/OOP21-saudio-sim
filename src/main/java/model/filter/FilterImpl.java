@@ -8,6 +8,10 @@ import java.util.List;
 
 public class FilterImpl extends AbstractFilter {
 
+    public FilterImpl() {
+
+    }
+
     /**
      * {@inheritDoc}
      */

@@ -1,6 +1,7 @@
 package model.source;
 
 import model.filter.Filter;
+import model.filter.FilterImpl;
 import model.utility.Vec3f;
 
 public class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
@@ -10,12 +11,17 @@ public class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
 
     public FreqRangeSourceImpl(final SourceType type) {
         super();
-        this.setType(type);
+        this.initFilterAndType(type);
     }
 
     public FreqRangeSourceImpl(final Vec3f position, final SourceType type) {
         super(position);
+        this.initFilterAndType(type);
+    }
+
+    private void initFilterAndType(final SourceType type) {
         this.setType(type);
+        filter = new FilterImpl();
     }
 
     /**
