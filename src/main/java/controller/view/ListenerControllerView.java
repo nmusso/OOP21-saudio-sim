@@ -69,6 +69,7 @@ public class ListenerControllerView implements Initializable, ControllerView {
     @Override
     public void setControllerApplication(final MainController ctrMain) {
         this.ctrListener = ctrMain.getListenerCtr();
+        this.ctrListener.setControllerView(this);
     }
 
 }

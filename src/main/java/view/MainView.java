@@ -26,7 +26,7 @@ public class MainView extends Application {
         final FXMLLoader loader = new FXMLLoader();
         final Parent root = loader.load(new FileInputStream(new File(FXML_PATH)));
         final MainControllerView ctrMainV = loader.getController();
-        ctrMainV.setControllerApp(ctrMainApp);
+        ctrMainV.setControllerApplication(ctrMainApp);
 
         final Scene scene = new Scene(root);
         mainStage.setScene(scene);
