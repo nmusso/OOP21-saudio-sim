@@ -2,8 +2,11 @@ package model.buffer;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import javax.sound.sampled.UnsupportedAudioFileException;
 import static org.lwjgl.openal.AL10.alDeleteBuffers;
 
@@ -38,6 +41,14 @@ public enum BufferCache {
         }
 
         return buffers.get(path);
+    }
+
+    /**
+     * Getter of the cache map.
+     * @return the map
+     */
+    public Map<String, Buffer> getCacheMap() {
+        return Collections.unmodifiableMap(buffers);
     }
 
     /**

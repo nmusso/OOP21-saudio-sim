@@ -123,7 +123,7 @@ public class BufferImpl implements Buffer {
      */
     @Override
     public String toString() {
-        final var parts = file.substring(file.lastIndexOf(System.getProperty("file.separator")));
-        return "Buffer " + this.id + ": " + parts;
+        final String fileName = file.substring(file.lastIndexOf(System.getProperty("file.separator")) + 1);
+        return this.id + ": " + fileName;
     }
 }
