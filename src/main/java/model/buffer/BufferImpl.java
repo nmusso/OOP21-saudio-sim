@@ -19,16 +19,15 @@ import org.lwjgl.BufferUtils;
 
 public class BufferImpl implements Buffer {
 
-    private final int id;
+    private int id;
     private final String file;
 
     public BufferImpl(final String file) {
-        this.id = alGenBuffers();
         this.file = file;
         try {
             generateBuffer();
         } catch (UnsupportedAudioFileException | IOException e) {
-            throw new ALFormatException("error while generating buffer", e);
+            throw new ALFormatException("Error while generating buffer", e);
         }
     }
 
@@ -64,10 +63,11 @@ public class BufferImpl implements Buffer {
             stream.read(byteArray);
             final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
 
-            alBufferData(id, sampleSize, audioBuffer, (int) format.getSampleRate());
+            this.id = alGenBuffers();
+            alBufferData(this.id, sampleSize, audioBuffer, (int) format.getSampleRate());
             stream.close();
         } catch (UnsupportedAudioFileException | IOException e) {
-            e.printStackTrace();
+            throw new ALFormatException("File of unsupported format", e);
         }
 
         return id;

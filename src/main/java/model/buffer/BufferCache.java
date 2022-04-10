@@ -8,6 +8,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
+
+import com.google.common.base.Optional;
+
 import static org.lwjgl.openal.AL10.alDeleteBuffers;
 
 public enum BufferCache {
@@ -27,9 +30,9 @@ public enum BufferCache {
     }
 
     /**
-     * 
+     * Get the buffer from the cache based on the path, created if not exists.
      * @param path  the path of the file
-     * @return the ID of the buffer associated to the path, got from cache or created by BufferImpl
+     * @return the buffer associated to the path, got from cache or created
      * @throws FileNotFoundException if file does not exists
      * @throws UnsupportedAudioFileException if the type of the file is not supported
      * @throws IOException if an error occur during read
@@ -37,12 +40,22 @@ public enum BufferCache {
     public Buffer getBuffer(final String path) throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         if (!buffers.containsKey(path)) {
             final Buffer buf = new BufferImpl(path);
-            buffers.put(path, buf);
+
+            if (buf.getID() != 0) {
+                buffers.put(path, buf);
+            } 
+
+            return buf;
         }
 
         return buffers.get(path);
     }
 
+    /**
+     * Get the buffer associated at the id.
+     * @param id  the id of the buffer
+     * @return the buffer
+     */
     public Buffer getBufferFromID(final int id) {
         return buffers.entrySet().stream()
                 .filter(e -> e.getValue().getID() == id)

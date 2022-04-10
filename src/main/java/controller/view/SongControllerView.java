@@ -1,6 +1,7 @@
 package controller.view;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -12,7 +13,10 @@ import controller.MainController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -39,7 +43,7 @@ public class SongControllerView implements Initializable, ControllerView {
         if (folder.exists()) {
             final var files = folder.listFiles();
 
-            //Interviene spotbugs se controllo direttamente nell'if
+            //Interviene spotbugs se controllo direttamente listFiles() nell'if
             if (files != null) {
                 for (final File file : files) {
                     if (!file.isDirectory()) {
