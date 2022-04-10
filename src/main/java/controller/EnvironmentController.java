@@ -1,14 +1,29 @@
 package controller;
 
 import controller.view.EnvironmentControllerView;
+import model.source.Source;
 
 public class EnvironmentController {
 
     private final MainController mainCtr;
     private EnvironmentControllerView ctrlView;
+    
+    public EnvironmentControllerView getCtrlView() {
+        return ctrlView;
+        
+    }
+
+    public MainController getMainCtr() {
+        return mainCtr;
+    }
 
     public EnvironmentController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
+    }
+    
+    public Source getSelectedSource() {
+        //this.ctrlView.getLastSelect().getId();
+        return null;
     }
 
     /**

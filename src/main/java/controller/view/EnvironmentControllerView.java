@@ -56,6 +56,22 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     private double lenght = 10;
     private double width = 10;
     
+    public double getLenght() {
+        return lenght;
+    }
+
+    public void setLenght(double lenght) {
+        this.lenght = lenght;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
     //TODO temporaneee da controllare
     private double x;
     private double y;
@@ -137,6 +153,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             System.out.println("le posiizone n una base 10x10 (" +
             (width * newPos.getX()) /  canvas.getWidth() + " - " +
             (lenght * newPos.getY()) / canvas.getHeight() + ")");
+            
+            //TODO Non puo uscire dalla canvas
         }
     }
 

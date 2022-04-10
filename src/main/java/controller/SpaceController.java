@@ -9,16 +9,16 @@ public class SpaceController {
 
     public SpaceController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
+    }    
+    
+    public SpaceControllerView getCtrlView() {
+        return ctrlView;
     }
 
-    /**
-     * 
-     * 
-     */
-    public void addEnvironment() {
+    public MainController getMainCtr() {
+        return mainCtr;
     }
-    
-    
+
     /**
      * 
      * @param controllerView

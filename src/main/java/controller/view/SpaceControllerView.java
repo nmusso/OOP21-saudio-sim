@@ -68,6 +68,7 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     @FXML public final void handleClikSpnLenght(final Event event) {
         lenght = spnSizeLenght.getValue();
         System.out.println(lenght.toString() + "lenght");
+        //TODO bisonga che passi dai get dei controller
     }
 
     @FXML public final void handleClikSpnWidth(final Event event) {
