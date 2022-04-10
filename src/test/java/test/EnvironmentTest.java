@@ -23,8 +23,8 @@ import model.environment.EnvironmentFactoryImpl;
 import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
-import model.source.FreqRangeSource;
-import model.source.FreqRangeSourceImpl;
+import model.source.FRSource;
+import model.source.FRSourceImpl;
 import model.source.Source;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
@@ -33,7 +33,7 @@ import model.source.SourceType;
 
 class EnvironmentTest {
 
-    private final Set<FreqRangeSource> sources = new HashSet<>();
+    private final Set<FRSource> sources = new HashSet<>();
     private final ListenerFactory listFac = new ListenerFactoryImpl();
     private final Listener listener = listFac.createListener(AudioManager.getContext());
     private final SourceFactory sourceFac = new SourceFactoryImpl();
@@ -44,7 +44,7 @@ class EnvironmentTest {
         AudioManager.initContext();
     }
 
-    private FreqRangeSource genSource(final FreqRangeSource s) {
+    private FRSource genSource(final FRSource s) {
         final Buffer b = new BufferImpl("src/main/resources/songs/DriftMono.wav");
         s.generateSource(b.getID());
         return s;
@@ -76,9 +76,9 @@ class EnvironmentTest {
 
     @Test
     void testGetX() {
-        final FreqRangeSource source1 = genSource(sourceFac.createFreqRangeSource());
-        final FreqRangeSource source2 = genSource(sourceFac.createFreqRangeSource());
-        final FreqRangeSource source3 = genSource(sourceFac.createFreqRangeSource());
+        final FRSource source1 = genSource(sourceFac.createFreqRangeSource());
+        final FRSource source2 = genSource(sourceFac.createFreqRangeSource());
+        final FRSource source3 = genSource(sourceFac.createFreqRangeSource());
         sources.add(source1);
         sources.add(source2);
         sources.add(source3);

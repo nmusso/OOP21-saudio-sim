@@ -10,8 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import model.source.FreqRangeSource;
-import model.source.SourceType;
+import model.source.FRSource;
 
 public class SourceControllerView implements Initializable, ControllerView {
     @FXML private Button btnAddSpeaker;
@@ -41,7 +40,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     @FXML private void handleRemoveSpeaker(final Event event) {
-        FreqRangeSource speaker = this.getSelectedSpeaker();
+        FRSource speaker = this.getSelectedSpeaker();
 
         //TODO Remove speaker from SourceHub in Environment
     }
@@ -50,7 +49,7 @@ public class SourceControllerView implements Initializable, ControllerView {
         ctrSource.setSpeakerType(this.getSelectedSpeaker(), ((RadioButton) event.getSource()).getId());
     }
 
-    private FreqRangeSource getSelectedSpeaker() {
+    private FRSource getSelectedSpeaker() {
         return this.ctrSource.getSelectedSpeaker();
     }
 

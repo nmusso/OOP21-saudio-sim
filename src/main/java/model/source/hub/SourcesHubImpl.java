@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 
 import model.effect.ALEffects;
 import model.effect.EffectImpl;
-import model.source.FreqRangeSource;
+import model.source.FRSource;
 import model.source.Source;
 import model.utility.Vec3f;
 
 public class SourcesHubImpl implements SourcesHub {
 
-    private final Set<FreqRangeSource> sources;
+    private final Set<FRSource> sources;
     private final EffectImpl effectManager;
 
     public SourcesHubImpl() {
@@ -21,7 +21,7 @@ public class SourcesHubImpl implements SourcesHub {
         this.effectManager = new EffectImpl();
     }
 
-    public SourcesHubImpl(final Set<FreqRangeSource> sources) {
+    public SourcesHubImpl(final Set<FRSource> sources) {
         this.sources = sources;
         this.effectManager = new EffectImpl();
     }
@@ -30,7 +30,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public Set<FreqRangeSource> getAll() {
+    public Set<FRSource> getAll() {
         return Collections.unmodifiableSet(this.sources);
     }
 
@@ -46,7 +46,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public Set<FreqRangeSource> getPlaying() {
+    public Set<FRSource> getPlaying() {
         return this.sources.stream().filter(Source::isPlaying).collect(Collectors.toSet());
     }
 
@@ -54,7 +54,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public FreqRangeSource getSource(final Integer id) {
+    public FRSource getSource(final Integer id) {
         return this.sources.stream().filter(s -> s.getId().equals(id)).findAny().get();
     }
 
@@ -62,7 +62,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public FreqRangeSource getSourceFromPos(final Vec3f position) {
+    public FRSource getSourceFromPos(final Vec3f position) {
         return this.sources.stream().filter(s -> s.getPosition().equals(position)).findAny().get();
     }
 
@@ -70,7 +70,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public void addSource(final FreqRangeSource s) {
+    public void addSource(final FRSource s) {
         this.sources.add(s);
     }
 
@@ -78,7 +78,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public void removeSource(final FreqRangeSource s) {
+    public void removeSource(final FRSource s) {
         this.sources.remove(s);
     }
 

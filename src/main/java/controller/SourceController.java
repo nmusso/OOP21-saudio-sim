@@ -1,13 +1,13 @@
 package controller;
 
 import controller.view.SourceControllerView;
-import model.source.FreqRangeSource;
+import model.source.FRSource;
 import model.source.SourceType;
 
 public class SourceController {
 
     private final MainController mainCtr;
-    private SourceControllerView sourceController;
+    private SourceControllerView controllerView;
 
     public SourceController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
@@ -18,7 +18,7 @@ public class SourceController {
      * @param sourceController
      */
     public void setControllerView(final SourceControllerView sourceController) {
-        this.sourceController = sourceController;
+        this.controllerView = sourceController;
     }
 
     /**
@@ -26,7 +26,7 @@ public class SourceController {
      * @param speaker
      * @param type
      */
-    public void setSpeakerType(final FreqRangeSource speaker, final String type) {
+    public void setSpeakerType(final FRSource speaker, final String type) {
         switch (type) {
         case "rbtnDefault":
             speaker.setType(SourceType.FULL);
@@ -49,7 +49,7 @@ public class SourceController {
      * 
      * @return
      */
-    public FreqRangeSource getSelectedSpeaker() {
+    public FRSource getSelectedSpeaker() {
         return mainCtr.getEnvironmentController().getSelectedSource();
     }
 

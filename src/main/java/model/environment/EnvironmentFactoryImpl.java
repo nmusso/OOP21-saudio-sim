@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import model.listener.Listener;
-import model.source.FreqRangeSource;
+import model.source.FRSource;
 import model.source.hub.SourcesHubFactory;
 import model.source.hub.SourcesHubFactoryImpl;
 import model.space.Space;
@@ -26,7 +26,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     *{@inheritDoc}
     */
     @Override
-    public Environment createMonoEnvironment(final FreqRangeSource mono, final Listener listener, final Optional<Space> space) {
+    public Environment createMonoEnvironment(final FRSource mono, final Listener listener, final Optional<Space> space) {
         return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(Collections.singletonList(mono).stream().collect(Collectors.toSet())), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
     }
 
@@ -35,8 +35,8 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     *{@inheritDoc}
     */
     @Override
-    public Environment createStereoEnvironment(final FreqRangeSource left, final FreqRangeSource right, final Listener listener, final Optional<Space> space) {
-        final Set<FreqRangeSource> sources = new HashSet<>();
+    public Environment createStereoEnvironment(final FRSource left, final FRSource right, final Listener listener, final Optional<Space> space) {
+        final Set<FRSource> sources = new HashSet<>();
         sources.add(left);
         sources.add(right);
         return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(sources), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
@@ -47,7 +47,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     *{@inheritDoc}
     */
     @Override
-    public Environment createNEnvironment(final Set<FreqRangeSource> sources, final Listener listener, final Optional<Space> space) {
+    public Environment createNEnvironment(final Set<FRSource> sources, final Listener listener, final Optional<Space> space) {
         return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(sources), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
     }
 

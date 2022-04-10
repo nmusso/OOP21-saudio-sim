@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import model.listener.Listener;
-import model.source.FreqRangeSource;
+import model.source.FRSource;
 import model.space.Space;
 
 public interface EnvironmentFactory {
@@ -16,7 +16,7 @@ public interface EnvironmentFactory {
     * @param space
     * @return Environment
     */
-    Environment createMonoEnvironment(FreqRangeSource mono, Listener listener, Optional<Space> space);
+    Environment createMonoEnvironment(FRSource mono, Listener listener, Optional<Space> space);
 
     /**
     * create an Environment with an initial stereo source.
@@ -25,7 +25,7 @@ public interface EnvironmentFactory {
     * @param space
     * @return Environment
     */
-    Environment createStereoEnvironment(FreqRangeSource left, FreqRangeSource right, Listener listener, Optional<Space> space);
+    Environment createStereoEnvironment(FRSource left, FRSource right, Listener listener, Optional<Space> space);
 
     /**
     * create an Environment with multiple sources.
@@ -34,7 +34,7 @@ public interface EnvironmentFactory {
     * @param space
     * @return Environment
     */
-    Environment createNEnvironment(Set<FreqRangeSource> sources, Listener listener, Optional<Space> space);
+    Environment createNEnvironment(Set<FRSource> sources, Listener listener, Optional<Space> space);
 
     /**
     * create an Environment with specific set, like Cinema.

@@ -24,24 +24,24 @@ public class SourceFactoryImpl implements SourceFactory {
      * @inheritDoc
      */
     @Override
-    public FreqRangeSource createFreqRangeSource() {
-        return new FreqRangeSourceImpl(SourceType.FULL);
+    public FRSource createFreqRangeSource() {
+        return new FRSourceImpl(SourceType.FULL);
     }
 
     /**
     * @inheritDoc
     */
     @Override
-    public FreqRangeSource createFreqRangeSource(final SourceType type) {
-        return new FreqRangeSourceImpl(type);
+    public FRSource createFreqRangeSource(final SourceType type) {
+        return new FRSourceImpl(type);
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public FreqRangeSource createFreqRangeSourceWithPos(final Vec3f position, final SourceType type) {
-        return new FreqRangeSourceImpl(position, type);
+    public FRSource createFreqRangeSourceWithPos(final Vec3f position, final SourceType type) {
+        return new FRSourceImpl(position, type);
     }
 
 }

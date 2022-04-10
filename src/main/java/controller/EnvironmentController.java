@@ -1,7 +1,7 @@
 package controller;
 
 import controller.view.EnvironmentControllerView;
-import model.source.FreqRangeSource;
+import model.source.FRSource;
 import model.source.Source;
 
 public class EnvironmentController {
@@ -22,7 +22,7 @@ public class EnvironmentController {
         this.mainCtr = mainCtr;
     }
     
-    public FreqRangeSource getSelectedSource() {
+    public FRSource getSelectedSource() {
         //this.ctrlView.getLastSelect().getId();
         return null;
     }

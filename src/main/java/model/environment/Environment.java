@@ -4,7 +4,7 @@ import java.util.Set;
 
 import model.effect.ALEffects;
 import model.listener.Listener;
-import model.source.FreqRangeSource;
+import model.source.FRSource;
 import model.source.hub.SourcesHub;
 import model.space.Space;
 import model.utility.Vec3f;
@@ -34,7 +34,7 @@ public interface Environment {
      * 
      * @param source to add
      */
-    void addSourceToSourceHub(FreqRangeSource source);
+    void addSourceToSourceHub(FRSource source);
 
     /**
      * add effect.
@@ -60,7 +60,7 @@ public interface Environment {
      * 
      * @param source to remove
      */
-    void removeSourceFromSourceHub(FreqRangeSource sourceToRemove);
+    void removeSourceFromSourceHub(FRSource sourceToRemove);
 
 
     /**
@@ -68,5 +68,5 @@ public interface Environment {
      * @param  source
      * @param new pos
      */
-    void moveSource(FreqRangeSource source, Vec3f pos);
+    void moveSource(FRSource source, Vec3f pos);
 }

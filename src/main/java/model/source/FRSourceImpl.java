@@ -4,17 +4,17 @@ import model.filter.Filter;
 import model.filter.FilterImpl;
 import model.utility.Vec3f;
 
-public class FreqRangeSourceImpl extends SourceImpl implements FreqRangeSource {
+public class FRSourceImpl extends SourceImpl implements FRSource {
 
     private SourceType type;
     private Filter filter;
 
-    public FreqRangeSourceImpl(final SourceType type) {
+    public FRSourceImpl(final SourceType type) {
         super();
         this.initFilterAndType(type);
     }
 
-    public FreqRangeSourceImpl(final Vec3f position, final SourceType type) {
+    public FRSourceImpl(final Vec3f position, final SourceType type) {
         super(position);
         this.initFilterAndType(type);
     }

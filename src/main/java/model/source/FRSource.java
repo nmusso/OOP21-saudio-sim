@@ -1,6 +1,6 @@
 package model.source;
 
-public interface FreqRangeSource extends Source {
+public interface FRSource extends Source {
 
     /**
      * Returns the source type.
