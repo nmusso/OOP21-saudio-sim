@@ -36,10 +36,17 @@ public class SongControllerView implements Initializable, ControllerView {
         final String folderPath = "src" + SEP + "main" + SEP + "resources" + SEP + "songs" + SEP;
         final File folder = new File(folderPath);
 
-        for (final File file : folder.listFiles()) {
-            if (!file.isDirectory()) {
-                createBuffer(file);
-            } 
+        if (folder.exists()) {
+            final var files = folder.listFiles();
+
+            //Interviene spotbugs se controllo direttamente nell'if
+            if (files != null) {
+                for (final File file : files) {
+                    if (!file.isDirectory()) {
+                        createBuffer(file);
+                    } 
+                }
+            }
         }
 
         updateComboBox();
