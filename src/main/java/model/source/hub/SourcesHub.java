@@ -16,6 +16,13 @@ public interface SourcesHub {
     Set<FreqRangeSource> getAll();
 
     /**
+     * Gets a Set of Vec3f.
+     * 
+     * @return Set of All Sources Positions
+     */
+    Set<Vec3f> getAllPositions();
+
+    /**
      * Gets the Sources they are playing.
      * 
      * @return Set of Sources that are playing
