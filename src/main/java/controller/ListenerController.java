@@ -5,6 +5,11 @@ import controller.view.ListenerControllerView;
 public class ListenerController {
     private ListenerControllerView controllerView;
 
+    private final MainController mainCtr;
+    public ListenerController(final MainController mainCtr) {
+        this.mainCtr = mainCtr;
+    }
+
     /**
      * 
      */

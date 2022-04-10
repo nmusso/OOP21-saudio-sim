@@ -12,10 +12,10 @@ public class MainController {
 
 
     public MainController() {
-        this.ctrSource = new SourceController();
-        this.ctrListener = new ListenerController();
-        this.ctrEquailzer = new EqualizerController();
-        this.ctrEnv = new EnvironmentController(ctrListener, ctrSource);
+        this.ctrSource = new SourceController(this);
+        this.ctrListener = new ListenerController(this);
+        this.ctrEquailzer = new EqualizerController(this);
+        this.ctrEnv = new EnvironmentController(this);
     }
 
     /**

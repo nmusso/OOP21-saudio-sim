@@ -31,13 +31,6 @@ public class MainControllerView implements Initializable {
     @FXML private VBox container;
     private MainController ctrMain;
 
-//      METODO STATICO DI SALVATAGGIO
-//    private static final Set<Environment> environments = new HashSet<>();
-//
-//    static Set<Environment> getEnviroments() {
-//        return environments;
-//    }
-
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
         container.setPrefSize(contWidth, contHeight);

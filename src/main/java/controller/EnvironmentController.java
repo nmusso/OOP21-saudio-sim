@@ -15,14 +15,12 @@ public class EnvironmentController {
 
     private Environment environment;
     private final EnvironmentFactory envFac;
-    private final ListenerController listenerCtrl;
-    private final SourceController sourceCtrl;
+    private final MainController mainCtr;
 
-    public EnvironmentController(final ListenerController listenerCtrl, final SourceController sourceCtrl) {
+    public EnvironmentController(final MainController mainCtr) {
         AudioManager.initContext();
         this.envFac = new EnvironmentFactoryImpl();
-        this.listenerCtrl = listenerCtrl;
-        this.sourceCtrl = sourceCtrl;
+        this.mainCtr = mainCtr;
     }
 
     /**
