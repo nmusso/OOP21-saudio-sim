@@ -6,7 +6,17 @@ import javafx.scene.canvas.*;
  * Represents the game entities displayed on the screen; can move and interact
  * with each other.
  */
+//TODO SISTEMARE QUESTA CLASSE LUGARESI
 public class Sprite {
+    private final int id;
+
+    /**
+    *
+    */
+    public int getId() {
+        return id;
+    }
+
     private Vector position;
     private Vector velocity;
 
@@ -76,10 +86,11 @@ public class Sprite {
      * Sprite Constructor; initializes to position (0,0).
      *
      */
-    public Sprite() {
+    public Sprite(final int id) {
         position = new Vector(0, 0);
         velocity = new Vector(0, 0);
         setSize(new Rectangle());
+        this.id = id;
         // make rectangle share same position data as this sprite
         getSize().setPosition(position);
         // by default, all sprites are visible
@@ -92,11 +103,12 @@ public class Sprite {
      * @param x x coordinate of top-left corner
      * @param y y coordinate of top-left corner
      */
-    public Sprite(final double x, final double y) {
+    public Sprite(final int id, final double x, final double y) {
         position = new Vector(x, y);
         setSize(new Rectangle());
         // make rectangle share same position data as this sprite
         getSize().setPosition(position);
+        this.id = id;
         // by default, all sprites are visible
         visible = true;
     }
