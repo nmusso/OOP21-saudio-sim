@@ -130,6 +130,4 @@ public class SourcesHubImpl implements SourcesHub {
         this.sources.forEach(Source::delete);
     }
 
-    //TODO GetAll but return Set<Vec3f>
-
 }

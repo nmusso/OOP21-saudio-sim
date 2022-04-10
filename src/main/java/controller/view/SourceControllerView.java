@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.MainController;
+import controller.SourceController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,10 +20,20 @@ public class SourceControllerView implements Initializable, ControllerView {
     @FXML private RadioButton rbtnTweeter;
     @FXML private RadioButton rbtnMidRange;
     @FXML private RadioButton rbtnWoofer;
+    private SourceController ctrSource;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
 
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setControllerApplication(final MainController ctrMain) {
+        this.ctrSource = ctrMain.getSourceController();
+        this.ctrSource.setControllerView(this);
     }
 
     @FXML private void handleAddSpeaker(final Event event) {
@@ -36,37 +47,12 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     @FXML private void handleRadioButtonChanged(final Event event) {
-        FreqRangeSource speaker = this.getSelectedSpeaker();
-
-        switch (((RadioButton) event.getSource()).getId()) {
-            case "rbtnDefault":
-                speaker.setType(SourceType.FULL);
-                break;
-            case "rbtnTweeter":
-                speaker.setType(SourceType.HIGH);
-                break;
-            case "rbtnMidRange":
-                speaker.setType(SourceType.MID);
-                break;
-            case "rbtnWoofer":
-                speaker.setType(SourceType.LOW);
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void speakerSelected(final  FreqRangeSource speaker) {
-        //rbtnWoofer.setSelected(true);
+        ctrSource.setSpeakerType(this.getSelectedSpeaker(), ((RadioButton) event.getSource()).getId());
     }
 
     private FreqRangeSource getSelectedSpeaker() {
-        return null;
+        return this.ctrSource.getSelectedSpeaker();
     }
 
-    @Override
-    public void setControllerApplication(final MainController ctrMain) {
-        // TODO Auto-generated method stub
 
-    }
 }
