@@ -1,36 +1,26 @@
 package controller.view;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import controller.MainController;
 import controller.SongController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import model.buffer.Buffer;
-import model.buffer.BufferCache;
 
 public class SongControllerView implements Initializable, ControllerView {
 
     private static final String SEP = System.getProperty("file.separator");
-    @FXML private Button btnImport;
-    @FXML private Button btnPlay;
-    @FXML private Button btnPause;
-    @FXML private Button btnStop;
     @FXML private ComboBox<String> cmbSongs;
     private SongController ctrl;
 
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
-
     }
 
     @FXML
