@@ -43,6 +43,14 @@ public enum BufferCache {
         return buffers.get(path);
     }
 
+    public Buffer getBufferFromID(final int id) {
+        return buffers.entrySet().stream()
+                .filter(e -> e.getValue().getID() == id)
+                .map(e -> e.getValue())
+                .collect(Collectors.toList())
+                .get(0);
+    }
+
     /**
      * Getter of the cache map.
      * @return the map
