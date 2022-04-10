@@ -43,7 +43,6 @@ public class SongControllerView implements Initializable, ControllerView {
         if (folder.exists()) {
             final var files = folder.listFiles();
 
-            //Interviene spotbugs se controllo direttamente listFiles() nell'if
             if (files != null) {
                 for (final File file : files) {
                     if (!file.isDirectory()) {

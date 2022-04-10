@@ -67,7 +67,7 @@ public class BufferImpl implements Buffer {
             alBufferData(this.id, sampleSize, audioBuffer, (int) format.getSampleRate());
             stream.close();
         } catch (UnsupportedAudioFileException | IOException e) {
-            throw new ALFormatException("File of unsupported format", e);
+            throw new ALFormatException("File of unsupported format.", e);
         }
 
         return id;
@@ -96,9 +96,9 @@ public class BufferImpl implements Buffer {
         case 1:
             return (format.getSampleSizeInBits() == 8) ? AL_FORMAT_MONO8 : AL_FORMAT_MONO16;
         case 2:
-            throw new ALFormatException("Stereo not supported");
+            throw new ALFormatException("Stereo not supported.");
         default:
-            throw new ALFormatException("Can't handle format");
+            throw new ALFormatException("Can't handle format.");
         }
     }
 
