@@ -9,16 +9,20 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import model.source.FRSource;
 
 public class SourceControllerView implements Initializable, ControllerView {
+
     @FXML private Button btnAddSpeaker;
     @FXML private Button btnRemoveSpeaker;
     @FXML private RadioButton rbtnDefault;
     @FXML private RadioButton rbtnTweeter;
     @FXML private RadioButton rbtnMidRange;
     @FXML private RadioButton rbtnWoofer;
+    @FXML private Label lblX;
+    @FXML private Label lblY;
     private SourceController ctrSource;
 
     @Override
@@ -50,7 +54,10 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     private FRSource getSelectedSpeaker() {
-        return this.ctrSource.getSelectedSpeaker();
+        FRSource selected = this.ctrSource.getSelectedSpeaker();
+        lblX.setText(Float.toString(selected.getPosition().getX()));
+        lblY.setText(Float.toString(selected.getPosition().getY()));
+        return selected;
     }
 
 

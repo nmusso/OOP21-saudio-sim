@@ -1,6 +1,8 @@
 package controller;
 
 import controller.view.EnvironmentControllerView;
+import model.audiomanager.AudioManager;
+import model.environment.EnvironmentFactoryImpl;
 import model.source.FRSource;
 import model.source.Source;
 
@@ -19,6 +21,7 @@ public class EnvironmentController {
     }
 
     public EnvironmentController(final MainController mainCtr) {
+        AudioManager.initContext();
         this.mainCtr = mainCtr;
     }
     
