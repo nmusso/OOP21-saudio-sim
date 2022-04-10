@@ -4,11 +4,12 @@ import controller.view.MainControllerView;
 
 public class MainController {
 
-    private final EnvironmentController ctrEnv;
+    private final EnvironmentController ctrEnvironment;
     private final ListenerController ctrListener;
     private final SourceController ctrSource;
     private final EqualizerController ctrEqualizer;
     private final SongController ctrSong;
+    private final SpaceController ctrSpace;
     private MainControllerView controllerView;
 
 
@@ -16,8 +17,9 @@ public class MainController {
         this.ctrSource = new SourceController(this);
         this.ctrListener = new ListenerController(this);
         this.ctrEqualizer = new EqualizerController(this);
-        this.ctrEnv = new EnvironmentController(this);
+        this.ctrEnvironment = new EnvironmentController(this);
         this.ctrSong = new SongController(this);
+        this.ctrSpace = new SpaceController(this);
     }
 
     /**
@@ -31,8 +33,8 @@ public class MainController {
      * 
      * @return
      */
-    public EnvironmentController getEnvironmentCtr() {
-        return this.ctrEnv;
+    public EnvironmentController getEnvironmentController() {
+        return this.ctrEnvironment;
     }
 
     /**
@@ -65,5 +67,13 @@ public class MainController {
      */
     public SongController getSongController() {
         return this.ctrSong;
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    public SpaceController getSpaceController() {
+        return this.ctrSpace;
     }
 }

@@ -1,13 +1,13 @@
 package controller;
 
-import controller.view.EnvironmentControllerView;
+import controller.view.SpaceControllerView;
 
-public class EnvironmentController {
+public class SpaceController {
 
     private final MainController mainCtr;
-    private EnvironmentControllerView ctrlView;
+    private SpaceControllerView ctrlView;
 
-    public EnvironmentController(final MainController mainCtr) {
+    public SpaceController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
     }
 
@@ -23,7 +23,7 @@ public class EnvironmentController {
      * 
      * @param controllerView
      */
-    public void setControllerView(final EnvironmentControllerView controllerView) {
+    public void setControllerView(final SpaceControllerView controllerView) {
         ctrlView = controllerView;
     }
 

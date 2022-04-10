@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+import controller.EnvironmentController;
 import controller.MainController;
 import javafx.animation.AnimationTimer;
 import javafx.event.Event;
@@ -29,20 +31,32 @@ import view.utility.TypeSprite;
 import view.utility.Vector;
 
 public class EnvironmentControllerView implements Initializable, ControllerView {
-    private EnvironmentControllerView remote;
+    
+    private EnvironmentController ctrl;
     @FXML
     private Canvas canvas;
     @FXML
     private AnchorPane conteinerCanvas;
     @FXML
     private GraphicsContext contextView;
+    
     private Sprite lastSelect;
 
     private Set<Sprite> sprites;
 
-    //proporzioni
+    /**
+     * 
+     * 
+     */
+    public Sprite getLastSelect() {
+        return lastSelect;
+    }
+
+    //proporzioni TODO settarle da space controller
     private double lenght = 10;
     private double width = 10;
+    
+    //TODO temporaneee da controllare
     private double x;
     private double y;
 
@@ -52,7 +66,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        remote = new EnvironmentControllerView();
         sprites = new HashSet<>();
         x = canvas.getHeight();
         y = canvas.getWidth();
@@ -106,6 +119,10 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         musicLoop.start();
     }
 
+    /**
+     * 
+     * 
+     */
     private void moveSprite(final Event event) {
         final Optional<Sprite> temp = sprites.stream()
                 .filter(s -> s.getSize()
@@ -142,6 +159,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     @Override
     public void setControllerApplication(final MainController ctrMain) {
-
+        this.ctrl = ctrMain.getEnvironmentController();
+        this.ctrl.setControllerView(this);
     }
 }

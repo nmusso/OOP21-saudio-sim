@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.MainController;
+import controller.SpaceController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -17,6 +18,7 @@ import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
 
 public class SpaceControllerView  implements Initializable, ControllerView { 
 
+    private SpaceController ctrl;
     @FXML
     private Spinner<Double> spnSizeLenght;
     private Double lenght;
@@ -31,7 +33,8 @@ public class SpaceControllerView  implements Initializable, ControllerView {
 
     @Override
     public void setControllerApplication(final MainController ctrMain) {
-        // TODO Auto-generated method stub
+        this.ctrl = ctrMain.getSpaceController();
+        this.ctrl.setControllerView(this);
     }
 
     /**
