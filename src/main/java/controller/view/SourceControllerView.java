@@ -33,10 +33,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     @FXML private RadioButton rbtnWoofer;
     @FXML private Label lblX;
     @FXML private Label lblY;
-    @FXML private PieChart pieChartSpeaker;
-    @FXML private Pane paneChart;
     private SourceController ctrSource;
-    private PieChart chart;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -50,16 +47,6 @@ public class SourceControllerView implements Initializable, ControllerView {
     public void setControllerApplication(final MainController ctrMain) {
         this.ctrSource = ctrMain.getSourceController();
         this.ctrSource.setControllerView(this);
-        
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data("High", 70),
-                new PieChart.Data("Mid", 15),
-                new PieChart.Data("Low", 15));
-        chart = new PieChart(pieChartData);
-        chart.setTitle("Freq Distribution");
-        chart.setMaxSize(50, 50);
-        paneChart.getChildren().add(chart);
     }
 
     @FXML private void handleAddSpeaker(final Event event) {
@@ -83,17 +70,6 @@ public class SourceControllerView implements Initializable, ControllerView {
         lblX.setText(Float.toString(selected.getPosition().getX()));
         lblY.setText(Float.toString(selected.getPosition().getY()));
         return selected;
-    }
-
-    /**
-     * 
-     * @param pieChartData
-     */
-    @FXML public void setPieChartData(final ObservableList<PieChart.Data> pieChartData) {
-        chart = new PieChart(pieChartData);
-        chart.setTitle("Freq Distribution");
-        chart.setMaxSize(50, 50);
-        paneChart.getChildren().add(chart);
     }
 
 }

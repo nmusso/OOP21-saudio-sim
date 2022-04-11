@@ -80,6 +80,11 @@ public interface SourcesHub {
     void stopAll();
 
     /**
+     * Stop all sources.
+     */
+    void generateAllSources(int buffer);
+
+    /**
     * Apply the effect to all sources with the specified value.
     * 
     * @param effect

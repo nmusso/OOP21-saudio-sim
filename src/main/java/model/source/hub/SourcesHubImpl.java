@@ -110,6 +110,14 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
+    public void generateAllSources(final int buffer) {
+        this.sources.forEach(s -> s.generateSource(buffer));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public void applyFilter(final ALEffects effect, final float value) {
         this.sources.forEach(s -> this.effectManager.apply(effect, s, value));
     }
