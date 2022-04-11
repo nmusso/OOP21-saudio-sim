@@ -1,11 +1,7 @@
 package controller;
 
 import controller.view.SourceControllerView;
-import javafx.collections.FXCollections;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.RadioButton;
 import model.source.FRSource;
-import model.source.FRSourceImpl;
 import model.source.SourceFactoryImpl;
 import model.source.SourceType;
 import view.utility.TypeSprite;
@@ -34,22 +30,27 @@ public class SourceController implements ControllerApplication<SourceControllerV
      * @param type
      */
     public void setSpeakerType(final FRSource speaker, final String type) {
+        //TODO clear
         switch (type) {
         case "rbtnDefault":
             speaker.setType(SourceType.FULL);
             this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCEFULL);
+            this.controllerView.updatePieChartFreq(33, 33, 33);
             break;
         case "rbtnTweeter":
             speaker.setType(SourceType.HIGH);
             this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCEHIGH);
+            this.controllerView.updatePieChartFreq(70, 15, 15);
             break;
         case "rbtnMidRange":
             speaker.setType(SourceType.MID);
             this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCEMID);
+            this.controllerView.updatePieChartFreq(25, 50, 25);
             break;
         case "rbtnWoofer":
             speaker.setType(SourceType.LOW);
             this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCELOW);
+            this.controllerView.updatePieChartFreq(15, 10, 75);
             break;
         default:
             break;
