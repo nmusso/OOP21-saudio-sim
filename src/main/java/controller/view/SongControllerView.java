@@ -122,4 +122,9 @@ public class SongControllerView implements Initializable, ControllerView {
 
         updateComboBox();
     }
+    
+    public ComboBox<String> getCmbSongs() {
+        return cmbSongs;
+    }
+
 }

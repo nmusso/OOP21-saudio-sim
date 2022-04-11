@@ -88,4 +88,10 @@ public class SongController {
         final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
         sources.stopAll();
     }
+    
+    private int getSelectedID() {
+        final var combo = ctrlView.getCmbSongs();
+        final String id = Character.toString(combo.getSelectionModel().getSelectedItem().charAt(0));
+        return Integer.parseInt(id);
+    }
 }
