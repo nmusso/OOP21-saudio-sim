@@ -3,6 +3,8 @@ package controller.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.sound.sampled.AudioSystem;
+
 import controller.MainController;
 import controller.SourceController;
 
@@ -66,20 +68,20 @@ public class SourceControllerView implements Initializable, ControllerView {
      */
     public void setSelectedRadioButton(final String rbtToSelect) {
         switch (rbtToSelect) {
-            case "rbtnDefault":
-                rbtnDefault.setSelected(true);
-                break;
-            case "rbtnTweeter":
-                rbtnTweeter.setSelected(true);
-                break;
-            case "rbtnMidRange":
-                rbtnMidRange.setSelected(true);
-                break;
-            case "rbtnWoofer":
-                rbtnWoofer.setSelected(true);
-                break;
-            default:
-                break;
+        case "rbtnDefault":
+            rbtnDefault.setSelected(true);
+            break;
+        case "rbtnTweeter":
+            rbtnTweeter.setSelected(true);
+            break;
+        case "rbtnMidRange":
+            rbtnMidRange.setSelected(true);
+            break;
+        case "rbtnWoofer":
+            rbtnWoofer.setSelected(true);
+            break;
+        default:
+            break;
         }
     }
 

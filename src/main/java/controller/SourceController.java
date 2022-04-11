@@ -35,24 +35,24 @@ public class SourceController implements ControllerApplication<SourceControllerV
      */
     public void setSpeakerType(final FRSource speaker, final String type) {
         switch (type) {
-            case "rbtnDefault":
-                speaker.setType(SourceType.FULL);
-                this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCEFULL);
-                break;
-            case "rbtnTweeter":
-                speaker.setType(SourceType.HIGH);
-                this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCEHIGH);
-                break;
-            case "rbtnMidRange":
-                speaker.setType(SourceType.MID);
-                this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCEMID);
-                break;
-            case "rbtnWoofer":
-                speaker.setType(SourceType.LOW);
-                this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCELOW);
-                break;
-            default:
-                break;
+        case "rbtnDefault":
+            speaker.setType(SourceType.FULL);
+            this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCEFULL);
+            break;
+        case "rbtnTweeter":
+            speaker.setType(SourceType.HIGH);
+            this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCEHIGH);
+            break;
+        case "rbtnMidRange":
+            speaker.setType(SourceType.MID);
+            this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCEMID);
+            break;
+        case "rbtnWoofer":
+            speaker.setType(SourceType.LOW);
+            this.mainCtr.getEnvironmentController().upgradeSourceType(TypeSprite.SOURCELOW);
+            break;
+        default:
+            break;
         }
     }
 
