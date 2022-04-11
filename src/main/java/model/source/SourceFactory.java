@@ -2,6 +2,10 @@ package model.source;
 
 import model.utility.Vec3f;
 
+/**
+ * Factory for Sources and FRSources with param variation.
+ *
+ */
 public interface SourceFactory {
 
     /**

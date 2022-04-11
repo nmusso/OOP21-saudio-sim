@@ -4,6 +4,10 @@ import java.util.Set;
 
 import model.source.FRSource;
 
+/**
+ * Source Hub Factory
+ * Factory of SourcesHub.
+ */
 public interface SourcesHubFactory {
 
     /**

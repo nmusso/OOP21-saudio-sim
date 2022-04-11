@@ -6,6 +6,11 @@ import model.effect.ALEffects;
 import model.source.FRSource;
 import model.utility.Vec3f;
 
+/**
+ * Sources Hub
+ * Hub that gathers a group of Sources in it and that helps to manage this group as a whole.
+ *
+ */
 public interface SourcesHub {
 
     /**

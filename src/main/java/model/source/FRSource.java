@@ -1,5 +1,10 @@
 package model.source;
 
+/**
+ * Frequency Range Source
+ * Extension of Source that adds methods for manage the frequency range.
+ *
+ */
 public interface FRSource extends Source {
 
     /**

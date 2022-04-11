@@ -2,6 +2,11 @@ package model.source;
 
 import model.utility.Vec3f;
 
+/**
+ * Basic Source
+ * Source with fundamental methods.
+ *
+ */
 public interface Source {
 
 
