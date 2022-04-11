@@ -9,6 +9,7 @@ import controller.SongController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -20,6 +21,9 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class SongControllerView implements Initializable, ControllerView {
 
     private static final String SEP = System.getProperty("file.separator");
+    @FXML private Button btnPlay;
+    @FXML private Button btnPause;
+    @FXML private Button btnStop;
     @FXML private ComboBox<String> cmbSongs;
     private SongController ctrl;
 
@@ -69,6 +73,10 @@ public class SongControllerView implements Initializable, ControllerView {
         final String id = Character.toString(cmbSongs.getSelectionModel().getSelectedItem().charAt(0));
         final int bufferID = Integer.parseInt(id);
         ctrl.playSource(bufferID);
+
+        btnPlay.setDisable(true);
+        btnPause.setDisable(false);
+        btnStop.setDisable(false);
     }
 
     /**
@@ -78,6 +86,9 @@ public class SongControllerView implements Initializable, ControllerView {
     @FXML
     public final void handlePause(final Event event) {
         ctrl.pauseSource();
+        btnPlay.setDisable(false);
+        btnPause.setDisable(true);
+        btnStop.setDisable(false);
     }
 
     /**
@@ -87,6 +98,9 @@ public class SongControllerView implements Initializable, ControllerView {
     @FXML
     public final void handleStop(final Event event) {
         ctrl.stopSource();
+        btnPlay.setDisable(false);
+        btnPause.setDisable(true);
+        btnStop.setDisable(true);
     }
 
     /**

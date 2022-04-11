@@ -29,8 +29,8 @@
               </rowConstraints>
                <children>
                   <Button fx:id="btnPlay" alignment="CENTER" mnemonicParsing="false" onAction="#handlePlay" text="PLAY" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                  <Button fx:id="btnPause" alignment="CENTER" mnemonicParsing="false" onAction="#handlePause" text="PAUSE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                  <Button fx:id="btnStop" alignment="CENTER" mnemonicParsing="false" onAction="#handleStop" text="STOP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Button fx:id="btnPause" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handlePause" text="PAUSE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Button fx:id="btnStop" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleStop" text="STOP" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                </children>
             </GridPane>
             <GridPane GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
