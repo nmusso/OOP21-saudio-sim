@@ -33,17 +33,6 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="dropplerPluginTab" text="DropplerPlugin">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="96.0" layoutY="21.0" text="Velocity" />
-                        <Label layoutX="38.0" layoutY="50.0" text="X :" />
-                        <Label layoutX="70.0" layoutY="50.0" text="3m/s" />
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
         </tabs>
       </TabPane>
    </children>
