@@ -40,7 +40,7 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
         this.type = type;
 
         if (type.equals(SourceType.FULL)) {
-            this.filter.removeFilter(this);
+            //this.filter.removeFilter(this);
         } else {
             this.filter.applyFilter(this, type);
         }

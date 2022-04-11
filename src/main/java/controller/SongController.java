@@ -89,7 +89,7 @@ public class SongController {
         sources.stopAll();
     }
     
-    private int getSelectedID() {
+    public int getSelectedID() {
         final var combo = ctrlView.getCmbSongs();
         final String id = Character.toString(combo.getSelectionModel().getSelectedItem().charAt(0));
         return Integer.parseInt(id);

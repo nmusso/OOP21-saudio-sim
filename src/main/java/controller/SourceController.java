@@ -64,7 +64,9 @@ public class SourceController {
      */
     public void addSpeaker() {
         var sf = new SourceFactoryImpl();
-        this.mainCtr.getEnvironmentController().addSourcetoSourceHub(sf.createFreqRangeSource(SourceType.FULL), TypeSprite.SOURCEFULL);
+        var source = sf.createFreqRangeSource(SourceType.FULL);
+        source.generateSource(mainCtr.getSongController().getSelectedID());
+        this.mainCtr.getEnvironmentController().addSourcetoSourceHub(source , TypeSprite.SOURCEFULL);
     }
 
 }
