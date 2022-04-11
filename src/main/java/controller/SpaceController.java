@@ -9,14 +9,6 @@ public class SpaceController {
 
     public SpaceController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
-    }    
-    
-    public SpaceControllerView getCtrlView() {
-        return ctrlView;
-    }
-
-    public MainController getMainCtr() {
-        return mainCtr;
     }
 
     /**
@@ -25,6 +17,20 @@ public class SpaceController {
      */
     public void setControllerView(final SpaceControllerView controllerView) {
         ctrlView = controllerView;
+    }
+
+    /**
+     * 
+     */
+    public void setLenght(final double lenght) {
+        this.mainCtr.getEnvironmentController().setLenghtEnv(lenght);
+    }
+
+    /**
+     * 
+     */
+    public void setWidth(final double width) {
+        this.mainCtr.getEnvironmentController().setWidthEnv(width);
     }
 
 }

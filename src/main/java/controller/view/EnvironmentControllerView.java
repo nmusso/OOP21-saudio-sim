@@ -31,7 +31,7 @@ import view.utility.TypeSprite;
 import view.utility.Vector;
 
 public class EnvironmentControllerView implements Initializable, ControllerView {
-    
+
     private EnvironmentController ctrl;
     @FXML
     private Canvas canvas;
@@ -55,20 +55,36 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     //proporzioni TODO settarle da space controller
     private double lenght = 10;
     private double width = 10;
-    
+
+    /**
+     * 
+     * 
+     */
     public double getLenght() {
         return lenght;
     }
 
-    public void setLenght(double lenght) {
+    /**
+     * 
+     * 
+     */
+    public void setLenght(final double lenght) {
         this.lenght = lenght;
     }
 
+    /**
+     * 
+     * 
+     */
     public double getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
+    /**
+     * 
+     * 
+     */
+    public void setWidth(final double width) {
         this.width = width;
     }
 

@@ -10,21 +10,16 @@ public class EnvironmentController {
 
     private final MainController mainCtr;
     private EnvironmentControllerView ctrlView;
-    
-    public EnvironmentControllerView getCtrlView() {
-        return ctrlView;
-        
-    }
-
-    public MainController getMainCtr() {
-        return mainCtr;
-    }
 
     public EnvironmentController(final MainController mainCtr) {
         AudioManager.initContext();
         this.mainCtr = mainCtr;
     }
-    
+
+    /**
+     * 
+     * 
+     */
     public FRSource getSelectedSource() {
         //this.ctrlView.getLastSelect().getId();
         return null;
@@ -32,12 +27,24 @@ public class EnvironmentController {
 
     /**
      * 
-     * 
      */
     public void addEnvironment() {
     }
-    
-    
+
+    /**
+     * 
+     */
+    public void setLenghtEnv(final double length) {
+        this.ctrlView.setLenght(length);
+    }
+
+    /**
+     * 
+     */
+    public void setWidthEnv(final double width) {
+        this.ctrlView.setWidth(width);
+    }
+
     /**
      * 
      * @param controllerView

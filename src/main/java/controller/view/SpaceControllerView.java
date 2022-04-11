@@ -31,6 +31,9 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     private ComboBox<String> cmbPreset;
     private String selectedPreset;
 
+    /**
+     * 
+     */
     @Override
     public void setControllerApplication(final MainController ctrMain) {
         this.ctrl = ctrMain.getSpaceController();
@@ -68,12 +71,13 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     @FXML public final void handleClikSpnLenght(final Event event) {
         lenght = spnSizeLenght.getValue();
         System.out.println(lenght.toString() + "lenght");
-        //TODO bisonga che passi dai get dei controller
+        this.ctrl.setLenght(lenght);
     }
 
     @FXML public final void handleClikSpnWidth(final Event event) {
         width = spnSizeWidth.getValue();
         System.out.println(width.toString() + "Width");
+        this.ctrl.setWidth(width);
     }
 
     /**
