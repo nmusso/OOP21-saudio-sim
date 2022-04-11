@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 import controller.EnvironmentController;
 import controller.MainController;
@@ -16,15 +14,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import model.audiomanager.AudioManager;
-import model.source.Source;
-import model.source.SourceImpl;
 import model.utility.Pair;
 import model.utility.Vec3f;
 import view.utility.Rectangle;
@@ -48,11 +40,10 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     private Set<Sprite> sprites;
 
-    //proporzioni TODO settarle da space controller
     private double lenght = 10;
     private double width = 10;
 
-    //TODO temporaneee da controllare
+    // TODO temporaneee da controllare
     private double x;
     private double y;
 
@@ -63,10 +54,10 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         sprites = new HashSet<>();
+        contextView = canvas.getGraphicsContext2D();
+
         x = canvas.getHeight();
         y = canvas.getWidth();
-
-        contextView = canvas.getGraphicsContext2D();
 
         conteinerCanvas.widthProperty().addListener((obs, oldVal, newVal) -> {
             canvas.setWidth(newVal.doubleValue());
@@ -84,7 +75,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             y = newVal.doubleValue();
         });
 
-        //TODO AGGIUNGI LISTENER
+        // TODO AGGIUNGI LISTENER
         addSprite(TypeSprite.LISTENER, -1, new Vec3f(0.0f));
 
         // ascolta il drag
@@ -100,7 +91,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                     e.setVelocity(new Vector(0, 0));
                     e.getVelocity().multiply(1 / 60.0);
                 });
-                contextView.setFill(Color.WHITE);
+                contextView.setFill(Color.LIGHTGRAY);
                 contextView.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
                 sprites.stream().forEach(e -> {
@@ -108,7 +99,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 });
             }
         };
-
         musicLoop.start();
     }
 
@@ -124,8 +114,15 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             Pair<Double, Double> newPos = new Pair<>(
                     ((MouseEvent) event).getX() - (temp.get().getSize().getWidth() / 2),
                     ((MouseEvent) event).getY() - (temp.get().getSize().getHeight() / 2));
+            // CheckOutOfBorder
+            newPos = checkOutOfBorder(newPos, temp.get().getSize());
             temp.get().setPosition(newPos.getX(), newPos.getY());
-            final Pair<Float, Float> posFloat = new Pair<Float, Float>((float) ((width * newPos.getX()) /  canvas.getWidth()), (float) ((lenght * newPos.getY()) / canvas.getHeight()));
+
+            //positions for controller
+            //forse da mettere nel controller
+            final Pair<Float, Float> posFloat = new Pair<Float, Float>(
+                    (float) ((width * newPos.getX()) / canvas.getWidth()),
+                    (float) ((lenght * newPos.getY()) / canvas.getHeight()));
             if (temp.get().getSpriteType() == TypeSprite.LISTENER) {
                 listener = temp.get();
                 this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
@@ -134,8 +131,23 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 this.ctrl.lastSelectedSourceChange();
                 this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), lastSelectedSource.getId());
             }
-            //TODO Non puo uscire dalla canvas
         }
+    }
+
+    private Pair<Double, Double> checkOutOfBorder(final Pair<Double, Double> newPos, final Rectangle size) {
+        if (newPos.getX() > canvas.getWidth() - size.getWidth()) {
+            newPos.setX(canvas.getWidth() - size.getHeight());
+        }
+        if (newPos.getY() > canvas.getHeight() - size.getHeight()) {
+            newPos.setY(canvas.getHeight() - size.getHeight());
+        }
+        if (newPos.getX() < 0) {
+            newPos.setX(0.0);
+        }
+        if (newPos.getY() < 0) {
+            newPos.setY(0.0);
+        }
+        return newPos;
     }
 
     /**
@@ -144,9 +156,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     public void addSprite(/* type */ final TypeSprite type, final int id, final Vec3f pos) {
         final Sprite sprite = new Sprite(id);
         sprite.setSpriteType(type);
-
         sprite.setPosition((double) pos.getX(), (double) pos.getY());
-
         final Texture tx = new Texture(type.toString());
         sprite.setTexture(tx);
         sprite.draw(contextView);
@@ -198,6 +208,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     public int getLastSelectedSource() {
         return lastSelectedSource.getId();
     }
+
     /**
      * 
      */
@@ -213,5 +224,5 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     public void upgradeTypeSpriteSource(final TypeSprite type) {
         lastSelectedSource.setSpriteType(type);
     }
- 
+
 }
