@@ -2,13 +2,9 @@ package model.utility;
 
 public class Pair<X, Y> {
 
-<<<<<<< HEAD
+
     private X x;
     private Y y;
-=======
-    private final X x;
-    private final Y y;
->>>>>>> feat/listener_plugin
 
     public Pair(final X x, final Y y) {
             super();
@@ -16,7 +12,7 @@ public class Pair<X, Y> {
             this.y = y;
     }
 
-<<<<<<< HEAD
+
     /**
      * 
      * @return
@@ -37,29 +33,26 @@ public class Pair<X, Y> {
      * 
      * @return
      */
-=======
->>>>>>> feat/listener_plugin
+
+
     public X getX() {
             return x;
     }
 
-<<<<<<< HEAD
     /**
      * 
      * @return
      */
-=======
->>>>>>> feat/listener_plugin
+
     public Y getY() {
             return y;
     }
 
-<<<<<<< HEAD
+
     /**
      * 
      */
-=======
->>>>>>> feat/listener_plugin
+
     @Override
     public int hashCode() {
             final int prime = 31;
@@ -92,18 +85,12 @@ public class Pair<X, Y> {
             return true;
     }
 
+    /**
+     * 
+     */
     @Override
     public String toString() {
-<<<<<<< HEAD
-            return "Pair [x=" + x + ", y=" + y + "]";
+        return "Pair [x=" + x + ", y=" + y + "]";
     }
-
-
-
-=======
-            return "x: " + x + "; y: " + y;
-    }
-
-
->>>>>>> feat/listener_plugin
 }
+
