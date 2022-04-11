@@ -75,8 +75,8 @@ public class EqualizerControllerView implements Initializable, ControllerView {
             return Optional.of(ALEffects.ECHO);
         case "sldFlanger":
             return Optional.of(ALEffects.FLANGER);
-        case "sldPitch":
-            return Optional.of(ALEffects.PITCH);
+        case "sldAutowah":
+            return Optional.of(ALEffects.AUTOWAH);
         case "sldChorus":
             return Optional.of(ALEffects.CHORUS);
         default:
