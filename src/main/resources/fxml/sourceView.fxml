@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -32,6 +33,32 @@
               </rowConstraints>
                <children>
                   <Button fx:id="btnAddSpeaker" mnemonicParsing="false" onAction="#handleAddSpeaker" text="Button" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <GridPane GridPane.rowIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="X: " GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                        <Label fx:id="lblX" text="val" textFill="#feb007" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.rowIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="lblY" text="val" textFill="#feb007" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                        <Label text="Y: " GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="1">
@@ -64,7 +91,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="Button" GridPane.rowIndex="1" />
+                  <Button fx:id="btnRemoveSpeaker" mnemonicParsing="false" onAction="#handleRemoveSpeaker" text="Button" GridPane.rowIndex="1" />
                   <Pane fx:id="paneChart" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </GridPane>

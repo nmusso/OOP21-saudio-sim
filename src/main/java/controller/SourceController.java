@@ -56,7 +56,9 @@ public class SourceController {
      * @return
      */
     public FRSource getSelectedSpeaker() {
-        return mainCtr.getEnvironmentController().getSelectedSource();
+        var x = mainCtr.getEnvironmentController().getSelectedSource();
+        System.out.println(x);
+        return x;
     }
 
     /**
@@ -68,5 +70,8 @@ public class SourceController {
         source.generateSource(mainCtr.getSongController().getSelectedID());
         this.mainCtr.getEnvironmentController().addSourcetoSourceHub(source , TypeSprite.SOURCEFULL);
     }
+
+    
+    //TODO update X Y
 
 }
