@@ -1,7 +1,10 @@
 package controller;
 
 import controller.view.SourceControllerView;
+import javafx.collections.FXCollections;
+import javafx.scene.chart.PieChart;
 import model.source.FRSource;
+import model.source.FRSourceImpl;
 import model.source.SourceType;
 
 public class SourceController {
@@ -28,20 +31,20 @@ public class SourceController {
      */
     public void setSpeakerType(final FRSource speaker, final String type) {
         switch (type) {
-        case "rbtnDefault":
-            speaker.setType(SourceType.FULL);
-            break;
-        case "rbtnTweeter":
-            speaker.setType(SourceType.HIGH);
-            break;
-        case "rbtnMidRange":
-            speaker.setType(SourceType.MID);
-            break;
-        case "rbtnWoofer":
-            speaker.setType(SourceType.LOW);
-            break;
-        default:
-            break;
+            case "rbtnDefault":
+                speaker.setType(SourceType.FULL);
+                break;
+            case "rbtnTweeter":
+                speaker.setType(SourceType.HIGH);
+                break;
+            case "rbtnMidRange":
+                speaker.setType(SourceType.MID);
+                break;
+            case "rbtnWoofer":
+                speaker.setType(SourceType.LOW);
+                break;
+            default:
+                break;
         }
     }
 
