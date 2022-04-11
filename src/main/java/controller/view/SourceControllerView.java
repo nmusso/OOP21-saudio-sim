@@ -44,15 +44,11 @@ public class SourceControllerView implements Initializable, ControllerView {
     @FXML 
     private void handleAddSpeaker(final Event event) {
         this.ctrSource.addSpeaker();
-
     }
 
     @FXML 
     private void handleRemoveSpeaker(final Event event) {
-       // FRSource speaker = this.getSelectedSpeaker();
-
-        //TODO Remove speaker from SourceHub in Environment
-
+        this.ctrSource.removeSpeaker();
     }
 
     @FXML 
@@ -61,10 +57,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     private FRSource getSelectedSpeaker() {
-        FRSource selected = this.ctrSource.getSelectedSpeaker();
-        lblX.setText(Float.toString(selected.getPosition().getX()));
-        lblY.setText(Float.toString(selected.getPosition().getY()));
-        return selected;
+        return this.ctrSource.getSelectedSpeaker();
     }
 
     /**
@@ -93,9 +86,26 @@ public class SourceControllerView implements Initializable, ControllerView {
     /**
      * 
      */
-    public void setSelectedSpeaker() {
-        //TODO
-        this.getSelectedSpeaker();
+    public void updateSelectedSpeaker() {
+        lblX.setText(Float.toString(this.getSelectedSpeaker().getPosition().getX()));
+        lblY.setText(Float.toString(this.getSelectedSpeaker().getPosition().getY()));
+
+        switch (this.getSelectedSpeaker().getType()) {
+        case FULL:
+            this.setSelectedRadioButton("rbtnDefault");
+            break;
+        case HIGH:
+            this.setSelectedRadioButton("rbtnTweeter");
+            break;
+        case MID:
+            this.setSelectedRadioButton("rbtnMidRange");
+            break;
+        case LOW:
+            this.setSelectedRadioButton("rbtnWoofer");
+            break;
+        default:
+            break;
+        }
     }
 
 }

@@ -32,7 +32,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnAddSpeaker" mnemonicParsing="false" onAction="#handleAddSpeaker" text="Button" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="btnAddSpeaker" mnemonicParsing="false" onAction="#handleAddSpeaker" text="Add Speaker" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                   <GridPane GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -91,7 +91,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnRemoveSpeaker" mnemonicParsing="false" onAction="#handleRemoveSpeaker" text="Button" GridPane.rowIndex="1" />
+                  <Button fx:id="btnRemoveSpeaker" mnemonicParsing="false" onAction="#handleRemoveSpeaker" text="Delete" GridPane.rowIndex="1" />
                   <Pane fx:id="paneChart" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </GridPane>

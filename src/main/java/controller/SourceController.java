@@ -10,7 +10,7 @@ import model.source.SourceFactoryImpl;
 import model.source.SourceType;
 import view.utility.TypeSprite;
 
-public class SourceController {
+public class SourceController implements ControllerApplication<SourceControllerView> {
 
     private final MainController mainCtr;
     private SourceControllerView controllerView;
@@ -54,7 +54,6 @@ public class SourceController {
             default:
                 break;
         }
-        //change TypeSprite
     }
 
     /**
@@ -62,22 +61,6 @@ public class SourceController {
      * @return
      */
     public FRSource getSelectedSpeaker() {
-        switch (this.selectedSource.getType()) {
-            case FULL:
-                controllerView.setSelectedRadioButton("rbtnDefault");
-                break;
-            case HIGH:
-                controllerView.setSelectedRadioButton("rbtnTweeter");
-                break;
-            case MID:
-                controllerView.setSelectedRadioButton("rbtnMidRange");
-                break;
-            case LOW:
-                controllerView.setSelectedRadioButton("rbtnWoofer");
-                break;
-            default:
-                break;
-            }
         return this.selectedSource;
     }
 
@@ -85,10 +68,18 @@ public class SourceController {
      * 
      */
     public void addSpeaker() {
+        // TODO clean
         var sf = new SourceFactoryImpl();
         var source = sf.createFreqRangeSource(SourceType.FULL);
         source.generateSource(mainCtr.getSongController().getSelectedID());
-        this.mainCtr.getEnvironmentController().addSourcetoSourceHub(source , TypeSprite.SOURCEFULL);
+        this.mainCtr.getEnvironmentController().addSourcetoSourceHub(source, TypeSprite.SOURCEFULL);
+    }
+
+    /**
+     * 
+     */
+    public void removeSpeaker() {
+        this.mainCtr.getEnvironmentController().removeSource(this.selectedSource);
     }
 
     /**
@@ -96,11 +87,7 @@ public class SourceController {
      */
     public void changeSelectedSource() {
         this.selectedSource = mainCtr.getEnvironmentController().getSelectedSource();
-        this.controllerView.setSelectedSpeaker();
-        //TODO
+        this.controllerView.updateSelectedSpeaker();
     }
-
-
-    //TODO update X Y
 
 }
