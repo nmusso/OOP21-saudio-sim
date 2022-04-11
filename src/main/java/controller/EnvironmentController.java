@@ -50,6 +50,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      */
     public void removeSource(final FRSource source) {
         this.env.removeSourceFromSourceHub(source);
+        source.delete();
         this.ctrlView.removeSpriteSource();
     }
 
