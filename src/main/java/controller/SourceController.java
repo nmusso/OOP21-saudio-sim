@@ -5,7 +5,9 @@ import javafx.collections.FXCollections;
 import javafx.scene.chart.PieChart;
 import model.source.FRSource;
 import model.source.FRSourceImpl;
+import model.source.SourceFactoryImpl;
 import model.source.SourceType;
+import view.utility.TypeSprite;
 
 public class SourceController {
 
@@ -46,6 +48,7 @@ public class SourceController {
             default:
                 break;
         }
+        //change TypeSprite
     }
 
     /**
@@ -56,5 +59,12 @@ public class SourceController {
         return mainCtr.getEnvironmentController().getSelectedSource();
     }
 
+    /**
+     * 
+     */
+    public void addSpeaker() {
+        var sf = new SourceFactoryImpl();
+        this.mainCtr.getEnvironmentController().addSourcetoSourceHub(sf.createFreqRangeSource(SourceType.FULL), TypeSprite.SOURCEFULL);
+    }
 
 }

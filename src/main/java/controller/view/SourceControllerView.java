@@ -51,7 +51,7 @@ public class SourceControllerView implements Initializable, ControllerView {
 
     @FXML private void handleAddSpeaker(final Event event) {
         //TODO Add speaker from SourceHub in Environment
-
+        this.ctrSource.addSpeaker();
     }
 
     @FXML private void handleRemoveSpeaker(final Event event) {
