@@ -53,14 +53,21 @@ public class ListenerControllerView implements Initializable, ControllerView {
 
     /*TODO review getText is ""*/
     @FXML public final void handleAddPlugin(final Event event) throws ClassNotFoundException {
-        final Optional<Pair<Tab, ControllerView>> plugin = PageLoader.getPage(FXML_PATH + splitMenuPlugin.getText() + ".fxml");
-        listenerPane.getTabs().add(plugin.get().getX());
+        final String pluginName = this.splitMenuPlugin.getText();
 
-        splitMenuPlugin.setText("");
+        this.ctrListener.createPluginController(pluginName);
+        this.splitMenuPlugin.setText("");
     }
 
     @FXML public final void handleSelectPlugin(final Event event) {
 
+    }
+
+    /**
+     * 
+     */
+    public void setTabPlugin(final Tab tab) {
+        this.listenerPane.getTabs().add(tab);
     }
 
     /**
