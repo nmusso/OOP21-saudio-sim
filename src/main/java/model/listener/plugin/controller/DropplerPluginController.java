@@ -10,12 +10,13 @@ import model.listener.plugin.view.DropplerPluginControllerView;
 import model.listener.plugin.view.utility.PluginViewLoader;
 
 public class DropplerPluginController implements ControllerPlugin {
+    private static final String FXML_VIEW_PATH = "src/main/resources/fxml/DropplerPlugin.fxml";
     private final DropplerPluginControllerView controllerView;
     private final Listener listener;
     private final MainController mainController;
 
-    public DropplerPluginController(final Listener listener, final MainController mainController, final ListenerControllerView listenerView ) throws ClassNotFoundException {
-        final Optional<DropplerPluginControllerView> temp = PluginViewLoader.tabPluginLoader("src/main/resources/fxml/DropplerPlugin.fxml");
+    public DropplerPluginController(final Listener listener, final MainController mainController, final ListenerControllerView listenerView) throws ClassNotFoundException {
+        final Optional<DropplerPluginControllerView> temp = PluginViewLoader.tabPluginLoader(FXML_VIEW_PATH);
 
         if (temp.isEmpty()) {
             throw new ClassNotFoundException();
