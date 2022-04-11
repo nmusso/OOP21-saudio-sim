@@ -196,7 +196,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      * 
      */
     public int getLastSelectedSource() {
-        System.out.println(lastSelectedSource.getSpriteType());
         return lastSelectedSource.getId();
     }
     /**

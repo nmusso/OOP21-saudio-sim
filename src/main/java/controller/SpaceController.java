@@ -2,7 +2,7 @@ package controller;
 
 import controller.view.SpaceControllerView;
 
-public class SpaceController {
+public class SpaceController implements ControllerApplication<SpaceControllerView> {
 
     private final MainController mainCtr;
     private SpaceControllerView ctrlView;

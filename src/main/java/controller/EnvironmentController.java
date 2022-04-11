@@ -9,7 +9,7 @@ import model.source.FRSource;
 import model.utility.Vec3f;
 import view.utility.TypeSprite;
 
-public class EnvironmentController {
+public class EnvironmentController implements ControllerApplication<EnvironmentControllerView>{
 
     private final MainController mainCtr;
     private EnvironmentControllerView ctrlView;
