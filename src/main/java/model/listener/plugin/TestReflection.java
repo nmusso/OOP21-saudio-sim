@@ -19,8 +19,8 @@ final class TestReflection {
         Object s = null;
 
         try {
-            m = plugin.getClass().getMethod("setParameters", Parameters.class);
-            m.invoke(plugin, new Parameters());
+            //m = plugin.getClass().getMethod("setParameters", Parameters.class);
+            //m.invoke(plugin, new Parameters());
 
             m = plugin.getClass().getMethod("getDropplerLv");
             s = m.invoke(plugin);

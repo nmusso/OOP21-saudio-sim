@@ -1,7 +1,6 @@
 package model.listener.plugin;
 
-import java.util.Optional;
-import model.utility.Vec3f;
+
 
 
 public interface Plugin {
@@ -22,31 +21,5 @@ public interface Plugin {
      * @return the state of activity of the plug-in
      */
     Boolean isEnabled();
-
-    /**
-     * 
-     * @return the type of the plug-in
-     */
-    PluginType getType();
-
-    /**
-     * 
-     * @param value
-     */
-    void setParameters(Parameters value);
-
-    /**
-     * 
-     * @param type
-     * @return
-     */
-    Optional<Vec3f> getVectValue(ParameterType type);
-
-    /**
-     * 
-     * @param type
-     * @return
-     */
-    Optional<Float> getFloatValue(ParameterType type);
 
 }
