@@ -10,7 +10,7 @@ import javafx.scene.control.Tab;
 import model.listener.plugin.controller.DropplerPluginController;
 
 public class DropplerPluginControllerView implements Initializable, ControllerPluginView<DropplerPluginController>  {
-    @FXML private Tab pluginTab;
+    @FXML private Tab dropplerPluginTab;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -29,7 +29,7 @@ public class DropplerPluginControllerView implements Initializable, ControllerPl
      */
     @Override
     public void setListenerControllerView(final ListenerControllerView c) {
-        c.setTabPlugin(this.pluginTab);
+        c.setTabPlugin(this.dropplerPluginTab);
     }
 
 }
