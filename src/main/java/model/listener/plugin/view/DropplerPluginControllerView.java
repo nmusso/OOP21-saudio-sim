@@ -3,6 +3,7 @@ package model.listener.plugin.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.view.ListenerControllerView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Tab;
@@ -22,9 +23,12 @@ public class DropplerPluginControllerView implements Initializable, ControllerPl
 
 
 
+    /**
+     * 
+     * @param c
+     */
     @Override
-    public void setListenerControllerView() {
-        // TODO Auto-generated method stub
-        //TODO add parameter
+    public void setListenerControllerView(final ListenerControllerView c) {
+        c.setTabPlugin(this.pluginTab);
     }
 }
