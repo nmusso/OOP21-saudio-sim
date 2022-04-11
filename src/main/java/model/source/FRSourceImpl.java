@@ -23,6 +23,8 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
         filter = new FilterImpl();
         if (!type.equals(SourceType.FULL)) {
             this.setType(type);
+        } else {
+            this.type = SourceType.FULL;
         }
     }
 
