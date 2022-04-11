@@ -9,6 +9,7 @@ import static org.lwjgl.openal.EXTEfx.alGenAuxiliaryEffectSlots;
 import static org.lwjgl.openal.EXTEfx.alGenEffects;
 
 import java.nio.IntBuffer;
+import java.util.Arrays;
 
 import model.source.Source;
 
@@ -20,12 +21,12 @@ public abstract class AbstractEffect implements Effect {
     /**
      * Buffer containing slots attributes.
      */
-    private IntBuffer slot;
+    private int[] slot = new int[1];
 
     /**
      * Buffer containing effect attributes.
      */
-    private IntBuffer effect;
+    private int[] effect = new int[1];
 
     /**
      * Set the effect in the slot on the source.
@@ -42,8 +43,6 @@ public abstract class AbstractEffect implements Effect {
      * Initialise the slot and effect buffers.
      */
     protected final void initEffectBuffer() {
-        slot = IntBuffer.allocate(1);
-        effect = IntBuffer.allocate(1);
 
         alGenAuxiliaryEffectSlots(slot);
         alGenEffects(effect);
@@ -52,14 +51,14 @@ public abstract class AbstractEffect implements Effect {
     /**
      * @return {@link AbstractEffect#slot}.
      */
-    protected IntBuffer getSlot() {
-        return slot;
+    protected int[] getSlot() {
+        return Arrays.copyOf(slot, 1);
     }
 
     /**
      * @return {@link AbstractEffect#effect}.
      */
-    protected IntBuffer getEffect() {
-        return effect;
+    protected int[] getEffect() {
+        return Arrays.copyOf(effect, 1);
     }
 }

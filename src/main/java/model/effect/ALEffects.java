@@ -5,9 +5,6 @@ import static org.lwjgl.openal.EXTEfx.AL_CHORUS_DELAY;
 import static org.lwjgl.openal.EXTEfx.AL_CHORUS_MIN_DELAY;
 import static org.lwjgl.openal.EXTEfx.AL_CHORUS_MAX_DELAY;
 import static org.lwjgl.openal.EXTEfx.AL_EFFECT_DISTORTION;
-import static org.lwjgl.openal.EXTEfx.AL_DISTORTION_EDGE;
-import static org.lwjgl.openal.EXTEfx.AL_DISTORTION_MIN_EDGE;
-import static org.lwjgl.openal.EXTEfx.AL_DISTORTION_MAX_EDGE;
 import static org.lwjgl.openal.EXTEfx.AL_EFFECT_ECHO;
 import static org.lwjgl.openal.EXTEfx.AL_ECHO_DELAY;
 import static org.lwjgl.openal.EXTEfx.AL_ECHO_MIN_DELAY;
@@ -34,10 +31,6 @@ public enum ALEffects {
      * Chorus effect.
      */
     CHORUS(AL_EFFECT_CHORUS, AL_CHORUS_DELAY, AL_CHORUS_MIN_DELAY, AL_CHORUS_MAX_DELAY), 
-    /**
-     * Distortion effect.
-     */
-    DISTORTION(AL_EFFECT_DISTORTION, AL_DISTORTION_EDGE, AL_DISTORTION_MIN_EDGE, AL_DISTORTION_MAX_EDGE), 
     /**
      * Echo effect.
      */

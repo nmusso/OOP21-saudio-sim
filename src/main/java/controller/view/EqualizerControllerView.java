@@ -71,8 +71,6 @@ public class EqualizerControllerView implements Initializable, ControllerView {
         switch (id) {
         case "sldReverb":
             return Optional.of(ALEffects.REVERB);
-        case "sldDistortion":
-            return Optional.of(ALEffects.DISTORTION);
         case "sldEcho":
             return Optional.of(ALEffects.ECHO);
         case "sldFlanger":

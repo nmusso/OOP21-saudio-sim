@@ -19,8 +19,8 @@ public class EffectImpl extends AbstractEffect {
     @Override
     public void apply(final ALEffects alEffect, final Source source, final float val) {
         initEffectBuffer();
-        final int effect = getEffect().get(0);
-        final int slot = getSlot().get(0);
+        final int effect = getEffect()[0];
+        final int slot = getSlot()[0];
 
         alEffecti(effect, AL_EFFECT_TYPE, alEffect.getEffect());
         alEffectf(effect, alEffect.getAttribute(), val);
@@ -38,9 +38,9 @@ public class EffectImpl extends AbstractEffect {
         final var effect = getEffect();
         final var slot = getSlot();
 
-        alEffecti(effect.get(0), AL_EFFECT_TYPE, AL_EFFECT_NULL);
-        alAuxiliaryEffectSloti(slot.get(0), AL_EFFECTSLOT_EFFECT, effect.get(0));
+        alEffecti(effect[0], AL_EFFECT_TYPE, AL_EFFECT_NULL);
+        alAuxiliaryEffectSloti(slot[0], AL_EFFECTSLOT_EFFECT, effect[0]);
 
-        setOnSource(source, slot.get(0), alEffect.ordinal());
+        setOnSource(source, slot[0], alEffect.ordinal());
     }
 }

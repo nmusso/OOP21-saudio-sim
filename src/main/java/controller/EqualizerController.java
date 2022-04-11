@@ -34,13 +34,15 @@ public class EqualizerController {
      * @param effect  the effect
      */
     public void applyEffect(final float val, final ALEffects effect) {
-
+        final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        sources.applyFilter(effect, val);
     }
 
     /**
      * Remove all the effects from all the sources.
      */
     public void removeEffect() {
-
+        final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        //sources.removeFilter(effect);
     }
 }
