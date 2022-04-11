@@ -14,10 +14,10 @@ public class MainController {
 
 
     public MainController() {
+        this.ctrEnvironment = new EnvironmentController(this);
         this.ctrSource = new SourceController(this);
         this.ctrListener = new ListenerController(this);
         this.ctrEqualizer = new EqualizerController(this);
-        this.ctrEnvironment = new EnvironmentController(this);
         this.ctrSong = new SongController(this);
         this.ctrSpace = new SpaceController(this);
     }
