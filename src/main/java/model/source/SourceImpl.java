@@ -8,6 +8,7 @@ import static javax.sound.sampled.AudioSystem.*;
 import java.io.*;
 import javax.sound.sampled.*;
 import java.nio.*;
+import java.util.Objects;
 
 
 public class SourceImpl implements Source {
@@ -100,6 +101,32 @@ public class SourceImpl implements Source {
     @Override
     public void delete() {
         alDeleteSources(this.id);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, isPlaying, position);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        SourceImpl other = (SourceImpl) obj;
+        return Objects.equals(id, other.id) && isPlaying == other.isPlaying && Objects.equals(position, other.position);
     }
 
 }
