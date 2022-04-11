@@ -82,12 +82,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
         contextView = canvas.getGraphicsContext2D();
 
-        // TODO Metterci lo spriteType
-        addSprite(TypeSprite.LISTENER,0);
-//        addSprite(TypeSprite.SOURCEFULL);
-//        addSprite(TypeSprite.SOURCEMID);
-
-
         // ascolta il drag
         canvas.setOnMouseDragged(event -> {
             moveSprite(event);
@@ -115,7 +109,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
-     * 
      */
     private void moveSprite(final Event event) {
         final Optional<Sprite> temp = sprites.stream()
@@ -135,21 +128,18 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 lastSelectedSource = temp.get();
                 this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), lastSelectedSource.getId());
             }
-            System.out.println("le posiizone n una base 10x10 (" +
-            posFloat.getX() + " - " + posFloat.getY() + ")");
             //TODO Non puo uscire dalla canvas
         }
     }
 
     /**
      * 
-     * 
      */
-    public void addSprite(/* type */ final TypeSprite type, final int id) {
+    public void addSprite(/* type */ final TypeSprite type, final int id, final Vec3f pos) {
         final Sprite sprite = new Sprite(id);
         sprite.setSpriteType(type);
 
-        sprite.setPosition(200, 200);
+        sprite.setPosition(pos.getX(), pos.getY());
 
         final Texture tx = new Texture(type.toString());
         sprite.setTexture(tx);
@@ -158,7 +148,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     }
 
     /**
-     * 
      * 
      */
     @Override
@@ -169,14 +158,12 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
-     * 
      */
     public double getLenght() {
         return lenght;
     }
 
     /**
-     * 
      * 
      */
     public void setLenght(final double lenght) {
@@ -193,7 +180,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
-     * 
      */
     public void setWidth(final double width) {
         this.width = width;
@@ -205,6 +191,12 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      */
     public int getLastSelectedSource() {
         return lastSelectedSource.getId();
+    }
+    /**
+     * 
+     */
+    public void removeSpriteSource() {
+        sprites.remove(lastSelectedSource);
     }
  
 }

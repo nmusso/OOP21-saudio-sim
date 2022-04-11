@@ -28,8 +28,7 @@ public class EnvironmentController {
      * 
      */
     public FRSource getSelectedSource() {
-        //this.ctrlView.getLastSelect().getId();
-        return null;
+        return this.env.getSourceHub().getSource(this.ctrlView.getLastSelectedSource());
     }
 
     /**
@@ -44,7 +43,15 @@ public class EnvironmentController {
      */
     public void addSourcetoSourceHub(final FRSource source, final TypeSprite type) {
         this.env.addSourceToSourceHub(source);
-        this.ctrlView.addSprite(type, source.getId());
+        this.ctrlView.addSprite(type, source.getId(), source.getPosition());
+    }
+
+    /**
+     * 
+     */
+    public void removeSource(final FRSource source) {
+        this.env.removeSourceFromSourceHub(source);
+        this.ctrlView.removeSpriteSource();
     }
 
     /**
@@ -55,7 +62,7 @@ public class EnvironmentController {
     }
 
     /**
-     * 
+     *
      */
     public void moveListener(final Vec3f pos) {
         this.env.getListener().setPosition(pos);
@@ -71,6 +78,7 @@ public class EnvironmentController {
      * 
      */
     public void setLenghtEnv(final double length) {
+        //TODO come utiilzzare lo space
         this.ctrlView.setLenght(length);
     }
 
@@ -78,6 +86,7 @@ public class EnvironmentController {
      * 
      */
     public void setWidthEnv(final double width) {
+      //TODO come utiilzzare lo space
         this.ctrlView.setWidth(width);
     }
 
@@ -88,5 +97,4 @@ public class EnvironmentController {
     public void setControllerView(final EnvironmentControllerView controllerView) {
         ctrlView = controllerView;
     }
-
 }
