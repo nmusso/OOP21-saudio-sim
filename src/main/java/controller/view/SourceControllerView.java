@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import model.source.FRSource;
+import model.source.SourceType;
 
 public class SourceControllerView implements Initializable, ControllerView {
 
@@ -52,7 +53,6 @@ public class SourceControllerView implements Initializable, ControllerView {
 
         //TODO Remove speaker from SourceHub in Environment
 
-        this.getSelectedSpeaker();
     }
 
     @FXML 
@@ -65,6 +65,37 @@ public class SourceControllerView implements Initializable, ControllerView {
         lblX.setText(Float.toString(selected.getPosition().getX()));
         lblY.setText(Float.toString(selected.getPosition().getY()));
         return selected;
+    }
+
+    /**
+     * 
+     * @param rbtToSelect
+     */
+    public void setSelectedRadioButton(final String rbtToSelect) {
+        switch (rbtToSelect) {
+            case "rbtnDefault":
+                rbtnDefault.setSelected(true);
+                break;
+            case "rbtnTweeter":
+                rbtnTweeter.setSelected(true);
+                break;
+            case "rbtnMidRange":
+                rbtnMidRange.setSelected(true);
+                break;
+            case "rbtnWoofer":
+                rbtnWoofer.setSelected(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * 
+     */
+    public void setSelectedSpeaker() {
+        //TODO
+        this.getSelectedSpeaker();
     }
 
 }

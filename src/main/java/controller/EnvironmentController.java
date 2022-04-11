@@ -108,7 +108,7 @@ public class EnvironmentController {
      * 
      */
     public void lastSelectedSourceChange() {
-        this.mainCtr.getSourceController().ChangeSelectedSource();
+        this.mainCtr.getSourceController().changeSelectedSource();
     }
 
 }
