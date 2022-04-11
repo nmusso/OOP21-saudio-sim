@@ -2,13 +2,29 @@ package model.utility;
 
 public class Pair<X, Y> {
 
-    private final X x;
-    private final Y y;
+    private X x;
+    private Y y;
 
     public Pair(final X x, final Y y) {
             super();
             this.x = x;
             this.y = y;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public void setX(final X x) {
+        this.x = x;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public void setY(final Y y) {
+        this.y = y;
     }
 
     /**

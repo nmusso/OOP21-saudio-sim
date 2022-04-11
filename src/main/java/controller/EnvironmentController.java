@@ -1,4 +1,4 @@
-package controller;
+    package controller;
 
 import controller.view.EnvironmentControllerView;
 import model.audiomanager.AudioManager;
@@ -9,7 +9,7 @@ import model.source.FRSource;
 import model.utility.Vec3f;
 import view.utility.TypeSprite;
 
-public class EnvironmentController implements ControllerApplication<EnvironmentControllerView>{
+public class EnvironmentController implements ControllerApplication<EnvironmentControllerView> {
 
     private final MainController mainCtr;
     private EnvironmentControllerView ctrlView;
@@ -78,7 +78,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      * 
      */
     public void setLenghtEnv(final double length) {
-        //TODO come utiilzzare lo space
+        //TODO come utilizzare lo space
         this.ctrlView.setLenght(length);
     }
 
@@ -86,7 +86,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      * 
      */
     public void setWidthEnv(final double width) {
-      //TODO come utiilzzare lo space
+      //TODO come utilizzare lo space
         this.ctrlView.setWidth(width);
     }
 
