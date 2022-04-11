@@ -64,6 +64,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         x = canvas.getHeight();
         y = canvas.getWidth();
 
+        //TODO AGGIUNGI LISTENER
+        addSprite(TypeSprite.LISTENER, 0, new Vec3f(0.0f));
+
         conteinerCanvas.widthProperty().addListener((obs, oldVal, newVal) -> {
             canvas.setWidth(newVal.doubleValue());
             sprites.forEach(e -> {
