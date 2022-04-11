@@ -43,6 +43,6 @@ public class EqualizerController {
      */
     public void removeEffect() {
         final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
-        //sources.removeFilter(effect);
+        ALEffects.getValuesAsList().forEach(effect -> sources.removeFilter(effect));
     }
 }

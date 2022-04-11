@@ -19,6 +19,10 @@ import static org.lwjgl.openal.EXTEfx.AL_AUTOWAH_MAX_ATTACK_TIME;
 import static org.lwjgl.openal.EXTEfx.AL_EFFECT_REVERB;
 import static org.lwjgl.openal.EXTEfx.AL_REVERB_DENSITY;
 import static org.lwjgl.openal.EXTEfx.AL_REVERB_MIN_DENSITY;
+
+import java.util.Arrays;
+import java.util.List;
+
 import static org.lwjgl.openal.EXTEfx.AL_REVERB_MAX_DENSITY;
 
 /**
@@ -96,5 +100,13 @@ public enum ALEffects {
      */
     public float getMaxValue() {
         return maxValue;
+    }
+
+    /**
+     * Convert the array of values in list.
+     * @return the list
+     */
+    public static List<ALEffects> getValuesAsList() {
+        return Arrays.asList(ALEffects.values());
     }
 }
