@@ -45,7 +45,7 @@ public interface Source {
      * @param buffer
      * @return this
      */
-    Source generateSource(int buffer);
+    void generateSource(int buffer);
 
     /**
      * Sets the position of the Source.
