@@ -31,4 +31,5 @@ public class DropplerPluginControllerView implements Initializable, ControllerPl
     public void setListenerControllerView(final ListenerControllerView c) {
         c.setTabPlugin(this.pluginTab);
     }
+
 }
