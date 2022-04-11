@@ -68,21 +68,24 @@ public class SongController {
      * @param id  the id of the buffer
      */
     public void playSource(final int bufferID) {
-        final Buffer buf = BufferCache.INSTANCE.getBufferFromID(bufferID);
-        // TODO questo è il buffer che serve per le source, già testato il corretto funzionamento
+        final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        sources.generateAllSources(bufferID);
+        sources.playAll();
     }
 
     /**
      * Pause all the sources.
      */
     public void pauseSource() {
-        // TODO
+        final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        sources.pauseAll();
     }
 
     /**
      * Stop all the sources.
      */
     public void stopSource() {
-        // TODO
+        final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        sources.stopAll();
     }
 }
