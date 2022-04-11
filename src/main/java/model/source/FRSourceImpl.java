@@ -20,8 +20,8 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
     }
 
     private void initFilterAndType(final SourceType type) {
-        this.setType(type);
         filter = new FilterImpl();
+        this.setType(type);
     }
 
     /**
