@@ -56,7 +56,7 @@ public class FilterImpl extends AbstractFilter {
     @Override
     public void removeFilter(final Source source) {
         initFilterBuffer();
-        final int filter = getFilter().get(0);
+        final int filter = getFilter()[0];
 
         alFilteri(filter, AL_FILTER_TYPE, AL_FILTER_NULL);
 
@@ -71,7 +71,7 @@ public class FilterImpl extends AbstractFilter {
      * @param value  the value for the filter, got from interface
      */
     private void apply(final Source source, final int type, final List<Integer> attributes, final float value) {
-        final int filter = getFilter().get(0);
+        final int filter = getFilter()[0];
         alFilteri(filter, AL_FILTER_TYPE, type);
 
         for (final int attr : attributes) {

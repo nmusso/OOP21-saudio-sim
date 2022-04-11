@@ -10,6 +10,7 @@ import static org.lwjgl.openal.EXTEfx.AL_AUXILIARY_SEND_FILTER;
 import static org.lwjgl.openal.EXTEfx.AL_EFFECT_NULL;
 
 import java.nio.IntBuffer;
+import java.util.Arrays;
 
 /**
  * Abstract class for Filter, with methods which cannot be overrided.
@@ -19,7 +20,7 @@ public abstract class AbstractFilter implements Filter {
     /**
      * Buffer containing slots attributes.
      */
-    private IntBuffer filter;
+    private int[] filter = new int[1];
 
     /**
      * Apply the filter on the source.
@@ -34,15 +35,13 @@ public abstract class AbstractFilter implements Filter {
      * Initialise the filter buffers.
      */
     protected final void initFilterBuffer() {
-        filter = IntBuffer.allocate(1);
-
         alGenFilters(filter);
     }
 
     /**
      * @return {@link AbstractFilter#filter}.
      */
-    public IntBuffer getFilter() {
-        return filter;
+    public int[] getFilter() {
+        return Arrays.copyOf(filter, 1);
     }
 }
