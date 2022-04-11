@@ -1,6 +1,4 @@
-package model.listener.plugin;
-
-
+package model.listener.plugin.model;
 
 public abstract class AbstractPlugin implements Plugin {
 

@@ -1,4 +1,4 @@
-package model.listener.plugin;
+package model.listener.plugin.model;
 
 
 
