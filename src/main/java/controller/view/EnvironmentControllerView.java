@@ -24,6 +24,7 @@ import model.audiomanager.AudioManager;
 import model.source.Source;
 import model.source.SourceImpl;
 import model.utility.Pair;
+import model.utility.Vec3f;
 import view.utility.Rectangle;
 import view.utility.Sprite;
 import view.utility.Texture;
@@ -126,16 +127,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                     ((MouseEvent) event).getX() - (temp.get().getSize().getWidth() / 2),
                     ((MouseEvent) event).getY() - (temp.get().getSize().getHeight() / 2));
             temp.get().setPosition(newPos.getX(), newPos.getY());
+            final Pair<Float, Float> posFloat = new Pair<Float, Float>((float) ((width * newPos.getX()) /  canvas.getWidth()), (float) ((lenght * newPos.getY()) / canvas.getHeight()));
             if (temp.get().getSpriteType() == TypeSprite.LISTENER) {
                 listener = temp.get();
+                this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
             } else {
                 lastSelectedSource = temp.get();
+                this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), lastSelectedSource.getId());
             }
             System.out.println("le posiizone n una base 10x10 (" +
-            (width * newPos.getX()) /  canvas.getWidth() + " - " +
-            (lenght * newPos.getY()) / canvas.getHeight() + ")");
+            posFloat.getX() + " - " + posFloat.getY() + ")");
             //TODO Non puo uscire dalla canvas
-            //TODO segnalare al controller che deve cambiare la posizione di id e la sua posizione
         }
     }
 
@@ -164,7 +166,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         this.ctrl = ctrMain.getEnvironmentController();
         this.ctrl.setControllerView(this);
     }
-    
+
     /**
      * 
      * 
@@ -204,4 +206,5 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     public int getLastSelectedSource() {
         return lastSelectedSource.getId();
     }
+ 
 }

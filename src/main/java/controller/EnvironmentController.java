@@ -7,6 +7,8 @@ import model.environment.EnvironmentFactory;
 import model.environment.EnvironmentFactoryImpl;
 import model.source.FRSource;
 import model.source.Source;
+import model.utility.Vec3f;
+import view.utility.TypeSprite;
 
 public class EnvironmentController {
 
@@ -28,6 +30,35 @@ public class EnvironmentController {
     public FRSource getSelectedSource() {
         //this.ctrlView.getLastSelect().getId();
         return null;
+    }
+
+    /**
+     * 
+     */
+    public Environment getEnv() {
+        return this.env;
+    }
+
+    /**
+     * 
+     */
+    public void addSourcetoSourceHub(final FRSource source, final TypeSprite type) {
+        this.env.addSourceToSourceHub(source);
+        this.ctrlView.addSprite(type, source.getId());
+    }
+
+    /**
+     * 
+     */
+    public void moveSource(final Vec3f pos, final int id) {
+        this.env.moveSource(this.env.getSourceHub().getSource(id), pos);
+    }
+
+    /**
+     * 
+     */
+    public void moveListener(final Vec3f pos) {
+        this.env.getListener().setPosition(pos);
     }
 
     /**
