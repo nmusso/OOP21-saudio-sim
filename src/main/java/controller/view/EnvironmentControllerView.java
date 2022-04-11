@@ -131,6 +131,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
             } else {
                 lastSelectedSource = temp.get();
+                this.ctrl.lastSelectedSourceChange();
                 this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), lastSelectedSource.getId());
             }
             //TODO Non puo uscire dalla canvas

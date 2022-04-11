@@ -6,7 +6,6 @@ import model.environment.Environment;
 import model.environment.EnvironmentFactory;
 import model.environment.EnvironmentFactoryImpl;
 import model.source.FRSource;
-import model.source.Source;
 import model.utility.Vec3f;
 import view.utility.TypeSprite;
 
@@ -28,7 +27,6 @@ public class EnvironmentController {
      * 
      */
     public FRSource getSelectedSource() {
-        System.out.println(this.env.getSourceHub().getSource(this.ctrlView.getLastSelectedSource()));
         return this.env.getSourceHub().getSource(this.ctrlView.getLastSelectedSource());
     }
 
@@ -104,6 +102,13 @@ public class EnvironmentController {
      */
     public void upgradeSourceType(final TypeSprite type) {
         this.ctrlView.upgradeTypeSpriteSource(type);
+    }
+
+    /**
+     * 
+     */
+    public void lastSelectedSourceChange() {
+        this.mainCtr.getSourceController().ChangeSelectedSource();
     }
 
 }
