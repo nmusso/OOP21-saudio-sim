@@ -12,6 +12,10 @@ import java.nio.IntBuffer;
 
 import model.source.Source;
 
+/**
+ * Abstract class for Effect, with methods which cannot be overrided.
+ *
+ */
 public abstract class AbstractEffect implements Effect {
     /**
      * Buffer containing slots attributes.
@@ -29,7 +33,7 @@ public abstract class AbstractEffect implements Effect {
      * @param slot  the slot containing the final effect
      * @param num  the number of the effect (from enum)
      */
-    protected void setOnSource(final Source source, final int slot, final int num) {
+    protected final void setOnSource(final Source source, final int slot, final int num) {
         alSourcei(source.getId(), AL_DIRECT_FILTER, AL_FILTER_NULL);
         alSource3i(source.getId(), AL_AUXILIARY_SEND_FILTER, slot, num, AL_FILTER_NULL);
     }
@@ -37,7 +41,7 @@ public abstract class AbstractEffect implements Effect {
     /**
      * Initialise the slot and effect buffers.
      */
-    protected void initEffectBuffer() {
+    protected final void initEffectBuffer() {
         slot = IntBuffer.allocate(1);
         effect = IntBuffer.allocate(1);
 

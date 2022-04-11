@@ -1,8 +1,11 @@
 package model.effect;
 
-//import java.util.function.Consumer;
 import model.source.Source;
 
+/**
+ * Interface for the effect manager.
+ *
+ */
 public interface Effect {
     /**
      * Apply the effect on the source.

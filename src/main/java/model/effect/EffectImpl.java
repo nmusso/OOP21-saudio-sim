@@ -5,6 +5,10 @@ import static org.lwjgl.openal.AL11.*;
 import static org.lwjgl.openal.ALC10.*;
 import static org.lwjgl.openal.EXTEfx.*;
 
+/**
+ * Extension of AbstractEffect, with methods apply and remove.
+ *
+ */
 public class EffectImpl extends AbstractEffect {
     /**
      * {@inheritDoc}
