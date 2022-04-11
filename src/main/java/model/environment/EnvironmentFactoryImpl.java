@@ -6,7 +6,10 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import model.audiomanager.AudioManager;
 import model.listener.Listener;
+import model.listener.ListenerFactory;
+import model.listener.ListenerFactoryImpl;
 import model.source.FRSource;
 import model.source.hub.SourcesHubFactory;
 import model.source.hub.SourcesHubFactoryImpl;
@@ -19,7 +22,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     private final SourcesHubFactory sourceHubFac = new SourcesHubFactoryImpl();
     private final SpaceFactory spaceFac = new SpaceFactoryImpl();
     //private final SourceFactory sourceFac = new SourceFactoryImpl();
-    //private final ListenerFactory listenerFac = new ListenerFactoryImpl();
+    private final ListenerFactory listenerFac = new ListenerFactoryImpl();
 
     /**
     *
@@ -97,6 +100,15 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     public Environment createHIFIEnvironment() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    /**
+    *
+    *{@inheritDoc}
+    */
+    @Override
+    public Environment createVoidEnvironment() {
+        return new EnvironmentImpl(sourceHubFac.createSourcesHub(), listenerFac.createListener(AudioManager.getContext()), spaceFac.createDefaultSpace());
     }
 
 }

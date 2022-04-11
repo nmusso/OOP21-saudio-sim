@@ -39,54 +39,15 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     private AnchorPane conteinerCanvas;
     @FXML
     private GraphicsContext contextView;
-    
-    private Sprite lastSelect;
+
+    private Sprite lastSelectedSource;
+    private Sprite listener;
 
     private Set<Sprite> sprites;
-
-    /**
-     * 
-     * 
-     */
-    public Sprite getLastSelect() {
-        return lastSelect;
-    }
 
     //proporzioni TODO settarle da space controller
     private double lenght = 10;
     private double width = 10;
-
-    /**
-     * 
-     * 
-     */
-    public double getLenght() {
-        return lenght;
-    }
-
-    /**
-     * 
-     * 
-     */
-    public void setLenght(final double lenght) {
-        this.lenght = lenght;
-    }
-
-    /**
-     * 
-     * 
-     */
-    public double getWidth() {
-        return width;
-    }
-
-    /**
-     * 
-     * 
-     */
-    public void setWidth(final double width) {
-        this.width = width;
-    }
 
     //TODO temporaneee da controllare
     private double x;
@@ -121,7 +82,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         contextView = canvas.getGraphicsContext2D();
 
         // TODO Metterci lo spriteType
-        addSprite(TypeSprite.LISTENER);
+        addSprite(TypeSprite.LISTENER,0);
 //        addSprite(TypeSprite.SOURCEFULL);
 //        addSprite(TypeSprite.SOURCEMID);
 
@@ -165,12 +126,16 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                     ((MouseEvent) event).getX() - (temp.get().getSize().getWidth() / 2),
                     ((MouseEvent) event).getY() - (temp.get().getSize().getHeight() / 2));
             temp.get().setPosition(newPos.getX(), newPos.getY());
-            lastSelect = temp.get();
+            if (temp.get().getSpriteType() == TypeSprite.LISTENER) {
+                listener = temp.get();
+            } else {
+                lastSelectedSource = temp.get();
+            }
             System.out.println("le posiizone n una base 10x10 (" +
             (width * newPos.getX()) /  canvas.getWidth() + " - " +
             (lenght * newPos.getY()) / canvas.getHeight() + ")");
-            
             //TODO Non puo uscire dalla canvas
+            //TODO segnalare al controller che deve cambiare la posizione di id e la sua posizione
         }
     }
 
@@ -178,8 +143,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      * 
      * 
      */
-    public void addSprite(/* type */ final TypeSprite type) {
-        final Sprite sprite = new Sprite(0);
+    public void addSprite(/* type */ final TypeSprite type, final int id) {
+        final Sprite sprite = new Sprite(id);
         sprite.setSpriteType(type);
 
         sprite.setPosition(200, 200);
@@ -188,12 +153,55 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         sprite.setTexture(tx);
         sprite.draw(contextView);
         sprites.add(sprite);
-        lastSelect = sprite;
     }
 
+    /**
+     * 
+     * 
+     */
     @Override
     public void setControllerApplication(final MainController ctrMain) {
         this.ctrl = ctrMain.getEnvironmentController();
         this.ctrl.setControllerView(this);
+    }
+    
+    /**
+     * 
+     * 
+     */
+    public double getLenght() {
+        return lenght;
+    }
+
+    /**
+     * 
+     * 
+     */
+    public void setLenght(final double lenght) {
+        this.lenght = lenght;
+    }
+
+    /**
+     * 
+     * 
+     */
+    public double getWidth() {
+        return width;
+    }
+
+    /**
+     * 
+     * 
+     */
+    public void setWidth(final double width) {
+        this.width = width;
+    }
+
+    /**
+     * 
+     * 
+     */
+    public int getLastSelectedSource() {
+        return lastSelectedSource.getId();
     }
 }

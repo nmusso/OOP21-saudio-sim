@@ -10,6 +10,11 @@ import model.space.Space;
 public interface EnvironmentFactory {
 
     /**
+     * TODO.
+     */
+     Environment createVoidEnvironment();
+
+    /**
     * create an Environment with an initial mono source.
     * @param The single-source
     * @param listener

@@ -11,5 +11,5 @@ public interface SpaceFactory {
     *
     * TODO.
     */
-    SpaceImpl createcustomizedSpace(float lenght, float width, float scale);
+    SpaceImpl createCustomizedSpace(float lenght, float width, float scale);
 }
