@@ -6,10 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import javax.sound.sampled.UnsupportedAudioFileException;
-
-import com.google.common.base.Optional;
 
 import static org.lwjgl.openal.AL10.alDeleteBuffers;
 

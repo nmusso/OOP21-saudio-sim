@@ -3,7 +3,7 @@ package model.effect;
 import model.source.Source;
 
 /**
- * Interface for the effect manager.
+ * Interface for the effect applier.
  *
  */
 public interface Effect {

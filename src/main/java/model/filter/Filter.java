@@ -3,6 +3,10 @@ package model.filter;
 import model.source.Source;
 import model.source.SourceType;
 
+/**
+ * Interface for the filter applier.
+ *
+ */
 public interface Filter {
 
     /**

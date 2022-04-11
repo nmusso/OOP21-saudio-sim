@@ -2,10 +2,26 @@ package model.filter;
 
 import model.source.Source;
 import model.source.SourceType;
-import static org.lwjgl.openal.EXTEfx.*;
-
+import static org.lwjgl.openal.EXTEfx.alFilteri;
+import static org.lwjgl.openal.EXTEfx.alFilterf;
+import static org.lwjgl.openal.EXTEfx.AL_FILTER_TYPE;
+import static org.lwjgl.openal.EXTEfx.AL_FILTER_NULL;
+import static org.lwjgl.openal.EXTEfx.AL_FILTER_LOWPASS;
+import static org.lwjgl.openal.EXTEfx.AL_LOWPASS_GAIN;
+import static org.lwjgl.openal.EXTEfx.AL_LOWPASS_GAINHF;
+import static org.lwjgl.openal.EXTEfx.AL_FILTER_BANDPASS;
+import static org.lwjgl.openal.EXTEfx.AL_BANDPASS_GAIN;
+import static org.lwjgl.openal.EXTEfx.AL_BANDPASS_GAINLF;
+import static org.lwjgl.openal.EXTEfx.AL_BANDPASS_GAINHF;
+import static org.lwjgl.openal.EXTEfx.AL_FILTER_HIGHPASS;
+import static org.lwjgl.openal.EXTEfx.AL_HIGHPASS_GAIN;
+import static org.lwjgl.openal.EXTEfx.AL_HIGHPASS_GAINLF;
 import java.util.List;
 
+/**
+ * Extension of AbstractEffect, with methods apply and remove.
+ *
+ */
 public class FilterImpl extends AbstractFilter {
 
     public FilterImpl() {
