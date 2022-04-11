@@ -1,5 +1,9 @@
 package model.buffer;
 
+/**
+ * Interface for buffers.
+ *
+ */
 public interface Buffer {
     /**
      * Get the ID of the buffer.

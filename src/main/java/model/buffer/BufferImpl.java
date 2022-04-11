@@ -17,11 +17,19 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.lwjgl.BufferUtils;
 
+/**
+ * Implementation of the interface Buffer, containing the id of the buffer and the file who generated it.
+ *
+ */
 public class BufferImpl implements Buffer {
 
     private int id;
     private final String file;
 
+    /**
+     * Construct a new BufferImpl.
+     * @param file  the path of the file which will be used for the buffer.
+     */
     public BufferImpl(final String file) {
         this.file = file;
         try {

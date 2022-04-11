@@ -5,6 +5,10 @@ import java.io.IOException;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * Interface for a factory of buffers.
+ *
+ */
 public interface BufferFactory {
     /**
      * Create a new buffer if it was never generated from the path passed as parameter, otherwise gets the ID from the cache.

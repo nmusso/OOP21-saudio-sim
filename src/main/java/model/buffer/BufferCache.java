@@ -13,6 +13,10 @@ import com.google.common.base.Optional;
 
 import static org.lwjgl.openal.AL10.alDeleteBuffers;
 
+/**
+ * Cache containing all the generated buffers.
+ *
+ */
 public enum BufferCache {
     /**
      * BufferCache instance.
@@ -66,7 +70,7 @@ public enum BufferCache {
 
     /**
      * Getter of the cache map.
-     * @return the map
+     * @return an unmodifiable copy of the map
      */
     public Map<String, Buffer> getCacheMap() {
         return Collections.unmodifiableMap(buffers);
