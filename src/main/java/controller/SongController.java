@@ -17,7 +17,7 @@ import model.buffer.BufferFactoryImpl;
  * Controller for the SongView which will communicate with model and his ViewController.
  *
  */
-public class SongController {
+public class SongController implements ControllerApplication<SongControllerView> {
     private final MainController mainCtr;
     private SongControllerView ctrlView;
     private final BufferFactory factory = new BufferFactoryImpl();
@@ -34,6 +34,7 @@ public class SongController {
      * Set the controller of the view.
      * @param controllerView  the controller view
      */
+    @Override
     public void setControllerView(final SongControllerView controllerView) {
         ctrlView = controllerView;
     }
