@@ -19,6 +19,7 @@ public class Sprite {
 
     private Vector position;
     private Vector velocity;
+    private TypeSprite spriteType;
 
     /**
     *
@@ -34,8 +35,6 @@ public class Sprite {
         this.spriteType = spriteType;
         this.setTexture(new Texture(spriteType.toString()));
     }
-
-    private TypeSprite spriteType;
     /**
     *
     */

@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import controller.EnvironmentController;
 import controller.MainController;
@@ -83,7 +85,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         });
 
         //TODO AGGIUNGI LISTENER
-        addSprite(TypeSprite.LISTENER, 0, new Vec3f(0.0f));
+        addSprite(TypeSprite.LISTENER, -1, new Vec3f(0.0f));
 
         // ascolta il drag
         canvas.setOnMouseDragged(event -> {
@@ -193,7 +195,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      * 
      */
     public int getLastSelectedSource() {
-        System.out.println(lastSelectedSource.getId());
+        System.out.println(lastSelectedSource.getSpriteType());
         return lastSelectedSource.getId();
     }
     /**
@@ -201,6 +203,15 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      */
     public void removeSpriteSource() {
         sprites.remove(lastSelectedSource);
+    }
+
+    /**
+     * 
+     * @param type
+     * @param id
+     */
+    public void upgradeTypeSpriteSource(final TypeSprite type) {
+        lastSelectedSource.setSpriteType(type);
     }
  
 }

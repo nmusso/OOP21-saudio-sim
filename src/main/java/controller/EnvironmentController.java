@@ -98,4 +98,12 @@ public class EnvironmentController {
     public void setControllerView(final EnvironmentControllerView controllerView) {
         ctrlView = controllerView;
     }
+
+    /**
+     * 
+     */
+    public void upgradeSourceType(final TypeSprite type) {
+        this.ctrlView.upgradeTypeSpriteSource(type);
+    }
+
 }
