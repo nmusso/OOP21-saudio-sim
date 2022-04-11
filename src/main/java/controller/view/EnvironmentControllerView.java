@@ -9,6 +9,8 @@ import java.util.Set;
 import controller.EnvironmentController;
 import controller.MainController;
 import javafx.animation.AnimationTimer;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,10 +45,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     private double lenght = 10;
     private double width = 10;
 
-    // TODO temporaneee da controllare
-    private double x;
-    private double y;
-
     /**
      * 
      * 
@@ -56,24 +54,16 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         sprites = new HashSet<>();
         contextView = canvas.getGraphicsContext2D();
 
-        x = canvas.getHeight();
-        y = canvas.getWidth();
+
 
         conteinerCanvas.widthProperty().addListener((obs, oldVal, newVal) -> {
-            canvas.setWidth(newVal.doubleValue());
-            sprites.forEach(e -> {
-                e.setPosition((e.getPosition().getX() * newVal.doubleValue()) / x, e.getPosition().getY());
-            });
-            x = newVal.doubleValue();
+            canvas.setWidth(newVal.doubleValue() - 1);
         });
 
         conteinerCanvas.heightProperty().addListener((obs, oldVal, newVal) -> {
-            canvas.setHeight(newVal.doubleValue());
-            sprites.forEach(e -> {
-                e.setPosition(e.getPosition().getX(), (e.getPosition().getY() * newVal.doubleValue()) / y);
-            });
-            y = newVal.doubleValue();
+            canvas.setHeight(newVal.doubleValue() - 1);
         });
+
 
         // TODO AGGIUNGI LISTENER
         addSprite(TypeSprite.LISTENER, -1, new Vec3f(0.0f));
@@ -95,6 +85,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 contextView.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
                 sprites.stream().forEach(e -> {
+                    Pair<Double, Double> pos = checkOutOfBorder(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()), e.getSize());
+                    e.setPosition(pos.getX(), pos.getY());
                     e.draw(contextView);
                 });
             }
