@@ -28,6 +28,7 @@ public class EnvironmentController {
      * 
      */
     public FRSource getSelectedSource() {
+        System.out.println(this.env.getSourceHub().getSource(this.ctrlView.getLastSelectedSource()));
         return this.env.getSourceHub().getSource(this.ctrlView.getLastSelectedSource());
     }
 

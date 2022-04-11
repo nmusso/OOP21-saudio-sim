@@ -64,8 +64,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         x = canvas.getHeight();
         y = canvas.getWidth();
 
-        //TODO AGGIUNGI LISTENER
-        addSprite(TypeSprite.LISTENER, 0, new Vec3f(0.0f));
+        contextView = canvas.getGraphicsContext2D();
 
         conteinerCanvas.widthProperty().addListener((obs, oldVal, newVal) -> {
             canvas.setWidth(newVal.doubleValue());
@@ -83,7 +82,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             y = newVal.doubleValue();
         });
 
-        contextView = canvas.getGraphicsContext2D();
+        //TODO AGGIUNGI LISTENER
+        addSprite(TypeSprite.LISTENER, 0, new Vec3f(0.0f));
 
         // ascolta il drag
         canvas.setOnMouseDragged(event -> {
@@ -142,7 +142,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         final Sprite sprite = new Sprite(id);
         sprite.setSpriteType(type);
 
-        sprite.setPosition(pos.getX(), pos.getY());
+        sprite.setPosition((double) pos.getX(), (double) pos.getY());
 
         final Texture tx = new Texture(type.toString());
         sprite.setTexture(tx);
@@ -193,6 +193,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      * 
      */
     public int getLastSelectedSource() {
+        System.out.println(lastSelectedSource.getId());
         return lastSelectedSource.getId();
     }
     /**
