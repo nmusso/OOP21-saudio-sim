@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+import controller.EqualizerController;
 import controller.MainController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -14,39 +15,45 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import model.effect.ALEffects;
 
+/**
+ * Controller of the view EqualizerView.
+ *
+ */
 public class EqualizerControllerView implements Initializable, ControllerView {
 
     @FXML private GridPane slidersPane;
     @FXML private ToggleButton btnTurn;
-    private EqualizerControllerView ctrl;
+    private EqualizerController ctrl;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
-        ctrl = new EqualizerControllerView();
+    }
 
-        getSliders().forEach(slider -> {
-            final Optional<ALEffects> effect = getEffect(slider.getId());
-            if (effect.isPresent()) {
-                final var eff = effect.get();
-                slider.setMin(eff.getMinValue());
-                slider.setMax(eff.getMaxValue());
-                slider.valueProperty().addListener((obs, oldVal, newVal) -> {
-                    // MainController.getSources().foreach(s -> s.applyFilter(s, eff, newVal));
-                });
-            }
-        });
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setControllerApplication(final MainController ctrMain) {
+        this.ctrl = ctrMain.getEqualizerController();
+        this.ctrl.setControllerView(this);
+        initSliders();
     }
 
     /**
      * Change color to the toggle button and enable/disable the sliders.
      * @param event  the event who triggered the method
      */
-    @FXML public final void handlePress(final Event event) {
+    @FXML 
+    public final void handlePress(final Event event) {
         final boolean state = btnTurn.isSelected();
 
         if (!state) {
             btnTurn.setText("OFF");
             btnTurn.setStyle("-fx-background-color: #F06249");
+            ctrl.removeEffect();
         } else {
             btnTurn.setText("ON");
             btnTurn.setStyle("-fx-background-color: #6CF049");
@@ -56,13 +63,10 @@ public class EqualizerControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * 
-     * @return
+     * Get the effect associated to the slider.
+     * @param id  the id of the slider
+     * @return an optional containing the effect, or empty if there isn't an effect associated to the id
      */
-    public EqualizerControllerView getController() {
-        return ctrl;
-    }
-
     private Optional<ALEffects> getEffect(final String id) {
         switch (id) {
         case "sldReverb":
@@ -82,6 +86,10 @@ public class EqualizerControllerView implements Initializable, ControllerView {
         }
     }
 
+    /**
+     * Get all the sliders.
+     * @return a list of sliders
+     */
     private List<Slider> getSliders() {
         return slidersPane.getChildren().stream()
                 .filter(node -> node instanceof Slider)
@@ -89,9 +97,20 @@ public class EqualizerControllerView implements Initializable, ControllerView {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public void setControllerApplication(final MainController ctrMain) {
-        // TODO Auto-generated method stub
-
+    /**
+     * Set the property of the sliders.
+     */
+    private void initSliders() {
+        getSliders().forEach(slider -> {
+            final Optional<ALEffects> effect = getEffect(slider.getId());
+            if (effect.isPresent()) {
+                final var eff = effect.get();
+                slider.setMin(eff.getMinValue());
+                slider.setMax(eff.getMaxValue());
+                slider.valueProperty().addListener((obs, oldVal, newVal) -> {
+                    ctrl.applyEffect(newVal.floatValue(), eff);
+                });
+            }
+        });
     }
 }

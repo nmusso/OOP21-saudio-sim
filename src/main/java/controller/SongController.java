@@ -13,19 +13,35 @@ import model.buffer.BufferCache;
 import model.buffer.BufferFactory;
 import model.buffer.BufferFactoryImpl;
 
+/**
+ * Controller for the SongView which will communicate with model and his ViewController.
+ *
+ */
 public class SongController {
     private final MainController mainCtr;
     private SongControllerView ctrlView;
     private final BufferFactory factory = new BufferFactoryImpl();
 
+    /**
+     * Constructor of the SongController.
+     * @param mainCtr  the main controller
+     */
     public SongController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
     }
 
-    public SongController() {
-        this.mainCtr = new MainController();
+    /**
+     * Set the controller of the view.
+     * @param controllerView  the controller view
+     */
+    public void setControllerView(final SongControllerView controllerView) {
+        ctrlView = controllerView;
     }
 
+    /**
+     * Create a buffer from the path.
+     * @param file  the file which will become the buffer
+     */
     public final void createBuffer(final File file) {
         try {
             factory.createBufferFromPath(file.getAbsolutePath());
@@ -35,10 +51,10 @@ public class SongController {
     }
 
     /**
-     * 
-     * @return
+     * Get all the buffers in the cache.
+     * @return a list of buffers as string
      */
-    public List<String> getSongList() {
+    public List<String> getBufferList() {
         final var cache = BufferCache.INSTANCE.getCacheMap();
         final List<String> songs = new ArrayList<>();
 
@@ -48,16 +64,8 @@ public class SongController {
     }
 
     /**
-     * 
-     * @param controllerView
-     */
-    public void setControllerView(final SongControllerView controllerView) {
-        ctrlView = controllerView;
-    }
-
-    /**
-     * 
-     * @param id
+     * Play the specified buffer on all the sources.
+     * @param id  the id of the buffer
      */
     public void playSource(final int bufferID) {
         final Buffer buf = BufferCache.INSTANCE.getBufferFromID(bufferID);
@@ -65,14 +73,14 @@ public class SongController {
     }
 
     /**
-     * 
+     * Pause all the sources.
      */
     public void pauseSource() {
         // TODO
     }
 
     /**
-     * 
+     * Stop all the sources.
      */
     public void stopSource() {
         // TODO

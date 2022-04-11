@@ -13,16 +13,37 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
+/**
+ * Controller of the view SongView.
+ *
+ */
 public class SongControllerView implements Initializable, ControllerView {
 
     private static final String SEP = System.getProperty("file.separator");
     @FXML private ComboBox<String> cmbSongs;
     private SongController ctrl;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setControllerApplication(final MainController ctrMain) {
+        this.ctrl = ctrMain.getSongController();
+        this.ctrl.setControllerView(this);
+        addStartSongs();
+    }
+
+    /**
+     * Open a new FileChooser and import the selected items.
+     * @param event  the event who triggered the method
+     */
     @FXML
     public final void handlePress(final Event event) {
         final FileChooser fc = new FileChooser();
@@ -39,6 +60,10 @@ public class SongControllerView implements Initializable, ControllerView {
         }
     }
 
+    /**
+     * Notify his app controller to play all the sources.
+     * @param event  the event who triggered the method
+     */
     @FXML
     public final void handlePlay(final Event event) {
         final String id = Character.toString(cmbSongs.getSelectionModel().getSelectedItem().charAt(0));
@@ -46,32 +71,30 @@ public class SongControllerView implements Initializable, ControllerView {
         ctrl.playSource(bufferID);
     }
 
+    /**
+     * Notify his app controller to pause all the sources.
+     * @param event  the event who triggered the method
+     */
     @FXML
     public final void handlePause(final Event event) {
         ctrl.pauseSource();
     }
 
+    /**
+     * Notify his app controller to stop all the sources.
+     * @param event  the event who triggered the method
+     */
     @FXML
     public final void handleStop(final Event event) {
         ctrl.stopSource();
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setControllerApplication(final MainController ctrMain) {
-        this.ctrl = ctrMain.getSongController();
-        this.ctrl.setControllerView(this);
-        addStartSongs();
-    }
-
-    /**
-     * 
+     * Update the items of the combobox.
      */
     private void updateComboBox() {
         cmbSongs.getItems().clear();
-        cmbSongs.getItems().addAll(ctrl.getSongList());
+        cmbSongs.getItems().addAll(ctrl.getBufferList());
 
         if (!cmbSongs.getItems().isEmpty()) {
             cmbSongs.getSelectionModel().select(0);
@@ -79,7 +102,7 @@ public class SongControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * 
+     * Import automatically all the wav in the resources path.
      */
     private void addStartSongs() {
         final String folderPath = "src" + SEP + "main" + SEP + "resources" + SEP + "songs" + SEP;
