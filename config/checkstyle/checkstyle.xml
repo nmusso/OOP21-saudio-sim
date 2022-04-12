@@ -64,8 +64,8 @@
         <property name="message"
                   value="Do not use @author. Changes and authors are tracked by the content manager."/>
     </module>
-
     <module name="TreeWalker">
+
         <module name="SuppressionCommentFilter">
             <property name="offCommentFormat" value="CHECKSTYLE: ([\w\|]+) OFF"/>
             <property name="onCommentFormat" value="CHECKSTYLE: ([\w\|]+) ON"/>
@@ -74,7 +74,7 @@
         <!-- Checks for Javadoc comments. -->
         <!-- See http://checkstyle.sf.net/config_javadoc.html -->
         <module name="JavadocMethod">
-            <property name="accessModifiers" value="protected"/>
+            <property name="accessModifiers" value="public, protected"/>
         </module>
         <module name="JavadocType">
             <property name="severity" value="warning"/>
