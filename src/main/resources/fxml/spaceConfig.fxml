@@ -28,7 +28,7 @@
             <Button mnemonicParsing="false" onAction="#handleBtnAddEnv" text="ADD ENV" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#handleBtnDelEnv" text="DEL ENV" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
             <Spinner fx:id="spnSizeLenght" editable="true" onMouseClicked="#handleClikSpnLenght" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Spinner fx:id="spnSizeWidth" editable="true" onMouseClicked="#handleClikSpnLenght" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Spinner fx:id="spnSizeWidth" editable="true" onMouseClicked="#handleClikSpnWidth" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
          </children>
       </GridPane>
    </children>

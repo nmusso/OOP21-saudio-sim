@@ -47,7 +47,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     private Sprite lastSelectedSource;
     private Sprite listener;
 
-    private Color colorFill = Color.GRAY;
+    private Color colorFill = Color.LIGHTGRAY;
 
     private Set<Sprite> sprites;
 
@@ -74,14 +74,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             canvas.setHeight(newVal.doubleValue() - 1);
         });
 
-        // TODO AGGIUNGI LISTENER
-        addSprite(TypeSprite.LISTENER, -1, new Vec3f(0.0f));
-
-        // ascolta il drag
-        canvas.setOnMouseDragged(event -> {
-            moveSprite(event);
-        });
-
         AnimationTimer musicLoop = new AnimationTimer() {
 
             @Override
@@ -105,6 +97,11 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             }
         };
         musicLoop.start();
+    }
+
+
+    @FXML public final void handleOnMouseClickedOrDrag(final Event event) {
+        moveSprite(event);
     }
 
     /**
@@ -158,12 +155,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     /**
      * 
      */
-    public void addSprite(/* type */ final TypeSprite type, final int id, final Vec3f pos) {
+    public void addSprite(/* type */ final TypeSprite type, final int id, final Vec3f posElement) {
         final Sprite sprite = new Sprite(id);
         sprite.setSpriteType(type);
-        sprite.setPosition((double) pos.getX(), (double) pos.getY());
         final Texture tx = new Texture(type.toString());
         sprite.setTexture(tx);
+        posElement.setX(id);
+        Pair<Double, Double> posDouble = new Pair<Double, Double>(
+                (double) ((canvas.getWidth() * posElement.getX()) / width ),
+                (double) ((canvas.getHeight() * posElement.getY()) / lenght));
+        posDouble = checkOutOfBorder(new Pair<Double, Double>((double) posElement.getX(), (double) posElement.getY()), sprite.getSize());
+        sprite.setPosition((double) posDouble.getX(), (double) posDouble.getY());
         sprite.draw(contextView);
         sprites.add(sprite);
     }

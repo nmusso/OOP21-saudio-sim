@@ -24,6 +24,14 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
         AudioManager.initContext();
         this.mainCtr = mainCtr;
         env = envFac.createVoidEnvironment();
+        this.addListener();
+    }
+
+    /**
+     * 
+     */
+    public void addListener() {
+        this.ctrlView.addSprite(TypeSprite.LISTENER, -1, new Vec3f(0.0f));
     }
 
     /**
