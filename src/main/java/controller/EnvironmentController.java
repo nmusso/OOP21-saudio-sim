@@ -87,17 +87,8 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
     /**
      * 
      */
-    public void setLenghtEnv(final double length) {
-        //TODO come utilizzare lo space
-        this.ctrlView.setLenght(length);
-    }
-
-    /**
-     * 
-     */
-    public void setWidthEnv(final double width) {
-      //TODO come utilizzare lo space
-        this.ctrlView.setWidth(width);
+    public void setSizeEnv(final double length, final double width) {
+        this.ctrlView.setSize(length, width);
     }
 
     /**

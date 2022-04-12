@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.SpaceControllerView">
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.SpaceControllerView">
    <children>
       <GridPane gridLinesVisible="true" HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -27,8 +26,8 @@
             <Label text="Demo" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#handleBtnAddEnv" text="ADD ENV" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
             <Button mnemonicParsing="false" onAction="#handleBtnDelEnv" text="DEL ENV" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Spinner fx:id="spnSizeLenght" editable="true" onMouseClicked="#handleClikSpnLenght" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Spinner fx:id="spnSizeWidth" editable="true" onMouseClicked="#handleClikSpnWidth" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Spinner fx:id="spnSizeLenght" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Spinner fx:id="spnSizeWidth" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
          </children>
       </GridPane>
    </children>

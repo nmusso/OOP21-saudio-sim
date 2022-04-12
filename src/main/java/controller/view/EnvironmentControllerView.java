@@ -119,12 +119,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             // CheckOutOfBorder
             newPos = checkOutOfBorder(newPos, temp.get().getSize());
             temp.get().setPosition(newPos.getX(), newPos.getY());
-
-            // positions for controller
-            // forse da mettere nel controller
-            final Pair<Float, Float> posFloat = new Pair<Float, Float>(
-                    (float) ((width * newPos.getX()) / canvas.getWidth()),
-                    (float) ((lenght * newPos.getY()) / canvas.getHeight()));
+            final Pair<Float, Float> posFloat = updatePosForController(newPos);
             if (temp.get().getSpriteType() == TypeSprite.LISTENER) {
                 listener = temp.get();
                 this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
@@ -134,6 +129,13 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), lastSelectedSource.getId());
             }
         }
+    }
+
+    private Pair<Float, Float> updatePosForController(final Pair<Double, Double> pos) {
+        final Pair<Float, Float> posFloat = new Pair<Float, Float>(
+                (float) ((width * pos.getX()) / canvas.getWidth()),
+                (float) ((lenght * pos.getY()) / canvas.getHeight()));
+        return posFloat;
     }
 
     private Pair<Double, Double> checkOutOfBorder(final Pair<Double, Double> newPos, final Rectangle size) {
@@ -188,24 +190,10 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
-     */
-    public void setLenght(final double lenght) {
-        this.lenght = lenght;
-    }
-
-    /**
-     * 
      * 
      */
     public double getWidth() {
         return width;
-    }
-
-    /**
-     * 
-     */
-    public void setWidth(final double width) {
-        this.width = width;
     }
 
     /**
@@ -243,10 +231,29 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     }
 
+    /**
+     * 
+     * @param lenght
+     * @param width
+     */
+    public void setSize(final double lenght, final double width) {
+        this.lenght = lenght;
+        this.width = width;
+        sprites.stream().forEach(e -> {
+            Pair<Float, Float> x = updatePosForController(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()));
+            Vec3f vec = new Vec3f(x.getX(), x.getY(), 0f);
+            if (e.getSpriteType() == TypeSprite.LISTENER) {
+                this.ctrl.moveListener(vec);
+            } else {
+                this.ctrl.moveSource(vec, e.getId());
+                this.ctrl.lastSelectedSourceChange();
+            }
+        });
+    }
+
     @Override
-    public void showError(String error) {
+    public void showError(final String error) {
         // TODO Auto-generated method stub
-        
     }
 
 }

@@ -18,21 +18,14 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
     public void setControllerView(final SpaceControllerView controllerView) {
         ctrlView = controllerView;
     }
-
+ 
     /**
      * 
      */
-    public void setLenght(final double lenght) {
-        this.mainCtr.getEnvironmentController().setLenghtEnv(lenght);
+    public void setSize(final double lenght, final Double width) {
+        this.mainCtr.getEnvironmentController().setSizeEnv(lenght, width);
     }
 
-    /**
-     * 
-     */
-    public void setWidth(final double width) {
-        this.mainCtr.getEnvironmentController().setWidthEnv(width);
-    }
-    
     public void changePreset() {
         this.mainCtr.getEnvironmentController().changePreset();
     }
