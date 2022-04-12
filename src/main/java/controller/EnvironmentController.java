@@ -76,6 +76,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      */
     public void moveListener(final Vec3f pos) {
         this.env.getListener().setPosition(pos);
+        this.listenerChangePos();
     }
 
     /**
@@ -105,6 +106,14 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      */
     public void upgradeSourceType(final TypeSprite type) {
         this.ctrlView.upgradeTypeSpriteSource(type);
+    }
+
+    /**
+     * 
+     */
+    private void listenerChangePos() {
+        //TODO qui dentro devi chiamarti il tuo metodo che vuoi che si attivi quando il listener cambia
+        //this.mainCtrl.getListenerController().....
     }
 
     /**
