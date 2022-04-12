@@ -2,6 +2,7 @@ package controller.view;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import controller.MainController;
@@ -16,6 +17,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import model.buffer.Buffer;
 
 /**
  * Controller of the view SongView.
@@ -27,7 +29,7 @@ public class SongControllerView implements Initializable, ControllerView {
     @FXML private Button btnPlay;
     @FXML private Button btnPause;
     @FXML private Button btnStop;
-    @FXML private ComboBox<String> cmbSongs;
+    @FXML private ComboBox<Buffer> cmbSongs;
     private SongController ctrl;
 
     /**
@@ -73,8 +75,7 @@ public class SongControllerView implements Initializable, ControllerView {
      */
     @FXML
     public final void handlePlay(final Event event) {
-        final String id = Character.toString(cmbSongs.getSelectionModel().getSelectedItem().charAt(0));
-        final int bufferID = Integer.parseInt(id);
+        final int bufferID = cmbSongs.getSelectionModel().getSelectedItem().getID();
         ctrl.playSource(bufferID);
 
         btnPlay.setDisable(true);
@@ -111,7 +112,9 @@ public class SongControllerView implements Initializable, ControllerView {
      */
     private void updateComboBox() {
         cmbSongs.getItems().clear();
-        cmbSongs.getItems().addAll(ctrl.getBufferList());
+        final var list = ctrl.getBufferList();
+        Collections.sort(list, (b1, b2) -> Integer.compare(b2.getID(), b1.getID())); 
+        cmbSongs.getItems().addAll(list);
 
         if (!cmbSongs.getItems().isEmpty()) {
             cmbSongs.getSelectionModel().select(0);
@@ -144,7 +147,7 @@ public class SongControllerView implements Initializable, ControllerView {
      * Getter of the combobox with the buffers.
      * @return the combobox.
      */
-    public ComboBox<String> getCmbSongs() {
+    public ComboBox<Buffer> getCmbSongs() {
         return cmbSongs;
     }
 

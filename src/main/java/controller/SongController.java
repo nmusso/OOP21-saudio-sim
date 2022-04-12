@@ -55,18 +55,18 @@ public class SongController implements ControllerApplication<SongControllerView>
      * Get all the buffers in the cache.
      * @return a list of buffers as string
      */
-    public List<String> getBufferList() {
+    public List<Buffer> getBufferList() {
         final var cache = BufferCache.INSTANCE.getCacheMap();
-        final List<String> songs = new ArrayList<>();
+        final List<Buffer> songs = new ArrayList<>();
 
-        cache.forEach((path, buffer) -> songs.add(buffer.toString()));
+        cache.forEach((path, buffer) -> songs.add(buffer));
 
         return songs;
     }
 
     /**
      * Play the specified buffer on all the sources.
-     * @param id  the id of the buffer
+     * @param bufferID  the id of the buffer
      */
     public void playSource(final int bufferID) {
         final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
@@ -89,10 +89,13 @@ public class SongController implements ControllerApplication<SongControllerView>
         final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
         sources.stopAll();
     }
-    
+
+    /**
+     * Get the selected buffer in the combobox. 
+     * @return the id of the buffer
+     */
     public int getSelectedID() {
         final var combo = ctrlView.getCmbSongs();
-        final String id = Character.toString(combo.getSelectionModel().getSelectedItem().charAt(0));
-        return Integer.parseInt(id);
+        return combo.getSelectionModel().getSelectedItem().getID();
     }
 }
