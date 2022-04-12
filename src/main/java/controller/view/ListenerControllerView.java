@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -24,6 +25,8 @@ public class ListenerControllerView implements Initializable, ControllerView {
     @FXML private TabPane listenerPane;
     @FXML private MenuItem it;
     @FXML private ComboBox<String> comboBoxPlugin;
+    @FXML private Label lblXPos;
+    @FXML private Label lblYPos;
     private final ObservableList<String> pluginItems = FXCollections.observableArrayList();
     private ListenerController ctrListener;
 
@@ -78,6 +81,14 @@ public class ListenerControllerView implements Initializable, ControllerView {
     public void showError(final String error) {
         final var alert = new Alert(Alert.AlertType.WARNING, error);
         alert.show();
+    }
+
+    /**
+     * 
+     */
+    public void positionChanged() {
+        this.lblXPos.setText(Float.toString(this.ctrListener.getListener().getPosition().getX()));
+        this.lblYPos.setText(Float.toString(this.ctrListener.getListener().getPosition().getY()));
     }
 
 }

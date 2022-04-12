@@ -112,8 +112,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      * 
      */
     private void listenerChangePos() {
-        //TODO qui dentro devi chiamarti il tuo metodo che vuoi che si attivi quando il listener cambia
-        //this.mainCtrl.getListenerController().....
+        this.mainCtr.getListenerCtr().positionChanged();
     }
 
     /**

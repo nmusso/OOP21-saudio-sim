@@ -22,6 +22,8 @@ public class ListenerController {
     private final MainController mainCtr;
     private Set<String> availablePlugin;
 
+
+
     public ListenerController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
         this.listener = this.mainCtr.getEnvironmentController().getEnv().getListener();
@@ -76,4 +78,19 @@ public class ListenerController {
             this.controllerView.showError("Class not found");
         }
     }
+
+    /**
+     * 
+     */
+    public void positionChanged() {
+        this.controllerView.positionChanged();
+    }
+
+    /**
+     * @return listener
+     */
+    public Listener getListener() {
+        return this.listener;
+    }
+
 }
