@@ -50,7 +50,7 @@ public class ListenerControllerView implements Initializable, ControllerView {
     }
 
     @FXML public final void handleRefreshListPlugin() {
-        final var aviablePlugin = this.ctrListener.getAvaiablePlugin();
+        final var aviablePlugin = this.ctrListener.getAvailablePlugin();
         aviablePlugin.forEach(x -> this.pluginItems.add(x));
     }
 
