@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,17 +11,12 @@
 
 <VBox stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.ListenerControllerView">
    <children>
-      <TabPane fx:id="listenerPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+      <TabPane fx:id="listenerPane" prefHeight="234.0" prefWidth="306.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         <tabs>
           <Tab fx:id="listenerTab" text="Listener">
             <content>
-              <AnchorPane>
+              <AnchorPane prefHeight="203.0" prefWidth="219.0">
                      <children>
-                        <SplitMenuButton fx:id="splitMenuPlugin" layoutX="65.0" layoutY="167.0" mnemonicParsing="false" onAction="#handleAddPlugin" prefHeight="23.0" prefWidth="105.0">
-                          <items>
-                            
-                          </items>
-                        </SplitMenuButton>
                         <Label layoutX="86.0" layoutY="14.0" text="Position" />
                         <Label layoutX="26.0" layoutY="47.0" text="X :" />
                         <Label layoutX="109.0" layoutY="47.0" text="Y :" />
@@ -28,6 +24,9 @@
                         <Label layoutX="50.0" layoutY="47.0" text="2.0" />
                         <Label layoutX="85.0" layoutY="95.0" text="Orientation" />
                         <Slider layoutX="47.0" layoutY="124.0" />
+                        <Button fx:id="btnAddPlugin" layoutX="161.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleAddPlugin" prefHeight="23.0" prefWidth="22.0" text="+" />
+                        <Button fx:id="btnRefreshPlugin" layoutX="194.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleRefreshListPlugin" prefHeight="20.0" prefWidth="28.0" text="R" />
+                        <ComboBox fx:id="comboBoxPlugin" layoutX="6.0" layoutY="155.0" prefHeight="23.0" prefWidth="143.0" />
                      </children>
                   </AnchorPane>
             </content>
