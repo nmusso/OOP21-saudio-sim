@@ -14,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
-    private static final String FXML_PATH = "src/main/resources/fxml/MainView.fxml";
+    private static final String FXML_PATH = "src/main/resources/fxml/SecondScene.fxml";
 
     /**
      * 

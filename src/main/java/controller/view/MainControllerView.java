@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.utility.Pair;
@@ -28,7 +29,7 @@ public class MainControllerView implements Initializable {
     @FXML private BorderPane environmentPane;
     @FXML private BorderPane spaceConfigPane;
     @FXML private BorderPane songPane;
-    @FXML private VBox container;
+    @FXML private HBox container;
     private MainController ctrMain;
 
     @Override

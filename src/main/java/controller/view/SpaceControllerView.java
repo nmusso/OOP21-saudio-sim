@@ -62,6 +62,10 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     @FXML public final void handleBtnAddEnv(final Event event) {
         System.out.println("addEnv");
      }
+    
+    @FXML public final void handleBtnDelEnv(final Event event) {
+        System.out.println("addEnv");
+     }
 
     @FXML public final void handleCmbPreset(final Event event) {
         selectedPreset = cmbPreset.getSelectionModel().getSelectedItem().toString();

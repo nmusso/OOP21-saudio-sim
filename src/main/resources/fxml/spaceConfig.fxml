@@ -6,100 +6,30 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.SpaceControllerView">
+
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.SpaceControllerView">
    <children>
-      <GridPane alignment="CENTER">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="149.0" minWidth="10.0" prefWidth="149.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="87.0" minWidth="10.0" prefWidth="51.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
+      <GridPane gridLinesVisible="true" HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Label text="ADD ENVIRONMENT">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="ID Environment" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnAddEnv" mnemonicParsing="false" onAction="#handleBtnAddEnv" text="+" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Label fx:id="lblIdEnv" text="01" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-         </children>
-      </GridPane>
-      <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="137.0" minWidth="10.0" prefWidth="124.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="87.0" minWidth="10.0" prefWidth="76.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Spinner fx:id="spnSizeLenght" editable="true" onMouseClicked="#handleClikSpnLenght" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-            <Spinner fx:id="spnSizeWidth" editable="true" onMouseClicked="#handleClikSpnWidth" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
-            <Spinner fx:id="spnScale" disable="true" editable="true" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
-            <Label text="Set Lenght(X) m." GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Set Width(X) m." GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label disable="true" text="Set Scale(X) m." GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-         </children>
-      </GridPane>
-      <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="200.0" minWidth="10.0" percentWidth="0.0" prefWidth="200.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="20.0" valignment="BOTTOM" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="123.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label text="Preset" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="cmbPreset" onAction="#handleCmbPreset" prefWidth="92.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-         </children>
-      </GridPane>
-      <GridPane VBox.vgrow="ALWAYS">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Button disable="true" minHeight="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Load" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
-            <Button disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Export" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+            <ComboBox fx:id="cmbPreset" onAction="#handleCmbPreset" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Label text="Demo" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleBtnAddEnv" text="ADD ENV" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#handleBtnDelEnv" text="DEL ENV" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Spinner fx:id="spnSizeLenght" editable="true" onMouseClicked="#handleClikSpnLenght" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Spinner fx:id="spnSizeWidth" editable="true" onMouseClicked="#handleClikSpnLenght" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
          </children>
       </GridPane>
    </children>
-</VBox>
+</HBox>
