@@ -4,7 +4,7 @@ package model.listener.plugin.model;
 import model.utility.Vec3f;
 
 public class DropplerPlugin extends AbstractPlugin {
-    private static float DEFAULT_DROPPLER_LV = 1.0f;
+    private static final float DEFAULT_DROPPLER_LV = 1.0f;
     private Vec3f velocity;
     private float dropplerLv;
     private float lastDropplerLv;
@@ -41,7 +41,7 @@ public class DropplerPlugin extends AbstractPlugin {
 
     /**
      * 
-     * @return
+     * @return velocity vector
      */
     public Vec3f getVelocity() {
         return this.velocity;
@@ -64,14 +64,14 @@ public class DropplerPlugin extends AbstractPlugin {
     }
 
     /**
-     * 
+     * @param value 
      */
     public void setDropplerLv(final float value) {
         this.dropplerLv = value;
     }
 
     /**
-     * 
+     * @return droppler level
      */
     public float getDropplerLv() {
         return this.dropplerLv;
