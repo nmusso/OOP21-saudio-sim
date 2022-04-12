@@ -2,31 +2,29 @@ package controller.view;
 
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 import controller.ListenerController;
 import controller.MainController;
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import model.utility.Pair;
-import view.utility.PageLoader;
 
 
 public class ListenerControllerView implements Initializable, ControllerView {
     @FXML private Button btn;
     @FXML private TabPane listenerPane;
     @FXML private MenuItem it;
-    @FXML private SplitMenuButton splitMenuPlugin;
-    private static final String FXML_PATH = "src/main/resources/fxml/";
+    @FXML private ComboBox<String> comboBoxPlugin;
+    private final ObservableList<String> pluginItems = FXCollections.observableArrayList();
     private ListenerController ctrListener;
 
 
@@ -36,35 +34,28 @@ public class ListenerControllerView implements Initializable, ControllerView {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         /*TODO con ClassGraph ricercare tutte le classi dei plugin ed aggiungerle in splitMenuPlugin*/
-
-        final EventHandler<ActionEvent> eh = (x) -> { 
-            final MenuItem thisItem = (MenuItem) (x.getSource());
-            splitMenuPlugin.setText(thisItem.getText());
-            thisItem.setDisable(true);
-            };
-
-        final MenuItem item = new MenuItem("DropplerPlugin");
-        item.setOnAction(eh);
-        splitMenuPlugin.getItems().add(item);
-
-
+        this.comboBoxPlugin.setItems(pluginItems);
+        //this.pluginItems.add("DropplerPlugin");
 
     }
 
-    /*TODO review getText is ""*/
+
     @FXML public final void handleAddPlugin(final Event event) throws ClassNotFoundException {
-        final String pluginName = this.splitMenuPlugin.getText();
+        final String pluginName = this.comboBoxPlugin.getValue();
 
-        this.ctrListener.createPluginController(pluginName);
-        this.splitMenuPlugin.setText("");
+        if (this.comboBoxPlugin.getSelectionModel().isEmpty()) {
+            this.ctrListener.createPluginController(pluginName);
+            this.pluginItems.remove(pluginName);
+        }
     }
 
-    @FXML public final void handleSelectPlugin(final Event event) {
-
+    @FXML public final void handleRefreshListPlugin() {
+        final var aviablePlugin = this.ctrListener.getAvaiablePlugin();
+        aviablePlugin.forEach(x -> this.pluginItems.add(x));
     }
 
     /**
-     * 
+     * @param tab
      */
     public void setTabPlugin(final Tab tab) {
         this.listenerPane.getTabs().add(tab);
@@ -77,12 +68,16 @@ public class ListenerControllerView implements Initializable, ControllerView {
     public void setControllerApplication(final MainController ctrMain) {
         this.ctrListener = ctrMain.getListenerCtr();
         this.ctrListener.setControllerView(this);
+        this.handleRefreshListPlugin();
     }
 
+    /**
+     * 
+     */
     @Override
-    public void showError(String error) {
-        // TODO Auto-generated method stub
-        
+    public void showError(final String error) {
+        final var alert = new Alert(Alert.AlertType.WARNING, error);
+        alert.show();
     }
 
 }
