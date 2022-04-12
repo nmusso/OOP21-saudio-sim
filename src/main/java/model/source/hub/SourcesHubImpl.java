@@ -72,7 +72,6 @@ public class SourcesHubImpl implements SourcesHub {
     @Override
     public void addSource(final FRSource s) {
         this.sources.add(s);
-        System.out.println(sources.contains(s));
     }
 
     /**
@@ -80,7 +79,6 @@ public class SourcesHubImpl implements SourcesHub {
      */
     @Override
     public void removeSource(final FRSource s) {
-        System.out.println(sources.contains(s));
         this.sources.remove(s);
     }
 
