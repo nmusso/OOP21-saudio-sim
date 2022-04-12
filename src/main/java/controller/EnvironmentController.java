@@ -24,7 +24,6 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
         AudioManager.initContext();
         this.mainCtr = mainCtr;
         env = envFac.createVoidEnvironment();
-        this.addListener();
     }
 
     /**
@@ -35,7 +34,6 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
     }
 
     /**
-     * 
      * 
      */
     public FRSource getSelectedSource() {
@@ -108,6 +106,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      */
     public void setControllerView(final EnvironmentControllerView controllerView) {
         ctrlView = controllerView;
+        addListener();
     }
 
     /**
