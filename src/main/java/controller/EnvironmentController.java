@@ -28,6 +28,12 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * 
+     */
+    public void addListener() {
+        this.ctrlView.addSprite(TypeSprite.LISTENER, -1, new Vec3f(0.0f));
+    }
+
+    /**
      * 
      */
     public FRSource getSelectedSource() {
@@ -70,6 +76,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      */
     public void moveListener(final Vec3f pos) {
         this.env.getListener().setPosition(pos);
+        this.listenerChangePos();
     }
 
     /**
@@ -81,17 +88,8 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
     /**
      * 
      */
-    public void setLenghtEnv(final double length) {
-        //TODO come utilizzare lo space
-        this.ctrlView.setLenght(length);
-    }
-
-    /**
-     * 
-     */
-    public void setWidthEnv(final double width) {
-      //TODO come utilizzare lo space
-        this.ctrlView.setWidth(width);
+    public void setSizeEnv(final double length, final double width) {
+        this.ctrlView.setSize(length, width);
     }
 
     /**
@@ -100,6 +98,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      */
     public void setControllerView(final EnvironmentControllerView controllerView) {
         ctrlView = controllerView;
+        addListener();
     }
 
     /**
@@ -107,6 +106,14 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      */
     public void upgradeSourceType(final TypeSprite type) {
         this.ctrlView.upgradeTypeSpriteSource(type);
+    }
+
+    /**
+     * 
+     */
+    private void listenerChangePos() {
+        //TODO qui dentro devi chiamarti il tuo metodo che vuoi che si attivi quando il listener cambia
+        //this.mainCtrl.getListenerController().....
     }
 
     /**

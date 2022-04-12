@@ -75,16 +75,10 @@ public class SpaceControllerView  implements Initializable, ControllerView {
         System.out.println(selectedPreset);
     }
 
-    @FXML public final void handleClikSpnLenght(final Event event) {
+    @FXML public final void handleUpdateSpin(final Event event) {
         lenght = spnSizeLenght.getValue();
-        System.out.println(lenght.toString() + "lenght");
-        this.ctrl.setLenght(lenght);
-    }
-
-    @FXML public final void handleClikSpnWidth(final Event event) {
         width = spnSizeWidth.getValue();
-        System.out.println(width.toString() + "Width");
-        this.ctrl.setWidth(width);
+        this.ctrl.setSize(lenght, width);
     }
 
     /**

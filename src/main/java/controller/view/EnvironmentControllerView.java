@@ -47,7 +47,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     private Sprite lastSelectedSource;
     private Sprite listener;
 
-    private Color colorFill = Color.GRAY;
+    private Color colorFill = Color.LIGHTGRAY;
 
     private Set<Sprite> sprites;
 
@@ -72,14 +72,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
         conteinerCanvas.heightProperty().addListener((obs, oldVal, newVal) -> {
             canvas.setHeight(newVal.doubleValue() - 1);
-        });
-
-        // TODO AGGIUNGI LISTENER
-        addSprite(TypeSprite.LISTENER, -1, new Vec3f(0.0f));
-
-        // ascolta il drag
-        canvas.setOnMouseDragged(event -> {
-            moveSprite(event);
         });
 
         AnimationTimer musicLoop = new AnimationTimer() {
@@ -107,6 +99,11 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         musicLoop.start();
     }
 
+
+    @FXML public final void handleOnMouseClickedOrDrag(final Event event) {
+        moveSprite(event);
+    }
+
     /**
      * 
      */
@@ -122,12 +119,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             // CheckOutOfBorder
             newPos = checkOutOfBorder(newPos, temp.get().getSize());
             temp.get().setPosition(newPos.getX(), newPos.getY());
-
-            // positions for controller
-            // forse da mettere nel controller
-            final Pair<Float, Float> posFloat = new Pair<Float, Float>(
-                    (float) ((width * newPos.getX()) / canvas.getWidth()),
-                    (float) ((lenght * newPos.getY()) / canvas.getHeight()));
+            final Pair<Float, Float> posFloat = updatePosForController(newPos);
             if (temp.get().getSpriteType() == TypeSprite.LISTENER) {
                 listener = temp.get();
                 this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
@@ -137,6 +129,13 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), lastSelectedSource.getId());
             }
         }
+    }
+
+    private Pair<Float, Float> updatePosForController(final Pair<Double, Double> pos) {
+        final Pair<Float, Float> posFloat = new Pair<Float, Float>(
+                (float) ((width * pos.getX()) / canvas.getWidth()),
+                (float) ((lenght * pos.getY()) / canvas.getHeight()));
+        return posFloat;
     }
 
     private Pair<Double, Double> checkOutOfBorder(final Pair<Double, Double> newPos, final Rectangle size) {
@@ -158,12 +157,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     /**
      * 
      */
-    public void addSprite(/* type */ final TypeSprite type, final int id, final Vec3f pos) {
+    public void addSprite(/* type */ final TypeSprite type, final int id, final Vec3f posElement) {
         final Sprite sprite = new Sprite(id);
         sprite.setSpriteType(type);
-        sprite.setPosition((double) pos.getX(), (double) pos.getY());
         final Texture tx = new Texture(type.toString());
         sprite.setTexture(tx);
+        posElement.setX(id);
+        Pair<Double, Double> posDouble = new Pair<Double, Double>(
+                (double) ((canvas.getWidth() * posElement.getX()) / width ),
+                (double) ((canvas.getHeight() * posElement.getY()) / lenght));
+        posDouble = checkOutOfBorder(new Pair<Double, Double>((double) posElement.getX(), (double) posElement.getY()), sprite.getSize());
+        sprite.setPosition((double) posDouble.getX(), (double) posDouble.getY());
         sprite.draw(contextView);
         sprites.add(sprite);
     }
@@ -186,24 +190,10 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
-     */
-    public void setLenght(final double lenght) {
-        this.lenght = lenght;
-    }
-
-    /**
-     * 
      * 
      */
     public double getWidth() {
         return width;
-    }
-
-    /**
-     * 
-     */
-    public void setWidth(final double width) {
-        this.width = width;
     }
 
     /**
@@ -241,10 +231,29 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     }
 
+    /**
+     * 
+     * @param lenght
+     * @param width
+     */
+    public void setSize(final double lenght, final double width) {
+        this.lenght = lenght;
+        this.width = width;
+        sprites.stream().forEach(e -> {
+            Pair<Float, Float> x = updatePosForController(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()));
+            Vec3f vec = new Vec3f(x.getX(), x.getY(), 0f);
+            if (e.getSpriteType() == TypeSprite.LISTENER) {
+                this.ctrl.moveListener(vec);
+            } else {
+                this.ctrl.moveSource(vec, e.getId());
+                this.ctrl.lastSelectedSourceChange();
+            }
+        });
+    }
+
     @Override
-    public void showError(String error) {
+    public void showError(final String error) {
         // TODO Auto-generated method stub
-        
     }
 
 }
