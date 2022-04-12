@@ -65,6 +65,9 @@ public class SpaceControllerView  implements Initializable, ControllerView {
 
     @FXML public final void handleCmbPreset(final Event event) {
         selectedPreset = cmbPreset.getSelectionModel().getSelectedItem().toString();
+        if(selectedPreset.equals("cinema")) {
+            this.ctrl.changePreset();
+        }
         System.out.println(selectedPreset);
     }
 

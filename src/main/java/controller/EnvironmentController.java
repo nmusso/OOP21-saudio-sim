@@ -1,5 +1,9 @@
     package controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import controller.view.EnvironmentControllerView;
 import model.audiomanager.AudioManager;
 import model.environment.Environment;
@@ -110,6 +114,17 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      */
     public void lastSelectedSourceChange() {
         this.mainCtr.getSourceController().changeSelectedSource();
+    }
+    
+    public void changePreset() {
+        FileInputStream file=null;
+        try {
+            file = new FileInputStream(new File("src/main/resources/img/" + "sfondoCinema" + ".png"));
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        this.ctrlView.changePreset(file);
     }
 
 }

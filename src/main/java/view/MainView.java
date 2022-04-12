@@ -3,6 +3,8 @@ package view;
 import java.io.File;
 import java.io.FileInputStream;
 
+import org.yamj.api.common.exception.ClientAPIException;
+
 import controller.MainController;
 import controller.view.MainControllerView;
 import javafx.application.Application;
@@ -29,6 +31,7 @@ public class MainView extends Application {
         ctrMainV.setControllerApplication(ctrMainApp);
 
         final Scene scene = new Scene(root);
+        scene.getStylesheets().add(MainView.class.getResource("style.css").toExternalForm());
         mainStage.setScene(scene);
         mainStage.show();
     }

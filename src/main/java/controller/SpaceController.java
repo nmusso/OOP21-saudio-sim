@@ -32,5 +32,9 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
     public void setWidth(final double width) {
         this.mainCtr.getEnvironmentController().setWidthEnv(width);
     }
+    
+    public void changePreset() {
+        this.mainCtr.getEnvironmentController().changePreset();
+    }
 
 }

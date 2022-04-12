@@ -1,5 +1,6 @@
 package controller.view;
 
+import java.io.FileInputStream;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Optional;
@@ -16,8 +17,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Color;
 import model.utility.Pair;
 import model.utility.Vec3f;
@@ -40,10 +47,15 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     private Sprite lastSelectedSource;
     private Sprite listener;
 
+    private Color colorFill = Color.GRAY;
+
     private Set<Sprite> sprites;
 
     private double lenght = 10;
     private double width = 10;
+
+    // temp
+    private FileInputStream file = null;
 
     /**
      * 
@@ -54,8 +66,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         sprites = new HashSet<>();
         contextView = canvas.getGraphicsContext2D();
 
-
-
         conteinerCanvas.widthProperty().addListener((obs, oldVal, newVal) -> {
             canvas.setWidth(newVal.doubleValue() - 1);
         });
@@ -63,7 +73,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         conteinerCanvas.heightProperty().addListener((obs, oldVal, newVal) -> {
             canvas.setHeight(newVal.doubleValue() - 1);
         });
-
 
         // TODO AGGIUNGI LISTENER
         addSprite(TypeSprite.LISTENER, -1, new Vec3f(0.0f));
@@ -81,11 +90,15 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                     e.setVelocity(new Vector(0, 0));
                     e.getVelocity().multiply(1 / 60.0);
                 });
-                contextView.setFill(Color.LIGHTGRAY);
+                contextView.setFill(colorFill);
                 contextView.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                if (file != null) {
+                    contextView.drawImage(new Image(file), canvas.getWidth(), canvas.getHeight());
+                }
 
                 sprites.stream().forEach(e -> {
-                    Pair<Double, Double> pos = checkOutOfBorder(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()), e.getSize());
+                    Pair<Double, Double> pos = checkOutOfBorder(
+                            new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()), e.getSize());
                     e.setPosition(pos.getX(), pos.getY());
                     e.draw(contextView);
                 });
@@ -110,8 +123,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             newPos = checkOutOfBorder(newPos, temp.get().getSize());
             temp.get().setPosition(newPos.getX(), newPos.getY());
 
-            //positions for controller
-            //forse da mettere nel controller
+            // positions for controller
+            // forse da mettere nel controller
             final Pair<Float, Float> posFloat = new Pair<Float, Float>(
                     (float) ((width * newPos.getX()) / canvas.getWidth()),
                     (float) ((lenght * newPos.getY()) / canvas.getHeight()));
@@ -215,6 +228,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      */
     public void upgradeTypeSpriteSource(final TypeSprite type) {
         lastSelectedSource.setSpriteType(type);
+    }
+
+    public void changePreset(FileInputStream file) {
+        Image img = new Image(file);
+        BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        Background bGround = new Background(bImg);
+        conteinerCanvas.setBackground(bGround);
+        System.out.println("do");
+        colorFill = Color.TRANSPARENT;
+
     }
 
 }
