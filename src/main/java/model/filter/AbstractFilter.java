@@ -24,7 +24,8 @@ public abstract class AbstractFilter implements Filter {
 
     /**
      * Apply the filter on the source.
-     * @param source  the source
+     * 
+     * @param source the source
      */
     protected final void setOnSource(final int filter, final Source source) {
         alSourcei(source.getId(), AL_DIRECT_FILTER, filter);

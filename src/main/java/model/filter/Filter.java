@@ -24,14 +24,16 @@ public interface Filter {
 
     /**
      * Apply the filter type (high, medium, band) on the source.
-     * @param source  the source
-     * @param type  the type of the filter
+     * 
+     * @param source the source
+     * @param type   the type of the filter
      */
     void applyFilter(Source source, SourceType type);
 
     /**
      * Remove the filter from the source.
-     * @param source  the source
+     * 
+     * @param source the source
      */
     void removeFilter(Source source);
 }

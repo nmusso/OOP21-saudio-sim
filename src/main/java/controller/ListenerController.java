@@ -38,7 +38,7 @@ public class ListenerController {
             final ClassInfoList widgetClasses = scanResult.getClassesImplementing(PLUGIN_PATH + ".Plugin");
             this.availablePlugin = widgetClasses.getNames().stream()
                                                           .map(x -> Stream.of(x.split(PLUGIN_PATH + "."))
-                                                                  .toList()
+                                                                  .collect(Collectors.toList())
                                                                   .get(1))
                                                           .collect(Collectors.toSet());
         } catch (Exception e) {

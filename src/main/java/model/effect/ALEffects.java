@@ -33,19 +33,19 @@ public enum ALEffects {
     /**
      * Autowah effect.
      */
-    AUTOWAH(AL_EFFECT_AUTOWAH, AL_AUTOWAH_ATTACK_TIME, AL_AUTOWAH_MIN_ATTACK_TIME, AL_AUTOWAH_MAX_ATTACK_TIME), 
+    AUTOWAH(AL_EFFECT_AUTOWAH, AL_AUTOWAH_ATTACK_TIME, AL_AUTOWAH_MIN_ATTACK_TIME, AL_AUTOWAH_MAX_ATTACK_TIME),
     /**
      * Chorus effect.
      */
-    CHORUS(AL_EFFECT_CHORUS, AL_CHORUS_DEPTH, AL_CHORUS_MIN_DEPTH, AL_CHORUS_MAX_DEPTH), 
+    CHORUS(AL_EFFECT_CHORUS, AL_CHORUS_DEPTH, AL_CHORUS_MIN_DEPTH, AL_CHORUS_MAX_DEPTH),
     /**
      * Echo effect.
      */
-    ECHO(AL_EFFECT_ECHO, AL_ECHO_DELAY, AL_ECHO_MIN_DELAY, AL_ECHO_MAX_DELAY), 
+    ECHO(AL_EFFECT_ECHO, AL_ECHO_DELAY, AL_ECHO_MIN_DELAY, AL_ECHO_MAX_DELAY),
     /**
      * Flanger effect.
      */
-    FLANGER(AL_EFFECT_FLANGER, AL_FLANGER_DEPTH, AL_FLANGER_MIN_DEPTH, AL_FLANGER_MAX_DEPTH), 
+    FLANGER(AL_EFFECT_FLANGER, AL_FLANGER_DEPTH, AL_FLANGER_MIN_DEPTH, AL_FLANGER_MAX_DEPTH),
     /**
      * Reverb effect.
      */
@@ -58,10 +58,11 @@ public enum ALEffects {
 
     /**
      * Constructor for ALEffects.
-     * @param effect  the id of the effect
-     * @param attr  the id of the attribute
-     * @param min  the min value of the effect
-     * @param max  the max value of the effect
+     * 
+     * @param effect the id of the effect
+     * @param attr   the id of the attribute
+     * @param min    the min value of the effect
+     * @param max    the max value of the effect
      */
     ALEffects(final int effect, final int attr, final float min, final float max) {
         this.effect = effect;
@@ -72,7 +73,8 @@ public enum ALEffects {
 
     /**
      * Getter for the effect.
-     * @return  the id of the effect
+     * 
+     * @return the id of the effect
      */
     public int getEffect() {
         return effect;
@@ -80,7 +82,8 @@ public enum ALEffects {
 
     /**
      * Getter for the attribute.
-     * @return  the id of the attribute
+     * 
+     * @return the id of the attribute
      */
     public int getAttribute() {
         return attribute;
@@ -88,7 +91,8 @@ public enum ALEffects {
 
     /**
      * Getter for the minimum value of the effect.
-     * @return  the value
+     * 
+     * @return the value
      */
     public float getMinValue() {
         return minValue;
@@ -96,7 +100,8 @@ public enum ALEffects {
 
     /**
      * Getter for the maximum value of the effect.
-     * @return  the value
+     * 
+     * @return the value
      */
     public float getMaxValue() {
         return maxValue;
@@ -104,6 +109,7 @@ public enum ALEffects {
 
     /**
      * Convert the array of values in list.
+     * 
      * @return the list
      */
     public static List<ALEffects> getValuesAsList() {

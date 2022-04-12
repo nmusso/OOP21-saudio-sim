@@ -17,8 +17,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.lwjgl.BufferUtils;
 
+import model.utility.ConvertToMono;
+
 /**
- * Implementation of the interface Buffer, containing the id of the buffer and the file who generated it.
+ * Implementation of the interface Buffer, containing the id of the buffer and
+ * the file who generated it.
  *
  */
 public class BufferImpl implements Buffer {
@@ -28,7 +31,8 @@ public class BufferImpl implements Buffer {
 
     /**
      * Construct a new BufferImpl.
-     * @param file  the path of the file which will be used for the buffer.
+     * 
+     * @param file the path of the file which will be used for the buffer.
      */
     public BufferImpl(final String file) {
         this.file = file;
@@ -57,18 +61,25 @@ public class BufferImpl implements Buffer {
 
     /**
      * Generate the buffer from the path passed in the constructor.
+     * 
      * @return the ID of the generated buffer
-     * @throws FileNotFoundException if file does not exists
-     * @throws UnsupportedAudioFileException if the type of the file is not supported
-     * @throws IOException if an error occur during read
+     * @throws FileNotFoundException         if file does not exists
+     * @throws UnsupportedAudioFileException if the type of the file is not
+     *                                       supported
+     * @throws IOException                   if an error occur during read
      */
     private int generateBuffer() throws UnsupportedAudioFileException, IOException {
         try (AudioInputStream stream = getAudioInputStream(loadFile(file))) {
             final var format = stream.getFormat();
-            final int sampleSize = getALFormat(format);
-
-            final byte[] byteArray = new byte[stream.available()];
+            byte[] byteArray = new byte[stream.available()];
             stream.read(byteArray);
+
+            if (format.getChannels() == 2) {
+                byteArray = ConvertToMono.convert(byteArray, byteArray.length, format.getSampleRate(),
+                        format.getSampleRate());
+            }
+
+            final int sampleSize = format.getSampleSizeInBits() == 8 ? AL_FORMAT_MONO8 : AL_FORMAT_MONO16;
             final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
 
             this.id = alGenBuffers();
@@ -83,7 +94,8 @@ public class BufferImpl implements Buffer {
 
     /**
      * Return a flipper ByteBuffer from a byte array.
-     * @param byteArray  the byte array read from the AudioInputStream
+     * 
+     * @param byteArray the byte array read from the AudioInputStream
      * @return the flipped byte array as ByteBuffer
      */
     private ByteBuffer getAudioBuffer(final byte[] byteArray) {
@@ -95,24 +107,9 @@ public class BufferImpl implements Buffer {
     }
 
     /**
-     * Return if the format of the file is Mono 8 or 16 bit.
-     * @param format  the property of the AudioInputStream, as AudioFormat
-     * @return the format and bit of the file as AL constants
-     */
-    private int getALFormat(final AudioFormat format) {
-        switch (format.getChannels()) {
-        case 1:
-            return (format.getSampleSizeInBits() == 8) ? AL_FORMAT_MONO8 : AL_FORMAT_MONO16;
-        case 2:
-            throw new ALFormatException("Stereo not supported.");
-        default:
-            throw new ALFormatException("Can't handle format.");
-        }
-    }
-
-    /**
      * Load file from path.
-     * @param file  the path of the file
+     * 
+     * @param file the path of the file
      * @return the loaded file
      * @throws FileNotFoundException if file does not exists
      */

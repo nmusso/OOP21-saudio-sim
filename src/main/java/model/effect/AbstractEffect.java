@@ -30,9 +30,10 @@ public abstract class AbstractEffect implements Effect {
 
     /**
      * Set the effect in the slot on the source.
-     * @param source  the source on which apply the effect
-     * @param slot  the slot containing the final effect
-     * @param num  the number of the effect (from enum)
+     * 
+     * @param source the source on which apply the effect
+     * @param slot   the slot containing the final effect
+     * @param num    the number of the effect (from enum)
      */
     protected final void setOnSource(final Source source, final int slot, final int num) {
         alSourcei(source.getId(), AL_DIRECT_FILTER, AL_FILTER_NULL);

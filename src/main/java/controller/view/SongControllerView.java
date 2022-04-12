@@ -9,7 +9,10 @@ import controller.SongController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -136,15 +139,22 @@ public class SongControllerView implements Initializable, ControllerView {
 
         updateComboBox();
     }
-    
+
+    /**
+     * Getter of the combobox with the buffers.
+     * @return the combobox.
+     */
     public ComboBox<String> getCmbSongs() {
         return cmbSongs;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void showError(String error) {
-        // TODO Auto-generated method stub
-        
+    public void showError(final String error) {
+        final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
+        alert.show();
     }
 
 }

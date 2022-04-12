@@ -14,7 +14,8 @@ public final class ALFormatException extends RuntimeException {
 
     /**
      * Constructor for the exception.
-     * @param error  the message error
+     * 
+     * @param error the message error
      */
     public ALFormatException(final String error) {
         super(error);
@@ -23,8 +24,9 @@ public final class ALFormatException extends RuntimeException {
 
     /**
      * Constructor for the exception.
-     * @param error  the message error
-     * @param cause  the exception 
+     * 
+     * @param error the message error
+     * @param cause the exception
      */
     public ALFormatException(final String error, final Throwable cause) {
         super(error, cause);

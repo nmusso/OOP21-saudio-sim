@@ -11,12 +11,15 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public interface BufferFactory {
     /**
-     * Create a new buffer if it was never generated from the path passed as parameter, otherwise gets the ID from the cache.
-     * @param file  the path of the file which will be associated to the buffer
+     * Create a new buffer if it was never generated from the path passed as
+     * parameter, otherwise gets the ID from the cache.
+     * 
+     * @param file the path of the file which will be associated to the buffer
      * @return The ID of the created buffer
-     * @throws FileNotFoundException if file does not exists
-     * @throws UnsupportedAudioFileException if the type of the file is not supported
-     * @throws IOException if an error occur during read
+     * @throws FileNotFoundException         if file does not exists
+     * @throws UnsupportedAudioFileException if the type of the file is not
+     *                                       supported
+     * @throws IOException                   if an error occur during read
      */
     Buffer createBufferFromPath(String file) throws FileNotFoundException, UnsupportedAudioFileException, IOException;
 }
