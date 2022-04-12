@@ -3,8 +3,6 @@ package controller.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.sound.sampled.AudioSystem;
-
 import controller.MainController;
 import controller.SourceController;
 import javafx.collections.FXCollections;
@@ -17,11 +15,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.Pane;
-import model.source.FRSource;
-import model.source.SourceType;
 
 public class SourceControllerView implements Initializable, ControllerView {
 
+    private static final int CHART_MAXSIZE_W = 40;
+    private static final int CHART_MAXSIZE_H = 40;
+    private static final int PANE_MAXSIZE_W = 40;
+    private static final int PANE_MAXSIZE_H = 40;
+    private static final int CHART_LABEL_LINE_LENGTH = 5; 
     @FXML private Button btnAddSpeaker;
     @FXML private Button btnRemoveSpeaker;
     @FXML private RadioButton rbtnDefault;
@@ -35,19 +36,21 @@ public class SourceControllerView implements Initializable, ControllerView {
     private ObservableList<PieChart.Data> pieChartData;
     private SourceController ctrSource;
 
+    /**
+     * 
+     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         pieChartData =
                 FXCollections.observableArrayList(
-                new PieChart.Data("High", 33),
-                new PieChart.Data("Mid", 33),
-                new PieChart.Data("Low", 33));
+                new PieChart.Data("High", 0),
+                new PieChart.Data("Mid", 0),
+                new PieChart.Data("Low", 0));
         chart = new PieChart(pieChartData);
-        chart.setTitle("Freq Distribution");
-        chart.setMaxSize(30, 30);
-        chart.setLabelLineLength(10);
+        chart.setMaxSize(CHART_MAXSIZE_W, CHART_MAXSIZE_H); 
+        chart.setLabelLineLength(CHART_LABEL_LINE_LENGTH);
+        paneChart.setMaxSize(PANE_MAXSIZE_W, PANE_MAXSIZE_H);
         paneChart.getChildren().add(chart);
-
     }
 
 
@@ -60,60 +63,57 @@ public class SourceControllerView implements Initializable, ControllerView {
         this.ctrSource.setControllerView(this);
     }
 
+    /**
+     * 
+     * @param event
+     */
     @FXML 
-    private void handleAddSpeaker(final Event event) {
+    public void handleAddSpeaker(final Event event) {
         this.ctrSource.addSpeaker();
+        this.ctrSource.updatePieChartData();
     }
 
+    /**
+     * 
+     * @param event
+     */
     @FXML 
-    private void handleRemoveSpeaker(final Event event) {
+    public void handleRemoveSpeaker(final Event event) {
         this.ctrSource.removeSpeaker();
-        //TODO clear
         lblX.setText("");
         lblY.setText("");
+        this.ctrSource.updatePieChartData();
     }
 
+    /**
+     * 
+     * @param event
+     */
     @FXML 
-    private void handleRadioButtonChanged(final Event event) {
-        ctrSource.setSpeakerType(this.getSelectedSpeaker(), ((RadioButton) event.getSource()).getId());
-    }
-
-    private FRSource getSelectedSpeaker() {
-        return this.ctrSource.getSelectedSpeaker();
+    public void handleRadioButtonChanged(final Event event) {
+        ctrSource.setSpeakerType(this.ctrSource.getSelectedSpeaker(), ((RadioButton) event.getSource()).getId());
+        this.ctrSource.updatePieChartData();
     }
 
     /**
      * 
      */
     public void updateSelectedSpeaker() {
-        lblX.setText(Float.toString(this.getSelectedSpeaker().getPosition().getX()));
-        lblY.setText(Float.toString(this.getSelectedSpeaker().getPosition().getY()));
+        lblX.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getX()));
+        lblY.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getY()));
 
-        //TODO clear
-        switch (this.getSelectedSpeaker().getType()) {
+        switch (this.ctrSource.getSelectedSpeaker().getType()) {
         case FULL:
-            if (!rbtnDefault.isSelected()) {
-                this.updatePieChartFreq(33, 33, 33);
-                rbtnDefault.setSelected(true);
-            }
+            rbtnDefault.setSelected(true);
             break;
         case HIGH:
-            if (!rbtnTweeter.isSelected()) {
-                rbtnTweeter.setSelected(true);
-                this.updatePieChartFreq(70, 15, 15);
-            }
+            rbtnTweeter.setSelected(true);
             break;
         case MID:
-            if (!rbtnMidRange.isSelected()) {
-                rbtnMidRange.setSelected(true);
-                this.updatePieChartFreq(25, 50, 25);
-            }
+            rbtnMidRange.setSelected(true);
             break;
         case LOW:
-            if (!rbtnWoofer.isSelected()) {
-                rbtnWoofer.setSelected(true);
-                this.updatePieChartFreq(15, 10, 75);
-            }
+            rbtnWoofer.setSelected(true);
             break;
         default:
             break;
@@ -122,21 +122,21 @@ public class SourceControllerView implements Initializable, ControllerView {
 
     /**
      * 
+     * @param highValue
+     * @param midValue
+     * @param lowValue
      */
-    public void updatePieChartFreq(final int highValue, final int midValue, final int lowValue) {
+    public void updatePieChartFreq(final double highValue, final double midValue, final double lowValue) {
         this.pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("High", highValue),
                 new PieChart.Data("Mid", midValue),
                 new PieChart.Data("Low", lowValue));
         chart.setData(pieChartData);
-
     }
 
 
     @Override
-    public void showError(String error) {
-        // TODO Auto-generated method stub
-        
-    }
+    public void showError(final String error) {
 
+    }
 }

@@ -1,15 +1,17 @@
 package model.source;
 
-import model.utility.Vec3f;
-import static org.lwjgl.openal.AL10.*;
-import static org.lwjgl.openal.AL11.*;
-import org.lwjgl.openal.*;
-import static javax.sound.sampled.AudioSystem.*;
-import java.io.*;
-import javax.sound.sampled.*;
-import java.nio.*;
-import java.util.Objects;
+import static org.lwjgl.openal.AL10.AL_BUFFER;
+import static org.lwjgl.openal.AL10.AL_POSITION;
+import static org.lwjgl.openal.AL10.alGenSources;
+import static org.lwjgl.openal.AL10.alSourcePlay;
+import static org.lwjgl.openal.AL10.alSourcePause;
+import static org.lwjgl.openal.AL10.alSourceStop;
+import static org.lwjgl.openal.AL10.alSourcei;
+import static org.lwjgl.openal.AL10.alSource3f;
+import static org.lwjgl.openal.AL10.alDeleteSources;
 
+import model.utility.Vec3f;
+import java.util.Objects;
 
 public class SourceImpl implements Source {
 
@@ -108,7 +110,7 @@ public class SourceImpl implements Source {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(id, isPlaying, position);
+        return Objects.hash(id);
     }
 
     /**
@@ -125,7 +127,7 @@ public class SourceImpl implements Source {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        SourceImpl other = (SourceImpl) obj;
+        final SourceImpl other = (SourceImpl) obj;
         return Objects.equals(id, other.id) && isPlaying == other.isPlaying && Objects.equals(position, other.position);
     }
 

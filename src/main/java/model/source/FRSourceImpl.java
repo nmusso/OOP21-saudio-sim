@@ -1,5 +1,7 @@
 package model.source;
 
+import java.util.Objects;
+
 import model.filter.Filter;
 import model.filter.FilterImpl;
 import model.utility.Vec3f;
@@ -48,6 +50,34 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
         } else {
             this.filter.applyFilter(this, type);
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        final int result = super.hashCode();
+        return prime * result;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!super.equals(obj)) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final FRSourceImpl other = (FRSourceImpl) obj;
+        return Objects.equals(filter, other.filter) && type == other.type;
     }
 
 }
