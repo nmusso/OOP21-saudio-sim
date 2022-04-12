@@ -43,7 +43,7 @@ public class ListenerControllerView implements Initializable, ControllerView {
     @FXML public final void handleAddPlugin(final Event event) throws ClassNotFoundException {
         final String pluginName = this.comboBoxPlugin.getValue();
 
-        if (this.comboBoxPlugin.getSelectionModel().isEmpty()) {
+        if (!this.comboBoxPlugin.getSelectionModel().isEmpty()) {
             this.ctrListener.createPluginController(pluginName);
             this.pluginItems.remove(pluginName);
         }
