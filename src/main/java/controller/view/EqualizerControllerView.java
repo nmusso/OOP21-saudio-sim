@@ -111,4 +111,10 @@ public class EqualizerControllerView implements Initializable, ControllerView {
             }
         });
     }
+
+    @Override
+    public void showError(String error) {
+        // TODO Auto-generated method stub
+        
+    }
 }

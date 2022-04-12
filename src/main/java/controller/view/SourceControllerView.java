@@ -132,4 +132,11 @@ public class SourceControllerView implements Initializable, ControllerView {
 
     }
 
+
+    @Override
+    public void showError(String error) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

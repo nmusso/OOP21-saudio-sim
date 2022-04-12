@@ -79,4 +79,10 @@ public class ListenerControllerView implements Initializable, ControllerView {
         this.ctrListener.setControllerView(this);
     }
 
+    @Override
+    public void showError(String error) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

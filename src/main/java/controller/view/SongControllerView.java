@@ -141,4 +141,10 @@ public class SongControllerView implements Initializable, ControllerView {
         return cmbSongs;
     }
 
+    @Override
+    public void showError(String error) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

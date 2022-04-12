@@ -127,4 +127,10 @@ public class SpaceControllerView  implements Initializable, ControllerView {
         return selectedPreset;
     }
 
+    @Override
+    public void showError(String error) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
