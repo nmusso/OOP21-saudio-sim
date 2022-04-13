@@ -8,6 +8,7 @@ import org.yamj.api.common.exception.ClientAPIException;
 import controller.MainController;
 import controller.view.MainControllerView;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,6 +33,9 @@ public class MainView extends Application {
 
         final Scene scene = new Scene(root);
         scene.getStylesheets().add(MainView.class.getResource("style.css").toExternalForm());
+
+        /*TODO review System.exit */
+        mainStage.setOnCloseRequest((x) -> System.exit(0));
         mainStage.setScene(scene);
         mainStage.show();
     }
