@@ -19,7 +19,7 @@ import model.utility.Pair;
 import view.utility.PageLoader;
 
 public class MainControllerView implements Initializable {
-    private static final String FXML_PATH = "src/main/resources/fxml/";
+    private static final String FXML_PATH = "/fxml/";
     private final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private final double contHeight = screen.getHeight() * 0.75;
     private final double contWidth = contHeight * 1.75;
@@ -35,15 +35,6 @@ public class MainControllerView implements Initializable {
     @Override
     public final void initialize(final URL location, final ResourceBundle resources) {
         container.setPrefSize(contWidth, contHeight);
-    }
-
-    private void setPane(final BorderPane pane, final String path) {
-        final Optional<Pair<Pane, ControllerView>> infoElm = PageLoader.getPage(path);
-
-        infoElm.ifPresent(x -> {
-            pane.setCenter(x.getX());
-            x.getY().setControllerApplication(this.ctrMain); /*TODO control if ctrMain is null*/
-        });
     }
 
     /**
@@ -68,5 +59,15 @@ public class MainControllerView implements Initializable {
         setPane(equalizerPane, FXML_PATH + "equalizerView.fxml");
         setPane(spaceConfigPane, FXML_PATH + "spaceConfig.fxml");
         setPane(environmentPane, FXML_PATH + "environmentView.fxml");
+    }
+
+    private void setPane(final BorderPane pane, final String path) {
+        final PageLoader pl = new PageLoader();
+        final Optional<Pair<Pane, ControllerView>> infoElm = pl.getPage(path);
+
+        infoElm.ifPresent(x -> {
+            pane.setCenter(x.getX());
+            x.getY().setControllerApplication(this.ctrMain); /*TODO control if ctrMain is null*/
+        });
     }
 }

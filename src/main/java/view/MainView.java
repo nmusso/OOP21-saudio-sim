@@ -15,7 +15,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
-    private static final String FXML_PATH = "src/main/resources/fxml/SecondScene.fxml";
+    private static final String SEP = System.getProperty("file.separator");
+    //private static final String FXML_PATH = SEP + "fxml" + SEP + "SecondScene.fxml"; not working
+    private static final String FXML_PATH = "/fxml/SecondScene.fxml";
 
     /**
      * 
@@ -24,15 +26,15 @@ public class MainView extends Application {
     @Override
     public void start(final Stage mainStage) throws Exception {
         final MainController ctrMainApp = new MainController();
-        mainStage.setTitle("Collector");
+        mainStage.setTitle("Spatial Audio Simulator");
 
         final FXMLLoader loader = new FXMLLoader();
-        final Parent root = loader.load(new FileInputStream(new File(FXML_PATH)));
+        final Parent root = loader.load(getClass().getResourceAsStream(FXML_PATH));
         final MainControllerView ctrMainV = loader.getController();
         ctrMainV.setControllerApplication(ctrMainApp);
 
         final Scene scene = new Scene(root);
-        scene.getStylesheets().add(MainView.class.getResource("style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
         /*TODO review System.exit */
         mainStage.setOnCloseRequest((x) -> System.exit(0));

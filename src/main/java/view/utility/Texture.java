@@ -4,6 +4,7 @@ package view.utility;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import javafx.scene.image.Image;
 
@@ -42,13 +43,7 @@ public class Texture {
      * @param path name of the image file to load
      */
     public Texture(final String path) {
-        FileInputStream file = null;
-        try {
-             file = new FileInputStream(new File("src/main/resources/img/" + path + ".png"));
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        final InputStream file = getClass().getResourceAsStream("/img/" + path + ".png");
         this.image = new Image(file);
         region = new Rectangle(0, 0,  image.getWidth(), image.getHeight());
     }
