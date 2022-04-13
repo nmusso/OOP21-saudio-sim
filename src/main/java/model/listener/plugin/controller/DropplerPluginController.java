@@ -1,9 +1,11 @@
 package model.listener.plugin.controller;
 
+
 import java.util.Optional;
 
 import controller.MainController;
 import controller.view.ListenerControllerView;
+import javafx.application.Platform;
 import model.listener.Listener;
 import model.listener.plugin.model.DropplerPlugin;
 import model.listener.plugin.model.Plugin;
@@ -17,8 +19,7 @@ public class DropplerPluginController implements ControllerPlugin {
     private final Listener listener;
     private final MainController mainController;
     private final DropplerPlugin plugin;
-    private long startTime;
-    private Vec3f lastPosition;
+    private final Thread thVel;
 
     public DropplerPluginController(final Listener listener, final MainController mainController, final ListenerControllerView listenerView) throws ClassNotFoundException {
         final Optional<DropplerPluginControllerView> temp = PluginViewLoader.tabPluginLoader(FXML_VIEW_PATH);
@@ -33,8 +34,34 @@ public class DropplerPluginController implements ControllerPlugin {
         this.listener = listener;
         this.mainController = mainController;
         this.plugin = new DropplerPlugin();
-        this.lastPosition = listener.getPosition();
-        this.startTime = System.currentTimeMillis();
+
+        this.thVel = new Thread() {
+            @Override
+            public void run() {
+                //int i = 0;
+                while (true) {
+                    try {
+                        final Vec3f posStart = DropplerPluginController.this.listener.getPosition();
+                        Thread.sleep(100);
+                        final Vec3f posEnd = DropplerPluginController.this.listener.getPosition();
+                        final float x = Math.abs(posStart.getX() - posEnd.getX());
+                        final float y = Math.abs(posStart.getY() - posEnd.getY());
+
+                        DropplerPluginController.this.plugin.setVelocity(new Vec3f(x / 0.1f, y / 0.1f, 0.0f));
+
+                        Platform.runLater(() -> DropplerPluginController.this.positionChange());
+                        //System.out.println(i++);
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        };
+
+        thVel.start();
+
     }
 
     /**
@@ -46,19 +73,11 @@ public class DropplerPluginController implements ControllerPlugin {
     }
 
     /**
-     * TODO check divisione per 0 e l ordine delle istruzioni .
+     * 
      */
-    public void positionChange() {
-        final long endTime = System.currentTimeMillis();
-        final long elapsedTime = endTime - this.startTime;
-        final Vec3f spaceTraveled = new Vec3f(Math.abs(this.listener.getPosition().getX() - this.lastPosition.getX()),
-                                              Math.abs(this.listener.getPosition().getY() - this.lastPosition.getY()),
-                                              Math.abs(this.listener.getPosition().getZ() - this.lastPosition.getZ()));
-        this.plugin.setVelocityX(spaceTraveled.getX() / elapsedTime);
-        this.plugin.setVelocityY(spaceTraveled.getY() / elapsedTime);
-        this.startTime = endTime; 
-        this.lastPosition = this.listener.getPosition();
+    private void positionChange() {
         this.controllerView.changeVelocity(this.plugin.getVelocity().getX(), this.plugin.getVelocity().getY());
     }
+
 
 }

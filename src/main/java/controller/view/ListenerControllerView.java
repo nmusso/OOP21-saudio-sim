@@ -36,14 +36,11 @@ public class ListenerControllerView implements Initializable, ControllerView {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        /*TODO con ClassGraph ricercare tutte le classi dei plugin ed aggiungerle in splitMenuPlugin*/
         this.comboBoxPlugin.setItems(pluginItems);
-        //this.pluginItems.add("DropplerPlugin");
-
     }
 
 
-    @FXML public final void handleAddPlugin(final Event event) throws ClassNotFoundException {
+    @FXML public final void handleAddPlugin(final Event event) {
         final String pluginName = this.comboBoxPlugin.getValue();
 
         if (!this.comboBoxPlugin.getSelectionModel().isEmpty()) {
