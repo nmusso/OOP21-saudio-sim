@@ -45,7 +45,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     private GraphicsContext contextView;
 
     private Sprite lastSelectedSource;
-    private Sprite listener;
 
     private Color colorFill = Color.LIGHTGRAY;
 
@@ -121,7 +120,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             temp.get().setPosition(newPos.getX(), newPos.getY());
             final Pair<Float, Float> posFloat = updatePosForController(newPos);
             if (temp.get().getSpriteType() == TypeSprite.LISTENER) {
-                listener = temp.get();
                 this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
             } else {
                 lastSelectedSource = temp.get();
@@ -135,6 +133,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         final Pair<Float, Float> posFloat = new Pair<Float, Float>(
                 (float) ((width * pos.getX()) / canvas.getWidth()),
                 (float) ((lenght * pos.getY()) / canvas.getHeight()));
+        System.out.println("("+width+" *"+pos.getX()+") / "+canvas.getWidth());
+        System.out.println(posFloat.getX());
         return posFloat;
     }
 
@@ -162,13 +162,16 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         sprite.setSpriteType(type);
         final Texture tx = new Texture(type.toString());
         sprite.setTexture(tx);
-        posElement.setX(id);
         Pair<Double, Double> posDouble = new Pair<Double, Double>(
-                (double) ((canvas.getWidth() * posElement.getX()) / width ),
+                (double) ((canvas.getWidth() * posElement.getX()) / width),
                 (double) ((canvas.getHeight() * posElement.getY()) / lenght));
-        posDouble = checkOutOfBorder(new Pair<Double, Double>((double) posElement.getX(), (double) posElement.getY()), sprite.getSize());
+        System.out.println("("+canvas.getWidth()+" * "+ posElement.getX()+") / "+ width);
+        System.out.println(posDouble);
+        posDouble = checkOutOfBorder(new Pair<Double, Double>(posDouble.getX(), posDouble.getY()), sprite.getSize());
         sprite.setPosition((double) posDouble.getX(), (double) posDouble.getY());
         sprite.draw(contextView);
+        //aggiungere il controllo se e una sorce e fare il alert per sciro
+        //aggiungere il fatto che potreti mettero in un metodo privato
         sprites.add(sprite);
     }
 
@@ -220,16 +223,16 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         lastSelectedSource.setSpriteType(type);
     }
 
-    public void changePreset(FileInputStream file) {
-        Image img = new Image(file);
-        BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        Background bGround = new Background(bImg);
-        conteinerCanvas.setBackground(bGround);
-        System.out.println("do");
-        colorFill = Color.TRANSPARENT;
-
-    }
+//    public void changePreset(FileInputStream file) {
+//        Image img = new Image(file);
+//        BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+//                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+//        Background bGround = new Background(bImg);
+//        conteinerCanvas.setBackground(bGround);
+//        System.out.println("do");
+//        colorFill = Color.TRANSPARENT;
+//
+//    }
 
     /**
      * 
@@ -254,6 +257,13 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     @Override
     public void showError(final String error) {
         // TODO Auto-generated method stub
+    }
+    
+    /**
+     * 
+     */
+    public void reset() {
+        sprites.clear();
     }
 
 }

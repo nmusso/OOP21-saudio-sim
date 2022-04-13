@@ -27,7 +27,7 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
     }
 
     public void changePreset() {
-        this.mainCtr.getEnvironmentController().changePreset();
+        this.mainCtr.getEnvironmentController().changeEnv();
     }
 
 }

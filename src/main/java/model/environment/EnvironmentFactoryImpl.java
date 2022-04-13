@@ -11,17 +11,22 @@ import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
 import model.source.FRSource;
+import model.source.SourceFactory;
+import model.source.SourceFactoryImpl;
+import model.source.SourceType;
+import model.source.hub.SourcesHub;
 import model.source.hub.SourcesHubFactory;
 import model.source.hub.SourcesHubFactoryImpl;
 import model.space.Space;
 import model.space.SpaceFactory;
 import model.space.SpaceFactoryImpl;
+import model.utility.Vec3f;
 
 public class EnvironmentFactoryImpl implements EnvironmentFactory {
 
     private final SourcesHubFactory sourceHubFac = new SourcesHubFactoryImpl();
     private final SpaceFactory spaceFac = new SpaceFactoryImpl();
-    //private final SourceFactory sourceFac = new SourceFactoryImpl();
+    private final SourceFactory sourceFac = new SourceFactoryImpl();
     private final ListenerFactory listenerFac = new ListenerFactoryImpl();
 
     /**
@@ -60,16 +65,17 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     */
     @Override
     public Environment createCinemaEnvironment() {
-//        final SourcesHub sh = sourceHubFac.createSourcesHub();
-//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 15, 0)));
-//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 10, 0)));
-//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(0, 5, 0)));
-//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(25, 15, 0)));
-//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(25, 10, 0)));
-//        sh.addSource(sourceFac.createSourceWithPos(new Vec3f(25, 5, 0)));
-//
-//        return new EnvironmentImpl(sh, listenerFac.createListener(AudioManager.getContext()), spaceFac.createcustomizedSpace(25f, 15f, 1f));
-        return null;
+        final SourcesHub sh = sourceHubFac.createSourcesHub();
+
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(0, 15, 0), SourceType.FULL));
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(0, 10, 0), SourceType.FULL));
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(0, 5, 0), SourceType.FULL));
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(25, 15, 0), SourceType.FULL));
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(25, 10, 0), SourceType.FULL));
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(25, 5, 0), SourceType.FULL));
+
+        //TODO utilizzare space per aggiornare i limiti dei preset.
+        return new EnvironmentImpl(sh, listenerFac.createListener(AudioManager.getContext()), spaceFac.createCustomizedSpace(25f, 15f, 1f));
     }
 
     /**

@@ -18,7 +18,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
     private final MainController mainCtr;
     private EnvironmentControllerView ctrlView;
     private final EnvironmentFactory envFac = new EnvironmentFactoryImpl();
-    private final Environment env;
+    private Environment env;
 
     public EnvironmentController(final MainController mainCtr) {
         AudioManager.initContext();
@@ -29,8 +29,8 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
     /**
      * 
      */
-    public void addListener() {
-        this.ctrlView.addSprite(TypeSprite.LISTENER, -1, new Vec3f(0.0f));
+    public void addListener() {//TODO la posizione iniziale non è mai orretta bisogna aggiornala
+        this.ctrlView.addSprite(TypeSprite.LISTENER, -1, new Vec3f(5.0f));
     }
 
     /**
@@ -82,7 +82,14 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
     /**
      * 
      */
-    public void addEnvironment() {
+    public void changeEnv() {
+        this.env = envFac.createCinemaEnvironment();
+        this.ctrlView.reset();
+        this.env.getSourceHub().getAll().stream().forEach(e -> {
+            //da fare il cotrollo per ogni source type
+            this.ctrlView.addSprite(TypeSprite.SOURCEFULL, e.getId(), e.getPosition());
+        });
+        this.addListener();
     }
 
     /**
@@ -122,15 +129,15 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
         this.mainCtr.getSourceController().changeSelectedSource();
     }
     
-    public void changePreset() {
-        FileInputStream file=null;
-        try {
-            file = new FileInputStream(new File("src/main/resources/img/" + "sfondoCinema" + ".png"));
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        this.ctrlView.changePreset(file);
-    }
+//    public void changePreset() {
+//        FileInputStream file=null;
+//        try {
+//            file = new FileInputStream(new File("src/main/resources/img/" + "sfondoCinema" + ".png"));
+//        } catch (FileNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        this.ctrlView.changePreset(file);
+//    }
 
 }

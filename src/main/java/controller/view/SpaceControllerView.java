@@ -26,8 +26,6 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     private Spinner<Double> spnSizeWidth;
     private Double width;
     @FXML
-    private Spinner<Double> spnScale;
-    @FXML
     private ComboBox<String> cmbPreset;
     private String selectedPreset;
 
