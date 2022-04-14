@@ -14,7 +14,7 @@ import model.listener.plugin.view.utility.PluginViewLoader;
 import model.utility.Vec3f;
 
 public class DropplerPluginController implements ControllerPlugin {
-    private static final String FXML_VIEW_PATH = "src/main/resources/fxml/DropplerPlugin.fxml";
+    private static final String FXML_VIEW_PATH = "/fxml/DropplerPlugin.fxml";
     private final DropplerPluginControllerView controllerView;
     private final Listener listener;
     private final MainController mainController;
