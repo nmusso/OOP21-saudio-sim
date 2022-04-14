@@ -45,8 +45,13 @@ class EnvironmentTest {
     }
 
     private FRSource genSource(final FRSource s) {
-        final Buffer b = new BufferImpl("src/main/resources/songs/DriftMono.wav");
-        s.generateSource(b.getID());
+        Buffer b;
+        try {
+            b = new BufferImpl("/songs/DriftMono.wav", true);
+            s.generateSource(b.getID());
+        } catch (UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
         return s;
     }
 

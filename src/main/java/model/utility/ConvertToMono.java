@@ -30,11 +30,9 @@ public final class ConvertToMono {
      * 
      * @param data         Input data
      * @param length       Amount of input buffer that is actually used
-     * @param inFrequency  Frequency of input
-     * @param outFrequency Frequency of output
      * @return Converted audio data
      */
-    public static byte[] convert(final byte[] data, final int length, final float inFrequency, final float outFrequency) {
+    public static byte[] convert(final byte[] data, final int length) {
 
         short[] converted = byteToShort(data, length);
         converted = trimArray(converted, converted.length);

@@ -1,10 +1,16 @@
 package controller.view;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import javax.annotation.concurrent.ThreadSafe;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import controller.MainController;
 import controller.SongController;
 import javafx.event.Event;
@@ -25,7 +31,7 @@ import model.buffer.Buffer;
  */
 public class SongControllerView implements Initializable, ControllerView {
 
-    private static final String SEP = System.getProperty("file.separator");
+    private static final String SONG_PATH = "/songs/";
     @FXML private Button btnPlay;
     @FXML private Button btnPause;
     @FXML private Button btnStop;
@@ -41,12 +47,17 @@ public class SongControllerView implements Initializable, ControllerView {
 
     /**
      * {@inheritDoc}
+     * @throws IOException 
      */
     @Override
     public void setControllerApplication(final MainController ctrMain) {
         this.ctrl = ctrMain.getSongController();
         this.ctrl.setControllerView(this);
-        addStartSongs();
+        try {
+            addStartSongs();
+        } catch (IOException e) {
+            showError("Something went wrong during load buffer resources");
+        }
     }
 
     /**
@@ -62,7 +73,7 @@ public class SongControllerView implements Initializable, ControllerView {
         final List<File> selected = fc.showOpenMultipleDialog(null);
         if (selected != null) {
             selected.forEach(file -> {
-                ctrl.createBuffer(file);
+                ctrl.createBuffer(file.getAbsolutePath(), false);
             });
 
             updateComboBox();
@@ -81,6 +92,7 @@ public class SongControllerView implements Initializable, ControllerView {
         btnPlay.setDisable(true);
         btnPause.setDisable(false);
         btnStop.setDisable(false);
+        cmbSongs.setDisable(true);
     }
 
     /**
@@ -105,6 +117,7 @@ public class SongControllerView implements Initializable, ControllerView {
         btnPlay.setDisable(false);
         btnPause.setDisable(true);
         btnStop.setDisable(true);
+        cmbSongs.setDisable(false);
     }
 
     /**
@@ -123,22 +136,14 @@ public class SongControllerView implements Initializable, ControllerView {
 
     /**
      * Import automatically all the wav in the resources path.
+     * @throws IOException 
      */
-    private void addStartSongs() {
-        final String folderPath = "src" + SEP + "main" + SEP + "resources" + SEP + "songs" + SEP;
-        final File folder = new File(folderPath);
-
-        if (folder.exists()) {
-            final var files = folder.listFiles();
-
-            if (files != null) {
-                for (final File file : files) {
-                    if (!file.isDirectory()) {
-                        ctrl.createBuffer(file);
-                    }
-                }
-            }
-        }
+    private void addStartSongs() throws IOException {
+        final ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(loader);
+        Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream()
+                .map(res -> res.getFilename())
+                .forEach(res -> ctrl.createBuffer(SONG_PATH + res, true));
 
         updateComboBox();
     }

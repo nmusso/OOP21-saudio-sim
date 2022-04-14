@@ -60,6 +60,7 @@ dependencies {
     implementation("com.diffplug.durian:durian:3.4.0")
     implementation("com.google.apis:google-api-services-books:v1-rev20201021-1.31.0")
     implementation("com.omertron:API-OMDB:1.5")
+    implementation("org.springframework:spring-core:5.3.19")
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:30.1.1-jre")

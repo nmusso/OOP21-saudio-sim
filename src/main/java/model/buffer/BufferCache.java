@@ -36,16 +36,17 @@ public enum BufferCache {
      * Get the buffer from the cache based on the path, created if not exists.
      * 
      * @param path the path of the file
+     * @param isResource true if the resource was loaded from the resource path
      * @return the buffer associated to the path, got from cache or created
      * @throws FileNotFoundException         if file does not exists
      * @throws UnsupportedAudioFileException if the type of the file is not
      *                                       supported
      * @throws IOException                   if an error occur during read
      */
-    public Buffer getBuffer(final String path)
+    public Buffer getBuffer(final String path, final boolean isResource)
             throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         if (!buffers.containsKey(path)) {
-            final Buffer buf = new BufferImpl(path);
+            final Buffer buf = new BufferImpl(path, isResource);
 
             if (buf.getID() != 0) {
                 buffers.put(path, buf);

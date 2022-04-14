@@ -10,13 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import org.lwjgl.BufferUtils;
-
 import model.utility.ConvertToMono;
 
 /**
@@ -32,15 +28,14 @@ public class BufferImpl implements Buffer {
     /**
      * Construct a new BufferImpl.
      * 
-     * @param file the path of the file which will be used for the buffer.
+     * @param file the path of the file which will be used for the buffer
+     * @param isResource true if the resource was loaded from the resource path
+     * @throws IOException 
+     * @throws UnsupportedAudioFileException 
      */
-    public BufferImpl(final String file) {
+    public BufferImpl(final String file, final boolean isResource) throws UnsupportedAudioFileException, IOException {
         this.file = file;
-        try {
-            generateBuffer();
-        } catch (UnsupportedAudioFileException | IOException e) {
-            throw new ALFormatException("Error while generating buffer", e);
-        }
+        generateBuffer(isResource);
     }
 
     /**
@@ -62,32 +57,29 @@ public class BufferImpl implements Buffer {
     /**
      * Generate the buffer from the path passed in the constructor.
      * 
+     * @param isResource true if the resource was loaded from the resource path
      * @return the ID of the generated buffer
      * @throws FileNotFoundException         if file does not exists
      * @throws UnsupportedAudioFileException if the type of the file is not
      *                                       supported
      * @throws IOException                   if an error occur during read
      */
-    private int generateBuffer() throws UnsupportedAudioFileException, IOException {
-        try (AudioInputStream stream = getAudioInputStream(loadFile(file))) {
-            final var format = stream.getFormat();
-            byte[] byteArray = new byte[stream.available()];
-            stream.read(byteArray);
+    private int generateBuffer(final boolean isResource) throws UnsupportedAudioFileException, IOException {
+        final AudioInputStream stream = isResource ? getAudioInputStream(getClass().getResource(file)) : getAudioInputStream(loadFile(file));
+        final var format = stream.getFormat();
+        byte[] byteArray = new byte[stream.available()];
+        stream.read(byteArray);
 
-            if (format.getChannels() == 2) {
-                byteArray = ConvertToMono.convert(byteArray, byteArray.length, format.getSampleRate(),
-                        format.getSampleRate());
-            }
-
-            final int sampleSize = format.getSampleSizeInBits() == 8 ? AL_FORMAT_MONO8 : AL_FORMAT_MONO16;
-            final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
-
-            this.id = alGenBuffers();
-            alBufferData(this.id, sampleSize, audioBuffer, (int) format.getSampleRate());
-            stream.close();
-        } catch (UnsupportedAudioFileException | IOException e) {
-            throw new ALFormatException("File of unsupported format.", e);
+        if (format.getChannels() == 2) {
+            byteArray = ConvertToMono.convert(byteArray, byteArray.length);
         }
+
+        final int sampleSize = format.getSampleSizeInBits() == 8 ? AL_FORMAT_MONO8 : AL_FORMAT_MONO16;
+        final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
+
+        this.id = alGenBuffers();
+        alBufferData(this.id, sampleSize, audioBuffer, (int) format.getSampleRate());
+        stream.close();
 
         return id;
     }

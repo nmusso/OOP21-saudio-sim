@@ -18,6 +18,15 @@ public class BufferFactoryImpl implements BufferFactory {
     @Override
     public Buffer createBufferFromPath(final String file)
             throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        return bc.getBuffer(file);
+        return bc.getBuffer(file, false);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Buffer createBufferFromResource(final String file)
+            throws FileNotFoundException, UnsupportedAudioFileException, IOException {
+        return bc.getBuffer(file, true);
     }
 }

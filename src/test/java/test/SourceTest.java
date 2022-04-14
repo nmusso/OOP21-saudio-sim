@@ -6,16 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import model.buffer.Buffer;
-import model.environment.Environment;
-import model.environment.EnvironmentImpl;
-import model.listener.Listener;
-import model.listener.ListenerImpl;
 import model.source.*;
 import model.audiomanager.AudioManager;
 import model.buffer.*;
@@ -24,7 +19,6 @@ import model.utility.*;
 class SourceTest {
 
     private final Source s = new SourceImpl();
-    private final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
 
     @BeforeAll
     static void init() {
@@ -32,7 +26,13 @@ class SourceTest {
     }
 
     private void genSource() {
-        s.generateSource(b.getID());
+        Buffer b;
+        try {
+            b = new BufferImpl("/songs/InnoItalia.wav", true);
+            s.generateSource(b.getID());
+        } catch (UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
