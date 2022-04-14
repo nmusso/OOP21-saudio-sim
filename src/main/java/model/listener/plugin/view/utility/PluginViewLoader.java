@@ -11,8 +11,7 @@ public final class PluginViewLoader {
     private PluginViewLoader() { }
 
     public static <C> Optional<C> tabPluginLoader(final String fileName) {
-        final PageLoader pl = new PageLoader();
-        final Optional<Pair<Tab, C>> tabInfo = pl.getPage(fileName);
+        final Optional<Pair<Tab, C>> tabInfo = PageLoader.getPage(fileName);
         return tabInfo.isPresent() ? Optional.of(tabInfo.get().getY()) : Optional.empty();
 
     }

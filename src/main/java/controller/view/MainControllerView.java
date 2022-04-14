@@ -62,8 +62,7 @@ public class MainControllerView implements Initializable {
     }
 
     private void setPane(final BorderPane pane, final String path) {
-        final PageLoader pl = new PageLoader();
-        final Optional<Pair<Pane, ControllerView>> infoElm = pl.getPage(path);
+        final Optional<Pair<Pane, ControllerView>> infoElm = PageLoader.getPage(path);
 
         infoElm.ifPresent(x -> {
             pane.setCenter(x.getX());
