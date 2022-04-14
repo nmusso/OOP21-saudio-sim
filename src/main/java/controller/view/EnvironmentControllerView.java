@@ -18,6 +18,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import model.utility.Pair;
@@ -38,11 +40,15 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     @FXML
     private GraphicsContext contextView;
 
+    private final Sprite backGround = new Sprite(0);
+    private Texture txBackGround;
+    private Boolean backGroundStatus = false;
+
     private Optional<Sprite> lastSelectedSource;
 
     private double angleListener = 90;
 
-    private Color colorFill = Color.LIGHTGRAY;
+    private final Color colorFill = Color.LIGHTGRAY;
 
     private Set<Sprite> sprites;
 
@@ -65,13 +71,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             canvas.setHeight(newVal.doubleValue() - 1);
         });
 
-        //TEST SPRITE SFONDO
-        final Sprite sfondo = new Sprite(-2);
-        final Texture tx = new Texture("sfondoCinema");
-        sfondo.setTexture(tx);
-        sfondo.draw(contextView);
-
-
         AnimationTimer musicLoop = new AnimationTimer() {
 
             @Override
@@ -82,8 +81,14 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 });
                 contextView.setFill(colorFill);
                 contextView.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                //CINEMA DISABILITATO
-                //sfondo.draw(contextView);
+
+
+                if (backGroundStatus) {
+                    txBackGround.setImageViewSize(canvas.getWidth(), canvas.getHeight());
+                    backGround.setTexture(txBackGround);
+                    backGround.draw(contextView);
+                }
+
                 sprites.stream().forEach(e -> {
                     Pair<Double, Double> pos = checkOutOfBorder(
                             new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()), e.getSize());
@@ -127,6 +132,20 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), temp.get().getId());
                 setLastSelectedSource(temp.get());
             }
+        }
+    }
+
+    /**
+     * 
+     * @param back
+     */
+    public void setTxBackGround(final String back) {
+        if (!back.equals("void")) {
+            txBackGround = new Texture(back);
+            backGround.setTexture(txBackGround);
+            backGroundStatus = true;
+        } else {
+            backGroundStatus = false;
         }
     }
 

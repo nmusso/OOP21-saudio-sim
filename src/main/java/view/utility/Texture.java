@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 public class Texture {
     private final Image image;
     private Rectangle region;
-    private ImageView imageView = new ImageView();
+    private final ImageView imageView = new ImageView();
 
     /**
      *
@@ -30,10 +30,22 @@ public class Texture {
     }
 
     /**
-    *
-    */
-    public Image getImage() {
-        return image;
+     * 
+     * @return TODO 
+     */
+    public ImageView getImage() {
+        return this.imageView;
+    }
+
+    /**
+     * 
+     * @param x
+     * @param y
+     */
+    public void setImageViewSize(final double x, final double y) {
+        this.imageView.setFitWidth(x);
+        this.imageView.setFitHeight(y);
+        region = new Rectangle(0, 0,  imageView.getFitWidth(), imageView.getFitHeight());
     }
 
     /**
@@ -44,10 +56,11 @@ public class Texture {
     public Texture(final String path) {
         final InputStream file = getClass().getResourceAsStream("/img/" + path + ".png");
         this.image = new Image(file);
-//        this.imageView.setImage(image);
-//        this.imageView.setPreserveRatio(true);
-//        region = new Rectangle(0, 0,  imageView.getFitWidth(), imageView.getFitHeight());
-        region = new Rectangle(0, 0,  image.getWidth(), image.getHeight());
+        this.imageView.setImage(image);
+        this.imageView.setFitWidth(image.getWidth());
+        this.imageView.setFitHeight(image.getHeight());
+        this.imageView.setPreserveRatio(true);
+        region = new Rectangle(0, 0,  imageView.getFitWidth(), imageView.getFitHeight());
     }
 
 }

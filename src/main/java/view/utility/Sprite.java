@@ -165,7 +165,7 @@ public class Sprite {
      */
     public void draw(final  GraphicsContext context) {
         if (visible) {
-            context.drawImage(texture.getImage(), position.getX(), position.getY(), getSize().getWidth(), getSize().getHeight());
+            context.drawImage(texture.getImage().getImage(), position.getX(), position.getY(), getSize().getWidth(), getSize().getHeight());
         }
     }
 

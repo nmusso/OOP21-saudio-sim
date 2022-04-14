@@ -8,7 +8,7 @@
 
 <HBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.EnvironmentControllerView">
    <children>
-      <BorderPane HBox.hgrow="ALWAYS">
+      <BorderPane fx:id="borderPaneCanvas" HBox.hgrow="ALWAYS">
          <center>
             <AnchorPane fx:id="conteinerCanvas" BorderPane.alignment="CENTER">
                <children>

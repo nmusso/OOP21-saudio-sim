@@ -38,6 +38,7 @@ public class MainView extends Application {
 
         /*TODO review System.exit */
         mainStage.setOnCloseRequest((x) -> System.exit(0));
+        mainStage.setResizable(false);
         mainStage.setScene(scene);
         mainStage.show();
     }
