@@ -16,8 +16,8 @@ public class SpaceFactoryImpl  implements SpaceFactory {
     *{@inheritDoc}
     */
     @Override
-    public SpaceImpl createCustomizedSpace(final float lenght, final float width) {
-        return new SpaceImpl(lenght, width);
+    public SpaceImpl createCustomizedSpace(final float x, final float y) {
+        return new SpaceImpl(x, y);
     }
 
 }

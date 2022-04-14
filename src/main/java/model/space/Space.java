@@ -8,22 +8,21 @@ public interface Space {
 
      /**
      *
-     * @return max lenght.
+     * @return max Y.
      */
-     float getLenght();
+     float getYmax();
 
      /**
      *
-     * @return max width.
+     * @return max X.
      */
-     float getWidth();
+     float getXmax();
 
      /**
-      * 
+      * check pos if is outOfBorder or busy.
       * @param pos
       * @param position
-      * @return TODO
+      * @return TTrue if is a valid pos.
       */
      boolean isAvailable(Vec3f pos, Set<Vec3f> position);
-
 }

@@ -4,14 +4,14 @@ public interface SpaceFactory {
 
     /**
      * 
-     * @return TODO
+     * @return space with default size.
      */
     SpaceImpl createDefaultSpace();
     /**
      * 
-     * @param lenght
-     * @param width
-     * @return TODO
+     * @param x
+     * @param y
+     * @return space with this size.
      */
-    SpaceImpl createCustomizedSpace(float lenght, float width);
+    SpaceImpl createCustomizedSpace(float x, float y);
 }

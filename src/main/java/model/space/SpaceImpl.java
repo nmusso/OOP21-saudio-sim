@@ -5,13 +5,13 @@ import java.util.Set;
 import model.utility.Vec3f;
 
 public class SpaceImpl implements Space {
-    private final float maxLenght;
-    private final float maxWidth;
+    private final float yMax;
+    private final float xMax;
 
-    public SpaceImpl(final float maxLenght, final float maxWidth) {
+    public SpaceImpl(final float x, final float y) {
         super();
-        this.maxLenght = maxLenght;
-        this.maxWidth = maxWidth;
+        this.xMax = x;
+        this.yMax = y;
     }
 
     /**
@@ -19,8 +19,8 @@ public class SpaceImpl implements Space {
     *{@inheritDoc}
     */
     @Override
-    public float getLenght() {
-        return this.maxLenght;
+    public float getYmax() {
+        return this.yMax;
     }
 
     /**
@@ -28,8 +28,8 @@ public class SpaceImpl implements Space {
     *{@inheritDoc}
     */
     @Override
-    public float getWidth() {
-        return this.maxWidth;
+    public float getXmax() {
+        return this.xMax;
     }
 
     /**
@@ -47,7 +47,7 @@ public class SpaceImpl implements Space {
     * @return true if pos is ok
     */
     private boolean checkBorder(final Vec3f pos) {
-        return ((pos.getX() > 0f || pos.getX() < maxLenght) && (pos.getY() > 0f || pos.getY() < maxWidth));
+        return ((pos.getX() > 0f || pos.getX() < this.xMax) && (pos.getY() > 0f || pos.getY() < this.yMax));
     }
 
     /**
