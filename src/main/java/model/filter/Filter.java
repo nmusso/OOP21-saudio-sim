@@ -12,15 +12,15 @@ public interface Filter {
     /**
      * Value for Lowpass filter.
      */
-    float LOWPASS_VALUE = 0.3f;
+    float LOWPASS_VALUE = 0.33f;
     /**
      * Value for Bandpass filter.
      */
-    float BANDPASS_VALUE = 0.3f;
+    float BANDPASS_VALUE = 0.33f;
     /**
      * Value for Highpass filter.
      */
-    float HIGHPASS_VALUE = 0.6f;
+    float HIGHPASS_VALUE = 0.33f;
 
     /**
      * Apply the filter type (high, medium, band) on the source.
