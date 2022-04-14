@@ -1,7 +1,5 @@
 package model.environment;
 
-import java.util.Set;
-
 import model.effect.ALEffects;
 import model.listener.Listener;
 import model.source.FRSource;
@@ -43,16 +41,9 @@ public interface Environment {
     void addEffect(ALEffects effect, float level);
 
     /**
-     * remove effect.
-     * @param effect chosen to remove
+     * remove all effect.
      */
-    void removeEffect(ALEffects effect);
-
-    /**
-     * 
-     * @return a set of all activeEffect in environment
-     */
-    Set<ALEffects> getEffectSet();
+    void removeEffect();
 
     /**
      * remove source. 

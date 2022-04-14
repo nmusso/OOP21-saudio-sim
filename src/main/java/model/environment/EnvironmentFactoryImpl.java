@@ -104,7 +104,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
      */
     @Override
     public Environment createNEnvironment(final Set<FRSource> sources, final Listener listener, final Optional<Space> space) {
-       return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(sources), listener, space.get());
+       return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(sources), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
     }
 
 }

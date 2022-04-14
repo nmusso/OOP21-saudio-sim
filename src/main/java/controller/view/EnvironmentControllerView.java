@@ -39,6 +39,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     private Optional<Sprite> lastSelectedSource;
 
+    private float angleListener = 90;
+
     private Color colorFill = Color.LIGHTGRAY;
 
     private Set<Sprite> sprites;
@@ -77,6 +79,11 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                     Pair<Double, Double> pos = checkOutOfBorder(
                             new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()), e.getSize());
                     e.setPosition(pos.getX(), pos.getY());
+//                    if (e.getSpriteType().equals(TypeSprite.LISTENER)) {
+//                        listenerDraw(e);
+//                    } else {
+//                        e.draw(contextView);
+//                    }
                     e.draw(contextView);
                 });
             }
@@ -222,16 +229,23 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         lastSelectedSource.get().setSpriteType(type);
     }
 
-//    public void changePreset(FileInputStream file) {
-//        Image img = new Image(file);
-//        BackgroundImage bImg = new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-//                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-//        Background bGround = new Background(bImg);
-//        conteinerCanvas.setBackground(bGround);
-//        System.out.println("do");
-//        colorFill = Color.TRANSPARENT;
-//
-//    }
+    /**
+     * 
+     * @param angle
+     */
+    public void setAngleListener(final float angle) {
+        this.angleListener = angle;
+    }
+
+    /**
+     * 
+     * @param listener
+     */
+    public void listenerDraw(final Sprite listener) {
+        canvas.rotateProperty().add(angleListener);
+        listener.draw(contextView);
+        canvas.rotateProperty().add(0);
+    }
 
     /**
      * 

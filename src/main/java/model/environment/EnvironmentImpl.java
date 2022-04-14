@@ -1,9 +1,5 @@
 package model.environment;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import model.effect.ALEffects;
 import model.listener.Listener;
 import model.source.FRSource;
@@ -15,14 +11,12 @@ public class EnvironmentImpl implements Environment {
     private final SourcesHub sourcesHub;
     private final Listener listener;
     private final Space space;
-    private final Set<ALEffects> effect;
 
     public EnvironmentImpl(final SourcesHub sourcesHub, final Listener listener, final Space space) {
         super();
         this.sourcesHub = sourcesHub;
         this.listener = listener;
         this.space = space;
-        this.effect = new HashSet<>();
     }
 
     /**
@@ -58,7 +52,6 @@ public class EnvironmentImpl implements Environment {
      */
     @Override
     public void addEffect(final ALEffects effect, final float level) {
-        this.effect.add(effect);
         this.sourcesHub.applyFilter(effect, level);
     }
 
@@ -67,18 +60,8 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void removeEffect(final ALEffects effect) {
-        this.effect.remove(effect);
-        this.sourcesHub.removeFilter(effect);
-    }
-
-    /**
-     * 
-     *{@inheritDoc}
-     */
-    @Override
-    public Set<ALEffects> getEffectSet() {
-        return Collections.unmodifiableSet(this.effect);
+    public void removeEffect() {
+        ALEffects.getValuesAsList().forEach(effect -> sourcesHub.removeFilter(effect));
     }
 
     /**

@@ -138,6 +138,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
             }
             this.ctrlView.addSprite(type, e.getId(), e.getPosition());
         });
+        this.mainCtr.getSourceController().updatePieChartData();
     }
 
     /**
@@ -180,15 +181,12 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
         this.mainCtr.getSourceController().changeSelectedSource();
     }
 
-//    public void changePreset() {
-//        FileInputStream file=null;
-//        try {
-//            file = new FileInputStream(new File("src/main/resources/img/" + "sfondoCinema" + ".png"));
-//        } catch (FileNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//        this.ctrlView.changePreset(file);
-//    }
+    /**
+     * 
+     * @param angle
+     */
+    public void changeOrientationListener(final float angle) {
+        this.ctrlView.setAngleListener(angle);
+    }
 
 }
