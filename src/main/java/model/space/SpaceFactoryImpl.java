@@ -8,7 +8,7 @@ public class SpaceFactoryImpl  implements SpaceFactory {
     */
     @Override
     public SpaceImpl createDefaultSpace() {
-        return new SpaceImpl(10f, 10f, 0.5f);
+        return new SpaceImpl(10f, 10f);
     }
 
     /**
@@ -16,8 +16,8 @@ public class SpaceFactoryImpl  implements SpaceFactory {
     *{@inheritDoc}
     */
     @Override
-    public SpaceImpl createCustomizedSpace(final float lenght, final float width, final float scale) {
-        return new SpaceImpl(lenght, width, scale);
+    public SpaceImpl createCustomizedSpace(final float lenght, final float width) {
+        return new SpaceImpl(lenght, width);
     }
 
 }

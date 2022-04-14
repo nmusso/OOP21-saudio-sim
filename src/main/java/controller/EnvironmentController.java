@@ -29,12 +29,13 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
     /**
      * 
      */
-    public void addListener() {//TODO la posizione iniziale non è mai orretta bisogna aggiornala
-        this.ctrlView.addSprite(TypeSprite.LISTENER, -1, new Vec3f(5.0f));
+    public void addListener() {
+        this.ctrlView.addSprite(TypeSprite.LISTENER, -1, env.getListener().getPosition());
     }
 
     /**
      * 
+     * @return FRSource selected in env.
      */
     public FRSource getSelectedSource() {
         return this.env.getSourceHub().getSource(this.ctrlView.getLastSelectedSource());
@@ -42,6 +43,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * 
+     * @return return env.
      */
     public Environment getEnv() {
         return this.env;
@@ -49,6 +51,8 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * 
+     * @param source
+     * @param type
      */
     public void addSourcetoSourceHub(final FRSource source, final TypeSprite type) {
         this.env.addSourceToSourceHub(source);
@@ -57,6 +61,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * 
+     * @param source
      */
     public void removeSource(final FRSource source) {
         this.env.removeSourceFromSourceHub(source);
@@ -66,13 +71,16 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * 
+     * @param pos
+     * @param id
      */
     public void moveSource(final Vec3f pos, final int id) {
         this.env.moveSource(this.env.getSourceHub().getSource(id), pos);
     }
 
     /**
-     *
+     * 
+     * @param pos
      */
     public void moveListener(final Vec3f pos) {
         this.env.getListener().setPosition(pos);
@@ -81,19 +89,46 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * 
+     * @param preset
      */
-    public void changeEnv() {
-        this.env = envFac.createCinemaEnvironment();
+    public void changeEnv(final String preset) {
+        switch (preset) {
+        case "cinema":
+            this.env = envFac.createCinemaEnvironment();
+            break;
+        case "mono":
+            this.env = envFac.createMonoEnvironment();
+            break;
+        case "Stereo":
+            this.env = envFac.createStereoEnvironment();
+            break;
+        case "stadio":
+            this.env = envFac.createStadiumEnvironment();
+            break;
+        case "HomeHIFI":
+            this.env = envFac.createHIFIEnvironment();
+            break;
+        case "Demo":
+            this.env = envFac.createVoidEnvironment();
+            break;
+        default:
+            this.env = envFac.createVoidEnvironment();
+        }
+
         this.ctrlView.reset();
+        this.mainCtr.getSpaceController().setSpinner(this.env.getSpace().getLenght(), this.getEnv().getSpace().getWidth());
+        this.ctrlView.setSize(this.env.getSpace().getWidth(), this.getEnv().getSpace().getLenght());
+        this.addListener();
         this.env.getSourceHub().getAll().stream().forEach(e -> {
             //da fare il cotrollo per ogni source type
             this.ctrlView.addSprite(TypeSprite.SOURCEFULL, e.getId(), e.getPosition());
         });
-        this.addListener();
     }
 
     /**
      * 
+     * @param length
+     * @param width
      */
     public void setSizeEnv(final double length, final double width) {
         this.ctrlView.setSize(length, width);
@@ -110,6 +145,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * 
+     * @param type
      */
     public void upgradeSourceType(final TypeSprite type) {
         this.ctrlView.upgradeTypeSpriteSource(type);
@@ -128,7 +164,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
     public void lastSelectedSourceChange() {
         this.mainCtr.getSourceController().changeSelectedSource();
     }
-    
+
 //    public void changePreset() {
 //        FileInputStream file=null;
 //        try {

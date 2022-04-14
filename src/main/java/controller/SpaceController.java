@@ -21,13 +21,29 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
  
     /**
      * 
+     * @param lenght
+     * @param width
      */
-    public void setSize(final double lenght, final Double width) {
+    public void setSize(final double lenght, final double width) {
         this.mainCtr.getEnvironmentController().setSizeEnv(lenght, width);
     }
 
-    public void changePreset() {
-        this.mainCtr.getEnvironmentController().changeEnv();
+    /**
+     * 
+     * @param preset
+     */
+    public void changePreset(final String preset) {
+        this.mainCtr.getEnvironmentController().changeEnv(preset);
+    }
+
+    /**
+     * 
+     * @param lenght
+     * @param width
+     */
+    public void setSpinner(final double lenght, final double width) {
+        this.ctrlView.setLenght(lenght);
+        this.ctrlView.setWidth(width);
     }
 
 }

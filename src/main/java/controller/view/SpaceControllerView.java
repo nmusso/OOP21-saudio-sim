@@ -21,10 +21,10 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     private SpaceController ctrl;
     @FXML
     private Spinner<Double> spnSizeLenght;
-    private Double lenght;
+    private double lenght;
     @FXML
     private Spinner<Double> spnSizeWidth;
-    private Double width;
+    private double width;
     @FXML
     private ComboBox<String> cmbPreset;
     private String selectedPreset;
@@ -51,8 +51,12 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     private void addPresetTocmb() {
         final List<String> listPreset = new ArrayList<>();
         listPreset.add("nothing");
+        listPreset.add("mono");
+        listPreset.add("Stereo");
         listPreset.add("cinema");
         listPreset.add("stadio");
+        listPreset.add("HomeHIFI");
+        listPreset.add("Demo");
         final ObservableList<String> comboItems = FXCollections.observableArrayList(listPreset);
         cmbPreset.setItems(comboItems);
     }
@@ -60,17 +64,13 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     @FXML public final void handleBtnAddEnv(final Event event) {
         System.out.println("addEnv");
      }
-    
     @FXML public final void handleBtnDelEnv(final Event event) {
-        System.out.println("addEnv");
+        System.out.println("removeEnv");
      }
 
     @FXML public final void handleCmbPreset(final Event event) {
         selectedPreset = cmbPreset.getSelectionModel().getSelectedItem().toString();
-        if(selectedPreset.equals("cinema")) {
-            this.ctrl.changePreset();
-        }
-        System.out.println(selectedPreset);
+        this.ctrl.changePreset(selectedPreset);
     }
 
     @FXML public final void handleUpdateSpin(final Event event) {
@@ -81,48 +81,49 @@ public class SpaceControllerView  implements Initializable, ControllerView {
 
     /**
      * 
-     * 
+     * @return TODO
      */
-    public Double getLenght() {
+    public double getLenght() {
         return lenght;
     }
 
     /**
      * 
-     * 
+     * @param lenght
      */
-    public void setLenght(final Double lenght) {
+    public void setLenght(final double lenght) {
         this.lenght = lenght;
+        spnSizeLenght.setValueFactory(new DoubleSpinnerValueFactory(1, 100, this.lenght, 0.5));
     }
 
     /**
      * 
-     * 
+     * @return TODO
      */
-    public Double getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    /**
-     * 
-     * 
-     */
-    public void setWidth(final Double width) {
+   /**
+    * 
+    * @param width
+    */
+    public void setWidth(final double width) {
         this.width = width;
+        spnSizeWidth.setValueFactory(new DoubleSpinnerValueFactory(1, 100, this.width, 0.5));
     }
 
     /**
      * 
-     * 
+     * @return TODO
      */
     public String getSelectedPreset() {
         return selectedPreset;
     }
 
     @Override
-    public void showError(String error) {
+    public void showError(final String error) {
         // TODO Auto-generated method stub
-        
     }
 
 }

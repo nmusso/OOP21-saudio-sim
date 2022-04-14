@@ -8,11 +8,6 @@ public interface Space {
 
      /**
      *
-     * @return scale.
-     */
-     float getScale();
-     /**
-     *
      * @return max lenght.
      */
      float getLenght();
@@ -24,10 +19,11 @@ public interface Space {
      float getWidth();
 
      /**
-     *
-     * TODO .
-     * if yes -> add the position to log
-     */
+      * 
+      * @param pos
+      * @param position
+      * @return TODO
+      */
      boolean isAvailable(Vec3f pos, Set<Vec3f> position);
 
 }

@@ -10,35 +10,30 @@ import model.space.Space;
 public interface EnvironmentFactory {
 
     /**
-     * TODO.
+     * 
+     * @return env.
      */
      Environment createVoidEnvironment();
 
     /**
     * create an Environment with an initial mono source.
-    * @param The single-source
-    * @param listener
-    * @param space
     * @return Environment
     */
-    Environment createMonoEnvironment(FRSource mono, Listener listener, Optional<Space> space);
+    Environment createMonoEnvironment();
 
     /**
     * create an Environment with an initial stereo source.
-    * @param The sources left and right
-    * @param listener
-    * @param space
     * @return Environment
     */
-    Environment createStereoEnvironment(FRSource left, FRSource right, Listener listener, Optional<Space> space);
+    Environment createStereoEnvironment();
 
     /**
-    * create an Environment with multiple sources.
-    * @param list of Sources
-    * @param listener
-    * @param space
-    * @return Environment
-    */
+     * 
+     * @param sources
+     * @param listener
+     * @param space
+     * @return TODO
+     */
     Environment createNEnvironment(Set<FRSource> sources, Listener listener, Optional<Space> space);
 
     /**

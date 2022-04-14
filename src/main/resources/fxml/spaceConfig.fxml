@@ -24,10 +24,34 @@
          <children>
             <ComboBox fx:id="cmbPreset" onAction="#handleCmbPreset" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
             <Label text="Demo" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#handleBtnAddEnv" text="ADD ENV" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Button mnemonicParsing="false" onAction="#handleBtnDelEnv" text="DEL ENV" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Spinner fx:id="spnSizeLenght" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Spinner fx:id="spnSizeWidth" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Button disable="true" mnemonicParsing="false" text="ADD ENV" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <Button disable="true" mnemonicParsing="false" text="DEL ENV" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <GridPane layoutX="110.0" layoutY="40.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+               </rowConstraints>
+               <children>
+                  <Spinner fx:id="spnSizeWidth" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Label text="Y" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+              </rowConstraints>
+               <children>
+                  <Spinner fx:id="spnSizeLenght" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.rowIndex="1" />
+                  <Label text="X" />
+               </children>
+            </GridPane>
          </children>
       </GridPane>
    </children>

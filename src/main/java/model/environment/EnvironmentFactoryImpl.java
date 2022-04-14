@@ -11,6 +11,7 @@ import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
 import model.source.FRSource;
+import model.source.Source;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
 import model.source.SourceType;
@@ -34,8 +35,11 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     *{@inheritDoc}
     */
     @Override
-    public Environment createMonoEnvironment(final FRSource mono, final Listener listener, final Optional<Space> space) {
-        return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(Collections.singletonList(mono).stream().collect(Collectors.toSet())), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
+    public Environment createMonoEnvironment() {
+        final FRSource source = sourceFac.createFreqRangeSource();
+        final SourcesHub sh = sourceHubFac.createSourceHubFromSet(Collections.singleton(source));
+        final Space sp = spaceFac.createCustomizedSpace(5, 5);
+        return new EnvironmentImpl(sh, listenerFac.createListener(AudioManager.getContext()), sp);
     }
 
     /**
@@ -43,20 +47,12 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     *{@inheritDoc}
     */
     @Override
-    public Environment createStereoEnvironment(final FRSource left, final FRSource right, final Listener listener, final Optional<Space> space) {
-        final Set<FRSource> sources = new HashSet<>();
-        sources.add(left);
-        sources.add(right);
-        return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(sources), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
-    }
-
-    /**
-    *
-    *{@inheritDoc}
-    */
-    @Override
-    public Environment createNEnvironment(final Set<FRSource> sources, final Listener listener, final Optional<Space> space) {
-        return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(sources), listener, space.isPresent() ? space.get() : spaceFac.createDefaultSpace());
+    public Environment createStereoEnvironment() {
+        final SourcesHub sh = sourceHubFac.createSourcesHub();
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(2f, 4f, 0f), SourceType.FULL));
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(4f, 4f, 0f), SourceType.FULL));
+        final Space sp = spaceFac.createCustomizedSpace(5, 5);
+        return new EnvironmentImpl(sh, listenerFac.createListenerWhitPos(AudioManager.getContext(), new Vec3f(3f, 4f, 0f)), sp);
     }
 
     /**
@@ -75,7 +71,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
         sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(25, 5, 0), SourceType.FULL));
 
         //TODO utilizzare space per aggiornare i limiti dei preset.
-        return new EnvironmentImpl(sh, listenerFac.createListener(AudioManager.getContext()), spaceFac.createCustomizedSpace(25f, 15f, 1f));
+        return new EnvironmentImpl(sh, listenerFac.createListener(AudioManager.getContext()), spaceFac.createCustomizedSpace(25f, 15f));
     }
 
     /**
@@ -115,6 +111,14 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     @Override
     public Environment createVoidEnvironment() {
         return new EnvironmentImpl(sourceHubFac.createSourcesHub(), listenerFac.createListener(AudioManager.getContext()), spaceFac.createDefaultSpace());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Environment createNEnvironment(final Set<FRSource> sources, final Listener listener, final Optional<Space> space) {
+       return new EnvironmentImpl(sourceHubFac.createSourceHubFromSet(sources), listener, space.get());
     }
 
 }

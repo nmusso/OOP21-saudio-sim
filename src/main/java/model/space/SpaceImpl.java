@@ -5,15 +5,13 @@ import java.util.Set;
 import model.utility.Vec3f;
 
 public class SpaceImpl implements Space {
-    private final float scale;
     private final float maxLenght;
     private final float maxWidth;
 
-    public SpaceImpl(final float maxLenght, final float maxWidth, final float scale) {
+    public SpaceImpl(final float maxLenght, final float maxWidth) {
         super();
         this.maxLenght = maxLenght;
         this.maxWidth = maxWidth;
-        this.scale = scale;
     }
 
     /**
@@ -32,15 +30,6 @@ public class SpaceImpl implements Space {
     @Override
     public float getWidth() {
         return this.maxWidth;
-    }
-
-    /**
-    *
-    *{@inheritDoc}
-    */
-    @Override
-    public float getScale() {
-        return this.scale;
     }
 
     /**

@@ -1,30 +1,22 @@
 package controller.view;
 
-import java.io.FileInputStream;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+
 import controller.EnvironmentController;
 import controller.MainController;
 import javafx.animation.AnimationTimer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Color;
 import model.utility.Pair;
 import model.utility.Vec3f;
@@ -44,7 +36,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     @FXML
     private GraphicsContext contextView;
 
-    private Sprite lastSelectedSource;
+    private Optional<Sprite> lastSelectedSource;
 
     private Color colorFill = Color.LIGHTGRAY;
 
@@ -52,9 +44,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     private double lenght = 10;
     private double width = 10;
-
-    // temp
-    private FileInputStream file = null;
 
     /**
      * 
@@ -83,9 +72,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 });
                 contextView.setFill(colorFill);
                 contextView.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                if (file != null) {
-                    contextView.drawImage(new Image(file), canvas.getWidth(), canvas.getHeight());
-                }
 
                 sprites.stream().forEach(e -> {
                     Pair<Double, Double> pos = checkOutOfBorder(
@@ -122,10 +108,13 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             if (temp.get().getSpriteType() == TypeSprite.LISTENER) {
                 this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
             } else {
-                lastSelectedSource = temp.get();
+                lastSelectedSource = Optional.of(temp.get());
                 this.ctrl.lastSelectedSourceChange();
-                this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), lastSelectedSource.getId());
+                this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), lastSelectedSource.get().getId());
             }
+        } else {
+            lastSelectedSource = Optional.empty();
+            this.ctrl.lastSelectedSourceChange();
         }
     }
 
@@ -133,8 +122,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         final Pair<Float, Float> posFloat = new Pair<Float, Float>(
                 (float) ((width * pos.getX()) / canvas.getWidth()),
                 (float) ((lenght * pos.getY()) / canvas.getHeight()));
-        System.out.println("("+width+" *"+pos.getX()+") / "+canvas.getWidth());
-        System.out.println(posFloat.getX());
         return posFloat;
     }
 
@@ -165,8 +152,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         Pair<Double, Double> posDouble = new Pair<Double, Double>(
                 (double) ((canvas.getWidth() * posElement.getX()) / width),
                 (double) ((canvas.getHeight() * posElement.getY()) / lenght));
-        System.out.println("("+canvas.getWidth()+" * "+ posElement.getX()+") / "+ width);
-        System.out.println(posDouble);
         posDouble = checkOutOfBorder(new Pair<Double, Double>(posDouble.getX(), posDouble.getY()), sprite.getSize());
         sprite.setPosition((double) posDouble.getX(), (double) posDouble.getY());
         sprite.draw(contextView);
@@ -184,16 +169,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         this.ctrl.setControllerView(this);
     }
 
-    /**
-     * 
-     */
+   /**
+    * 
+    * @return TODO
+    */
     public double getLenght() {
         return lenght;
     }
 
     /**
      * 
-     * 
+     * @return TODO
      */
     public double getWidth() {
         return width;
@@ -201,26 +187,25 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
-     * 
+     * @return TODO
      */
     public int getLastSelectedSource() {
-        return lastSelectedSource.getId();
+        return lastSelectedSource.isPresent()? lastSelectedSource.get().getId() : -1;
     }
 
     /**
      * 
      */
     public void removeSpriteSource() {
-        sprites.remove(lastSelectedSource);
+        sprites.remove(lastSelectedSource.get());
     }
 
     /**
      * 
      * @param type
-     * @param id
      */
     public void upgradeTypeSpriteSource(final TypeSprite type) {
-        lastSelectedSource.setSpriteType(type);
+        lastSelectedSource.get().setSpriteType(type);
     }
 
 //    public void changePreset(FileInputStream file) {
@@ -258,9 +243,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     public void showError(final String error) {
         // TODO Auto-generated method stub
     }
-    
+
     /**
-     * 
+     *  TODO.
      */
     public void reset() {
         sprites.clear();

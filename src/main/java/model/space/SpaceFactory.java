@@ -3,13 +3,15 @@ package model.space;
 public interface SpaceFactory {
 
     /**
-    *
-    * TODO.
-    */
+     * 
+     * @return TODO
+     */
     SpaceImpl createDefaultSpace();
     /**
-    *
-    * TODO.
-    */
-    SpaceImpl createCustomizedSpace(float lenght, float width, float scale);
+     * 
+     * @param lenght
+     * @param width
+     * @return TODO
+     */
+    SpaceImpl createCustomizedSpace(float lenght, float width);
 }
