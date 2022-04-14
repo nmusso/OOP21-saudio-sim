@@ -16,17 +16,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import model.utility.Vec3f;
 
 
 public class ListenerControllerView implements Initializable, ControllerView {
+    private static final int MIN_ANGLE_OR = -180;
+    private static final int MAX_ANGLE_OR = 180;
     @FXML private Button btn;
     @FXML private TabPane listenerPane;
     @FXML private MenuItem it;
     @FXML private ComboBox<String> comboBoxPlugin;
     @FXML private Label lblXPos;
     @FXML private Label lblYPos;
+    @FXML private Slider sliderAtOr;
     private final ObservableList<String> pluginItems = FXCollections.observableArrayList();
     private ListenerController ctrListener;
 
@@ -37,6 +42,16 @@ public class ListenerControllerView implements Initializable, ControllerView {
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         this.comboBoxPlugin.setItems(pluginItems);
+        this.sliderAtOr.setMin(MIN_ANGLE_OR);
+        this.sliderAtOr.setMax(MAX_ANGLE_OR);
+        this.sliderAtOr.setValue(0);
+
+        this.sliderAtOr.valueProperty()
+                .addListener((obs, oldV, newV) -> this.ctrListener.getListener().setOrientation(
+                        new Vec3f((float) Math.sin(Math.toRadians(newV.intValue())),
+                                (float) Math.cos(Math.toRadians(newV.intValue())), 0.0f),
+                        new Vec3f(0.0f, 0.0f, -1.0f)));
+
     }
 
 
@@ -53,6 +68,7 @@ public class ListenerControllerView implements Initializable, ControllerView {
         final var aviablePlugin = this.ctrListener.getAvailablePlugin();
         aviablePlugin.forEach(x -> this.pluginItems.add(x));
     }
+
 
     /**
      * @param tab

@@ -23,7 +23,7 @@
                         <Label fx:id="lblYPos" layoutX="133.0" layoutY="47.0" />
                         <Label fx:id="lblXPos" layoutX="50.0" layoutY="47.0" />
                         <Label layoutX="85.0" layoutY="95.0" text="Orientation" />
-                        <Slider layoutX="47.0" layoutY="124.0" />
+                        <Slider fx:id="sliderAtOr" layoutX="47.0" layoutY="124.0" />
                         <Button fx:id="btnAddPlugin" layoutX="161.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleAddPlugin" prefHeight="23.0" prefWidth="22.0" text="+" />
                         <Button fx:id="btnRefreshPlugin" layoutX="194.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleRefreshListPlugin" prefHeight="20.0" prefWidth="28.0" text="R" />
                         <ComboBox fx:id="comboBoxPlugin" layoutX="6.0" layoutY="155.0" prefHeight="23.0" prefWidth="143.0" />
