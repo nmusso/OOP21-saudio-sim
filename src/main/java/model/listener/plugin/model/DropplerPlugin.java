@@ -1,6 +1,9 @@
 package model.listener.plugin.model;
 
 
+import static org.lwjgl.openal.AL10.alListener3f;
+import org.lwjgl.openal.AL10;
+
 import model.utility.Vec3f;
 
 public class DropplerPlugin extends AbstractPlugin {
@@ -37,6 +40,7 @@ public class DropplerPlugin extends AbstractPlugin {
      */
     public void setVelocity(final Vec3f vector) {
         this.velocity = vector;
+        alListener3f(AL10.AL_VELOCITY, this.velocity.getX(), this.velocity.getY(), this.velocity.getZ());
     }
 
     /**
