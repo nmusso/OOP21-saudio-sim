@@ -75,13 +75,6 @@ public class SourceController implements ControllerApplication<SourceControllerV
     /**
      * 
      */
-    public void sourceIsNotSelected() {
-        this.controllerView.speakerIsSelected(false);
-    }
-
-    /**
-     * 
-     */
     public void addSpeaker() {
         final SourceFactory sourceFactory = new SourceFactoryImpl();
         final FRSource newSource = sourceFactory.createFreqRangeSource(SourceType.FULL);
