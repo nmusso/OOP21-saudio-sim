@@ -48,7 +48,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
-     * 
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -242,9 +241,11 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     public void setSize(final double lenght, final double width) {
         this.lenght = lenght;
         this.width = width;
+
         sprites.stream().forEach(e -> {
             Pair<Float, Float> x = updatePosForController(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()));
             Vec3f vec = new Vec3f(x.getX(), x.getY(), 0f);
+            System.out.println(x.getX() + " " + x.getY());
             if (e.getSpriteType() == TypeSprite.LISTENER) {
                 this.ctrl.moveListener(vec);
             } else {

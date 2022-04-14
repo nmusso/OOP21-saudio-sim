@@ -88,7 +88,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      * @param preset
      */
     public void changeEnv(final String preset) {
-        //TODO da mettere lo sfondo
+        // TODO da mettere lo sfondo
         switch (preset) {
         case "cinema":
             this.env = envFac.createCinemaEnvironment();
@@ -119,18 +119,34 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
         this.ctrlView.setSize(this.env.getSpace().getWidth(), this.getEnv().getSpace().getLenght());
         this.addListener();
         this.env.getSourceHub().getAll().stream().forEach(e -> {
-            // da fare il cotrollo per ogni source type
-            this.ctrlView.addSprite(TypeSprite.SOURCEFULL, e.getId(), e.getPosition());
+            TypeSprite type = TypeSprite.SOURCEFULL;
+            switch (e.getType()) {
+            case FULL:
+                type = TypeSprite.SOURCEFULL;
+                break;
+            case HIGH:
+                type = TypeSprite.SOURCEHIGH;
+                break;
+            case LOW:
+                type = TypeSprite.SOURCELOW;
+                break;
+            case MID:
+                type = TypeSprite.SOURCEMID;
+                break;
+            default:
+                break;
+            }
+            this.ctrlView.addSprite(type, e.getId(), e.getPosition());
         });
     }
 
     /**
      * 
-     * @param length
+     * @param lenght
      * @param width
      */
-    public void setSizeEnv(final double length, final double width) {
-        this.ctrlView.setSize(length, width);
+    public void setSizeEnv(final double lenght, final double width) {
+        this.ctrlView.setSize(lenght, width);
     }
 
     /**

@@ -2,32 +2,18 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.EnvironmentControllerView">
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.EnvironmentControllerView">
    <children>
-      <AnchorPane HBox.hgrow="ALWAYS">
+      <AnchorPane fx:id="conteinerCanvas" HBox.hgrow="ALWAYS">
          <children>
-            <TabPane fx:id="tabPaneTest" layoutX="1.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <tabs>
-                  <Tab text="Environment 01">
-                     <content>
-                        <AnchorPane fx:id="conteinerCanvas" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
-                           <children>
-                              <Canvas fx:id="canvas" focusTraversable="true" height="396.0" layoutX="-1.0" onMouseClicked="#handleOnMouseClickedOrDrag" onMouseDragged="#handleOnMouseClickedOrDrag" width="564.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
-                                 </cursor>
-                              </Canvas>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-               </tabs>
-            </TabPane>
+            <Canvas fx:id="canvas" focusTraversable="true" height="396.0" onMouseClicked="#handleOnMouseClickedOrDrag" onMouseDragged="#handleOnMouseClickedOrDrag" width="564.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Canvas>
          </children>
       </AnchorPane>
    </children>
