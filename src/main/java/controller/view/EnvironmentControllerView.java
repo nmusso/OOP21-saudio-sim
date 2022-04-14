@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
 import controller.EnvironmentController;
 import controller.MainController;
@@ -97,6 +98,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 .filter(s -> s.getSize()
                         .overlap(new Rectangle(((MouseEvent) event).getX(), ((MouseEvent) event).getY(), 0.0, 0.0)))
                 .findAny();
+
         if (temp.isPresent()) {
             Pair<Double, Double> newPos = new Pair<>(
                     ((MouseEvent) event).getX() - (temp.get().getSize().getWidth() / 2),
@@ -108,13 +110,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             if (temp.get().getSpriteType() == TypeSprite.LISTENER) {
                 this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
             } else {
-                lastSelectedSource = Optional.of(temp.get());
-                this.ctrl.lastSelectedSourceChange();
-                this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), lastSelectedSource.get().getId());
+                this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), temp.get().getId());
+                setLastSelectedSource(temp.get());
             }
-        } else {
-            lastSelectedSource = Optional.empty();
-            this.ctrl.lastSelectedSourceChange();
         }
     }
 
@@ -143,6 +141,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
+     * @param type
+     * @param id
+     * @param posElement
      */
     public void addSprite(/* type */ final TypeSprite type, final int id, final Vec3f posElement) {
         final Sprite sprite = new Sprite(id);
@@ -155,10 +156,24 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         posDouble = checkOutOfBorder(new Pair<Double, Double>(posDouble.getX(), posDouble.getY()), sprite.getSize());
         sprite.setPosition((double) posDouble.getX(), (double) posDouble.getY());
         sprite.draw(contextView);
-        //aggiungere il controllo se e una sorce e fare il alert per sciro
-        //aggiungere il fatto che potreti mettero in un metodo privato
+        checkSprite(sprite, posElement);
         sprites.add(sprite);
     }
+
+    private void checkSprite(final Sprite sprite, final Vec3f posElement) {
+        if (sprite.getSpriteType().equals(TypeSprite.LISTENER)) {
+            this.ctrl.moveListener(new Vec3f(posElement.getX(), posElement.getY(), 0f));
+        } else {
+            setLastSelectedSource(sprite);
+        }
+    }
+
+
+    private void setLastSelectedSource(final Sprite sprite) {
+        this.lastSelectedSource = Optional.ofNullable(sprite);
+        this.ctrl.lastSelectedSourceChange();
+    }
+
 
     /**
      * 
@@ -190,7 +205,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      * @return TODO
      */
     public int getLastSelectedSource() {
-        return lastSelectedSource.isPresent()? lastSelectedSource.get().getId() : -1;
+        return lastSelectedSource.isPresent() ? lastSelectedSource.get().getId() : -1;
     }
 
     /**
@@ -245,7 +260,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     }
 
     /**
-     *  TODO.
+     *  TODO .
      */
     public void reset() {
         sprites.clear();

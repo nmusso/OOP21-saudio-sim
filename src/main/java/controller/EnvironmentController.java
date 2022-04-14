@@ -1,8 +1,4 @@
-    package controller;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+package controller;
 
 import controller.view.EnvironmentControllerView;
 import model.audiomanager.AudioManager;
@@ -92,6 +88,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      * @param preset
      */
     public void changeEnv(final String preset) {
+        //TODO da mettere lo sfondo
         switch (preset) {
         case "cinema":
             this.env = envFac.createCinemaEnvironment();
@@ -113,14 +110,16 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
             break;
         default:
             this.env = envFac.createVoidEnvironment();
+            break;
         }
 
         this.ctrlView.reset();
-        this.mainCtr.getSpaceController().setSpinner(this.env.getSpace().getLenght(), this.getEnv().getSpace().getWidth());
+        this.mainCtr.getSpaceController().setSpinner(this.env.getSpace().getLenght(),
+                this.getEnv().getSpace().getWidth());
         this.ctrlView.setSize(this.env.getSpace().getWidth(), this.getEnv().getSpace().getLenght());
         this.addListener();
         this.env.getSourceHub().getAll().stream().forEach(e -> {
-            //da fare il cotrollo per ogni source type
+            // da fare il cotrollo per ogni source type
             this.ctrlView.addSprite(TypeSprite.SOURCEFULL, e.getId(), e.getPosition());
         });
     }
