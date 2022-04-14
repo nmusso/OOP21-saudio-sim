@@ -91,6 +91,14 @@ public class SourceController implements ControllerApplication<SourceControllerV
 
     /**
      * 
+     * @param isDisable
+     */
+    public void setDisableAddSource(final boolean isDisable) {
+        this.controllerView.setDisableAddSpeaker(isDisable);
+    }
+
+    /**
+     * 
      */
     public void updatePieChartData() {
         final double weight = 0.33;

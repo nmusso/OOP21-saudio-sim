@@ -150,6 +150,13 @@ public class SourceControllerView implements Initializable, ControllerView {
         this.btnRemoveSpeaker.setDisable(!isSelected);
     }
 
+    /**
+     * 
+     * @param isDisable
+     */
+    public void setDisableAddSpeaker(final boolean isDisable) {
+        this.btnAddSpeaker.setDisable(isDisable);
+    }
 
     @Override
     public void showError(final String error) {
