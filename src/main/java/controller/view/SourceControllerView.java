@@ -51,6 +51,9 @@ public class SourceControllerView implements Initializable, ControllerView {
         chart.setLabelLineLength(CHART_LABEL_LINE_LENGTH);
         paneChart.setMaxSize(PANE_MAXSIZE_W, PANE_MAXSIZE_H);
         paneChart.getChildren().add(chart);
+
+        //
+        this.speakerIsSelected(false);
     }
 
 
@@ -83,6 +86,9 @@ public class SourceControllerView implements Initializable, ControllerView {
         lblX.setText("");
         lblY.setText("");
         this.ctrSource.updatePieChartData();
+
+        //
+        this.speakerIsSelected(false);
     }
 
     /**
@@ -118,6 +124,9 @@ public class SourceControllerView implements Initializable, ControllerView {
         default:
             break;
         }
+
+        //
+        this.speakerIsSelected(true);
     }
 
     /**
@@ -132,6 +141,18 @@ public class SourceControllerView implements Initializable, ControllerView {
                 new PieChart.Data("Mid", midValue),
                 new PieChart.Data("Low", lowValue));
         chart.setData(pieChartData);
+    }
+
+    /**
+     * 
+     * @param isSelected
+     */
+    public void speakerIsSelected(final boolean isSelected) {
+        rbtnDefault.setDisable(!isSelected);
+        rbtnTweeter.setDisable(!isSelected);
+        rbtnMidRange.setDisable(!isSelected);
+        rbtnWoofer.setDisable(!isSelected);
+        btnRemoveSpeaker.setDisable(!isSelected);
     }
 
 

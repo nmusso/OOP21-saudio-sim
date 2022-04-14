@@ -51,7 +51,7 @@
                     </rowConstraints>
                      <children>
                         <Label text="X: " GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                        <Label fx:id="lblX" text="val" textFill="#feb007" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                        <Label fx:id="lblX" textFill="#feb007" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="CROSSHAIR" />
                            </cursor>
@@ -93,7 +93,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="lblY" text="val" textFill="#feb007" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                        <Label fx:id="lblY" textFill="#feb007" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                            <cursor>
                               <Cursor fx:constant="CROSSHAIR" />
                            </cursor>

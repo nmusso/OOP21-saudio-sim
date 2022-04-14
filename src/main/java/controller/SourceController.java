@@ -74,6 +74,13 @@ public class SourceController implements ControllerApplication<SourceControllerV
     /**
      * 
      */
+    public void sourceIsNotSelected() {
+        this.controllerView.speakerIsSelected(false);
+    }
+
+    /**
+     * 
+     */
     public void addSpeaker() {
         final SourceFactory sourceFactory = new SourceFactoryImpl();
         final FRSource newSource = sourceFactory.createFreqRangeSource(SourceType.FULL);
@@ -104,7 +111,6 @@ public class SourceController implements ControllerApplication<SourceControllerV
 
     private int getNumType(final SourceType type) {
         return ((Long) this.mainCtr.getEnvironmentController().getEnv().getSourceHub().getAll().stream()
-                                                                                               .filter(s -> s.getType().equals(type))
-                                                                                               .count()).intValue();
+                                                                                          .count()).intValue();
     }
 }
