@@ -53,6 +53,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
         default:
             break;
         }
+        this.updatePieChartData();
     }
 
     /**
@@ -105,12 +106,13 @@ public class SourceController implements ControllerApplication<SourceControllerV
         final int mid = getNumType(SourceType.MID);
         final int low = getNumType(SourceType.LOW);
         final double tot = high + mid + low + full;
-        final Function<Integer, Double> percValue = (v) -> v + (full * weight) / tot;
+        final Function<Integer, Double> percValue = (v) -> (v + (full * weight)) / tot;
         this.controllerView.updatePieChartFreq(percValue.apply(high), percValue.apply(mid), percValue.apply(low));
     }
 
     private int getNumType(final SourceType type) {
         return ((Long) this.mainCtr.getEnvironmentController().getEnv().getSourceHub().getAll().stream()
+                                                                                          .filter(s -> s.getType().equals(type))
                                                                                           .count()).intValue();
     }
 }

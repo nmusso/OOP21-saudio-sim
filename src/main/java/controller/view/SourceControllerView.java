@@ -1,6 +1,7 @@
 package controller.view;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import controller.MainController;
@@ -35,27 +36,27 @@ public class SourceControllerView implements Initializable, ControllerView {
     private PieChart chart;
     private ObservableList<PieChart.Data> pieChartData;
     private SourceController ctrSource;
+    private List<RadioButton> rbtns;
 
     /**
      * 
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        pieChartData =
+        rbtns = List.of(rbtnDefault, rbtnTweeter, rbtnMidRange, rbtnWoofer);
+        this.pieChartData =
                 FXCollections.observableArrayList(
                 new PieChart.Data("High", 0),
                 new PieChart.Data("Mid", 0),
                 new PieChart.Data("Low", 0));
-        chart = new PieChart(pieChartData);
-        chart.setMaxSize(CHART_MAXSIZE_W, CHART_MAXSIZE_H); 
-        chart.setLabelLineLength(CHART_LABEL_LINE_LENGTH);
-        paneChart.setMaxSize(PANE_MAXSIZE_W, PANE_MAXSIZE_H);
-        paneChart.getChildren().add(chart);
-
-        //
+        this.chart = new PieChart(pieChartData);
+        this.chart.setMaxSize(CHART_MAXSIZE_W, CHART_MAXSIZE_H); 
+        this.chart.setLabelLineLength(CHART_LABEL_LINE_LENGTH);
+        this.chart.setLabelsVisible(false);
+        this.paneChart.setMaxSize(PANE_MAXSIZE_W, PANE_MAXSIZE_H);
+        this.paneChart.getChildren().add(chart);
         this.speakerIsSelected(false);
     }
-
 
     /**
      * {@inheritDoc}
@@ -83,11 +84,9 @@ public class SourceControllerView implements Initializable, ControllerView {
     @FXML 
     public void handleRemoveSpeaker(final Event event) {
         this.ctrSource.removeSpeaker();
-        lblX.setText("");
-        lblY.setText("");
+        this.lblX.setText("");
+        this.lblY.setText("");
         this.ctrSource.updatePieChartData();
-
-        //
         this.speakerIsSelected(false);
     }
 
@@ -97,7 +96,7 @@ public class SourceControllerView implements Initializable, ControllerView {
      */
     @FXML 
     public void handleRadioButtonChanged(final Event event) {
-        ctrSource.setSpeakerType(this.ctrSource.getSelectedSpeaker(), ((RadioButton) event.getSource()).getId());
+        this.ctrSource.setSpeakerType(this.ctrSource.getSelectedSpeaker(), ((RadioButton) event.getSource()).getId());
         this.ctrSource.updatePieChartData();
     }
 
@@ -105,27 +104,25 @@ public class SourceControllerView implements Initializable, ControllerView {
      * 
      */
     public void updateSelectedSpeaker() {
-        lblX.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getX()));
-        lblY.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getY()));
+        this.lblX.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getX()));
+        this.lblY.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getY()));
 
         switch (this.ctrSource.getSelectedSpeaker().getType()) {
         case FULL:
-            rbtnDefault.setSelected(true);
+            this.rbtnDefault.setSelected(true);
             break;
         case HIGH:
-            rbtnTweeter.setSelected(true);
+            this.rbtnTweeter.setSelected(true);
             break;
         case MID:
-            rbtnMidRange.setSelected(true);
+            this.rbtnMidRange.setSelected(true);
             break;
         case LOW:
-            rbtnWoofer.setSelected(true);
+            this.rbtnWoofer.setSelected(true);
             break;
         default:
             break;
         }
-
-        //
         this.speakerIsSelected(true);
     }
 
@@ -136,11 +133,12 @@ public class SourceControllerView implements Initializable, ControllerView {
      * @param lowValue
      */
     public void updatePieChartFreq(final double highValue, final double midValue, final double lowValue) {
+        this.chart.setLabelsVisible(true);
         this.pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("High", highValue),
                 new PieChart.Data("Mid", midValue),
                 new PieChart.Data("Low", lowValue));
-        chart.setData(pieChartData);
+        this.chart.setData(pieChartData);
     }
 
     /**
@@ -148,11 +146,8 @@ public class SourceControllerView implements Initializable, ControllerView {
      * @param isSelected
      */
     public void speakerIsSelected(final boolean isSelected) {
-        rbtnDefault.setDisable(!isSelected);
-        rbtnTweeter.setDisable(!isSelected);
-        rbtnMidRange.setDisable(!isSelected);
-        rbtnWoofer.setDisable(!isSelected);
-        btnRemoveSpeaker.setDisable(!isSelected);
+        this.rbtns.forEach(rbtn -> rbtn.setDisable(!isSelected));
+        this.btnRemoveSpeaker.setDisable(!isSelected);
     }
 
 
