@@ -20,11 +20,11 @@ public class SpaceControllerView  implements Initializable, ControllerView {
 
     private SpaceController ctrl;
     @FXML
-    private Spinner<Double> spnSizeLenght;
-    private double lenght;
+    private Spinner<Double> spnSizeX;
+    private double x;
     @FXML
-    private Spinner<Double> spnSizeWidth;
-    private double width;
+    private Spinner<Double> spnSizeY;
+    private double y;
     @FXML
     private ComboBox<String> cmbPreset;
     private String selectedPreset;
@@ -43,8 +43,8 @@ public class SpaceControllerView  implements Initializable, ControllerView {
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        spnSizeWidth.setValueFactory(new DoubleSpinnerValueFactory(1, 100, 10, 0.5));
-        spnSizeLenght.setValueFactory(new DoubleSpinnerValueFactory(1, 100, 10, 0.5));
+        spnSizeX.setValueFactory(new DoubleSpinnerValueFactory(1, 100, 10, 0.5));
+        spnSizeY.setValueFactory(new DoubleSpinnerValueFactory(1, 100, 10, 0.5));
         addPresetTocmb();
     }
 
@@ -74,43 +74,43 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     }
 
     @FXML public final void handleUpdateSpin(final Event event) {
-        lenght = spnSizeLenght.getValue();
-        width = spnSizeWidth.getValue();
-        this.ctrl.setSize(lenght, width);
+        x = spnSizeX.getValue();
+        y = spnSizeY.getValue();
+        this.ctrl.setSize(x, y);
     }
 
     /**
      * 
      * @return TODO
      */
-    public double getLenght() {
-        return lenght;
+    public double getX() {
+        return x;
     }
 
     /**
      * 
-     * @param lenght
+     * @param x
      */
-    public void setLenght(final double lenght) {
-        this.lenght = lenght;
-        spnSizeLenght.setValueFactory(new DoubleSpinnerValueFactory(1, 100, this.lenght, 0.5));
+    public void setX(final double x) {
+        this.x = x;
+        spnSizeX.setValueFactory(new DoubleSpinnerValueFactory(1, 100, this.x, 0.5));
     }
 
     /**
      * 
      * @return TODO
      */
-    public double getWidth() {
-        return width;
+    public double getY() {
+        return y;
     }
 
    /**
     * 
-    * @param width
+    * @param y
     */
-    public void setWidth(final double width) {
-        this.width = width;
-        spnSizeWidth.setValueFactory(new DoubleSpinnerValueFactory(1, 100, this.width, 0.5));
+    public void setY(final double y) {
+        this.y = y;
+        spnSizeY.setValueFactory(new DoubleSpinnerValueFactory(1, 100, this.y, 0.5));
     }
 
     /**

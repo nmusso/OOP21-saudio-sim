@@ -87,13 +87,6 @@ public class EnvironmentImpl implements Environment {
      */
     @Override
     public void addSourceToSourceHub(final FRSource source) {
-        //TODO usando math.round per ora puo andare solo nei punti interi
-//        if (space.isAvailable(source.getPosition(),sourcesHub.getAll().stream().map(s -> s.getPosition()).collect(Collectors.toSet()))) {
-//            sourcesHub.addSource(source);
-//            return true;
-//        }
-//        return false;
-//        NON SERVE IL CONTROLLO DELLA POSIIZONE PERCHE FATTO DALLA CANVAS.
         sourcesHub.addSource(source);
     }
 
@@ -112,19 +105,6 @@ public class EnvironmentImpl implements Environment {
      */
     @Override
     public void moveSource(final FRSource source, final Vec3f pos) {
-//        final int signX = (source.getPosition().getX() + pos.getX()) < 0 ? -1 : 1;
-//        final int signY = (source.getPosition().getY() + pos.getY()) < 0 ? -1 : 1;
-//        if (this.space.isAvailable(pos)) {
-//            source.setPosition(pos);
-//        } else if (Math.abs(source.getPosition().getX() - pos.getX()) < Math.abs(source.getPosition().getY() - pos.getY())) {
-//            this.moveSource(source, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY(), pos.getZ()));
-//        } else if (Math.abs(source.getPosition().getX() - pos.getX()) > Math.abs(source.getPosition().getY() - pos.getY())) {
-//            this.moveSource(source, new Vec3f(pos.getX(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
-//        } else {
-//            this.moveSource(source, new Vec3f(pos.getX() + signX * this.space.getScale(), pos.getY() + signY * this.space.getScale(), pos.getZ()));
-//        }
-        //TODO se non è occupata bene altrimenti inviare un allert che non sposta niente\
-        //TODO Controllo posizione fatto dallla canvas 
         this.sourcesHub.getSource(source.getId()).setPosition(pos);
     }
 

@@ -93,12 +93,9 @@ class EnvironmentTest {
     void testSpace() {
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
-        assertEquals(env.getSpace().getLenght(), 10.0f);
-        assertNotEquals(env.getSpace().getWidth(), 2.0f);
+        assertEquals(env.getSpace().getXmax(), 10.0f);
+        assertNotEquals(env.getSpace().getXmax(), 2.0f);
     }
-
-    //TODO test busy pos
-
 
     @Test
     void testListener() {

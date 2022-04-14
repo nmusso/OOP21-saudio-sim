@@ -10,8 +10,8 @@ import model.space.Space;
 public interface EnvironmentFactory {
 
     /**
-     * 
-     * @return env.
+     * create ad Environment with zero sources and default other param.
+     * @return Environment
      */
      Environment createVoidEnvironment();
 
@@ -32,7 +32,7 @@ public interface EnvironmentFactory {
      * @param sources
      * @param listener
      * @param space
-     * @return TODO
+     * @return Environment
      */
     Environment createNEnvironment(Set<FRSource> sources, Listener listener, Optional<Space> space);
 
@@ -41,12 +41,6 @@ public interface EnvironmentFactory {
     * @return Environment
     */
     Environment createCinemaEnvironment();
-
-    /**
-    * create an Environment with specific set, like Concert.
-    * @return Environment
-    */
-    Environment createConcertEnvironment();
 
     /**
     * create an Environment with specific set, like Stadium.

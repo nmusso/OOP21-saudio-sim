@@ -1,17 +1,14 @@
 package model.environment;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import model.audiomanager.AudioManager;
 import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
 import model.source.FRSource;
-import model.source.Source;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
 import model.source.SourceType;
@@ -78,16 +75,6 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     *{@inheritDoc}
     */
     @Override
-    public Environment createConcertEnvironment() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    /**
-    *
-    *{@inheritDoc}
-    */
-    @Override
     public Environment createStadiumEnvironment() {
         // TODO Auto-generated method stub
         return null;
@@ -109,7 +96,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     */
     @Override
     public Environment createVoidEnvironment() {
-        return new EnvironmentImpl(sourceHubFac.createSourcesHub(), listenerFac.createListener(AudioManager.getContext()), spaceFac.createDefaultSpace());
+        return new EnvironmentImpl(sourceHubFac.createSourcesHub(), listenerFac.createListenerWhitPos(AudioManager.getContext(), new Vec3f(0f)), spaceFac.createDefaultSpace());
     }
 
     /**

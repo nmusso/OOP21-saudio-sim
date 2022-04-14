@@ -35,7 +35,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
-                  <Spinner fx:id="spnSizeWidth" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Spinner fx:id="spnSizeY" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                   <Label text="Y" />
                </children>
             </GridPane>
@@ -48,7 +48,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <Spinner fx:id="spnSizeLenght" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.rowIndex="1" />
+                  <Spinner fx:id="spnSizeX" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.rowIndex="1" />
                   <Label text="X" />
                </children>
             </GridPane>

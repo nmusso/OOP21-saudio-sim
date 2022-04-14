@@ -30,8 +30,7 @@ public interface Environment {
     Space getSpace();
 
     /**
-     * add source to the source hub, if position is ok.
-     * 
+     * add source to the source hub.
      * @param source to add
      */
     void addSourceToSourceHub(FRSource source);
@@ -57,8 +56,7 @@ public interface Environment {
 
     /**
      * remove source. 
-     * 
-     * @param source to remove
+     * @param sourceToRemove
      */
     void removeSourceFromSourceHub(FRSource sourceToRemove);
 
@@ -66,7 +64,7 @@ public interface Environment {
     /**
      * move the selected source to pos.
      * @param  source
-     * @param new pos
+     * @param pos
      */
     void moveSource(FRSource source, Vec3f pos);
 }

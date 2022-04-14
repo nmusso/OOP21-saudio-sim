@@ -43,8 +43,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     private Set<Sprite> sprites;
 
-    private double lenght = 10;
-    private double width = 10;
+    private double x = 10;
+    private double y = 10;
 
     /**
      * 
@@ -117,8 +117,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     private Pair<Float, Float> updatePosForController(final Pair<Double, Double> pos) {
         final Pair<Float, Float> posFloat = new Pair<Float, Float>(
-                (float) ((width * pos.getX()) / canvas.getWidth()),
-                (float) ((lenght * pos.getY()) / canvas.getHeight()));
+                (float) ((x * pos.getX()) / canvas.getWidth()),
+                (float) ((y * pos.getY()) / canvas.getHeight()));
         return posFloat;
     }
 
@@ -150,8 +150,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         final Texture tx = new Texture(type.toString());
         sprite.setTexture(tx);
         Pair<Double, Double> posDouble = new Pair<Double, Double>(
-                (double) ((canvas.getWidth() * posElement.getX()) / width),
-                (double) ((canvas.getHeight() * posElement.getY()) / lenght));
+                (double) ((canvas.getWidth() * posElement.getX()) / x),
+                (double) ((canvas.getHeight() * posElement.getY()) / y));
         posDouble = checkOutOfBorder(new Pair<Double, Double>(posDouble.getX(), posDouble.getY()), sprite.getSize());
         sprite.setPosition((double) posDouble.getX(), (double) posDouble.getY());
         sprite.draw(contextView);
@@ -187,16 +187,16 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     * 
     * @return TODO
     */
-    public double getLenght() {
-        return lenght;
+    public double getX() {
+        return x;
     }
 
     /**
      * 
      * @return TODO
      */
-    public double getWidth() {
-        return width;
+    public double gety() {
+        return y;
     }
 
     /**
@@ -235,17 +235,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
-     * @param lenght
-     * @param width
+     * @param x
+     * @param y
      */
-    public void setSize(final double lenght, final double width) {
-        this.lenght = lenght;
-        this.width = width;
+    public void setSize(final double x, final double y) {
+        this.x = x;
+        this.y = y;
 
         sprites.stream().forEach(e -> {
-            Pair<Float, Float> x = updatePosForController(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()));
-            Vec3f vec = new Vec3f(x.getX(), x.getY(), 0f);
-            System.out.println(x.getX() + " " + x.getY());
+            Pair<Float, Float> temp = updatePosForController(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()));
+            Vec3f vec = new Vec3f(temp.getX(), temp.getY(), 0f);
+            System.out.println(temp.getX() + " " + temp.getY());
             if (e.getSpriteType() == TypeSprite.LISTENER) {
                 this.ctrl.moveListener(vec);
             } else {

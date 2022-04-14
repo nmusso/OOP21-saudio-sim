@@ -114,9 +114,9 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
         }
 
         this.ctrlView.reset();
-        this.mainCtr.getSpaceController().setSpinner(this.env.getSpace().getLenght(),
-                this.getEnv().getSpace().getWidth());
-        this.ctrlView.setSize(this.env.getSpace().getWidth(), this.getEnv().getSpace().getLenght());
+        this.mainCtr.getSpaceController().setSpinner(this.env.getSpace().getXmax(),
+                this.getEnv().getSpace().getYmax());
+        this.ctrlView.setSize(this.env.getSpace().getXmax(), this.getEnv().getSpace().getYmax());
         this.addListener();
         this.env.getSourceHub().getAll().stream().forEach(e -> {
             TypeSprite type = TypeSprite.SOURCEFULL;
@@ -142,11 +142,11 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * 
-     * @param lenght
-     * @param width
+     * @param x
+     * @param y
      */
-    public void setSizeEnv(final double lenght, final double width) {
-        this.ctrlView.setSize(lenght, width);
+    public void setSizeEnv(final double x, final double y) {
+        this.ctrlView.setSize(x, y);
     }
 
     /**
