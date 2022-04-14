@@ -1,12 +1,10 @@
 package view.utility;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 
 /**
@@ -15,6 +13,7 @@ import javafx.scene.image.Image;
 public class Texture {
     private final Image image;
     private Rectangle region;
+    private ImageView imageView = new ImageView();
 
     /**
      *
@@ -45,6 +44,9 @@ public class Texture {
     public Texture(final String path) {
         final InputStream file = getClass().getResourceAsStream("/img/" + path + ".png");
         this.image = new Image(file);
+//        this.imageView.setImage(image);
+//        this.imageView.setPreserveRatio(true);
+//        region = new Rectangle(0, 0,  imageView.getFitWidth(), imageView.getFitHeight());
         region = new Rectangle(0, 0,  image.getWidth(), image.getHeight());
     }
 

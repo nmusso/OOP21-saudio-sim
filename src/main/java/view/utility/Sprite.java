@@ -1,6 +1,7 @@
 package view.utility;
 
 import javafx.scene.canvas.*;
+import javafx.scene.image.Image;
 
 /**
  * Represents the game entities displayed on the screen; can move and interact

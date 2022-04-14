@@ -19,6 +19,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 import model.utility.Pair;
 import model.utility.Vec3f;
 import view.utility.Rectangle;
@@ -39,7 +40,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     private Optional<Sprite> lastSelectedSource;
 
-    private float angleListener = 90;
+    private double angleListener = 90;
 
     private Color colorFill = Color.LIGHTGRAY;
 
@@ -64,6 +65,13 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             canvas.setHeight(newVal.doubleValue() - 1);
         });
 
+        //TEST SPRITE SFONDO
+        final Sprite sfondo = new Sprite(-2);
+        final Texture tx = new Texture("sfondoCinema");
+        sfondo.setTexture(tx);
+        sfondo.draw(contextView);
+
+
         AnimationTimer musicLoop = new AnimationTimer() {
 
             @Override
@@ -74,17 +82,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 });
                 contextView.setFill(colorFill);
                 contextView.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-
+                //CINEMA DISABILITATO
+                //sfondo.draw(contextView);
                 sprites.stream().forEach(e -> {
                     Pair<Double, Double> pos = checkOutOfBorder(
                             new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()), e.getSize());
                     e.setPosition(pos.getX(), pos.getY());
-//                    if (e.getSpriteType().equals(TypeSprite.LISTENER)) {
-//                        listenerDraw(e);
-//                    } else {
-//                        e.draw(contextView);
-//                    }
-                    e.draw(contextView);
+                    if (e.getSpriteType().equals(TypeSprite.LISTENER)) {
+                        listenerDraw(e, e.getPosition());
+                    } else {
+                        e.draw(contextView);
+                    }
                 });
             }
         };
@@ -239,12 +247,25 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
     /**
      * 
+     * @param px
+     * @param py
+     */
+    private void rotate(final double px, final double py) {
+        Rotate r = new Rotate(angleListener, px, py);
+        contextView.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+    }
+
+    /**
+     * 
      * @param listener
      */
-    public void listenerDraw(final Sprite listener) {
-        canvas.rotateProperty().add(angleListener);
+    public void listenerDraw(final Sprite listener, final Vector pos) {
+        //this.contextView.save();
+        //rotate(pos.getX(), pos.getY());
+        this.canvas.rotateProperty().set(angleListener);
         listener.draw(contextView);
-        canvas.rotateProperty().add(0);
+        this.contextView.save();
+        this.canvas.rotateProperty().set(0);
     }
 
     /**
