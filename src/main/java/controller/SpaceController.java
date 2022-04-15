@@ -7,20 +7,24 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
     private final MainController mainCtr;
     private SpaceControllerView ctrlView;
 
+    /**
+     * Construct a new SpaceController.
+     * @param mainCtr MainController
+     */
     public SpaceController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
     }
 
     /**
-     * 
-     * @param controllerView
+     * Set the controller of the view.
+     * @param controllerView  the controller view
      */
     public void setControllerView(final SpaceControllerView controllerView) {
         ctrlView = controllerView;
     }
  
     /**
-     * 
+     * Set new size in Env changed by spaceView.
      * @param x
      * @param y
      */
@@ -29,7 +33,7 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
     }
 
     /**
-     * 
+     * Set new Preset for Env changed by spaceView.
      * @param preset
      */
     public void changePreset(final String preset) {
@@ -37,7 +41,7 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
     }
 
     /**
-     * 
+     * Set value for spinner in spaceView.
      * @param x
      * @param y
      */

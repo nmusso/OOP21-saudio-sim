@@ -43,12 +43,6 @@ public interface EnvironmentFactory {
     Environment createCinemaEnvironment();
 
     /**
-    * create an Environment with specific set, like Stadium.
-    * @return Environment
-    */
-    Environment createStadiumEnvironment();
-
-    /**
     * create an Environment with specific set, like HIFI HOME STUDIO.
     * @return Environment
     */

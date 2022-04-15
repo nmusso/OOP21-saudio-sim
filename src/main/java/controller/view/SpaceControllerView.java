@@ -54,11 +54,10 @@ public class SpaceControllerView  implements Initializable, ControllerView {
         listPreset.add("mono");
         listPreset.add("Stereo");
         listPreset.add("cinema");
-        listPreset.add("stadio");
         listPreset.add("HomeHIFI");
-        listPreset.add("Demo");
         final ObservableList<String> comboItems = FXCollections.observableArrayList(listPreset);
         cmbPreset.setItems(comboItems);
+        cmbPreset.setPromptText("mono");
     }
 
     @FXML public final void handleBtnAddEnv(final Event event) {

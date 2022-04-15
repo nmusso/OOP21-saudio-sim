@@ -24,12 +24,8 @@ import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
 import model.source.FRSource;
-import model.source.FRSourceImpl;
-import model.source.Source;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
-import model.source.SourceImpl;
-import model.source.SourceType;
 
 class EnvironmentTest {
 
@@ -75,7 +71,7 @@ class EnvironmentTest {
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         assertEquals(env.getSourceHub().getAll().size(), sources.size());
-        env.getSourceHub().addSource((genSource(sourceFac.createFreqRangeSource())));
+        env.getSourceHub().addSource(genSource(sourceFac.createFreqRangeSource()));
         assertEquals(env.getSourceHub().getAll().size(), sources.size() + 1);
     }
 

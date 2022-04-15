@@ -118,7 +118,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             newPos = checkOutOfBorder(newPos, temp.get().getSize());
             temp.get().setPosition(newPos.getX(), newPos.getY());
             final Pair<Float, Float> posFloat = updatePosForController(newPos);
-            if (temp.get().getTypeSprite() == TypeSprite.LISTENER) {
+            if (temp.get().getTypeSprite().equals(TypeSprite.LISTENER)) {
                 this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
             } else {
                 this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), temp.get().getId());
@@ -289,10 +289,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         this.y = y;
 
         sprites.stream().forEach(e -> {
-            Pair<Float, Float> temp = updatePosForController(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()));
-            Vec3f vec = new Vec3f(temp.getX(), temp.getY(), 0f);
-            System.out.println(temp.getX() + " " + temp.getY());
-            if (e.getTypeSprite() == TypeSprite.LISTENER) {
+            final Pair<Float, Float> temp = updatePosForController(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()));
+            final Vec3f vec = new Vec3f(temp.getX(), temp.getY(), 0f);
+            if (e.getTypeSprite().equals(TypeSprite.LISTENER)) {
                 this.ctrl.moveListener(vec);
             } else {
                 this.ctrl.moveSource(vec, e.getId());

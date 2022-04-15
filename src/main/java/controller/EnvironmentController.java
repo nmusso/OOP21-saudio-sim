@@ -87,7 +87,6 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      * @param preset
      */
     public void changeEnv(final String preset) {
-        // TODO da mettere lo sfondo
         switch (preset) {
         case "cinema":
             this.env = envFac.createCinemaEnvironment();
@@ -95,23 +94,15 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
             break;
         case "mono":
             this.env = envFac.createMonoEnvironment();
-            //this.ctrlView.setTxBackGround(preset);
+            this.ctrlView.setTxBackGround("void");
             break;
         case "Stereo":
             this.env = envFac.createStereoEnvironment();
-            //this.ctrlView.setTxBackGround(preset);
-            break;
-        case "stadio":
-            this.env = envFac.createStadiumEnvironment();
-            //this.ctrlView.setTxBackGround(preset);
+            this.ctrlView.setTxBackGround("void");
             break;
         case "HomeHIFI":
             this.env = envFac.createHIFIEnvironment();
-            //this.ctrlView.setTxBackGround(preset);
-            break;
-        case "Demo":
-            this.env = envFac.createVoidEnvironment();
-            //this.ctrlView.setTxBackGround(preset);
+            this.ctrlView.setTxBackGround(preset);
             break;
         default:
             this.env = envFac.createVoidEnvironment();
