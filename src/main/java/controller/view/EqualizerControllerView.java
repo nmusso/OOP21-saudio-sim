@@ -10,6 +10,9 @@ import controller.MainController;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
@@ -57,6 +60,8 @@ public class EqualizerControllerView implements Initializable, ControllerView {
         } else {
             btnTurn.setText("ON");
             btnTurn.setStyle("-fx-background-color: #6CF049");
+            final Alert alert = new Alert(AlertType.INFORMATION, "Keep the volume low while using the effects", ButtonType.OK);
+            alert.show();
         }
 
         getSliders().forEach(s -> s.setDisable(!state));
@@ -113,8 +118,6 @@ public class EqualizerControllerView implements Initializable, ControllerView {
     }
 
     @Override
-    public void showError(String error) {
-        // TODO Auto-generated method stub
-        
+    public void showError(final String error) {
     }
 }

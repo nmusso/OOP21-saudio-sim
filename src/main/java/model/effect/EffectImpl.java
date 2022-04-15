@@ -1,12 +1,13 @@
 package model.effect;
 
-import model.source.Source;
 import static org.lwjgl.openal.EXTEfx.alEffecti;
 import static org.lwjgl.openal.EXTEfx.alEffectf;
 import static org.lwjgl.openal.EXTEfx.alAuxiliaryEffectSloti;
 import static org.lwjgl.openal.EXTEfx.AL_EFFECT_TYPE;
 import static org.lwjgl.openal.EXTEfx.AL_EFFECTSLOT_EFFECT;
 import static org.lwjgl.openal.EXTEfx.AL_EFFECT_NULL;
+
+import model.source.Source;
 
 /**
  * Extension of AbstractEffect, with methods apply and remove.

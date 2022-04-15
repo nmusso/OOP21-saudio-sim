@@ -22,7 +22,6 @@ import static org.lwjgl.openal.EXTEfx.AL_REVERB_MIN_DENSITY;
 
 import java.util.Arrays;
 import java.util.List;
-
 import static org.lwjgl.openal.EXTEfx.AL_REVERB_MAX_DENSITY;
 
 /**

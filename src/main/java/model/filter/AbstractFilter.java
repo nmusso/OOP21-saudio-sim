@@ -9,7 +9,6 @@ import static org.lwjgl.openal.EXTEfx.AL_DIRECT_FILTER;
 import static org.lwjgl.openal.EXTEfx.AL_AUXILIARY_SEND_FILTER;
 import static org.lwjgl.openal.EXTEfx.AL_EFFECT_NULL;
 
-import java.nio.IntBuffer;
 import java.util.Arrays;
 
 /**
@@ -20,11 +19,12 @@ public abstract class AbstractFilter implements Filter {
     /**
      * Buffer containing slots attributes.
      */
-    private int[] filter = new int[1];
+    private final int[] filter = new int[1];
 
     /**
      * Apply the filter on the source.
      * 
+     * @param filter the filter
      * @param source the source
      */
     protected final void setOnSource(final int filter, final Source source) {

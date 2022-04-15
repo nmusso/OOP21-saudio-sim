@@ -1,17 +1,15 @@
 package controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import controller.view.SongControllerView;
 import model.buffer.Buffer;
 import model.buffer.BufferCache;
 import model.buffer.BufferFactory;
 import model.buffer.BufferFactoryImpl;
+import model.source.hub.SourcesHub;
 
 /**
  * Controller for the SongView which will communicate with model and his ViewController.
@@ -75,7 +73,7 @@ public class SongController implements ControllerApplication<SongControllerView>
      * @param bufferID  the id of the buffer
      */
     public void playSource(final int bufferID) {
-        final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
         sources.generateAllSources(bufferID);
         sources.playAll();
         this.mainCtr.getSourceController().setDisableAddSource(true);
@@ -85,7 +83,7 @@ public class SongController implements ControllerApplication<SongControllerView>
      * Pause all the sources.
      */
     public void pauseSource() {
-        final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
         sources.pauseAll();
     }
 
@@ -93,7 +91,7 @@ public class SongController implements ControllerApplication<SongControllerView>
      * Stop all the sources.
      */
     public void stopSource() {
-        final var sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
         sources.stopAll();
         this.mainCtr.getSourceController().setDisableAddSource(false);
     }
@@ -103,7 +101,7 @@ public class SongController implements ControllerApplication<SongControllerView>
      * @return the id of the buffer
      */
     public int getSelectedID() {
-        final var combo = ctrlView.getCmbSongs();
-        return combo.getSelectionModel().getSelectedItem().getID();
+        final var combobox = ctrlView.getCmbSongs();
+        return combobox.getSelectionModel().getSelectedItem().getID();
     }
 }

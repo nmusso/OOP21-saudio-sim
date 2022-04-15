@@ -1,7 +1,5 @@
 package model.filter;
 
-import model.source.Source;
-import model.source.SourceType;
 import static org.lwjgl.openal.EXTEfx.alFilteri;
 import static org.lwjgl.openal.EXTEfx.alFilterf;
 import static org.lwjgl.openal.EXTEfx.AL_FILTER_TYPE;
@@ -16,17 +14,16 @@ import static org.lwjgl.openal.EXTEfx.AL_BANDPASS_GAINHF;
 import static org.lwjgl.openal.EXTEfx.AL_FILTER_HIGHPASS;
 import static org.lwjgl.openal.EXTEfx.AL_HIGHPASS_GAIN;
 import static org.lwjgl.openal.EXTEfx.AL_HIGHPASS_GAINLF;
+
 import java.util.List;
+import model.source.Source;
+import model.source.SourceType;
 
 /**
  * Extension of AbstractEffect, with methods apply and remove.
  *
  */
 public class FilterImpl extends AbstractFilter {
-
-    public FilterImpl() {
-
-    }
 
     /**
      * {@inheritDoc}

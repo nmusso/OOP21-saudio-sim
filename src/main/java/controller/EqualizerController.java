@@ -7,7 +7,7 @@ import model.effect.ALEffects;
  * Controller for the EqualizerView which will communicate with model and his ViewController.
  *
  */
-public class EqualizerController {
+public class EqualizerController implements ControllerApplication<EqualizerControllerView> {
 
     private final MainController mainCtr;
     private EqualizerControllerView ctrlView;
@@ -21,9 +21,9 @@ public class EqualizerController {
     }
 
     /**
-     * Set the controller of the view.
-     * @param controllerView  the controller view
+     * {@inheritDoc}
      */
+    @Override
     public void setControllerView(final EqualizerControllerView controllerView) {
         ctrlView = controllerView;
     }

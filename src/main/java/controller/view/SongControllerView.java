@@ -3,13 +3,10 @@ package controller.view;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
-import javax.annotation.concurrent.ThreadSafe;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import controller.MainController;
 import controller.SongController;
@@ -58,6 +55,15 @@ public class SongControllerView implements Initializable, ControllerView {
         } catch (IOException e) {
             showError("Something went wrong during load buffer resources");
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showError(final String error) {
+        final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
+        alert.show();
     }
 
     /**
@@ -155,14 +161,4 @@ public class SongControllerView implements Initializable, ControllerView {
     public ComboBox<Buffer> getCmbSongs() {
         return cmbSongs;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void showError(final String error) {
-        final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
-        alert.show();
-    }
-
 }
