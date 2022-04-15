@@ -26,11 +26,17 @@ import model.source.SourceType;
 public class FilterImpl extends AbstractFilter {
 
     /**
+     * Constructor for FilterImpl, initialise the buffer.
+     */
+    public FilterImpl() {
+        initFilterBuffer();
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public void applyFilter(final Source source, final SourceType type) {
-        initFilterBuffer();
 
         switch (type) {
         case LOW:
@@ -53,7 +59,6 @@ public class FilterImpl extends AbstractFilter {
      */
     @Override
     public void removeFilter(final Source source) {
-        initFilterBuffer();
         final int filter = getFilter()[0];
 
         alFilteri(filter, AL_FILTER_TYPE, AL_FILTER_NULL);

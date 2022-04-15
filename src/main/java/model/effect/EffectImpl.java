@@ -14,12 +14,19 @@ import model.source.Source;
  *
  */
 public class EffectImpl extends AbstractEffect {
+
+    /**
+     * Constructor for EffectImpl, initialise the buffer.
+     */
+    public EffectImpl() {
+        initEffectBuffer();
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public void apply(final ALEffects alEffect, final Source source, final float val) {
-        initEffectBuffer();
         final int effect = getEffect()[0];
         final int slot = getSlot()[0];
 
@@ -35,13 +42,12 @@ public class EffectImpl extends AbstractEffect {
      */
     @Override
     public void remove(final ALEffects alEffect, final Source source) {
-        initEffectBuffer();
-        final var effect = getEffect();
-        final var slot = getSlot();
+        final var effect = getEffect()[0];
+        final var slot = getSlot()[0];
 
-        alEffecti(effect[0], AL_EFFECT_TYPE, AL_EFFECT_NULL);
-        alAuxiliaryEffectSloti(slot[0], AL_EFFECTSLOT_EFFECT, effect[0]);
+        alEffecti(effect, AL_EFFECT_TYPE, AL_EFFECT_NULL);
+        alAuxiliaryEffectSloti(slot, AL_EFFECTSLOT_EFFECT, effect);
 
-        setOnSource(source, slot[0], alEffect.ordinal());
+        setOnSource(source, slot, alEffect.ordinal());
     }
 }
