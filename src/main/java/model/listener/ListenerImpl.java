@@ -1,6 +1,7 @@
 package model.listener;
 
 import model.audiomanager.Context;
+
 import model.utility.Vec3f;
 import org.lwjgl.openal.AL10;
 import org.lwjgl.openal.EXTEfx;
@@ -22,7 +23,7 @@ public class ListenerImpl implements Listener {
     }
 
     ListenerImpl(final Context context, final Vec3f position) {
-        this(context, position, new Vec3f(0.0f, 1.0f, 0.0f), new Vec3f(0.0f, 0.0f, -1.0f));
+        this(context, position, new Vec3f(0.0f, 0.0f, -1.0f), new Vec3f(0.0f, 1.0f, 0.0f));
     }
 
     ListenerImpl(final Context context, final Vec3f position, final Vec3f at, final Vec3f up) {
