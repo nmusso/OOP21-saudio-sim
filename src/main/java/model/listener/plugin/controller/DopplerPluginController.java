@@ -15,7 +15,7 @@ import model.utility.Vec3f;
 
 public class DopplerPluginController implements ControllerPlugin {
     private static final long TIME_LAPSE_VELOCITY = 100;
-    private static final String FXML_VIEW_PATH = "/fxml/DropplerPlugin.fxml";
+    private static final String FXML_VIEW_PATH = "/fxml/dopplerPlugin.fxml";
     private final DopplerPluginControllerView controllerView;
     private final Listener listener;
     private final MainController mainController;

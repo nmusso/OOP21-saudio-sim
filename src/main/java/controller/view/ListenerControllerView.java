@@ -27,6 +27,7 @@ public class ListenerControllerView implements Initializable, ControllerView {
     private static final int MAX_ANGLE_OR = 180;
     @FXML private Button btn;
     @FXML private TabPane listenerPane;
+    @FXML private TabPane pluginPane;
     @FXML private MenuItem it;
     @FXML private ComboBox<String> comboBoxPlugin;
     @FXML private Label lblXPos;
@@ -75,7 +76,7 @@ public class ListenerControllerView implements Initializable, ControllerView {
      * @param tab
      */
     public void setTabPlugin(final Tab tab) {
-        this.listenerPane.getTabs().add(tab);
+        this.pluginPane.getTabs().add(tab);
     }
 
     /**
@@ -101,8 +102,8 @@ public class ListenerControllerView implements Initializable, ControllerView {
      * 
      */
     public void positionChanged() {
-        this.lblXPos.setText(Float.toString(this.ctrListener.getListener().getPosition().getX()));
-        this.lblYPos.setText(Float.toString(this.ctrListener.getListener().getPosition().getY()));
+        this.lblXPos.setText(String.valueOf(Math.round(this.ctrListener.getListener().getPosition().getX() * 100.0) / 100.0));
+        this.lblYPos.setText(String.valueOf(Math.round(this.ctrListener.getListener().getPosition().getY() * 100.0) / 100.0));
     }
 
 }

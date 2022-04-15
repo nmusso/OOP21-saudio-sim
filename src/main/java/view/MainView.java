@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
-    private static final String FXML_PATH = "/fxml/mainView.fxml";
+    private static final String FXML_PATH = "/fxml/MainView.fxml";
 
     /**
      * 
@@ -28,7 +28,7 @@ public class MainView extends Application {
         final Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
-        mainStage.setOnCloseRequest(x -> mainStage.close());
+        mainStage.setOnCloseRequest(x -> System.exit(0));
         mainStage.setResizable(false);
         mainStage.setScene(scene);
         mainStage.show();

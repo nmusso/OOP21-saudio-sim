@@ -13,6 +13,7 @@ import model.listener.plugin.controller.DopplerPluginController;
 public class DopplerPluginControllerView implements Initializable, ControllerPluginView<DopplerPluginController>  {
     @FXML private Tab dropplerPluginTab;
     @FXML private Label lblVelX;
+    @FXML private Label lblVelY;
     private DopplerPluginController controller;
 
     @Override
@@ -46,7 +47,8 @@ public class DopplerPluginControllerView implements Initializable, ControllerPlu
      * @param y
      */
     public void changeVelocity(final float x, final float y) {
-        this.lblVelX.setText(Float.toString(x));
+        this.lblVelX.setText(String.valueOf(Math.round(x * 100.0) / 100.0));
+        this.lblVelY.setText(String.valueOf(Math.round(y * 100.0) / 100.0));
     }
 
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<Tab fx:id="dropplerPluginTab" text="DropplerPlug" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.listener.plugin.view.DopplerPluginControllerView">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="103.0" layoutY="20.0" text="Velocity" />
+            <Label layoutX="77.0" layoutY="72.0" text="X :" />
+            <Label fx:id="lblVelX" layoutX="107.0" layoutY="72.0" text="0.0" />
+            <Label layoutX="152.0" layoutY="72.0" text="m/s" />
+            <Label layoutX="77.0" layoutY="102.0" text="Y :" />
+            <Label fx:id="lblVelY" layoutX="107.0" layoutY="102.0" text="0.0" />
+            <Label layoutX="152.0" layoutY="102.0" text="m/s" />
+         </children></AnchorPane>
+  </content>
+</Tab>
