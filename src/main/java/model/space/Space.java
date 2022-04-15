@@ -7,22 +7,22 @@ import model.utility.Vec3f;
 public interface Space {
 
      /**
-     *
+     * Get Height.
      * @return max Y.
      */
      float getYmax();
 
      /**
-     *
+     * Get Width.
      * @return max X.
      */
      float getXmax();
 
      /**
-      * check pos if is outOfBorder or busy.
+      * check pos if is outOfBorder or busy (CONSOLE).
       * @param pos
       * @param position
-      * @return TTrue if is a valid pos.
+      * @return True if the pos is correct..
       */
      boolean isAvailable(Vec3f pos, Set<Vec3f> position);
 }

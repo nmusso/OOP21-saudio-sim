@@ -8,6 +8,11 @@ public class SpaceImpl implements Space {
     private final float yMax;
     private final float xMax;
 
+    /**
+     * Construct a new SpaceImpl.
+     * @param x for xMax
+     * @param y for yMax
+     */
     public SpaceImpl(final float x, final float y) {
         super();
         this.xMax = x;
@@ -42,7 +47,7 @@ public class SpaceImpl implements Space {
     }
 
     /**
-    *check if the position is out of range.
+    *check if the position is out of borderMax.
     *@param vec3f pos to check
     * @return true if pos is ok
     */
