@@ -6,8 +6,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
-
 import controller.EnvironmentController;
 import controller.MainController;
 import javafx.animation.AnimationTimer;
@@ -18,17 +16,15 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import model.utility.Pair;
 import model.utility.Vec3f;
 import view.utility.Rectangle;
-import view.utility.Sprite;
-import view.utility.Texture;
+import view.utility.RectangleImpl;
+import view.utility.SpriteImpl;
+import view.utility.TextureImpl;
 import view.utility.TypeSprite;
-import view.utility.Vector;
 
 public class EnvironmentControllerView implements Initializable, ControllerView {
 
@@ -40,17 +36,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     @FXML
     private GraphicsContext contextView;
 
-    private final Sprite backGround = new Sprite(0);
-    private Texture txBackGround;
+    private final SpriteImpl backGround = new SpriteImpl(0);
+    private TextureImpl txBackGround;
     private Boolean backGroundStatus = false;
 
-    private Optional<Sprite> lastSelectedSource;
+    private Optional<SpriteImpl> lastSelectedSource;
 
     private double angleListener = 90;
 
     private final Color colorFill = Color.LIGHTGRAY;
 
-    private Set<Sprite> sprites;
+    private Set<SpriteImpl> sprites;
 
     private double x = 10;
     private double y = 10;
@@ -75,10 +71,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
             @Override
             public void handle(final long now) {
-                sprites.stream().forEach(e -> {
-                    e.setVelocity(new Vector(0, 0));
-                    e.getVelocity().multiply(1 / 60.0);
-                });
                 contextView.setFill(colorFill);
                 contextView.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 
@@ -93,7 +85,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                     Pair<Double, Double> pos = checkOutOfBorder(
                             new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()), e.getSize());
                     e.setPosition(pos.getX(), pos.getY());
-                    if (e.getSpriteType().equals(TypeSprite.LISTENER)) {
+                    if (e.getTypeSprite().equals(TypeSprite.LISTENER)) {
                         listenerDraw(e, e.getPosition());
                     } else {
                         e.draw(contextView);
@@ -113,9 +105,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      * 
      */
     private void moveSprite(final Event event) {
-        final Optional<Sprite> temp = sprites.stream()
+        final Optional<SpriteImpl> temp = sprites.stream()
                 .filter(s -> s.getSize()
-                        .overlap(new Rectangle(((MouseEvent) event).getX(), ((MouseEvent) event).getY(), 0.0, 0.0)))
+                        .overlap(new RectangleImpl(((MouseEvent) event).getX(), ((MouseEvent) event).getY(), 0.0, 0.0)))
                 .findAny();
 
         if (temp.isPresent()) {
@@ -126,7 +118,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             newPos = checkOutOfBorder(newPos, temp.get().getSize());
             temp.get().setPosition(newPos.getX(), newPos.getY());
             final Pair<Float, Float> posFloat = updatePosForController(newPos);
-            if (temp.get().getSpriteType() == TypeSprite.LISTENER) {
+            if (temp.get().getTypeSprite() == TypeSprite.LISTENER) {
                 this.ctrl.moveListener(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f));
             } else {
                 this.ctrl.moveSource(new Vec3f(posFloat.getX(), posFloat.getY(), 0.0f), temp.get().getId());
@@ -141,7 +133,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      */
     public void setTxBackGround(final String back) {
         if (!back.equals("void")) {
-            txBackGround = new Texture(back);
+            txBackGround = new TextureImpl(back);
             backGround.setTexture(txBackGround);
             backGroundStatus = true;
         } else {
@@ -179,9 +171,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      * @param posElement
      */
     public void addSprite(/* type */ final TypeSprite type, final int id, final Vec3f posElement) {
-        final Sprite sprite = new Sprite(id);
-        sprite.setSpriteType(type);
-        final Texture tx = new Texture(type.toString());
+        final SpriteImpl sprite = new SpriteImpl(id);
+        sprite.setTypeSprite(type);
+        final TextureImpl tx = new TextureImpl(type.toString());
         sprite.setTexture(tx);
         Pair<Double, Double> posDouble = new Pair<Double, Double>(
                 (double) ((canvas.getWidth() * posElement.getX()) / x),
@@ -193,8 +185,8 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         sprites.add(sprite);
     }
 
-    private void checkSprite(final Sprite sprite, final Vec3f posElement) {
-        if (sprite.getSpriteType().equals(TypeSprite.LISTENER)) {
+    private void checkSprite(final SpriteImpl sprite, final Vec3f posElement) {
+        if (sprite.getTypeSprite().equals(TypeSprite.LISTENER)) {
             this.ctrl.moveListener(new Vec3f(posElement.getX(), posElement.getY(), 0f));
         } else {
             setLastSelectedSource(sprite);
@@ -202,7 +194,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     }
 
 
-    private void setLastSelectedSource(final Sprite sprite) {
+    private void setLastSelectedSource(final SpriteImpl sprite) {
         this.lastSelectedSource = Optional.ofNullable(sprite);
         this.ctrl.lastSelectedSourceChange();
     }
@@ -253,7 +245,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      * @param type
      */
     public void upgradeTypeSpriteSource(final TypeSprite type) {
-        lastSelectedSource.get().setSpriteType(type);
+        lastSelectedSource.get().setTypeSprite(type);
     }
 
     /**
@@ -278,13 +270,13 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
      * 
      * @param listener
      */
-    public void listenerDraw(final Sprite listener, final Vector pos) {
+    public void listenerDraw(final SpriteImpl listener, final Pair<Double, Double> pair) {
         //this.contextView.save();
         //rotate(pos.getX(), pos.getY());
-        this.canvas.rotateProperty().set(angleListener);
+//        this.canvas.rotateProperty().set(angleListener);
         listener.draw(contextView);
-        this.contextView.save();
-        this.canvas.rotateProperty().set(0);
+//        this.contextView.save();
+//        this.canvas.rotateProperty().set(0);
     }
 
     /**
@@ -300,7 +292,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             Pair<Float, Float> temp = updatePosForController(new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()));
             Vec3f vec = new Vec3f(temp.getX(), temp.getY(), 0f);
             System.out.println(temp.getX() + " " + temp.getY());
-            if (e.getSpriteType() == TypeSprite.LISTENER) {
+            if (e.getTypeSprite() == TypeSprite.LISTENER) {
                 this.ctrl.moveListener(vec);
             } else {
                 this.ctrl.moveSource(vec, e.getId());

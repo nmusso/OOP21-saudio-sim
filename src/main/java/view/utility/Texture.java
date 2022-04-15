@@ -1,66 +1,33 @@
 package view.utility;
 
-
-import java.io.InputStream;
-
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 
 /**
  * Stores an image and a rectangle to specify the region of the image to draw.
  */
-public class Texture {
-    private final Image image;
-    private Rectangle region;
-    private final ImageView imageView = new ImageView();
-
+public interface Texture {
     /**
-     *
+     * Get the Rectangle region of Texture.
+     * @return region Rectangle
      */
-    public Rectangle getRegion() {
-        return region;
-    }
+    Rectangle getRegion();
 
     /**
-    *
-    */
-    public void setRegion(final Rectangle region) {
-        this.region = region;
-    }
-
-    /**
-     * 
-     * @return TODO 
+     * Set the Rectangle region of Texture.
+     * @param region
      */
-    public ImageView getImage() {
-        return this.imageView;
-    }
+    void setRegion(Rectangle region);
 
     /**
-     * 
-     * @param x
-     * @param y
+     * get the image to draw.
+     * @return ImageView of Texture
      */
-    public void setImageViewSize(final double x, final double y) {
-        this.imageView.setFitWidth(x);
-        this.imageView.setFitHeight(y);
-        region = new Rectangle(0, 0,  imageView.getFitWidth(), imageView.getFitHeight());
-    }
+    ImageView getImage();
 
     /**
-     * Create a texture; default region to draw is entire image.
-     *
-     * @param path name of the image file to load
+     * Set the dimension of image.
+     * @param x width
+     * @param y height 
      */
-    public Texture(final String path) {
-        final InputStream file = getClass().getResourceAsStream("/img/" + path + ".png");
-        this.image = new Image(file);
-        this.imageView.setImage(image);
-        this.imageView.setFitWidth(image.getWidth());
-        this.imageView.setFitHeight(image.getHeight());
-        this.imageView.setPreserveRatio(true);
-        region = new Rectangle(0, 0,  imageView.getFitWidth(), imageView.getFitHeight());
-    }
-
+    void setImageViewSize(double x, double y);
 }

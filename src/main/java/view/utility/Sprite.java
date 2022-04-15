@@ -1,206 +1,94 @@
 package view.utility;
 
-import javafx.scene.canvas.*;
-import javafx.scene.image.Image;
+import javafx.scene.canvas.GraphicsContext;
+import model.utility.Pair;
 
-/**
- * Represents the game entities displayed on the screen; can move and interact
- * with each other.
- */
-//TODO SISTEMARE QUESTA CLASSE LUGARESI
-public class Sprite {
-    private final int id;
+public interface Sprite {
 
     /**
-    *
-    */
-    public int getId() {
-        return id;
-    }
-
-    private Vector position;
-    private Vector velocity;
-    private TypeSprite spriteType;
-
-    /**
-    *
-    */
-    public TypeSprite getSpriteType() {
-        return spriteType;
-    }
-
-    /**
-    *
-    */
-    public void setSpriteType(final TypeSprite spriteType) {
-        this.spriteType = spriteType;
-        this.setTexture(new Texture(spriteType.toString()));
-    }
-    /**
-    *
-    */
-    public Vector getPosition() {
-        return position;
-    }
-
-    /**
-    *
-    */
-    public void setPosition(final Vector position) {
-        this.position = position;
-    }
-
-    /**
-    *
-    */
-    public Vector getVelocity() {
-        return velocity;
-    }
-
-    /**
-    *
-    */
-    public void setVelocity(final Vector velocity) {
-        this.velocity = velocity;
-    }
-
-    /**
-    *
-    */
-    public Texture getTexture() {
-        return texture;
-    }
-
-    /**
-     *
+     * Get ID of the sprite.
+     * @return id
      */
-    public boolean isVisible() {
-        return visible;
-    }
-
-    private Rectangle size;
-    private Texture texture;
-    private boolean visible;
+    int getId();
 
     /**
-     * Sprite Constructor; initializes to position (0,0).
-     *
+     * Get the position of sprite.
+     * @return Pair position
      */
-    public Sprite(final int id) {
-        position = new Vector(0, 0);
-        velocity = new Vector(0, 0);
-        setSize(new Rectangle());
-        this.id = id;
-        // make rectangle share same position data as this sprite
-        getSize().setPosition(position);
-        // by default, all sprites are visible
-        visible = true;
-    }
+     Pair<Double, Double> getPosition();
+    /**
+     * Set new pos with coordinates x and y.
+     * @param x
+     * @param y
+     */
+    void setPosition(double x, double y);
 
     /**
-     * Sprite Constructor; initializes position to (x,y).
-     *
-     * @param x x coordinate of top-left corner
-     * @param y y coordinate of top-left corner
+     * Get TypeSprite of Sprite. 
+     * @return TypeSprite for img
      */
-    public Sprite(final int id, final double x, final double y) {
-        position = new Vector(x, y);
-        setSize(new Rectangle());
-        // make rectangle share same position data as this sprite
-        getSize().setPosition(position);
-        this.id = id;
-        // by default, all sprites are visible
-        visible = true;
-    }
+    TypeSprite getTypeSprite();
+    /**
+     * Set a new TypeSprite for backgroud of sprite.
+     * @param type for set
+     */
+    void setTypeSprite(TypeSprite type);
 
     /**
-     * Update the position of this sprite. Automatically updates position of
-     * rectangle bounds.
-     *
-     * @param x new x coordinate
-     * @param y new y coordinate
+     * Get Size of Sprite.
+     * @return Rectangle of sprite.
      */
-    public void setPosition(final double x, final double y) {
-        position.setValues(x, y);
-    }
+    Rectangle getSize();
+    /**
+     * Set a new Rectangle.
+     * @param size
+     */
+    void setSize(Rectangle size);
+    /**
+     * Set a new size in case of new Texture.
+     * @param width
+     * @param height
+     */
+    void setSize(double width, double height);
+
 
     /**
-     * Update the size of this sprite. Used for collision detection. By default,
-     * size of sprite is size of texture image region.
-     *
-     * @param width  size along x direction
-     * @param height size along y direction
+     * Get Texture of sprite (img and size).
+     * @return Texture
      */
-    public void setSize(final double width, final double height) {
-        size.setSize(width, height);
-    }
+    Texture getTexture();
+    /**
+     * 
+     * @param tex
+     */
+    void setTexture(Texture tex);
 
     /**
-     * Set the texture data used for drawing this sprite in the game.
-     *
-     * @param tex previously created texture object, containing an image
+     * Boolean true if sprite is visible.
+     * @return boolean
      */
-    public void setTexture(final Texture tex) {
-        texture = tex;
-        // by default, set rectangle size to image size
-        getSize().setSize(tex.getRegion().getWidth(), tex.getRegion().getHeight());
-    }
-
+    boolean isVisible();
     /**
-     * Set visibility of this sprite, which determines whether it appears on the
-     * screen.
-     *
-     * @param vis should this sprite be visible?
+     * Set the visibility of sprite.
+     * @param vis boolean
      */
-    public void setVisible(final boolean vis) {
-        visible = vis;
-    }
+    void setVisible(boolean vis);
 
     /**
      * Draw the image contained in this sprite, at the position stored in this
      * sprite, with the size stored in the rectangle in this sprite.
-     *
+     * 
      * @param context The context object attached to the canvas in the window where
      *                the game will appear.
      */
-    public void draw(final  GraphicsContext context) {
-        if (visible) {
-            context.drawImage(texture.getImage().getImage(), position.getX(), position.getY(), getSize().getWidth(), getSize().getHeight());
-        }
-    }
+    void draw(GraphicsContext context);
 
     /**
-     * Move the sprite's position (x, y) by adding the given amounts.
-     *
-     * @param xAmount amount to add to x-coordinate of position
-     * @param yAmount amount to add to y-coordinate of position
-     */
-    public void moveBy(final double xAmount, final double yAmount) {
-        position.addValues(xAmount, yAmount);
-    }
 
-    /**
      * Check if this sprite overlaps another sprite by checking if this sprite's
      * rectangle overlaps other sprite's rectangle.
-     *
      * @param other the other sprite to check for overlap with
-     * @return true, if sprites overlap
+     * @return true, if sprite overlap
      */
-    public boolean overlap(final Sprite other) {
-        return this.getSize().overlap(other.getSize());
-    }
-
-    /**
-    *
-    */
-    public Rectangle getSize() {
-        return size;
-    }
-
-    /**
-    *
-    */
-    public void setSize(final Rectangle size) {
-        this.size = size;
-    }
+    boolean overlap(Sprite other);
 }

@@ -1,101 +1,48 @@
 package view.utility;
 
+import model.utility.Pair;
+
 /**
  * Rectangles store position and size; used to check overlap between sprites.
  */
-public class Rectangle {
-
-    private double width;
+public interface Rectangle {
     /**
-    *
-    */
-    public double getWidth() {
-        return width;
-    }
-
-    /**
-    *
-    */
-    public void setWidth(final double width) {
-        this.width = width;
-    }
-
-    /**
-    *
-    */
-    public double getHeight() {
-        return height;
-    }
-
-    /**
-    *
-    */
-    public void setHeight(final double height) {
-        this.height = height;
-    }
-
-    /**
-    *
-    */
-    public Vector getPosition() {
-        return position;
-    }
-
-    /**
-    *
-    */
-    public void setPosition(final Vector position) {
-        this.position = position;
-    }
-
-    private double height;
-    private Vector position;
-
-    /**
-     * Rectangle Constructor: sets default values to a 1x1 rectangle, top-left
-     * corner at (0,0).
+     * Get the Width of Rectangle.
+     * @return width
      */
-    public Rectangle() {
-        width = 1;
-        height = 1;
-        position = new Vector(0, 0);
-    }
-
+    double getWidth();
     /**
-     * Rectangle Constructor; sets position of top-left corner to (x,y) and the size
-     * to w by h.
-     *
-     * @param x coordinate for left side
-     * @param y coordinate for top side
-     * @param w width
-     * @param h height
+     * Set width of rectangle.
+     * @param width
      */
-    public Rectangle(final double x, final double y, final double w, final  double h) {
-        position = new Vector(x, y);
-        width = w;
-        height = h;
-    }
-
+    void setWidth(double width);
     /**
-     * Update the position of this rectangle.
-     *
-     * @param x new coordinate of left side
-     * @param y new coordinate of top side
+     * Get the height of Rectangle.
+     * @return height
      */
-    public void setPosition(final double x, final double y) {
-        position.setValues(x, y);
-    }
-
+    double getHeight();
     /**
-     * Set size of this rectangle.
+     * Set height of rectangle.
+     * @param height
+     */
+    void setHeight(double height);
+    /**
+     * Set position of rectangle.
+     * @param position Pair<Double, Double>
+     */
+    void setPosition(Pair<Double, Double> position);
+    /**
+     * Get the position of rectangle.
+     * @return Pair<Double, Double> that position
+     */
+    Pair<Double, Double> getPosition();
+    /**
+     * Set size of rectangle.
      *
      * @param w new width of rectangle
      * @param h new height of rectangle
      */
-    public void setSize(final double w, final double h) {
-        width = w;
-        height = h;
-    }
+    void setSize(double w, double h);
 
     /**
      * Check if this rectangle overlaps another rectangle.
@@ -103,11 +50,5 @@ public class Rectangle {
      * @param other other rectangle to check for overlap
      * @return true if rectangles overlap
      */
-    public boolean overlap(final Rectangle other) {
-        boolean notOverlap = (position.getX() + width < other.position.getX()) || (position.getY() + height < other.position.getY())
-                || (other.position.getX() + other.width < position.getX()) || (other.position.getY() + other.height < position.getY());
-
-        return !(notOverlap);
-    }
-
+    boolean overlap(Rectangle other);
 }

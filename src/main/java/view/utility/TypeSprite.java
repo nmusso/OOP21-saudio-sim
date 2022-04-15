@@ -20,5 +20,9 @@ public enum TypeSprite {
     /**
      *  listener.
      */
-    LISTENER;
+    LISTENER,
+    /**
+     *  listener for cinema env.
+     */
+    LISTENERCINEMA;
 }

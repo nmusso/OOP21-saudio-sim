@@ -62,7 +62,7 @@ public class Pair<X, Y> {
             return result;
     }
 
-    @SuppressWarnings("rawtypes")
+    
     @Override
     public boolean equals(final Object obj) {
             if (this == obj)
@@ -91,6 +91,12 @@ public class Pair<X, Y> {
     @Override
     public String toString() {
         return "Pair [x=" + x + ", y=" + y + "]";
+    }
+
+
+    public void setValues(final X x2, final Y y2) {
+        this.x = x2;
+        this.y = y2;
     }
 }
 
