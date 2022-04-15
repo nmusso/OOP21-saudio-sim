@@ -1,9 +1,10 @@
-package model.listener.plugin.model;
+package plugin.listener.model;
 
 
 import static org.lwjgl.openal.AL10.alListener3f;
 import org.lwjgl.openal.AL10;
 
+import model.listener.plugin.AbstractPlugin;
 import model.utility.Vec3f;
 
 public class DopplerPlugin extends AbstractPlugin {

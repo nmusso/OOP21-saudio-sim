@@ -1,4 +1,4 @@
-package model.listener.plugin.controller;
+package plugin.listener.controller;
 
 
 import java.util.Optional;
@@ -7,11 +7,12 @@ import controller.MainController;
 import controller.view.ListenerControllerView;
 import javafx.application.Platform;
 import model.listener.Listener;
-import model.listener.plugin.model.DopplerPlugin;
-import model.listener.plugin.model.Plugin;
-import model.listener.plugin.view.DopplerPluginControllerView;
+import model.listener.plugin.ControllerPlugin;
+import model.listener.plugin.Plugin;
 import model.listener.plugin.view.utility.PluginViewLoader;
 import model.utility.Vec3f;
+import plugin.listener.model.DopplerPlugin;
+import plugin.listener.view.DopplerPluginControllerView;
 
 public class DopplerPluginController implements ControllerPlugin {
     private static final long TIME_LAPSE_VELOCITY = 100;

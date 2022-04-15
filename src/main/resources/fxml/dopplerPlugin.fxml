@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<Tab fx:id="dropplerPluginTab" text="DropplerPlug" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.listener.plugin.view.DopplerPluginControllerView">
+<Tab fx:id="dropplerPluginTab" text="DropplerPlug" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="plugin.listener.view.DopplerPluginControllerView">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>

@@ -4,8 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 import io.github.classgraph.*;
-import model.listener.plugin.model.DopplerPlugin;
-import model.listener.plugin.model.Plugin;
+import plugin.listener.model.DopplerPlugin;
 
 
 

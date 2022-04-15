@@ -11,11 +11,13 @@ import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 import model.listener.Listener;
-import model.listener.plugin.controller.ControllerPlugin;
-import model.listener.plugin.model.Plugin;
+import model.listener.plugin.ControllerPlugin;
+import model.listener.plugin.Plugin;
 
 public class ListenerController {
-    private static final String PLUGIN_PATH = "model.listener.plugin.model";
+    private static final String PLUGIN_PATH = "plugin.listener.model";
+    private static final String CONTROLLER_PATH = "plugin.listener.controller";
+    private static final String INTERFACE_PATH = "model.listener.plugin";
     private ListenerControllerView controllerView;
     private final Listener listener;
     private final Set<Plugin> plugins;
@@ -37,7 +39,7 @@ public class ListenerController {
      */
     public Set<String> getAvailablePlugin() {
         try (ScanResult scanResult = new ClassGraph().enableAllInfo().acceptPackages(PLUGIN_PATH).scan()) {
-            final ClassInfoList widgetClasses = scanResult.getClassesImplementing(PLUGIN_PATH + ".Plugin");
+            final ClassInfoList widgetClasses = scanResult.getSubclasses(INTERFACE_PATH + ".AbstractPlugin");
             this.availablePlugin = widgetClasses.getNames().stream()
                                                           .map(x -> Stream.of(x.split(PLUGIN_PATH + "."))
                                                                   .collect(Collectors.toList())
@@ -66,7 +68,7 @@ public class ListenerController {
      */
     public void createPluginController(final String name) {
         try {
-            final Class<? extends ControllerPlugin> ctrClass = Class.forName("model.listener.plugin.controller." + name + "Controller").asSubclass(ControllerPlugin.class);
+            final Class<? extends ControllerPlugin> ctrClass = Class.forName(CONTROLLER_PATH + "." + name + "Controller").asSubclass(ControllerPlugin.class);
             final Constructor<? extends ControllerPlugin> cns = ctrClass.getConstructor(Listener.class, MainController.class, ListenerControllerView.class);
             this.plugins.add(cns.newInstance(this.listener, this.mainCtr, this.controllerView).getPlugin());
 

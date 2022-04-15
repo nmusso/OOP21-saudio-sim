@@ -1,4 +1,4 @@
-package model.listener.plugin.view;
+package model.listener.plugin;
 
 import controller.view.ListenerControllerView;
 

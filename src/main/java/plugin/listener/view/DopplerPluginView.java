@@ -1,4 +1,4 @@
-package model.listener.plugin.view;
+package plugin.listener.view;
 
 public interface DopplerPluginView {
 

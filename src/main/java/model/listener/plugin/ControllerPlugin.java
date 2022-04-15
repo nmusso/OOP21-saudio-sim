@@ -1,6 +1,4 @@
-package model.listener.plugin.controller;
-
-import model.listener.plugin.model.Plugin;
+package model.listener.plugin;
 
 public interface ControllerPlugin {
     /**
