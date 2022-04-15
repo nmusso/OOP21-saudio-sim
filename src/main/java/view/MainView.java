@@ -1,23 +1,15 @@
 package view;
 
-import java.io.File;
-import java.io.FileInputStream;
-
-import org.yamj.api.common.exception.ClientAPIException;
-
 import controller.MainController;
 import controller.view.MainControllerView;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
-    private static final String SEP = System.getProperty("file.separator");
-    //private static final String FXML_PATH = SEP + "fxml" + SEP + "SecondScene.fxml"; not working
-    private static final String FXML_PATH = "/fxml/SecondScene.fxml";
+    private static final String FXML_PATH = "/fxml/mainView.fxml";
 
     /**
      * 
@@ -36,8 +28,7 @@ public class MainView extends Application {
         final Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
-        /*TODO review System.exit */
-        mainStage.setOnCloseRequest((x) -> System.exit(0));
+        mainStage.setOnCloseRequest(x -> mainStage.close());
         mainStage.setResizable(false);
         mainStage.setScene(scene);
         mainStage.show();
