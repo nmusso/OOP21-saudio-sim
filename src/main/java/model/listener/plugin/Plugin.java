@@ -22,4 +22,11 @@ public interface Plugin {
      */
     Boolean isEnabled();
 
+    /**
+     * 
+     * @return just the class name of the plug-in.
+     */
+    String getClassName();
+
+
 }

@@ -22,7 +22,7 @@ public class ListenerController {
     private final Listener listener;
     private final Set<Plugin> plugins;
     private final MainController mainCtr;
-    private Set<String> availablePlugin;
+    //private Set<String> availablePlugin;
 
 
 
@@ -30,7 +30,7 @@ public class ListenerController {
         this.mainCtr = mainCtr;
         this.listener = this.mainCtr.getEnvironmentController().getEnv().getListener();
         this.plugins = new HashSet<>();
-        this.availablePlugin = new HashSet<>();
+        //this.availablePlugin = new HashSet<>();
     }
 
     /**
@@ -38,19 +38,21 @@ public class ListenerController {
      * @return avaiablePlugin
      */
     public Set<String> getAvailablePlugin() {
+        Set<String> pluginFound = new HashSet<>();
         try (ScanResult scanResult = new ClassGraph().enableAllInfo().acceptPackages(PLUGIN_PATH).scan()) {
             final ClassInfoList widgetClasses = scanResult.getSubclasses(INTERFACE_PATH + ".AbstractPlugin");
-            this.availablePlugin = widgetClasses.getNames().stream()
-                                                          .map(x -> Stream.of(x.split(PLUGIN_PATH + "."))
-                                                                  .collect(Collectors.toList())
-                                                                  .get(1))
-                                                          .collect(Collectors.toSet());
+            pluginFound = widgetClasses.getNames().stream()
+                                                      .map(x -> Stream.of(x.split(PLUGIN_PATH + "."))
+                                                              .collect(Collectors.toList())
+                                                              .get(1))
+                                                      .collect(Collectors.toSet());
+            pluginFound.removeAll(this.plugins.stream().map(x -> x.getClassName()).collect(Collectors.toSet()));
         } catch (Exception e) {
             System.out.println(e);
             this.controllerView.showError("Unable to load Plugin classes");
         }
 
-        return this.availablePlugin;
+        return pluginFound;
     }
 
     /**
