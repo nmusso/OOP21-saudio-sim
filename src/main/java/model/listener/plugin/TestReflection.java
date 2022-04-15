@@ -4,7 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 import io.github.classgraph.*;
-import model.listener.plugin.model.DropplerPlugin;
+import model.listener.plugin.model.DopplerPlugin;
 import model.listener.plugin.model.Plugin;
 
 
@@ -15,7 +15,7 @@ final class TestReflection {
 
     public static void main(final String[] args) {
 
-        final Plugin plugin = new DropplerPlugin();
+        final Plugin plugin = new DopplerPlugin();
 
         Method m;
         Object s = null;

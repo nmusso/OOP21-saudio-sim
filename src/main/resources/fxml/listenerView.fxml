@@ -17,16 +17,17 @@
             <content>
               <AnchorPane prefHeight="203.0" prefWidth="219.0">
                      <children>
-                        <Label layoutX="86.0" layoutY="14.0" text="Position" />
+                        <Label layoutX="46.0" layoutY="23.0" text="Position" />
                         <Label layoutX="26.0" layoutY="47.0" text="X :" />
                         <Label layoutX="109.0" layoutY="47.0" text="Y :" />
                         <Label fx:id="lblYPos" layoutX="133.0" layoutY="47.0" />
                         <Label fx:id="lblXPos" layoutX="50.0" layoutY="47.0" />
-                        <Label layoutX="85.0" layoutY="95.0" text="Orientation" />
-                        <Slider fx:id="sliderAtOr" layoutX="47.0" layoutY="124.0" />
+                        <Label layoutX="38.0" layoutY="87.0" text="Orientation" />
+                        <Slider fx:id="sliderAtOr" layoutX="14.0" layoutY="124.0" />
                         <Button fx:id="btnAddPlugin" layoutX="161.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleAddPlugin" prefHeight="23.0" prefWidth="22.0" text="+" />
                         <Button fx:id="btnRefreshPlugin" layoutX="194.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleRefreshListPlugin" prefHeight="20.0" prefWidth="28.0" text="R" />
                         <ComboBox fx:id="comboBoxPlugin" layoutX="6.0" layoutY="155.0" prefHeight="23.0" prefWidth="143.0" />
+                        <Label fx:id="lblDegrees" layoutX="80.0" layoutY="109.0" text="0" textAlignment="CENTER" />
                      </children>
                   </AnchorPane>
             </content>

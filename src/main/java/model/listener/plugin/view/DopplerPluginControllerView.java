@@ -8,12 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import model.listener.plugin.controller.DropplerPluginController;
+import model.listener.plugin.controller.DopplerPluginController;
 
-public class DropplerPluginControllerView implements Initializable, ControllerPluginView<DropplerPluginController>  {
+public class DopplerPluginControllerView implements Initializable, ControllerPluginView<DopplerPluginController>  {
     @FXML private Tab dropplerPluginTab;
     @FXML private Label lblVelX;
-    private DropplerPluginController controller;
+    private DopplerPluginController controller;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -25,7 +25,7 @@ public class DropplerPluginControllerView implements Initializable, ControllerPl
      * 
      */
     @Override
-    public void setControllerApplication(final DropplerPluginController controller) { 
+    public void setControllerApplication(final DopplerPluginController controller) { 
         this.controller = controller;
     }
 

@@ -32,6 +32,7 @@ public class ListenerControllerView implements Initializable, ControllerView {
     @FXML private Label lblXPos;
     @FXML private Label lblYPos;
     @FXML private Slider sliderAtOr;
+    @FXML private Label lblDegrees;
     private final ObservableList<String> pluginItems = FXCollections.observableArrayList();
     private ListenerController ctrListener;
 
@@ -46,11 +47,11 @@ public class ListenerControllerView implements Initializable, ControllerView {
         this.sliderAtOr.setMax(MAX_ANGLE_OR);
         this.sliderAtOr.setValue(0);
 
-        this.sliderAtOr.valueProperty()
-                .addListener((obs, oldV, newV) -> this.ctrListener.getListener().setOrientation(
-                        new Vec3f((float) Math.sin(Math.toRadians(newV.intValue())),
-                                (float) Math.cos(Math.toRadians(newV.intValue())), 0.0f),
-                        new Vec3f(0.0f, 0.0f, -1.0f)));
+        this.sliderAtOr.valueProperty().addListener((obs, oldV, newV) -> {
+            this.ctrListener.getListener().setOrientation(new Vec3f((float) Math.sin(Math.toRadians(newV.intValue())),
+                    (float) Math.cos(Math.toRadians(newV.intValue())), 0.0f), new Vec3f(0.0f, 0.0f, -1.0f));
+            this.lblDegrees.setText(String.valueOf(newV.intValue()));
+        });
 
     }
 
