@@ -2,7 +2,7 @@ package controller;
 
 import controller.view.MainControllerView;
 
-public class MainController {
+public class MainController implements ControllerApplication<MainControllerView> {
 
     private final EnvironmentController ctrEnvironment;
     private final ListenerController ctrListener;
@@ -23,55 +23,56 @@ public class MainController {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
+    @Override
     public void setControllerView(final MainControllerView controllerView) {
         this.controllerView = controllerView;
     }
 
     /**
-     * 
-     * @return
+     * Getter for EnvironmentController.
+     * @return the controller
      */
     public EnvironmentController getEnvironmentController() {
         return this.ctrEnvironment;
     }
 
     /**
-     * 
-     * @return
+     * Getter for ListenerController.
+     * @return the controller
      */
     public ListenerController getListenerCtr() {
         return this.ctrListener;
     }
 
     /**
-     * 
-     * @return
+     * Getter for SourceController.
+     * @return the controller
      */
     public SourceController getSourceController() {
         return this.ctrSource;
     }
 
     /**
-     * 
-     * @return
+     * Getter for EqualizerController.
+     * @return the controller
      */
     public EqualizerController getEqualizerController() {
         return this.ctrEqualizer;
     }
 
     /**
-     * 
-     * @return
+     * Getter for SongController.
+     * @return the controller
      */
     public SongController getSongController() {
         return this.ctrSong;
     }
-    
+
     /**
-     * 
-     * @return
+     * Getter for SpaceController.
+     * @return the controller
      */
     public SpaceController getSpaceController() {
         return this.ctrSpace;
