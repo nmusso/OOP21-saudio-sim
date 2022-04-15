@@ -61,7 +61,6 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      */
     public void removeSource(final FRSource source) {
         this.env.removeSourceFromSourceHub(source);
-        source.delete();
         this.ctrlView.removeSpriteSource();
     }
 
@@ -154,6 +153,8 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      * @param y
      */
     public void setSizeEnv(final double x, final double y) {
+        this.env.getSpace().setXMax((float) x);
+        this.env.getSpace().setYMax((float) y);
         this.ctrlView.setSize(x, y);
     }
 

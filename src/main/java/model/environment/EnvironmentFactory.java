@@ -28,7 +28,7 @@ public interface EnvironmentFactory {
     Environment createStereoEnvironment();
 
     /**
-     * 
+     * Create an Environment with param set.
      * @param sources
      * @param listener
      * @param space

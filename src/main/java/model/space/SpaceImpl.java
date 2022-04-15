@@ -5,8 +5,8 @@ import java.util.Set;
 import model.utility.Vec3f;
 
 public class SpaceImpl implements Space {
-    private final float yMax;
-    private final float xMax;
+    private float yMax;
+    private float xMax;
 
     /**
      * Construct a new SpaceImpl.
@@ -42,6 +42,24 @@ public class SpaceImpl implements Space {
     *{@inheritDoc}
     */
     @Override
+    public void setYMax(final float y) {
+        this.yMax = y;
+    }
+
+    /**
+    *
+    *{@inheritDoc}
+    */
+    @Override
+    public void setXMax(final float x) {
+        this.xMax = x;
+    }
+
+    /**
+    *
+    *{@inheritDoc}
+    */
+    @Override
     public boolean isAvailable(final Vec3f pos, final Set<Vec3f> positions) {
        return (checkBorder(pos) && checkBusyPos(pos, positions));
     }
@@ -63,5 +81,4 @@ public class SpaceImpl implements Space {
     private boolean checkBusyPos(final Vec3f pos, final Set<Vec3f> position) {
         return !position.contains(pos);
     }
-
 }

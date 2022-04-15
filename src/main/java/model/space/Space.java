@@ -13,10 +13,22 @@ public interface Space {
      float getYmax();
 
      /**
+      * Set Height.
+      * @param y
+      */
+     void setYMax(float y);
+
+     /**
      * Get Width.
      * @return max X.
      */
      float getXmax();
+
+     /**
+      * Set Width.
+      * @param x
+      */
+     void setXMax(float x);
 
      /**
       * check pos if is outOfBorder or busy (CONSOLE).

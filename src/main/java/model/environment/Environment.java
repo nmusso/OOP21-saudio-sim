@@ -10,19 +10,19 @@ import model.utility.Vec3f;
 public interface Environment {
 
     /**
-     *
+     * Get the sourceHub of env.
      * @return the source Hub
      */
     SourcesHub getSourceHub();
 
     /**
-     * 
+     * Get the listener of env.
      * @return listener
      */
     Listener getListener();
 
     /**
-     *
+     * Get the space of env.
      * @return space
      */
     Space getSpace();
@@ -34,7 +34,7 @@ public interface Environment {
     void addSourceToSourceHub(FRSource source);
 
     /**
-     * add effect.
+     * add effect to all source.
      * @param effect to add
      * @param level of "power" of effect
      */
@@ -46,7 +46,7 @@ public interface Environment {
     void removeEffect();
 
     /**
-     * remove source. 
+     * remove source from sourceHub. 
      * @param sourceToRemove
      */
     void removeSourceFromSourceHub(FRSource sourceToRemove);

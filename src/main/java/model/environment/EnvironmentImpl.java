@@ -12,6 +12,12 @@ public class EnvironmentImpl implements Environment {
     private final Listener listener;
     private final Space space;
 
+    /**
+     * Construct a new EnviromentImpl.
+     * @param sourcesHub
+     * @param listener
+     * @param space
+     */
     public EnvironmentImpl(final SourcesHub sourcesHub, final Listener listener, final Space space) {
         super();
         this.sourcesHub = sourcesHub;
@@ -80,6 +86,7 @@ public class EnvironmentImpl implements Environment {
     @Override
     public void removeSourceFromSourceHub(final FRSource sourceToRemove) {
         this.sourcesHub.removeSource(sourceToRemove);
+        sourceToRemove.delete();
     }
 
     /**
@@ -90,6 +97,4 @@ public class EnvironmentImpl implements Environment {
     public void moveSource(final FRSource source, final Vec3f pos) {
         this.sourcesHub.getSource(source.getId()).setPosition(pos);
     }
-
-
 }

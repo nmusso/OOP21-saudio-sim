@@ -1,6 +1,5 @@
 package model.environment;
 
-import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -34,7 +33,8 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     @Override
     public Environment createMonoEnvironment() {
         final FRSource source = sourceFac.createFreqRangeSourceWithPos(new Vec3f(2.5f, 1f, 0), SourceType.FULL);
-        final SourcesHub sh = sourceHubFac.createSourceHubFromSet(Collections.singleton(source));
+        final SourcesHub sh = sourceHubFac.createSourcesHub();
+        sh.addSource(source);
         final Space sp = spaceFac.createCustomizedSpace(5, 5);
         return new EnvironmentImpl(sh, listenerFac.createListenerWhitPos(AudioManager.getContext(), new Vec3f(2.5f)), sp);
     }
