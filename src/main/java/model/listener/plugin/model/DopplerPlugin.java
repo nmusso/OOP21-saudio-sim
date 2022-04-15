@@ -6,13 +6,13 @@ import org.lwjgl.openal.AL10;
 
 import model.utility.Vec3f;
 
-public class DropplerPlugin extends AbstractPlugin {
+public class DopplerPlugin extends AbstractPlugin {
     private static final float DEFAULT_DROPPLER_LV = 1.0f;
     private Vec3f velocity;
     private float dropplerLv;
     private float lastDropplerLv;
 
-    public DropplerPlugin() {
+    public DopplerPlugin() {
         this.velocity = new Vec3f(0.0f, 0.0f, 0.0f);
         this.dropplerLv = 1.0f;
     }
@@ -32,6 +32,7 @@ public class DropplerPlugin extends AbstractPlugin {
     public void saveSettings() {
         this.lastDropplerLv = this.dropplerLv;
         this.setDropplerLv(DEFAULT_DROPPLER_LV);
+        this.velocity = new Vec3f(0.0f, 0.0f, 0.0f);
     }
 
     /**
@@ -49,22 +50,6 @@ public class DropplerPlugin extends AbstractPlugin {
      */
     public Vec3f getVelocity() {
         return this.velocity;
-    }
-
-    /**
-     * 
-     * @param x
-     */
-    public void setVelocityX(final Float x) {
-        this.velocity = new Vec3f(x, 0.0f, 0.0f);
-    }
-
-    /**
-     * 
-     * @param y
-     */
-    public void setVelocityY(final Float y) {
-        this.velocity = new Vec3f(0.0f, y, 0.0f);
     }
 
     /**

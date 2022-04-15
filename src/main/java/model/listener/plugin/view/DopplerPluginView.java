@@ -1,5 +1,5 @@
 package model.listener.plugin.view;
 
-public interface DropplerPluginView {
+public interface DopplerPluginView {
 
 }
