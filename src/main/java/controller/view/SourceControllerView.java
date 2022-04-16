@@ -39,6 +39,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     private List<RadioButton> rbtns;
 
     /**
+     * Initialize the View.
      * 
      */
     @Override
@@ -59,7 +60,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     @Override
     public void setControllerApplication(final MainController ctrMain) {
@@ -68,6 +69,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     /**
+     * Adds a default speaker in the environment.
      * 
      * @param event
      */
@@ -78,6 +80,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     /**
+     * Removes the selected speaker from the environment.
      * 
      * @param event
      */
@@ -91,6 +94,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     /**
+     * Changes the type of the selected speaker.
      * 
      * @param event
      */
@@ -101,6 +105,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     /**
+     * Updates the radio button group selection in order to the selected speaker.
      * 
      */
     public void updateSelectedSpeaker() {
@@ -127,6 +132,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     /**
+     * Updates the PieChart data.
      * 
      * @param highValue
      * @param midValue
@@ -142,6 +148,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     /**
+     * Enable or disable being able to manage the speaker.
      * 
      * @param isSelected
      */
@@ -151,6 +158,7 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     /**
+     * Enable or disable being able to add a speaker.
      * 
      * @param isDisable
      */
@@ -158,6 +166,9 @@ public class SourceControllerView implements Initializable, ControllerView {
         this.btnAddSpeaker.setDisable(isDisable);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void showError(final String error) {
 

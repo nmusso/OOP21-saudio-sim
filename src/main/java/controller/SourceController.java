@@ -20,6 +20,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
     }
 
     /**
+     * Sets the controller View.
      * 
      * @param sourceController
      */
@@ -28,6 +29,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
     }
 
     /**
+     * Sets the speaker type.
      * 
      * @param speaker
      * @param type
@@ -57,6 +59,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
     }
 
     /**
+     * Gets the selected speaker from the environment.
      * 
      * @return selectedSource
      */
@@ -65,14 +68,16 @@ public class SourceController implements ControllerApplication<SourceControllerV
     }
 
     /**
+     * Updates the selected source.
      * 
      */
-    public void changeSelectedSource() {
+    public void updateSelectedSource() {
         this.selectedSource = mainCtr.getEnvironmentController().getSelectedSource();
         this.controllerView.updateSelectedSpeaker();
     }
 
     /**
+     * Creates a new FRSource and add it to environment.
      * 
      */
     public void addSpeaker() {
@@ -83,6 +88,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
     }
 
     /**
+     * Removes the selected speaker from environment.
      * 
      */
     public void removeSpeaker() {
@@ -90,6 +96,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
     }
 
     /**
+     * Enable or disable adding a source.
      * 
      * @param isDisable
      */
@@ -98,6 +105,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
     }
 
     /**
+     * Get the percentages for the frequencies and update the PieChart.
      * 
      */
     public void updatePieChartData() {

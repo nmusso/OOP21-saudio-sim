@@ -180,6 +180,6 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
      * notifies the SourceController of the change of the last selected source.
      */
     public void lastSelectedSourceChange() {
-        this.mainCtr.getSourceController().changeSelectedSource();
+        this.mainCtr.getSourceController().updateSelectedSource();
     }
 }
