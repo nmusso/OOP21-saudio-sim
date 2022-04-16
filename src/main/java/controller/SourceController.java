@@ -82,7 +82,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
      */
     public void addSpeaker() {
         final SourceFactory sourceFactory = new SourceFactoryImpl();
-        final FRSource newSource = sourceFactory.createFreqRangeSource(SourceType.FULL);
+        final FRSource newSource = sourceFactory.createFRSource(SourceType.FULL);
         newSource.generateSource(mainCtr.getSongController().getSelectedID());
         this.mainCtr.getEnvironmentController().addSourcetoSourceHub(newSource, TypeSprite.SOURCEFULL); 
     }

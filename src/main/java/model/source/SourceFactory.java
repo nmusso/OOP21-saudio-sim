@@ -18,7 +18,8 @@ public interface SourceFactory {
     /**
      * Create a basic Source in the specified position.
      * 
-     * @return Source in the specified position
+     * @param position
+     * @return basic Source in the specified position
      */
     Source createSourceWithPos(Vec3f position);
 
@@ -27,19 +28,22 @@ public interface SourceFactory {
      * 
      * @return Source with a given Frequency Range
      */
-    FRSource createFreqRangeSource();
+    FRSource createFRSource();
 
     /**
-     * Create a FreqRangeSource with a given Frequency Range.
+     * Create a FRSource with a given Frequency Range.
      * 
-     * @return Source with a given Frequency Range
+     * @param type
+     * @return FRSource with a given Frequency Range
      */
-    FRSource createFreqRangeSource(SourceType type);
+    FRSource createFRSource(SourceType type);
 
     /**
-     * Create a FreqRangeSource with a given Frequency Range in the specified position.
+     * Create a FRSource with a given Frequency Range in the specified position.
      * 
-     * @return Source with a given Frequency Range in the specified position
+     * @param position
+     * @param type
+     * @return FRSource with a given Frequency Range in the specified position
      */
-    FRSource createFreqRangeSourceWithPos(Vec3f position, SourceType type);
+    FRSource createFRSourceWithPos(Vec3f position, SourceType type);
 }

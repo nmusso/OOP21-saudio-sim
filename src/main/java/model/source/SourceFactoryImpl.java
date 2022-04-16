@@ -24,7 +24,7 @@ public class SourceFactoryImpl implements SourceFactory {
      * @inheritDoc
      */
     @Override
-    public FRSource createFreqRangeSource() {
+    public FRSource createFRSource() {
         return new FRSourceImpl(SourceType.FULL);
     }
 
@@ -32,7 +32,7 @@ public class SourceFactoryImpl implements SourceFactory {
     * @inheritDoc
     */
     @Override
-    public FRSource createFreqRangeSource(final SourceType type) {
+    public FRSource createFRSource(final SourceType type) {
         return new FRSourceImpl(type);
     }
 
@@ -40,7 +40,7 @@ public class SourceFactoryImpl implements SourceFactory {
      * @inheritDoc
      */
     @Override
-    public FRSource createFreqRangeSourceWithPos(final Vec3f position, final SourceType type) {
+    public FRSource createFRSourceWithPos(final Vec3f position, final SourceType type) {
         return new FRSourceImpl(position, type);
     }
 
