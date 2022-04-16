@@ -32,11 +32,11 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     */
     @Override
     public Environment createMonoEnvironment() {
-        final FRSource source = sourceFac.createFreqRangeSourceWithPos(new Vec3f(1.5f, 0.5f, 0), SourceType.FULL);
+        final FRSource source = sourceFac.createFreqRangeSourceWithPos(new Vec3f(1.5f, 1.5f, 0), SourceType.FULL);
         final SourcesHub sh = sourceHubFac.createSourcesHub();
         sh.addSource(source);
         final Space sp = spaceFac.createCustomizedSpace(5, 5);
-        return new EnvironmentImpl(sh, listenerFac.createListenerWhitPos(AudioManager.getContext(), new Vec3f(2.2f, 3.03f, 0f)), sp);
+        return new EnvironmentImpl(sh, listenerFac.createListenerWhitPos(AudioManager.getContext(), new Vec3f(1.5f, 3f, 0f)), sp);
     }
 
     /**
@@ -46,10 +46,10 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     @Override
     public Environment createStereoEnvironment() {
         final SourcesHub sh = sourceHubFac.createSourcesHub();
-        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(1.5f, 0.5f, 0f), SourceType.FULL));
-        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(3.1f, 0.5f, 0f), SourceType.FULL));
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(1f, 0.5f, 0f), SourceType.FULL));
+        sh.addSource(sourceFac.createFreqRangeSourceWithPos(new Vec3f(3f, 0.5f, 0f), SourceType.FULL));
         final Space sp = spaceFac.createCustomizedSpace(5, 5);
-        return new EnvironmentImpl(sh, listenerFac.createListenerWhitPos(AudioManager.getContext(), new Vec3f(2.2f, 3.03f, 0f)), sp);
+        return new EnvironmentImpl(sh, listenerFac.createListenerWhitPos(AudioManager.getContext(), new Vec3f(2f, 2f, 0f)), sp);
     }
 
     /**

@@ -17,11 +17,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.transform.Rotate;
 import model.utility.Pair;
 import model.utility.Vec3f;
 import view.utility.Rectangle;
 import view.utility.RectangleImpl;
+import view.utility.Sprite;
 import view.utility.SpriteImpl;
 import view.utility.TextureImpl;
 import view.utility.TypeSprite;
@@ -36,23 +36,21 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     @FXML
     private GraphicsContext contextView;
 
-    private final SpriteImpl backGround = new SpriteImpl(0);
+    private final Sprite backGround = new SpriteImpl(0);
     private TextureImpl txBackGround;
     private Boolean backGroundStatus = false;
 
-    private Optional<SpriteImpl> lastSelectedSource;
-
-    private double angleListener = 90;
+    private Optional<Sprite> lastSelectedSource;
 
     private final Color colorFill = Color.LIGHTGRAY;
 
-    private Set<SpriteImpl> sprites;
+    private Set<Sprite> sprites;
 
     private double x = 10;
     private double y = 10;
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -67,7 +65,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
             canvas.setHeight(newVal.doubleValue() - 1);
         });
 
-        AnimationTimer musicLoop = new AnimationTimer() {
+        final AnimationTimer musicLoop = new AnimationTimer() {
 
             @Override
             public void handle(final long now) {
@@ -82,30 +80,37 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
                 }
 
                 sprites.stream().forEach(e -> {
-                    Pair<Double, Double> pos = checkOutOfBorder(
+                    final Pair<Double, Double> pos = checkOutOfBorder(
                             new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()), e.getSize());
                     e.setPosition(pos.getX(), pos.getY());
-                    if (e.getTypeSprite().equals(TypeSprite.LISTENER)) {
-                        listenerDraw(e, e.getPosition());
-                    } else {
-                        e.draw(contextView);
-                    }
+//                    if (e.getTypeSprite().equals(TypeSprite.LISTENER)) {
+//                        listenerDraw(e, e.getPosition());
+//                    } else {
+//                        e.draw(contextView);
+//                    }
+                    e.draw(contextView);
                 });
             }
         };
         musicLoop.start();
     }
 
-
-    @FXML public final void handleOnMouseClickedOrDrag(final Event event) {
-        moveSprite(event);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setControllerApplication(final MainController ctrMain) {
+        this.ctrl = ctrMain.getEnvironmentController();
+        this.ctrl.setControllerView(this);
     }
 
+
     /**
-     * 
+     * Handle on mouse click or drag on canvas, for check and move sprites.
+     * @param event
      */
-    private void moveSprite(final Event event) {
-        final Optional<SpriteImpl> temp = sprites.stream()
+    @FXML public final void handleOnMouseClickedOrDrag(final Event event) {
+        final Optional<Sprite> temp = sprites.stream()
                 .filter(s -> s.getSize()
                         .overlap(new RectangleImpl(((MouseEvent) event).getX(), ((MouseEvent) event).getY(), 0.0, 0.0)))
                 .findAny();
@@ -128,11 +133,11 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     }
 
     /**
-     * 
+     * Set backGround for specific env.
      * @param back
      */
     public void setTxBackGround(final String back) {
-        if (!back.equals("void")) {
+        if (!"void".equals(back)) {
             txBackGround = new TextureImpl(back);
             backGround.setTexture(txBackGround);
             backGroundStatus = true;
@@ -141,13 +146,23 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         }
     }
 
+    /**
+     * returns the position of the source or listener(float) for the controller in proportion to the position of the sprites (double).
+     * @param pos double 
+     * @return Pair<Float, Float> for te controller
+     */
     private Pair<Float, Float> updatePosForController(final Pair<Double, Double> pos) {
-        final Pair<Float, Float> posFloat = new Pair<Float, Float>(
+        return new Pair<Float, Float>(
                 (float) ((x * pos.getX()) / canvas.getWidth()),
                 (float) ((y * pos.getY()) / canvas.getHeight()));
-        return posFloat;
     }
 
+    /**
+     * Check the position is not outOfBorder in case block the movement.
+     * @param newPos to check
+     * @param size of sprite
+     * @return pos controlled
+     */
     private Pair<Double, Double> checkOutOfBorder(final Pair<Double, Double> newPos, final Rectangle size) {
         if (newPos.getX() > canvas.getWidth() - size.getWidth()) {
             newPos.setX(canvas.getWidth() - size.getHeight());
@@ -165,17 +180,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     }
 
     /**
-     * 
-     * @param type
-     * @param id
-     * @param posElement
+     * Add sprite to set.
+     * @param type of new Sprite
+     * @param id of sprite
+     * @param posElement pos where draw the sprite.
      */
-    public void addSprite(/* type */ final TypeSprite type, final int id, final Vec3f posElement) {
+    public void addSprite(final TypeSprite type, final int id, final Vec3f posElement) {
         final SpriteImpl sprite = new SpriteImpl(id);
         sprite.setTypeSprite(type);
         final TextureImpl tx = new TextureImpl(type.toString());
         sprite.setTexture(tx);
-        Pair<Double, Double> posDouble = new Pair<Double, Double>(
+        Pair<Double, Double> posDouble = new Pair<>(
                 (double) ((canvas.getWidth() * posElement.getX()) / x),
                 (double) ((canvas.getHeight() * posElement.getY()) / y));
         posDouble = checkOutOfBorder(new Pair<Double, Double>(posDouble.getX(), posDouble.getY()), sprite.getSize());
@@ -185,7 +200,12 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         sprites.add(sprite);
     }
 
-    private void checkSprite(final SpriteImpl sprite, final Vec3f posElement) {
+    /**
+     * check sprite to warn the controller of a change on the listener or sources.
+     * @param sprite
+     * @param posElement
+     */
+    private void checkSprite(final Sprite sprite, final Vec3f posElement) {
         if (sprite.getTypeSprite().equals(TypeSprite.LISTENER)) {
             this.ctrl.moveListener(new Vec3f(posElement.getX(), posElement.getY(), 0f));
         } else {
@@ -193,96 +213,58 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         }
     }
 
-
-    private void setLastSelectedSource(final SpriteImpl sprite) {
+    /**
+     * Set lastSecetedSource with new sourceSprite.
+     * @param sprite
+     */
+    private void setLastSelectedSource(final Sprite sprite) {
         this.lastSelectedSource = Optional.ofNullable(sprite);
         this.ctrl.lastSelectedSourceChange();
     }
 
-
-    /**
-     * 
-     */
-    @Override
-    public void setControllerApplication(final MainController ctrMain) {
-        this.ctrl = ctrMain.getEnvironmentController();
-        this.ctrl.setControllerView(this);
-    }
-
    /**
-    * 
-    * @return TODO
+    * Get maxX of space.
+    * @return double x
     */
     public double getX() {
         return x;
     }
 
     /**
-     * 
-     * @return TODO
+     * Get maxY of space.
+     * @return double y
      */
     public double gety() {
         return y;
     }
 
     /**
-     * 
-     * @return TODO
+     * Get id of the lastSelectedSource if present.
+     * @return int Id of source or -1
      */
     public int getLastSelectedSource() {
         return lastSelectedSource.isPresent() ? lastSelectedSource.get().getId() : -1;
     }
 
     /**
-     * 
+     * Remove the lastSelectedSource.
      */
     public void removeSpriteSource() {
         sprites.remove(lastSelectedSource.get());
     }
 
     /**
-     * 
-     * @param type
+     * Change the typeSprite of lastSelectedSource in new Type.
+     * @param type to draw
      */
     public void upgradeTypeSpriteSource(final TypeSprite type) {
         lastSelectedSource.get().setTypeSprite(type);
     }
 
     /**
-     * 
-     * @param angle
-     */
-    public void setAngleListener(final float angle) {
-        this.angleListener = angle;
-    }
-
-    /**
-     * 
-     * @param px
-     * @param py
-     */
-    private void rotate(final double px, final double py) {
-        Rotate r = new Rotate(angleListener, px, py);
-        contextView.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
-    }
-
-    /**
-     * 
-     * @param listener
-     */
-    public void listenerDraw(final SpriteImpl listener, final Pair<Double, Double> pair) {
-        //this.contextView.save();
-        //rotate(pos.getX(), pos.getY());
-//        this.canvas.rotateProperty().set(angleListener);
-        listener.draw(contextView);
-//        this.contextView.save();
-//        this.canvas.rotateProperty().set(0);
-    }
-
-    /**
-     * 
-     * @param x
-     * @param y
+     * Set size of space, and change the new pos for all sprites.
+     * @param x width
+     * @param y height
      */
     public void setSize(final double x, final double y) {
         this.x = x;
@@ -300,16 +282,17 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         });
     }
 
-    @Override
-    public void showError(final String error) {
-        // TODO Auto-generated method stub
-    }
 
     /**
-     *  TODO .
+     * Reset set of sprites.
      */
     public void reset() {
         sprites.clear();
     }
 
+
+    @Override
+    public void showError(final String error) {
+
+    }
 }
