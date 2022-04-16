@@ -16,7 +16,7 @@ public class SourceFactoryImpl implements SourceFactory {
      * @inheritDoc
      */
     @Override
-    public Source createSourceWithPos(final Vec3f position) {
+    public Source createSource(final Vec3f position) {
         return new SourceImpl(position);
     }
 
@@ -40,7 +40,7 @@ public class SourceFactoryImpl implements SourceFactory {
      * @inheritDoc
      */
     @Override
-    public FRSource createFRSourceWithPos(final Vec3f position, final SourceType type) {
+    public FRSource createFRSource(final Vec3f position, final SourceType type) {
         return new FRSourceImpl(position, type);
     }
 

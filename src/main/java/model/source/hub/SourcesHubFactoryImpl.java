@@ -18,7 +18,7 @@ public class SourcesHubFactoryImpl implements SourcesHubFactory {
      * @inheritDoc
      */
     @Override
-    public SourcesHub createSourceHubFromSet(final Set<FRSource> sources) {
+    public SourcesHub createSourcesHub(final Set<FRSource> sources) {
         return new SourcesHubImpl(sources);
     }
 

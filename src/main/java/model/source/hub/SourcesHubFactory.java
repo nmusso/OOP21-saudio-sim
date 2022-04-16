@@ -22,5 +22,5 @@ public interface SourcesHubFactory {
      * 
      * @return SourcesHub from Set of Sources
      */
-    SourcesHub createSourceHubFromSet(Set<FRSource> sources);
+    SourcesHub createSourcesHub(Set<FRSource> sources);
 }
