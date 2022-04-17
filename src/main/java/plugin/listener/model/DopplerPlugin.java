@@ -2,6 +2,9 @@ package plugin.listener.model;
 
 
 import static org.lwjgl.openal.AL10.alListener3f;
+
+import java.util.Optional;
+
 import org.lwjgl.openal.AL10;
 
 import model.listener.plugin.AbstractPlugin;
@@ -11,11 +14,12 @@ public class DopplerPlugin extends AbstractPlugin {
     private static final float DEFAULT_DROPPLER_LV = 1.0f;
     private Vec3f velocity;
     private float dropplerLv;
-    private float lastDropplerLv;
+    private Optional<Float> lastDropplerLv = Optional.empty();
 
     public DopplerPlugin() {
         this.velocity = new Vec3f(0.0f, 0.0f, 0.0f);
         this.dropplerLv = 1.0f;
+        this.enable();
     }
 
     /**
@@ -23,7 +27,7 @@ public class DopplerPlugin extends AbstractPlugin {
      */
     @Override
     public void restoreSettings() {
-        this.setDropplerLv(this.lastDropplerLv);
+        this.lastDropplerLv.ifPresent(x -> this.setDropplerLv(x));
     }
 
     /**
@@ -31,7 +35,7 @@ public class DopplerPlugin extends AbstractPlugin {
      */
     @Override
     public void saveSettings() {
-        this.lastDropplerLv = this.dropplerLv;
+        this.lastDropplerLv = Optional.of(this.dropplerLv);
         this.setDropplerLv(DEFAULT_DROPPLER_LV);
         this.velocity = new Vec3f(0.0f, 0.0f, 0.0f);
     }
@@ -41,8 +45,10 @@ public class DopplerPlugin extends AbstractPlugin {
      * @param vector
      */
     public void setVelocity(final Vec3f vector) {
-        this.velocity = vector;
-        alListener3f(AL10.AL_VELOCITY, this.velocity.getX(), this.velocity.getY(), this.velocity.getZ());
+        if (this.isEnabled()) {
+            this.velocity = vector;
+            alListener3f(AL10.AL_VELOCITY, this.velocity.getX(), this.velocity.getY(), this.velocity.getZ());
+        }
     }
 
     /**
@@ -57,7 +63,9 @@ public class DopplerPlugin extends AbstractPlugin {
      * @param value 
      */
     public void setDropplerLv(final float value) {
-        this.dropplerLv = value;
+        if (this.isEnabled()) {
+            this.dropplerLv = value;
+        }
     }
 
     /**
