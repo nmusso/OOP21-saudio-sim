@@ -5,17 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
 import model.audiomanager.AudioManager;
 import model.buffer.Buffer;
 import model.buffer.BufferFactory;
 import model.buffer.BufferFactoryImpl;
-import model.extension.effect.ALEffects;
 
 class BufferTest {
 
