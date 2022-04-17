@@ -1,6 +1,7 @@
 package controller;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ import java.util.stream.Stream;
 
 import controller.view.ListenerControllerView;
 import io.github.classgraph.ClassGraph;
+import io.github.classgraph.ClassGraphException;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 import model.listener.Listener;
@@ -47,9 +49,12 @@ public class ListenerController {
                                                       .collect(Collectors.toSet());
 
             pluginFound.removeAll(this.mng.getPlugins().stream().map(x -> x.getClassName()).collect(Collectors.toSet()));
-        } catch (Exception e) {
-            System.out.println(e);
-            this.controllerView.showError("Unable to load Plugin classes");
+        } catch (ClassGraphException e) {
+            e.printStackTrace();
+            this.controllerView.showError("Error to access in ClassPath");
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
+            this.controllerView.showError("Error in class name");
         }
 
         return pluginFound;
@@ -75,12 +80,35 @@ public class ListenerController {
             this.mng.addPlugin(cns.newInstance(this.listener, this.mainCtr, this.controllerView).getPlugin());
 
         } catch (ClassNotFoundException e) {
-            System.err.println(e);
+            e.printStackTrace();
+            this.controllerView.showError("Class: " + name + " not found");
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            this.controllerView.showError("Error on instantiation class: " + name);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            this.controllerView.showError("Illegal access class" + name);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            this.controllerView.showError("Illegal argument in  class " + name);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
             this.controllerView.showError("Class not found");
-        } catch (Exception e) {
-            System.err.println(e);
-            this.controllerView.showError("Class not found");
-        }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            this.controllerView.showError("Constructor not found in class" + name);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+            this.controllerView.showError("Class not found2");
+        } 
+    }
+
+    /**
+     * 
+     * @param pluginName
+     */
+    public void removePlugin(final String pluginName) {
+        this.mng.removePlugin(pluginName);
     }
 
     /**
@@ -96,10 +124,6 @@ public class ListenerController {
     public Listener getListener() {
         return this.listener;
     }
-    
-    public void removePlugin(final String pluginName) {
-        this.mng.removePlugin(pluginName);
-    }
-    
+
 
 }

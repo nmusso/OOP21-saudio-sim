@@ -69,12 +69,12 @@ class ListenerTest {
 
         assertEquals(listener, listener2);
 
-        listener = lsFactory.createListenerWhitPos(AudioManager.getContext(), pos);
+        listener = lsFactory.createListener(AudioManager.getContext(), pos);
         checkListenerSpec(listener, Optional.of(pos), Optional.empty(), Optional.empty());
 
         final Vec3f at = new Vec3f(2.0f, 0.0f, 0.0f);
         final Vec3f up = new Vec3f(0.0f, 1.0f, 1.0f);
-        listener2 = lsFactory.createListenerOriented(AudioManager.getContext(), pos, at, up);
+        listener2 = lsFactory.createListener(AudioManager.getContext(), pos, at, up);
         checkListenerSpec(listener2, Optional.of(pos), Optional.of(at), Optional.of(up));
 
 
