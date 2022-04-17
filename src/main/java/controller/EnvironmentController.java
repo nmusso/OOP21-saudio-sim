@@ -37,7 +37,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * Get last selected source.
-     * @return FRSource selected in env.
+     * @return FRSource selected in this.env.
      */
     public FRSource getSelectedSource() {
         return this.env.getSourceHub().getSource(this.ctrlView.getLastSelectedSource());
@@ -45,7 +45,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * Get current environment.
-     * @return return env.
+     * @return return this.env.
      */
     public Environment getEnv() {
         return this.env;
