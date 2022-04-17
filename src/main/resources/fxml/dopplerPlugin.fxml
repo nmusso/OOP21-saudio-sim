@@ -3,11 +3,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
 
-<Tab fx:id="dropplerPluginTab" text="DropplerPlug" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="plugin.listener.view.DopplerPluginControllerView">
+<Tab fx:id="dropplerPluginTab" text="DopplerPlug" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="plugin.listener.view.DopplerPluginControllerView">
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
+         	<Button fx:id="btnRemove" layoutX="200.0" layoutY="0.0" mnemonicParsing="false" onAction="#handleBtnRemove" prefHeight="23.0" prefWidth="33.0" text="X" />
             <Label layoutX="103.0" layoutY="20.0" text="Velocity" />
             <Label layoutX="77.0" layoutY="72.0" text="X :" />
             <Label fx:id="lblVelX" layoutX="107.0" layoutY="72.0" text="0.0" />

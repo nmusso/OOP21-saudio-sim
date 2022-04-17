@@ -16,6 +16,7 @@ public class DopplerPluginControllerView implements Initializable, ControllerPlu
     @FXML private Label lblVelX;
     @FXML private Label lblVelY;
     private DopplerPluginController controller;
+    private ListenerControllerView listenerView;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -35,11 +36,12 @@ public class DopplerPluginControllerView implements Initializable, ControllerPlu
 
     /**
      * 
-     * @param c
+     * @param ctr
      */
     @Override
-    public void setListenerControllerView(final ListenerControllerView c) {
-        c.setTabPlugin(this.dropplerPluginTab);
+    public void setListenerControllerView(final ListenerControllerView ctr) {
+        this.listenerView = ctr;
+        this.listenerView.setTabPlugin(this.dropplerPluginTab);
     }
 
     /**
@@ -50,6 +52,11 @@ public class DopplerPluginControllerView implements Initializable, ControllerPlu
     public void changeVelocity(final float x, final float y) {
         this.lblVelX.setText(String.valueOf(Math.round(x * 100.0) / 100.0));
         this.lblVelY.setText(String.valueOf(Math.round(y * 100.0) / 100.0));
+    }
+
+    @FXML public final void handleBtnRemove() {
+        this.listenerView.removeTabPlugin(this.dropplerPluginTab);
+        this.controller.removePlugin();
     }
 
 }

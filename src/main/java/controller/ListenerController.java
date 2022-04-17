@@ -12,7 +12,7 @@ import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 import model.listener.Listener;
 import model.listener.plugin.ControllerPlugin;
-import model.listener.plugin.Plugin;
+import model.listener.plugin.PluginManager;
 
 public class ListenerController {
     private static final String PLUGIN_PATH = "plugin.listener.model";
@@ -20,17 +20,15 @@ public class ListenerController {
     private static final String INTERFACE_PATH = "model.listener.plugin";
     private ListenerControllerView controllerView;
     private final Listener listener;
-    private final Set<Plugin> plugins;
     private final MainController mainCtr;
-    //private Set<String> availablePlugin;
+    private final PluginManager mng;
 
 
 
     public ListenerController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
         this.listener = this.mainCtr.getEnvironmentController().getEnv().getListener();
-        this.plugins = new HashSet<>();
-        //this.availablePlugin = new HashSet<>();
+        this.mng = new PluginManager();
     }
 
     /**
@@ -39,6 +37,7 @@ public class ListenerController {
      */
     public Set<String> getAvailablePlugin() {
         Set<String> pluginFound = new HashSet<>();
+
         try (ScanResult scanResult = new ClassGraph().enableAllInfo().acceptPackages(PLUGIN_PATH).scan()) {
             final ClassInfoList widgetClasses = scanResult.getSubclasses(INTERFACE_PATH + ".AbstractPlugin");
             pluginFound = widgetClasses.getNames().stream()
@@ -46,7 +45,8 @@ public class ListenerController {
                                                               .collect(Collectors.toList())
                                                               .get(1))
                                                       .collect(Collectors.toSet());
-            pluginFound.removeAll(this.plugins.stream().map(x -> x.getClassName()).collect(Collectors.toSet()));
+
+            pluginFound.removeAll(this.mng.getPlugins().stream().map(x -> x.getClassName()).collect(Collectors.toSet()));
         } catch (Exception e) {
             System.out.println(e);
             this.controllerView.showError("Unable to load Plugin classes");
@@ -72,7 +72,7 @@ public class ListenerController {
         try {
             final Class<? extends ControllerPlugin> ctrClass = Class.forName(CONTROLLER_PATH + "." + name + "Controller").asSubclass(ControllerPlugin.class);
             final Constructor<? extends ControllerPlugin> cns = ctrClass.getConstructor(Listener.class, MainController.class, ListenerControllerView.class);
-            this.plugins.add(cns.newInstance(this.listener, this.mainCtr, this.controllerView).getPlugin());
+            this.mng.addPlugin(cns.newInstance(this.listener, this.mainCtr, this.controllerView).getPlugin());
 
         } catch (ClassNotFoundException e) {
             System.err.println(e);
@@ -96,5 +96,10 @@ public class ListenerController {
     public Listener getListener() {
         return this.listener;
     }
+    
+    public void removePlugin(final String pluginName) {
+        this.mng.removePlugin(pluginName);
+    }
+    
 
 }

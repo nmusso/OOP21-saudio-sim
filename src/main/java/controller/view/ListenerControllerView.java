@@ -81,6 +81,14 @@ public class ListenerControllerView implements Initializable, ControllerView {
     }
 
     /**
+     * 
+     * @param tab
+     */
+    public void removeTabPlugin(final Tab tab) {
+        this.pluginPane.getTabs().removeAll(tab);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
