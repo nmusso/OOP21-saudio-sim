@@ -10,7 +10,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class BufferFactoryImpl implements BufferFactory {
 
-    private final BufferCache bc = BufferCache.INSTANCE;
+    private final BufferCache cache = BufferCache.INSTANCE;
 
     /**
      * {@inheritDoc}
@@ -18,7 +18,12 @@ public class BufferFactoryImpl implements BufferFactory {
     @Override
     public Buffer createBufferFromPath(final String file)
             throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        return bc.getBuffer(file, false);
+        if (cache.getBuffer(file).isEmpty()) {
+            final Buffer buffer = new PathBuffer(file);
+            cache.addToCache(file, buffer);
+        }
+
+        return cache.getBuffer(file).get();
     }
 
     /**
@@ -27,6 +32,11 @@ public class BufferFactoryImpl implements BufferFactory {
     @Override
     public Buffer createBufferFromResource(final String file)
             throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        return bc.getBuffer(file, true);
+        if (cache.getBuffer(file).isEmpty()) {
+            final Buffer buffer = new ResourceBuffer(file);
+            cache.addToCache(file, buffer);
+        }
+
+        return cache.getBuffer(file).get();
     }
 }

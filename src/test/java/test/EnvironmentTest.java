@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import model.audiomanager.AudioManager;
 import model.buffer.Buffer;
-import model.buffer.BufferImpl;
+import model.buffer.ResourceBuffer;
 import model.environment.Environment;
 import model.environment.EnvironmentFactory;
 import model.environment.EnvironmentFactoryImpl;
@@ -43,7 +43,7 @@ class EnvironmentTest {
     private FRSource genSource(final FRSource s) {
         Buffer b;
         try {
-            b = new BufferImpl("/songs/DriftMono.wav", true);
+            b = new ResourceBuffer("/songs/DriftMono.wav");
             s.generateSource(b.getID());
         } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();

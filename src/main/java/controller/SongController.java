@@ -38,17 +38,25 @@ public class SongController implements ControllerApplication<SongControllerView>
     }
 
     /**
-     * Create a buffer from the path.
+     * Create a buffer from a file system path.
      * @param file  the file which will become the buffer
-     * @param isResource true if the resource was loaded from the resource path
      */
-    public final void createBuffer(final String file, final boolean isResource) {
+    public final void addBufferFromPath(final String file) {
         try {
-            if (isResource) {
-                factory.createBufferFromResource(file);
-            } else {
-                factory.createBufferFromPath(file);
-            }
+            factory.createBufferFromPath(file);
+        } catch (UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+            ctrlView.showError("Something went wrong during the creation of the buffer");
+        }
+    }
+
+    /**
+     * Create a buffer from a resource of the classpath.
+     * @param file  the file which will become the buffer
+     */
+    public final void addBufferFromResource(final String file) {
+        try {
+            factory.createBufferFromResource(file);
         } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
             ctrlView.showError("Something went wrong during the creation of the buffer");

@@ -1,12 +1,10 @@
 package model.buffer;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 import static org.lwjgl.openal.AL10.alDeleteBuffers;
 
@@ -36,26 +34,10 @@ public enum BufferCache {
      * Get the buffer from the cache based on the path, created if not exists.
      * 
      * @param path the path of the file
-     * @param isResource true if the resource was loaded from the resource path
      * @return the buffer associated to the path, got from cache or created
-     * @throws FileNotFoundException         if file does not exists
-     * @throws UnsupportedAudioFileException if the type of the file is not
-     *                                       supported
-     * @throws IOException                   if an error occur during read
      */
-    public Buffer getBuffer(final String path, final boolean isResource)
-            throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        if (!buffers.containsKey(path)) {
-            final Buffer buf = new BufferImpl(path, isResource);
-
-            if (buf.getID() != 0) {
-                buffers.put(path, buf);
-            }
-
-            return buf;
-        }
-
-        return buffers.get(path);
+    public Optional<Buffer> getBuffer(final String path) {
+        return buffers.containsKey(path) ? Optional.of(buffers.get(path)) : Optional.empty();
     }
 
     /**
@@ -65,7 +47,9 @@ public enum BufferCache {
      * @return the buffer
      */
     public Buffer getBufferFromID(final int id) {
-        return buffers.entrySet().stream().filter(e -> e.getValue().getID() == id).map(e -> e.getValue())
+        return buffers.entrySet().stream()
+                .filter(e -> e.getValue().getID() == id)
+                .map(e -> e.getValue())
                 .collect(Collectors.toList()).get(0);
     }
 

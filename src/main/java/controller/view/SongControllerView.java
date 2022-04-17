@@ -79,7 +79,7 @@ public class SongControllerView implements Initializable, ControllerView {
         final List<File> selected = fc.showOpenMultipleDialog(null);
         if (selected != null) {
             selected.forEach(file -> {
-                ctrl.createBuffer(file.getAbsolutePath(), false);
+                ctrl.addBufferFromPath(file.getAbsolutePath());
             });
 
             updateComboBox();
@@ -149,7 +149,7 @@ public class SongControllerView implements Initializable, ControllerView {
         final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(loader);
         Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream()
                 .map(res -> res.getFilename())
-                .forEach(res -> ctrl.createBuffer(SONG_PATH + res, true));
+                .forEach(res -> ctrl.addBufferFromResource(SONG_PATH + res));
 
         updateComboBox();
     }

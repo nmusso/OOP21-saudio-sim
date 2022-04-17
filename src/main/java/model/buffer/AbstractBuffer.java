@@ -1,12 +1,10 @@
 package model.buffer;
 
-import static javax.sound.sampled.AudioSystem.getAudioInputStream;
 import static org.lwjgl.openal.AL10.AL_FORMAT_MONO16;
 import static org.lwjgl.openal.AL10.AL_FORMAT_MONO8;
 import static org.lwjgl.openal.AL10.alBufferData;
 import static org.lwjgl.openal.AL10.alGenBuffers;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -16,11 +14,9 @@ import org.lwjgl.BufferUtils;
 import model.utility.ConvertToMono;
 
 /**
- * Implementation of the interface Buffer, containing the id of the buffer and
- * the file who generated it.
- *
+ * AbstractBuffer class common for all type of buffers.
  */
-public class BufferImpl implements Buffer {
+public abstract class AbstractBuffer implements Buffer {
 
     private int id;
     private final String file;
@@ -29,13 +25,12 @@ public class BufferImpl implements Buffer {
      * Construct a new BufferImpl.
      * 
      * @param file the path of the file which will be used for the buffer
-     * @param isResource true if the resource was loaded from the resource path
      * @throws IOException 
      * @throws UnsupportedAudioFileException 
      */
-    public BufferImpl(final String file, final boolean isResource) throws UnsupportedAudioFileException, IOException {
+    public AbstractBuffer(final String file) throws UnsupportedAudioFileException, IOException {
         this.file = file;
-        generateBuffer(isResource);
+        generateBuffer();
     }
 
     /**
@@ -64,25 +59,33 @@ public class BufferImpl implements Buffer {
      *                                       supported
      * @throws IOException                   if an error occur during read
      */
-    private int generateBuffer(final boolean isResource) throws UnsupportedAudioFileException, IOException {
-        final AudioInputStream stream = isResource ? getAudioInputStream(getClass().getResource(file)) : getAudioInputStream(loadFile(file));
-        final var format = stream.getFormat();
-        byte[] byteArray = new byte[stream.available()];
-        stream.read(byteArray);
+    private int generateBuffer() {
+        try (AudioInputStream stream = getAudioStream()) {
+            final var format = stream.getFormat();
+            byte[] byteArray = new byte[stream.available()];
+            stream.read(byteArray);
 
-        if (format.getChannels() == 2) {
-            byteArray = ConvertToMono.convert(byteArray, byteArray.length);
-        }
+            if (format.getChannels() == 2) {
+                byteArray = ConvertToMono.convert(byteArray, byteArray.length);
+            }
 
-        final int sampleSize = format.getSampleSizeInBits() == 8 ? AL_FORMAT_MONO8 : AL_FORMAT_MONO16;
-        final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
+            final int sampleSize = format.getSampleSizeInBits() == 8 ? AL_FORMAT_MONO8 : AL_FORMAT_MONO16;
+            final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
 
-        this.id = alGenBuffers();
-        alBufferData(this.id, sampleSize, audioBuffer, (int) format.getSampleRate());
-        stream.close();
+            this.id = alGenBuffers();
+            alBufferData(this.id, sampleSize, audioBuffer, (int) format.getSampleRate());
+        } catch (UnsupportedAudioFileException | IOException e) {
+            throw new ALFormatException("Error during generating buffer", e);
+        } 
 
         return id;
     }
+
+    /**
+     * Get the AudioInputStream associated to the file path.
+     * @return the stream
+     */
+    protected abstract AudioInputStream getAudioStream() throws FileNotFoundException, UnsupportedAudioFileException, IOException;
 
     /**
      * Return a flipper ByteBuffer from a byte array.
@@ -96,23 +99,6 @@ public class BufferImpl implements Buffer {
         buf.flip();
 
         return buf;
-    }
-
-    /**
-     * Load file from path.
-     * 
-     * @param file the path of the file
-     * @return the loaded file
-     * @throws FileNotFoundException if file does not exists
-     */
-    private File loadFile(final String file) throws FileNotFoundException {
-        final File f = new File(file);
-
-        if (!f.exists()) {
-            throw new FileNotFoundException();
-        }
-
-        return f;
     }
 
     /**

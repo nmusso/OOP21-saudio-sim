@@ -28,7 +28,7 @@ class SourceTest {
     private void genSource() {
         Buffer b;
         try {
-            b = new BufferImpl("/songs/InnoItalia.wav", true);
+            b = new ResourceBuffer("/songs/InnoItalia.wav");
             s.generateSource(b.getID());
         } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
