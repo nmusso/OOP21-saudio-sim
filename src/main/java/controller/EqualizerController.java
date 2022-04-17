@@ -1,7 +1,7 @@
 package controller;
 
 import controller.view.EqualizerControllerView;
-import model.effect.ALEffects;
+import model.extension.effect.ALEffects;
 
 /**
  * Controller for the EqualizerView which will communicate with model and his ViewController.

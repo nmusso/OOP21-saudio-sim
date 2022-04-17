@@ -2,8 +2,8 @@ package model.source;
 
 import java.util.Objects;
 
-import model.filter.Filter;
-import model.filter.FilterImpl;
+import model.extension.filter.Filter;
+import model.extension.filter.FilterImpl;
 import model.utility.Vec3f;
 
 public class FRSourceImpl extends SourceImpl implements FRSource {

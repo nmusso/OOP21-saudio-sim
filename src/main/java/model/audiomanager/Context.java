@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import org.lwjgl.BufferUtils;
 
-import model.effect.ALEffects;
+import model.extension.effect.ALEffects;
 
 public class Context {
     private final Device device;

@@ -1,4 +1,4 @@
-package model.effect;
+package model.extension.effect;
 
 import static org.lwjgl.openal.EXTEfx.AL_EFFECT_CHORUS;
 import static org.lwjgl.openal.EXTEfx.AL_CHORUS_DEPTH;

@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import model.effect.ALEffects;
-import model.effect.EffectImpl;
+import model.extension.effect.ALEffects;
+import model.extension.effect.EffectImpl;
 import model.source.FRSource;
 import model.source.Source;
 import model.utility.Vec3f;

@@ -1,4 +1,4 @@
-package model.filter;
+package model.extension.filter;
 
 import model.source.Source;
 import model.source.SourceType;

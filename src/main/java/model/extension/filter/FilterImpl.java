@@ -1,7 +1,8 @@
-package model.filter;
+package model.extension.filter;
 
 import static org.lwjgl.openal.EXTEfx.alFilteri;
 import static org.lwjgl.openal.EXTEfx.alFilterf;
+import static org.lwjgl.openal.EXTEfx.AL_EFFECT_NULL;
 import static org.lwjgl.openal.EXTEfx.AL_FILTER_TYPE;
 import static org.lwjgl.openal.EXTEfx.AL_FILTER_NULL;
 import static org.lwjgl.openal.EXTEfx.AL_FILTER_LOWPASS;
@@ -29,7 +30,7 @@ public class FilterImpl extends AbstractFilter {
      * Constructor for FilterImpl, initialise the buffer.
      */
     public FilterImpl() {
-        initFilterBuffer();
+        initBuffers();
     }
 
     /**
@@ -63,7 +64,7 @@ public class FilterImpl extends AbstractFilter {
 
         alFilteri(filter, AL_FILTER_TYPE, AL_FILTER_NULL);
 
-        setOnSource(filter, source);
+        setOnSource(source, filter, AL_EFFECT_NULL, 0);
     }
 
     /**
@@ -82,6 +83,6 @@ public class FilterImpl extends AbstractFilter {
             alFilterf(filter, attr, value);
         }
 
-        setOnSource(filter, source);
+        setOnSource(source, filter, AL_EFFECT_NULL, 0);
     }
 }

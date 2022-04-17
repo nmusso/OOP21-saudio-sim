@@ -1,6 +1,6 @@
 package model.environment;
 
-import model.effect.ALEffects;
+import model.extension.effect.ALEffects;
 import model.listener.Listener;
 import model.source.FRSource;
 import model.source.hub.SourcesHub;

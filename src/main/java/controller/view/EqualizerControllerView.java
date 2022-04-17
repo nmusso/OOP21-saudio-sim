@@ -16,7 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
-import model.effect.ALEffects;
+import model.extension.effect.ALEffects;
 
 /**
  * Controller of the view EqualizerView.

@@ -2,7 +2,7 @@ package model.source.hub;
 
 import java.util.Set;
 
-import model.effect.ALEffects;
+import model.extension.effect.ALEffects;
 import model.source.FRSource;
 import model.utility.Vec3f;
 
