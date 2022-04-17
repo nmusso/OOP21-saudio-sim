@@ -10,6 +10,7 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
          	<Button fx:id="btnRemove" layoutX="200.0" layoutY="0.0" mnemonicParsing="false" onAction="#handleBtnRemove" prefHeight="23.0" prefWidth="33.0" text="X" />
+            <Button fx:id="btnStatus" layoutX="100.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleBtnStatus" prefHeight="23.0" prefWidth="80.0" text="Disable" />
             <Label layoutX="103.0" layoutY="20.0" text="Velocity" />
             <Label layoutX="77.0" layoutY="72.0" text="X :" />
             <Label fx:id="lblVelX" layoutX="107.0" layoutY="72.0" text="0.0" />

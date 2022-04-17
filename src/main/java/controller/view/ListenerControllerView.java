@@ -28,6 +28,7 @@ public class ListenerControllerView implements Initializable, ControllerView {
     @FXML private Button btn;
     @FXML private TabPane listenerPane;
     @FXML private TabPane pluginPane;
+    @FXML private Tab pluginTab;
     @FXML private MenuItem it;
     @FXML private ComboBox<String> comboBoxPlugin;
     @FXML private Label lblXPos;
@@ -71,6 +72,18 @@ public class ListenerControllerView implements Initializable, ControllerView {
         final var aviablePlugin = this.ctrListener.getAvailablePlugin();
         this.pluginItems.clear();
         aviablePlugin.forEach(x -> this.pluginItems.add(x));
+    }
+
+    @FXML public final void handleEnableAll() {
+        this.ctrListener.enabledAll();
+        this.pluginPane.getTabs().filtered(x -> !x.equals(this.pluginTab))
+                                 .forEach(x -> x.setDisable(false));
+    }
+
+    @FXML public final void handleDisableAll() {
+        this.ctrListener.disableAll();
+        this.pluginPane.getTabs().filtered(x -> !x.equals(this.pluginTab))
+                                 .forEach(x -> x.setDisable(true));
     }
 
 

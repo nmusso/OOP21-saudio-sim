@@ -125,5 +125,19 @@ public class ListenerController {
         return this.listener;
     }
 
+    /**
+     * 
+     */
+    public void enabledAll() {
+        this.mng.enableAll();
+    }
+
+    /**
+     * 
+     */
+    public void disableAll() {
+        this.mng.disableAll();
+    }
+
 
 }

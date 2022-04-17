@@ -46,13 +46,15 @@
             </TabPane>
             <TabPane fx:id="pluginPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="2">
               <tabs>
-                <Tab text="Manager">
+                <Tab fx:id="pluginTab" text="Manager">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <ComboBox fx:id="comboBoxPlugin" layoutX="21.0" layoutY="152.0" prefHeight="23.0" prefWidth="153.0" />
                               <Button fx:id="btnAddPlugin" layoutX="189.0" layoutY="152.0" mnemonicParsing="false" onAction="#handleAddPlugin" prefHeight="23.0" prefWidth="33.0" text="+" />
                               <Button fx:id="btnRefreshPlugin" layoutX="76.0" layoutY="185.0" mnemonicParsing="false" onAction="#handleRefreshListPlugin" prefHeight="23.0" prefWidth="84.0" text="Refresh" />
+                              <Button fx:id="btnEnable" layoutX="59.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleEnableAll" prefHeight="23.0" prefWidth="110.0" text="Enable All" />
+                              <Button fx:id="btnDisable" layoutX="59.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleDisableAll" prefHeight="23.0" prefWidth="110.0" text="Disable All" />
                            </children>
                         </AnchorPane>
                   </content>
