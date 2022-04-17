@@ -7,16 +7,16 @@ import static org.lwjgl.openal.EXTEfx.AL_DIRECT_FILTER;
 
 import model.source.Source;
 
-public abstract class AbstractExtension {
+/**
+ * Abstract class for Extensions.
+ */
+public abstract class AbstractExtension implements Extension {
+
     /**
-     * Set the effect in the slot on the source.
-     * 
-     * @param source the source on which apply the effect
-     * @param filter the filter to be applied
-     * @param slot   the slot containing the final effect
-     * @param num    the number of the effect
+     * {@inheritDoc}
      */
-    protected final void setOnSource(final Source source, final int filter, final int slot, final int num) {
+    @Override
+    public final void setOnSource(final Source source, final int filter, final int slot, final int num) {
         alSourcei(source.getId(), AL_DIRECT_FILTER, filter);
         alSource3i(source.getId(), AL_AUXILIARY_SEND_FILTER, slot, num, filter);
     }

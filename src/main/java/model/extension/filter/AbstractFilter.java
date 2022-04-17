@@ -6,7 +6,7 @@ import java.util.Arrays;
 import model.extension.AbstractExtension;
 
 /**
- * Abstract class for Filter, with methods which cannot be overrided.
+ * Abstract class for Filter, extended from AbstractExtension.
  *
  */
 public abstract class AbstractFilter extends AbstractExtension implements Filter {

@@ -7,8 +7,7 @@ import java.util.Arrays;
 import model.extension.AbstractExtension;
 
 /**
- * Abstract class for Effect, with methods which cannot be overrided.
- *
+ * Abstract class for Effect, extended from AbstractExtension.
  */
 public abstract class AbstractEffect extends AbstractExtension implements Effect {
     /**
