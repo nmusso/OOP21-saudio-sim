@@ -38,6 +38,7 @@ public class DopplerPlugin extends AbstractPlugin {
         this.lastDropplerLv = Optional.of(this.dropplerLv);
         this.setDropplerLv(DEFAULT_DROPPLER_LV);
         this.velocity = new Vec3f(0.0f, 0.0f, 0.0f);
+        this.setVelocity(velocity);
     }
 
     /**

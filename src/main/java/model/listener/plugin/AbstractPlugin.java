@@ -22,8 +22,8 @@ public abstract class AbstractPlugin implements Plugin {
      */
     @Override
     public void disable() {
-        this.isEnabled = false;
         saveSettings();
+        this.isEnabled = false;
     }
 
     public abstract void saveSettings();
