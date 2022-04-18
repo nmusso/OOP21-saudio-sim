@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class MainView extends Application {
     private static final String FXML_PATH = "/fxml/";
-    private static final String CSS_PATH = "/css";
+    private static final String CSS_PATH = "/css/";
 
     /**
      * 

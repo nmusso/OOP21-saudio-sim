@@ -7,9 +7,10 @@ import java.util.stream.Collectors;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.listener.Listener;
+import model.listener.plugin.AbstractPlugin;
 import model.source.hub.SourcesHub;
 
-public class SoundLevelMeterPlugin {
+public class SoundLevelMeterPlugin extends AbstractPlugin{
     private static final float SAFETY_DISTANCE = 3;
     private final SourcesHub sources;
     private final Listener listener;
@@ -42,6 +43,23 @@ public class SoundLevelMeterPlugin {
         if(x <= 0.0f) return 0;
         final float intervals = 510 / (SAFETY_DISTANCE * 10);
         return (int) (Math.round(x*10)*intervals);
+    }
+
+    @Override
+    public String getClassName() {        
+        return "SoundLevelMeterPlugin";
+    }
+
+    @Override
+    public void restoreSettings() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void saveSettings() {
+        // TODO Auto-generated method stub
+        
     }
 
 }
