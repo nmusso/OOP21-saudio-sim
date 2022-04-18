@@ -3,7 +3,7 @@ package plugin.listener.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.view.ListenerControllerView;
+import controller.view.ListenerView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,7 +18,7 @@ public class DopplerPluginControllerView implements Initializable, ControllerPlu
     @FXML private Label lblVelY;
     @FXML private Button btnStatus;
     private DopplerPluginController controller;
-    private ListenerControllerView listenerView;
+    private ListenerView listenerView;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -41,9 +41,9 @@ public class DopplerPluginControllerView implements Initializable, ControllerPlu
      * @param ctr
      */
     @Override
-    public void setListenerControllerView(final ListenerControllerView ctr) {
+    public void setListenerControllerView(final ListenerView ctr) {
         this.listenerView = ctr;
-        this.listenerView.setTabPlugin(this.dropplerPluginTab);
+        this.listenerView.setPlugin(this.dropplerPluginTab);
     }
 
     /**
@@ -57,7 +57,7 @@ public class DopplerPluginControllerView implements Initializable, ControllerPlu
     }
 
     @FXML public final void handleBtnRemove() {
-        this.listenerView.removeTabPlugin(this.dropplerPluginTab);
+        this.listenerView.removePlugin(this.dropplerPluginTab);
         this.controller.removePlugin();
     }
 

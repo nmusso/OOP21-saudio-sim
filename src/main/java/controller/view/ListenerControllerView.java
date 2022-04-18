@@ -22,7 +22,7 @@ import javafx.scene.control.TabPane;
 import model.utility.Vec3f;
 
 
-public class ListenerControllerView implements Initializable, ControllerView {
+public class ListenerControllerView implements Initializable, ControllerView, ListenerView {
     private static final int MIN_ANGLE_OR = -180;
     private static final int MAX_ANGLE_OR = 180;
     @FXML private Button btn;
@@ -90,7 +90,8 @@ public class ListenerControllerView implements Initializable, ControllerView {
     /**
      * @param tab
      */
-    public void setTabPlugin(final Tab tab) {
+    @Override
+    public void setPlugin(final Tab tab) {
         this.pluginPane.getTabs().add(tab);
     }
 
@@ -98,7 +99,8 @@ public class ListenerControllerView implements Initializable, ControllerView {
      * 
      * @param tab
      */
-    public void removeTabPlugin(final Tab tab) {
+    @Override
+    public void removePlugin(final Tab tab) {
         this.pluginPane.getTabs().removeAll(tab);
     }
 
@@ -124,6 +126,7 @@ public class ListenerControllerView implements Initializable, ControllerView {
     /**
      * 
      */
+    @Override
     public void positionChanged() {
         this.lblXPos.setText(String.valueOf(Math.round(this.ctrListener.getListener().getPosition().getX() * 100.0) / 100.0));
         this.lblYPos.setText(String.valueOf(Math.round(this.ctrListener.getListener().getPosition().getY() * 100.0) / 100.0));

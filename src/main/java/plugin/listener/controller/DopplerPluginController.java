@@ -4,7 +4,7 @@ package plugin.listener.controller;
 import java.util.Optional;
 
 import controller.MainController;
-import controller.view.ListenerControllerView;
+import controller.view.ListenerView;
 import javafx.application.Platform;
 import model.listener.Listener;
 import model.listener.plugin.ControllerPlugin;
@@ -23,7 +23,7 @@ public class DopplerPluginController implements ControllerPlugin {
     private final DopplerPlugin plugin;
     private final ThreadVelocity thVel;
 
-    public DopplerPluginController(final Listener listener, final MainController mainController, final ListenerControllerView listenerView) throws ClassNotFoundException {
+    public DopplerPluginController(final Listener listener, final MainController mainController, final ListenerView listenerView) throws ClassNotFoundException {
         final Optional<DopplerPluginControllerView> temp = PluginViewLoader.tabPluginLoader(FXML_VIEW_PATH);
 
         if (temp.isEmpty()) {

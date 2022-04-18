@@ -1,6 +1,6 @@
 package model.listener.plugin;
 
-import controller.view.ListenerControllerView;
+import controller.view.ListenerView;
 
 public interface ControllerPluginView<C> {
 
@@ -13,5 +13,5 @@ public interface ControllerPluginView<C> {
     /**
      * TODO add parameter.
      */
-    void setListenerControllerView(ListenerControllerView view);
+    void setListenerControllerView(ListenerView view);
 }
