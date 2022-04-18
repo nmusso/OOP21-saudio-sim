@@ -58,7 +58,7 @@ public class EnvironmentImpl implements Environment {
      */
     @Override
     public void addEffect(final ALEffects effect, final float level) {
-        this.sourcesHub.applyFilter(effect, level);
+        this.sourcesHub.applyEffect(effect, level);
     }
 
     /**
@@ -67,7 +67,7 @@ public class EnvironmentImpl implements Environment {
      */
     @Override
     public void removeEffect() {
-        ALEffects.getValuesAsList().forEach(effect -> sourcesHub.removeFilter(effect));
+        ALEffects.getValuesAsList().forEach(effect -> sourcesHub.removeEffect(effect));
     }
 
     /**

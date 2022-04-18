@@ -90,14 +90,14 @@ public interface SourcesHub {
     * @param effect
     * @param value
     */
-    void applyFilter(ALEffects effect, float value);
+    void applyEffect(ALEffects effect, float value);
 
     /**
      * Removes the filter from all sources.
      * 
      * @param effect
      */
-    void removeFilter(ALEffects effect);
+    void removeEffect(ALEffects effect);
 
     /**
      * Delete all sources.

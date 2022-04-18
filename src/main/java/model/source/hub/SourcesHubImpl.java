@@ -118,7 +118,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public void applyFilter(final ALEffects effect, final float value) {
+    public void applyEffect(final ALEffects effect, final float value) {
         this.sources.forEach(s -> this.effectManager.apply(effect, s, value));
     }
 
@@ -126,7 +126,7 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public void removeFilter(final ALEffects effect) {
+    public void removeEffect(final ALEffects effect) {
         this.sources.forEach(s -> this.effectManager.remove(effect, s));
     }
 
