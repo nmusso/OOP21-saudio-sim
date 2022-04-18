@@ -9,7 +9,7 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
 
     /**
      * Construct a new SpaceController.
-     * @param mainCtr MainController
+     * @param mainCtr the MainController
      */
     public SpaceController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
@@ -50,4 +50,11 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
         this.ctrlView.setY(y);
     }
 
+    /**
+     * Enable/disable the objects.
+     * @param state the state of the objects
+     */
+    public void disableChange(final boolean state) {
+        ctrlView.disableCombo(state);
+    }
 }

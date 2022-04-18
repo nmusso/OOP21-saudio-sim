@@ -29,6 +29,7 @@ import model.buffer.Buffer;
 public class SongControllerView implements Initializable, ControllerView {
 
     private static final String SONG_PATH = "/songs/";
+    @FXML private Button btnImport;
     @FXML private Button btnPlay;
     @FXML private Button btnPause;
     @FXML private Button btnStop;
@@ -95,6 +96,7 @@ public class SongControllerView implements Initializable, ControllerView {
         final int bufferID = cmbSongs.getSelectionModel().getSelectedItem().getID();
         ctrl.playSource(bufferID);
 
+        btnImport.setDisable(true);
         btnPlay.setDisable(true);
         btnPause.setDisable(false);
         btnStop.setDisable(false);
@@ -108,6 +110,7 @@ public class SongControllerView implements Initializable, ControllerView {
     @FXML
     public final void handlePause(final Event event) {
         ctrl.pauseSource();
+
         btnPlay.setDisable(false);
         btnPause.setDisable(true);
         btnStop.setDisable(false);
@@ -120,6 +123,8 @@ public class SongControllerView implements Initializable, ControllerView {
     @FXML
     public final void handleStop(final Event event) {
         ctrl.stopSource();
+
+        btnImport.setDisable(true);
         btnPlay.setDisable(false);
         btnPause.setDisable(true);
         btnStop.setDisable(true);

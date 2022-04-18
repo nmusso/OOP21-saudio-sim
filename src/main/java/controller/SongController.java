@@ -85,6 +85,7 @@ public class SongController implements ControllerApplication<SongControllerView>
         sources.generateAllSources(bufferID);
         sources.playAll();
         this.mainCtr.getSourceController().setDisableAddSource(true);
+        this.mainCtr.getSpaceController().disableChange(true);
     }
 
     /**
@@ -102,6 +103,7 @@ public class SongController implements ControllerApplication<SongControllerView>
         final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
         sources.stopAll();
         this.mainCtr.getSourceController().setDisableAddSource(false);
+        this.mainCtr.getSpaceController().disableChange(false);
     }
 
     /**

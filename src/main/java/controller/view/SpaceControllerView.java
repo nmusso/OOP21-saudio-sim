@@ -145,6 +145,14 @@ public class SpaceControllerView  implements Initializable, ControllerView {
         return selectedPreset;
     }
 
+    /**
+     * Disable/enable the combobox with the presets.
+     * @param newState the new state of the combobox
+     */
+    public void disableCombo(final boolean newState) {
+        cmbPreset.setDisable(newState);
+    }
+
     @Override
     public void showError(final String error) {
 
