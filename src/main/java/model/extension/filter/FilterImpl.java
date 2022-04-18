@@ -17,7 +17,7 @@ import static org.lwjgl.openal.EXTEfx.AL_HIGHPASS_GAIN;
 import static org.lwjgl.openal.EXTEfx.AL_HIGHPASS_GAINLF;
 
 import java.util.List;
-import model.source.Source;
+import model.source.FRSource;
 import model.source.SourceType;
 
 /**
@@ -37,7 +37,7 @@ public class FilterImpl extends AbstractFilter {
      * {@inheritDoc}
      */
     @Override
-    public void applyFilter(final Source source, final SourceType type) {
+    public void applyFilter(final FRSource source, final SourceType type) {
 
         switch (type) {
         case LOW:
@@ -59,7 +59,7 @@ public class FilterImpl extends AbstractFilter {
      * {@inheritDoc}
      */
     @Override
-    public void removeFilter(final Source source) {
+    public void removeFilter(final FRSource source) {
         final int filter = getFilter()[0];
 
         alFilteri(filter, AL_FILTER_TYPE, AL_FILTER_NULL);
@@ -75,7 +75,7 @@ public class FilterImpl extends AbstractFilter {
      * @param attributes the attributes of the filter
      * @param value      the value for the filter, got from interface
      */
-    private void apply(final Source source, final int type, final List<Integer> attributes, final float value) {
+    private void apply(final FRSource source, final int type, final List<Integer> attributes, final float value) {
         final int filter = getFilter()[0];
         alFilteri(filter, AL_FILTER_TYPE, type);
 

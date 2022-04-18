@@ -1,6 +1,6 @@
 package model.extension.filter;
 
-import model.source.Source;
+import model.source.FRSource;
 import model.source.SourceType;
 
 /**
@@ -28,12 +28,12 @@ public interface Filter {
      * @param source the source
      * @param type   the type of the filter
      */
-    void applyFilter(Source source, SourceType type);
+    void applyFilter(FRSource source, SourceType type);
 
     /**
      * Remove the filter from the source.
      * 
      * @param source the source
      */
-    void removeFilter(Source source);
+    void removeFilter(FRSource source);
 }
