@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -160,7 +159,5 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
         Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream()
                 .map(res -> res.getFilename())
                 .forEach(res -> ctrl.addBufferFromResource(SONG_PATH + res));
-
-        updateComboBox();
     }
 }
