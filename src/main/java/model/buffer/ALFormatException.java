@@ -38,6 +38,6 @@ public final class ALFormatException extends RuntimeException {
      */
     @Override
     public String toString() {
-        return error + " The file is not a 8 or 16 bit mono audio file.";
+        return error + ", the file is not a 8 or 16 bit mono audio file";
     }
 }

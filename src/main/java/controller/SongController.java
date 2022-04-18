@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import controller.view.SongView;
+import model.buffer.ALFormatException;
 import model.buffer.Buffer;
 import model.buffer.BufferCache;
 import model.buffer.BufferFactory;
@@ -44,7 +45,7 @@ public class SongController implements ControllerApplication<SongView> {
     public final void addBufferFromPath(final String file) {
         try {
             factory.createBufferFromPath(file);
-        } catch (UnsupportedAudioFileException | IOException e) {
+        } catch (ALFormatException | UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
             ctrlView.showError("Something went wrong during the creation of the buffer");
         }
@@ -57,7 +58,7 @@ public class SongController implements ControllerApplication<SongView> {
     public final void addBufferFromResource(final String file) {
         try {
             factory.createBufferFromResource(file);
-        } catch (UnsupportedAudioFileException | IOException e) {
+        } catch (ALFormatException | UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
             ctrlView.showError("Something went wrong during the creation of the buffer");
         }
