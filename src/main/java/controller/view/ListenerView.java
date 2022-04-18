@@ -2,7 +2,7 @@ package controller.view;
 
 import javafx.scene.control.Tab;
 
-public interface ListenerView {
+public interface ListenerView extends ControllerView {
 
     /**
      * @param tab
@@ -20,9 +20,4 @@ public interface ListenerView {
      */
     void positionChanged();
 
-    /**
-     * Show an error.
-     * @param error  the error message
-     */
-    void showError(String error); 
 }

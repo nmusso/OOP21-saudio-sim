@@ -22,7 +22,7 @@ import javafx.scene.control.TabPane;
 import model.utility.Vec3f;
 
 
-public class ListenerControllerView implements Initializable, ControllerView, ListenerView {
+public class ListenerControllerView implements Initializable, ListenerView {
     private static final int MIN_ANGLE_OR = -180;
     private static final int MAX_ANGLE_OR = 180;
     @FXML private Button btn;

@@ -12,19 +12,19 @@ import model.listener.plugin.Plugin;
 import model.listener.plugin.view.utility.PluginViewLoader;
 import model.utility.Vec3f;
 import plugin.listener.model.DopplerPlugin;
-import plugin.listener.view.DopplerPluginControllerView;
+import plugin.listener.view.DopplerPluginView;
 
 public class DopplerPluginController implements ControllerPlugin {
     private static final long TIME_LAPSE_VELOCITY = 100;
     private static final String FXML_VIEW_PATH = "/fxml/dopplerPlugin.fxml";
-    private final DopplerPluginControllerView controllerView;
+    private final DopplerPluginView controllerView;
     private final Listener listener;
     private final MainController mainController;
     private final DopplerPlugin plugin;
     private final ThreadVelocity thVel;
 
     public DopplerPluginController(final Listener listener, final MainController mainController, final ListenerView listenerView) throws ClassNotFoundException {
-        final Optional<DopplerPluginControllerView> temp = PluginViewLoader.tabPluginLoader(FXML_VIEW_PATH);
+        final Optional<DopplerPluginView> temp = PluginViewLoader.tabPluginLoader(FXML_VIEW_PATH);
 
         if (temp.isEmpty()) {
             throw new ClassNotFoundException();

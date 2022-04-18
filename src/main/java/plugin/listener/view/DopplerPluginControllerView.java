@@ -9,10 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
-import model.listener.plugin.ControllerPluginView;
 import plugin.listener.controller.DopplerPluginController;
 
-public class DopplerPluginControllerView implements Initializable, ControllerPluginView<DopplerPluginController>  {
+public class DopplerPluginControllerView implements Initializable, DopplerPluginView  {
     @FXML private Tab dropplerPluginTab;
     @FXML private Label lblVelX;
     @FXML private Label lblVelY;
