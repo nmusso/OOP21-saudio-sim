@@ -46,4 +46,14 @@ public class PathBuffer extends AbstractBuffer {
         return f;
     }
 
+    /**
+     * Return a string with the id of the buffer and the name of the file.
+     */
+    @Override
+    public String toString() {
+        final String file = super.getFile();
+        final String fileName = file.substring(file.lastIndexOf(System.getProperty("file.separator")) + 1);
+        return super.getID() + ": " + fileName;
+    }
+
 }

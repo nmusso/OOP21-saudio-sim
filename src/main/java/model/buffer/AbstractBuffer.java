@@ -100,13 +100,4 @@ public abstract class AbstractBuffer implements Buffer {
 
         return buf;
     }
-
-    /**
-     * Return a string with the id of the buffer and the name of the file.
-     */
-    @Override
-    public String toString() {
-        final String fileName = file.substring(file.lastIndexOf(System.getProperty("file.separator")) + 1);
-        return this.id + ": " + fileName;
-    }
 }
