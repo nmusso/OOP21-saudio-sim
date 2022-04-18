@@ -1,5 +1,7 @@
 package controller.view;
 
+import java.util.List;
+
 import javafx.scene.control.ComboBox;
 import model.buffer.Buffer;
 
@@ -13,4 +15,10 @@ public interface SongView extends ControllerView {
      * @return the combobox.
      */
     ComboBox<Buffer> getCmbSongs();
+
+    /**
+     * Update the items of the combobox.
+     * @param list the buffer list
+     */
+    void updateComboBox(List<Buffer> list);
 }

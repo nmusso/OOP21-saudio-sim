@@ -71,7 +71,7 @@ public abstract class AbstractBuffer implements Buffer {
             }
 
             final int sampleSize = format.getSampleSizeInBits() == 8 ? AL_FORMAT_MONO8 : AL_FORMAT_MONO16;
-            final ByteBuffer audioBuffer = getAudioBuffer(byteArray);
+            final ByteBuffer audioBuffer = getByteBuffer(byteArray);
 
             this.id = alGenBuffers();
             alBufferData(this.id, sampleSize, audioBuffer, (int) format.getSampleRate());
@@ -94,7 +94,7 @@ public abstract class AbstractBuffer implements Buffer {
      * @param byteArray the byte array read from the AudioInputStream
      * @return the flipped byte array as ByteBuffer
      */
-    private ByteBuffer getAudioBuffer(final byte[] byteArray) {
+    private ByteBuffer getByteBuffer(final byte[] byteArray) {
         final var buf = BufferUtils.createByteBuffer(byteArray.length);
         buf.put(byteArray);
         buf.flip();

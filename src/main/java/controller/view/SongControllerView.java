@@ -90,8 +90,6 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
             selected.forEach(file -> {
                 ctrl.addBufferFromPath(file.getAbsolutePath());
             });
-
-            updateComboBox();
         }
     }
 
@@ -140,12 +138,11 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
     }
 
     /**
-     * Update the items of the combobox.
+     * {@inheritDoc}
      */
-    private void updateComboBox() {
+    @Override
+    public void updateComboBox(final List<Buffer> list) {
         cmbSongs.getItems().clear();
-        final var list = ctrl.getBufferList();
-        Collections.sort(list, (b1, b2) -> Integer.compare(b2.getID(), b1.getID())); 
         cmbSongs.getItems().addAll(list);
 
         if (!cmbSongs.getItems().isEmpty()) {
