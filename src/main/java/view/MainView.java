@@ -9,7 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
-    private static final String FXML_PATH = "/fxml/mainView.fxml";
+    private static final String FXML_PATH = "/fxml/";
+    private static final String CSS_PATH = "/css";
 
     /**
      * 
@@ -21,12 +22,12 @@ public class MainView extends Application {
         mainStage.setTitle("Spatial Audio Simulator");
 
         final FXMLLoader loader = new FXMLLoader();
-        final Parent root = loader.load(getClass().getResourceAsStream(FXML_PATH));
+        final Parent root = loader.load(getClass().getResourceAsStream(FXML_PATH + "mainView.fxml"));
         final MainControllerView ctrMainV = loader.getController();
         ctrMainV.setControllerApplication(ctrMainApp);
 
         final Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource(CSS_PATH + "style.css").toExternalForm());
 
         mainStage.setOnCloseRequest(x -> System.exit(0));
         mainStage.setResizable(false);

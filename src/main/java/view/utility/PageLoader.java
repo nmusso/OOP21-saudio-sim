@@ -1,9 +1,7 @@
 package view.utility;
 
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Optional;
-
 import javafx.fxml.FXMLLoader;
 import model.utility.Pair;
 
@@ -27,9 +25,8 @@ public final class PageLoader {
         try {
              element = loader.load(PageLoader.class.getResourceAsStream(fileName));
              ctr = loader.getController();
-        } catch (Exception e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
             return Optional.empty();
         } 
         return Optional.of(new Pair<>(element, ctr));
