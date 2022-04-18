@@ -46,6 +46,15 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showError(final String error) {
+        final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
+        alert.show();
+    }
+
+    /**
      * Change color to the toggle button and enable/disable the sliders.
      * @param event  the event who triggered the method
      */
@@ -68,10 +77,11 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
     }
 
     /**
-     * {@inheritDoc}
+     * Get the effect associated to the slider.
+     * @param id  the id of the slider
+     * @return an optional containing the effect, or empty if there isn't an effect associated to the id
      */
-    @Override
-    public Optional<ALEffects> getEffect(final String id) {
+    private Optional<ALEffects> getEffect(final String id) {
         switch (id) {
         case "sldReverb":
             return Optional.of(ALEffects.REVERB);
@@ -89,10 +99,10 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
     }
 
     /**
-     * {@inheritDoc}
+     * Get all the sliders.
+     * @return a list of sliders
      */
-    @Override
-    public List<Slider> getSliders() {
+    private List<Slider> getSliders() {
         return slidersPane.getChildren().stream()
                 .filter(node -> node instanceof Slider)
                 .map(node -> (Slider) node)
@@ -100,10 +110,9 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
     }
 
     /**
-     * {@inheritDoc}
+     * Set the property of the sliders.
      */
-    @Override
-    public void initSliders() {
+    private void initSliders() {
         getSliders().forEach(slider -> {
             final Optional<ALEffects> effect = getEffect(slider.getId());
             if (effect.isPresent()) {
@@ -115,14 +124,5 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
                 });
             }
         });
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void showError(final String error) {
-        final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
-        alert.show();
     }
 }

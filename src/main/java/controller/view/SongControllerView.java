@@ -62,6 +62,14 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
      * {@inheritDoc}
      */
     @Override
+    public ComboBox<Buffer> getCmbSongs() {
+        return cmbSongs;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void showError(final String error) {
         final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
         alert.show();
@@ -132,10 +140,9 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
     }
 
     /**
-     * {@inheritDoc}
+     * Update the items of the combobox.
      */
-    @Override
-    public void updateComboBox() {
+    private void updateComboBox() {
         cmbSongs.getItems().clear();
         final var list = ctrl.getBufferList();
         Collections.sort(list, (b1, b2) -> Integer.compare(b2.getID(), b1.getID())); 
@@ -147,10 +154,10 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
     }
 
     /**
-     * {@inheritDoc}
+     * Import automatically all the wav in the resources path.
+     * @throws IOException 
      */
-    @Override
-    public void addStartSongs() throws IOException {
+    private void addStartSongs() throws IOException {
         final ClassLoader loader = Thread.currentThread().getContextClassLoader();
         final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(loader);
         Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream()
@@ -158,13 +165,5 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
                 .forEach(res -> ctrl.addBufferFromResource(SONG_PATH + res));
 
         updateComboBox();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ComboBox<Buffer> getCmbSongs() {
-        return cmbSongs;
     }
 }
