@@ -26,7 +26,7 @@ import model.buffer.Buffer;
  * Controller of the view SongView.
  *
  */
-public class SongControllerView implements Initializable, ControllerView {
+public class SongControllerView implements Initializable, ControllerView, SongView {
 
     private static final String SONG_PATH = "/songs/";
     @FXML private Button btnImport;
@@ -132,9 +132,10 @@ public class SongControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * Update the items of the combobox.
+     * {@inheritDoc}
      */
-    private void updateComboBox() {
+    @Override
+    public void updateComboBox() {
         cmbSongs.getItems().clear();
         final var list = ctrl.getBufferList();
         Collections.sort(list, (b1, b2) -> Integer.compare(b2.getID(), b1.getID())); 
@@ -146,10 +147,10 @@ public class SongControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * Import automatically all the wav in the resources path.
-     * @throws IOException 
+     * {@inheritDoc}
      */
-    private void addStartSongs() throws IOException {
+    @Override
+    public void addStartSongs() throws IOException {
         final ClassLoader loader = Thread.currentThread().getContextClassLoader();
         final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(loader);
         Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream()
@@ -160,9 +161,9 @@ public class SongControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * Getter of the combobox with the buffers.
-     * @return the combobox.
+     * {@inheritDoc}
      */
+    @Override
     public ComboBox<Buffer> getCmbSongs() {
         return cmbSongs;
     }

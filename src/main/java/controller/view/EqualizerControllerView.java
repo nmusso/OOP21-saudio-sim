@@ -22,7 +22,7 @@ import model.extension.effect.ALEffects;
  * Controller of the view EqualizerView.
  *
  */
-public class EqualizerControllerView implements Initializable, ControllerView {
+public class EqualizerControllerView implements Initializable, ControllerView, EqualizerView {
 
     @FXML private GridPane slidersPane;
     @FXML private ToggleButton btnTurn;
@@ -68,11 +68,10 @@ public class EqualizerControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * Get the effect associated to the slider.
-     * @param id  the id of the slider
-     * @return an optional containing the effect, or empty if there isn't an effect associated to the id
+     * {@inheritDoc}
      */
-    private Optional<ALEffects> getEffect(final String id) {
+    @Override
+    public Optional<ALEffects> getEffect(final String id) {
         switch (id) {
         case "sldReverb":
             return Optional.of(ALEffects.REVERB);
@@ -90,10 +89,10 @@ public class EqualizerControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * Get all the sliders.
-     * @return a list of sliders
+     * {@inheritDoc}
      */
-    private List<Slider> getSliders() {
+    @Override
+    public List<Slider> getSliders() {
         return slidersPane.getChildren().stream()
                 .filter(node -> node instanceof Slider)
                 .map(node -> (Slider) node)
@@ -101,9 +100,10 @@ public class EqualizerControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * Set the property of the sliders.
+     * {@inheritDoc}
      */
-    private void initSliders() {
+    @Override
+    public void initSliders() {
         getSliders().forEach(slider -> {
             final Optional<ALEffects> effect = getEffect(slider.getId());
             if (effect.isPresent()) {
@@ -117,7 +117,12 @@ public class EqualizerControllerView implements Initializable, ControllerView {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void showError(final String error) {
+        final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
+        alert.show();
     }
 }

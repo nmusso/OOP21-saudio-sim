@@ -1,16 +1,18 @@
 package controller;
 
-import controller.view.EqualizerControllerView;
+import static org.lwjgl.openal.AL10.alGetError;
+import static org.lwjgl.openal.AL10.AL_NO_ERROR;
+import controller.view.EqualizerView;
 import model.extension.effect.ALEffects;
 
 /**
  * Controller for the EqualizerView which will communicate with model and his ViewController.
  *
  */
-public class EqualizerController implements ControllerApplication<EqualizerControllerView> {
+public class EqualizerController implements ControllerApplication<EqualizerView> {
 
     private final MainController mainCtr;
-    private EqualizerControllerView ctrlView;
+    private EqualizerView ctrlView;
 
     /**
      * Constructor of the EqualizerController.
@@ -24,7 +26,7 @@ public class EqualizerController implements ControllerApplication<EqualizerContr
      * {@inheritDoc}
      */
     @Override
-    public void setControllerView(final EqualizerControllerView controllerView) {
+    public void setControllerView(final EqualizerView controllerView) {
         ctrlView = controllerView;
     }
 
@@ -35,6 +37,10 @@ public class EqualizerController implements ControllerApplication<EqualizerContr
      */
     public void applyEffect(final float val, final ALEffects effect) {
        this.mainCtr.getEnvironmentController().getEnv().addEffect(effect, val);
+
+       if (alGetError() != AL_NO_ERROR) {
+           ctrlView.showError("Something went wrong while applying the effect");
+       }
     }
 
     /**
