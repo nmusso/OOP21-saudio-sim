@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.Button?>
+
+<Tab fx:id="soundLevelMeterPluginTab" text="SoundLevelMeter" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="plugin.listener.view.SoundLevelMeterPluginControllerView">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+         	<Button fx:id="btnRemove" layoutX="200.0" layoutY="0.0" mnemonicParsing="false" onAction="#handleBtnRemove" prefHeight="23.0" prefWidth="33.0" text="X" />
+            <Button fx:id="btnStatus" layoutX="100.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleBtnStatus" prefHeight="23.0" prefWidth="80.0" text="Disable" />
+            <Circle fx:id="circleShape" fill="#f2f2f2" layoutX="110.0" layoutY="60.0" radius="60.0" stroke="BLACK" strokeType="INSIDE" />	
+         </children></AnchorPane>
+  </content>
+</Tab>
+

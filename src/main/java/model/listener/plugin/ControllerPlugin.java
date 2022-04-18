@@ -3,7 +3,12 @@ package model.listener.plugin;
 public interface ControllerPlugin {
     /**
      * 
-     * @return
+     * @return a.
      */
     Plugin getPlugin();
+
+    /**
+     * 
+     */
+    void removePlugin();
 }
