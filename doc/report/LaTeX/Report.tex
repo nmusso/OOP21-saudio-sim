@@ -52,6 +52,97 @@ Uno dei principali problemi è quello di simulare in modo realistico l'ascolto i
 
 
 \chapter{Design}
+\section{Architettura}
+
+\section{Design dettagliato}
+\subsection{Niccolò Mussoni}
+La prima parte del mio lavoro è centrata su due argomenti:
+\begin{itemize}
+	\item I Buffer, che sulla base del file importato generano un ID univoco associato ad esso, attraverso il quale le sorgenti possono riprodurre il file. 
+	\item Le estensioni, che riguardano la gestione di filtri ed effetti per le sorgenti.
+\end{itemize}
+
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/Buffer.png}
+\caption{Rappresentazione UML dell’applicazione del pattern Template Method per i diversi tipi di Buffer}
+\label{img:templatebuffer}
+\end{figure}
+Il primo problema da gestire è stato il fatto che il Buffer potesse essere generato sia da un file nel File System, sia da un file incluso nelle risorse del Classpath. Visto che i Buffer differiscono solo per come viene importato inizialmente lo Stream, per risolvere questo problema ho sfruttato il pattern template method, in modo da poter essere usato anche per altri tipi di Buffer non presenti nel progetto. Nel mio caso, il metodo template è generateBuffer, mentre il metodo primitivo è getAudioStream, come da figura 1.1.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/BufferImport.png}
+\caption{Rappresentazione UML della Factory per Buffer e dell’applicazione del pattern Singleton per il caching}
+\label{img:cachebuffer}
+\end{figure}
+Il secondo problema da gestire era evitare Buffer duplicati e per risolvere ciò mi sono affidato a un istanza Singleton che potesse fare da cache in maniera thread-safe, grazie alla versione di J. Bloch. La factory, prima di creare un nuovo Buffer, controlla che non sia già presente nella cache e successivamente procede a crearne uno nuovo.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/BufferMVC.png}
+\caption{Rappresentazione UML della Factory per Buffer e dell’applicazione del pattern Singleton per il caching}
+\label{img:buffermvc}
+\end{figure}
+Quando dalla view viene richiesta l’importazione di un file, esso viene trattato come PathBuffer, in quanto viene selezionato dall’utente. Al momento dell’inizializzazione invece tutti i file audio presenti come risorse del progetto vengono trattati come ResourcePath. Questo mi ha aiutato a poter differenziare anche i metodi nel controller senza ricorrere a variabili booleane o intere per identificare che tipo di file fosse. Il controller, dopo aver ricevuto la richiesta di creare un nuovo buffer, chiama la factory, che procede a creare il Buffer, che se non è presente viene aggiunto anche nella cache. Inoltre la cache è risultata utile anche per poter aggiornare la view successivamente al caricamento di un file, in quanto il controller ricava il nome dei file presenti nella cache e notifica alla view di aggiornarsi sulla base della lista dei file.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/Extensions.png}
+\caption{Rappresentazione UML della parte comune delle estensioni}
+\label{img:extensions}
+\end{figure}
+Sia filtri che effetti condividono la parte in cui vengono applicati alla sorgente, ma non i buffer necessari alla creazione di essi, quindi ho deciso di creare un’interfaccia comune per la parte di applicazione, e successivamente una sua implementazione astratta, che implementa l’applicazione delle estensioni, ma non l’inizializzazione, la quale viene lasciata alle due classi che ereditano. Invece la creazione/rimozione del filtro o effetto attraverso la libreria era differente, quindi ho sfruttato due interfacce separate, mostrate nelle due figure successive.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/Filter.png}
+\caption{Rappresentazione UML della gestione dei filtri}
+\label{img:filter}
+\end{figure}
+I filtri hanno un valore impostato a priori per i tre tipi di filtro (passa-basso, passa-banda, passa-alto), quindi mi è bastato solo implementare la creazione e la rimozione. 
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/Effect.png}
+\caption{Rappresentazione UML della gestione degli effetti attraverso enum}
+\label{img:effects}
+\end{figure}
+Per la gestione degli effetti e dei suoi attributi mi sono affidato ad un enum con costruttore, che mi permettesse in maniera veloce di cambiare i parametri di un dato effetto, come valore massimo e minimo, e di aggiungerli o rimuoverli. A differenza dei filtri, il valore degli effetti dipende dall’interazione dell’utente con la view.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/EffectsMVC.png}
+\caption{Rappresentazione UML dello schema MVC relativo all’utilizzo degli effetti}
+\label{img:effectsmvc}
+\end{figure}
+L’interazione dell’utente con l’equalizzatore, composto da slider, mi ha permesso di ricavare il valore dell’effetto il quale viene passato al controller che notificherà a tutte le sorgenti di applicare il determinato effetto con il determinato valore. In questa parte di MVC il controller non notifica nulla alla view, in quanto si tratta di un equalizzatore che non ha bisogno di aggiornare l’interfaccia in base alle azioni dell’utente.
+%
+\subsection{Alessandro Sciarrillo}
+\subsection{Alex Presepi}
+\subsection{Simone Lugaresi}
+
+\chapter{Sviluppo}
+\section{Testing automatizzato}
+\section{Metodologia di lavoro}
+\subsection{Niccolò Mussoni}
+\subsection{Alessandro Sciarrillo}
+\subsection{Alex Presepi}
+\subsection{Simone Lugaresi}
+\section{Note di sviluppo}
+
+\chapter{Commenti finali}
+\section{Autovalutazione e lavori futuri}
+\section{Difficoltà incontrate e commenti per i docenti OPZIONALE}
+
+\appendix
+\chapter{Guida utente}
+
+\chapter{Esercitazioni di laboratorio}
+\subsection{Niccolò Mussoni}
+\subsection{Alessandro Sciarrillo}
+\subsection{Alex Presepi}
+\subsection{Simone Lugaresi}
 
 \tableofcontents
 
