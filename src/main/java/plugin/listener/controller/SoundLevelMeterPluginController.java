@@ -16,7 +16,6 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
     private final SoundLevelMeterPlugin plugin;
     private final SoundLevelMeterPluginView controllerView;
     private final MainController mainController;
-    private final Listener listener;
     private final ThreadMeter thMeter;
 
     public SoundLevelMeterPluginController(final Listener listener, final MainController mainController, final ListenerView listenerView) throws ClassNotFoundException {
@@ -30,8 +29,7 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
         this.controllerView.setListenerControllerView(listenerView);
 
         this.mainController = mainController;
-        this.listener = listener;
-        this.plugin = new SoundLevelMeterPlugin(mainController.getEnvironmentController().getEnv().getSourceHub(), this.listener);
+        this.plugin = new SoundLevelMeterPlugin(listener);
 
         this.thMeter = new ThreadMeter();
         this.thMeter.start();
@@ -46,7 +44,7 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
         return this.plugin;
     }
 
-
+/*TODO Update when env changhe*/
     class ThreadMeter extends Thread {
         private boolean isRunning = true;
 
@@ -54,6 +52,7 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
         public void run() {
             while (this.isRunning) {
                 try {
+                    SoundLevelMeterPluginController.this.plugin.setSourceHub(SoundLevelMeterPluginController.this.mainController.getEnvironmentController().getEnv().getSourceHub());
                     final var color = SoundLevelMeterPluginController.this.plugin.getRgbColor();
                     SoundLevelMeterPluginController.this.controllerView.setColor(color);
                     Thread.sleep(100);

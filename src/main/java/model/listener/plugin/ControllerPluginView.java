@@ -11,7 +11,7 @@ public interface ControllerPluginView<C> {
     void setControllerApplication(C c);
 
     /**
-     * TODO add parameter.
+     * @param view
      */
     void setListenerControllerView(ListenerView view);
 }
