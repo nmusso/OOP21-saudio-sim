@@ -3,6 +3,7 @@ package view;
 import controller.MainController;
 import controller.view.MainControllerView;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,7 +30,11 @@ public class MainView extends Application {
         final Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource(CSS_PATH + "style.css").toExternalForm());
 
-        mainStage.setOnCloseRequest(x -> System.exit(0));
+        mainStage.setOnCloseRequest(x -> {
+            ctrMainApp.closeAllThread();
+            Platform.exit();
+        });
+
         mainStage.setResizable(false);
         mainStage.setScene(scene);
         mainStage.show();

@@ -77,4 +77,11 @@ public class MainController implements ControllerApplication<MainControllerView>
     public SpaceController getSpaceController() {
         return this.ctrSpace;
     }
+
+    /**
+     * Before the application ends call this method to close all necessary threads. 
+     */
+    public void closeAllThread() {
+        this.ctrListener.stopAllPlugin();
+    }
 }

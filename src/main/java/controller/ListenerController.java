@@ -25,6 +25,7 @@ public class ListenerController {
     private final Listener listener;
     private final MainController mainCtr;
     private final PluginManager mng;
+    private final Set<ControllerPlugin> pluginsCtr;
 
 
 
@@ -32,6 +33,7 @@ public class ListenerController {
         this.mainCtr = mainCtr;
         this.listener = this.mainCtr.getEnvironmentController().getEnv().getListener();
         this.mng = new PluginManager();
+        this.pluginsCtr = new HashSet<>();
     }
 
     /**
@@ -78,7 +80,9 @@ public class ListenerController {
         try {
             final Class<? extends ControllerPlugin> ctrClass = Class.forName(CONTROLLER_PATH + "." + name + "Controller").asSubclass(ControllerPlugin.class);
             final Constructor<? extends ControllerPlugin> cns = ctrClass.getConstructor(Listener.class, MainController.class, ListenerView.class);
-            this.mng.addPlugin(cns.newInstance(this.listener, this.mainCtr, this.controllerView).getPlugin());
+            final ControllerPlugin ctr = cns.newInstance(this.listener, this.mainCtr, this.controllerView);
+            this.mng.addPlugin(ctr.getPlugin());
+            this.pluginsCtr.add(ctr);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -110,6 +114,13 @@ public class ListenerController {
      */
     public void removePlugin(final String pluginName) {
         this.mng.removePlugin(pluginName);
+    }
+
+    /**
+     * 
+     */
+    public void stopAllPlugin() {
+        this.pluginsCtr.forEach(ctr -> ctr.removePlugin());
     }
 
     /**
