@@ -26,8 +26,9 @@ public abstract class AbstractBuffer implements Buffer {
      * Construct a new BufferImpl.
      * 
      * @param file the path of the file which will be used for the buffer
-     * @throws IOException 
-     * @throws UnsupportedAudioFileException 
+     * @throws IOException                   if an error occur during read
+     * @throws UnsupportedAudioFileException if the type of the file is not
+     *                                       supported
      */
     public AbstractBuffer(final String file) throws UnsupportedAudioFileException, IOException {
         this.file = file;
@@ -55,10 +56,6 @@ public abstract class AbstractBuffer implements Buffer {
      * 
      * @param isResource true if the resource was loaded from the resource path
      * @return the ID of the generated buffer
-     * @throws FileNotFoundException         if file does not exists
-     * @throws UnsupportedAudioFileException if the type of the file is not
-     *                                       supported
-     * @throws IOException                   if an error occur during read
      */
     private int generateBuffer() {
         try (AudioInputStream stream = getAudioStream()) {
@@ -77,16 +74,22 @@ public abstract class AbstractBuffer implements Buffer {
             alBufferData(this.id, sampleSize, audioBuffer, (int) format.getSampleRate());
         } catch (UnsupportedAudioFileException | IOException e) {
             throw new ALFormatException("Error during generating buffer", e);
-        } 
+        }
 
         return id;
     }
 
     /**
      * Get the AudioInputStream associated to the file path.
+     * 
      * @return the stream
+     * @throws FileNotFoundException         if file does not exists
+     * @throws UnsupportedAudioFileException if the type of the file is not
+     *                                       supported
+     * @throws IOException                   if an error occur during read
      */
-    protected abstract AudioInputStream getAudioStream() throws FileNotFoundException, UnsupportedAudioFileException, IOException;
+    protected abstract AudioInputStream getAudioStream()
+            throws FileNotFoundException, UnsupportedAudioFileException, IOException;
 
     /**
      * Return a flipper ByteBuffer from a byte array.

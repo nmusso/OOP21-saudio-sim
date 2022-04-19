@@ -47,9 +47,7 @@ public enum BufferCache {
      * @return the buffer
      */
     public Buffer getBufferFromID(final int id) {
-        return buffers.entrySet().stream()
-                .filter(e -> e.getValue().getID() == id)
-                .map(e -> e.getValue())
+        return buffers.entrySet().stream().filter(e -> e.getValue().getID() == id).map(e -> e.getValue())
                 .collect(Collectors.toList()).get(0);
     }
 

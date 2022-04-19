@@ -18,7 +18,7 @@ public class ResourceBuffer extends AbstractBuffer {
     }
 
     /**
-    * {@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     protected AudioInputStream getAudioStream()

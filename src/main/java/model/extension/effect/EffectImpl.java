@@ -57,6 +57,7 @@ public class EffectImpl extends AbstractEffect {
 
     /**
      * Get the type of the source as AL constant.
+     * 
      * @param source the source
      * @return the type of the source
      */

@@ -24,8 +24,8 @@ public interface BufferFactory {
     Buffer createBufferFromPath(String file) throws FileNotFoundException, UnsupportedAudioFileException, IOException;
 
     /**
-     * Create a new buffer if it was never generated from the resource path passed as
-     * parameter, otherwise gets the ID from the cache.
+     * Create a new buffer if it was never generated from the resource path passed
+     * as parameter, otherwise gets the ID from the cache.
      * 
      * @param file the path of the file which will be associated to the buffer
      * @return The ID of the created buffer
@@ -34,5 +34,6 @@ public interface BufferFactory {
      *                                       supported
      * @throws IOException                   if an error occur during read
      */
-    Buffer createBufferFromResource(String file) throws FileNotFoundException, UnsupportedAudioFileException, IOException;
+    Buffer createBufferFromResource(String file)
+            throws FileNotFoundException, UnsupportedAudioFileException, IOException;
 }

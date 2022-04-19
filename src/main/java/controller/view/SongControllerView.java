@@ -28,11 +28,16 @@ import model.buffer.Buffer;
 public class SongControllerView implements Initializable, ControllerView, SongView {
 
     private static final String SONG_PATH = "/songs/";
-    @FXML private Button btnImport;
-    @FXML private Button btnPlay;
-    @FXML private Button btnPause;
-    @FXML private Button btnStop;
-    @FXML private ComboBox<Buffer> cmbSongs;
+    @FXML
+    private Button btnImport;
+    @FXML
+    private Button btnPlay;
+    @FXML
+    private Button btnPause;
+    @FXML
+    private Button btnStop;
+    @FXML
+    private ComboBox<Buffer> cmbSongs;
     private SongController ctrl;
 
     /**
@@ -44,7 +49,6 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
 
     /**
      * {@inheritDoc}
-     * @throws IOException 
      */
     @Override
     public void setControllerApplication(final MainController ctrMain) {
@@ -76,7 +80,8 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
 
     /**
      * Open a new FileChooser and import the selected items.
-     * @param event  the event who triggered the method
+     * 
+     * @param event the event who triggered the method
      */
     @FXML
     public final void handlePress(final Event event) {
@@ -94,7 +99,8 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
 
     /**
      * Notify his app controller to play all the sources.
-     * @param event  the event who triggered the method
+     * 
+     * @param event the event who triggered the method
      */
     @FXML
     public final void handlePlay(final Event event) {
@@ -110,7 +116,8 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
 
     /**
      * Notify his app controller to pause all the sources.
-     * @param event  the event who triggered the method
+     * 
+     * @param event the event who triggered the method
      */
     @FXML
     public final void handlePause(final Event event) {
@@ -123,7 +130,8 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
 
     /**
      * Notify his app controller to stop all the sources.
-     * @param event  the event who triggered the method
+     * 
+     * @param event the event who triggered the method
      */
     @FXML
     public final void handleStop(final Event event) {
@@ -151,13 +159,13 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
 
     /**
      * Import automatically all the wav in the resources path.
-     * @throws IOException 
+     * 
+     * @throws IOException
      */
     private void addStartSongs() throws IOException {
         final ClassLoader loader = Thread.currentThread().getContextClassLoader();
         final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(loader);
-        Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream()
-                .map(res -> res.getFilename())
+        Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream().map(res -> res.getFilename())
                 .forEach(res -> ctrl.addBufferFromResource(SONG_PATH + res));
     }
 }

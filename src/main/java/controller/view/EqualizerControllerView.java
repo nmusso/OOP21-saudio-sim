@@ -24,8 +24,10 @@ import model.extension.effect.ALEffects;
  */
 public class EqualizerControllerView implements Initializable, ControllerView, EqualizerView {
 
-    @FXML private GridPane slidersPane;
-    @FXML private ToggleButton btnTurn;
+    @FXML
+    private GridPane slidersPane;
+    @FXML
+    private ToggleButton btnTurn;
     private EqualizerController ctrl;
 
     /**
@@ -56,9 +58,10 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
 
     /**
      * Change color to the toggle button and enable/disable the sliders.
-     * @param event  the event who triggered the method
+     * 
+     * @param event the event who triggered the method
      */
-    @FXML 
+    @FXML
     public final void handlePress(final Event event) {
         final boolean state = btnTurn.isSelected();
 
@@ -69,7 +72,8 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
         } else {
             btnTurn.setText("ON");
             btnTurn.setStyle("-fx-background-color: #6CF049");
-            final Alert alert = new Alert(AlertType.INFORMATION, "Keep the volume low while using the effects", ButtonType.OK);
+            final Alert alert = new Alert(AlertType.INFORMATION, "Keep the volume low while using the effects",
+                    ButtonType.OK);
             alert.show();
         }
 
@@ -78,8 +82,10 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
 
     /**
      * Get the effect associated to the slider.
-     * @param id  the id of the slider
-     * @return an optional containing the effect, or empty if there isn't an effect associated to the id
+     * 
+     * @param id the id of the slider
+     * @return an optional containing the effect, or empty if there isn't an effect
+     *         associated to the id
      */
     private Optional<ALEffects> getEffect(final String id) {
         switch (id) {
@@ -100,12 +106,11 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
 
     /**
      * Get all the sliders.
+     * 
      * @return a list of sliders
      */
     private List<Slider> getSliders() {
-        return slidersPane.getChildren().stream()
-                .filter(node -> node instanceof Slider)
-                .map(node -> (Slider) node)
+        return slidersPane.getChildren().stream().filter(node -> node instanceof Slider).map(node -> (Slider) node)
                 .collect(Collectors.toList());
     }
 
