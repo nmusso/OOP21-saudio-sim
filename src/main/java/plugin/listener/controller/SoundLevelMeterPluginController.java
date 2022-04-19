@@ -44,7 +44,6 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
         return this.plugin;
     }
 
-/*TODO Update when env changhe*/
     class ThreadMeter extends Thread {
         private boolean isRunning = true;
 
