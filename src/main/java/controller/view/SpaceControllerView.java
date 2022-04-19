@@ -16,7 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
 
-public class SpaceControllerView  implements Initializable, ControllerView { 
+public class SpaceControllerView  implements Initializable, ControllerView, SpaceView { 
 
     private SpaceController ctrl;
     @FXML
@@ -115,6 +115,7 @@ public class SpaceControllerView  implements Initializable, ControllerView {
      * Set value passed by the controller to both the global variable and the spinner .
      * @param x
      */
+    @Override
     public void setX(final double x) {
         this.x = x;
         spnSizeX.setValueFactory(new DoubleSpinnerValueFactory(MINVALUESPIN, MAXVALUESPIN, x, STEPVALUESPIN));
@@ -132,6 +133,7 @@ public class SpaceControllerView  implements Initializable, ControllerView {
     * Set value passed by the controller to both the global variable and the spinner Y.
     * @param y
     */
+    @Override
     public void setY(final double y) {
         this.y = y;
         spnSizeY.setValueFactory(new DoubleSpinnerValueFactory(MINVALUESPIN, MAXVALUESPIN, y, STEPVALUESPIN));
@@ -149,6 +151,7 @@ public class SpaceControllerView  implements Initializable, ControllerView {
      * Disable/enable the combobox with the presets.
      * @param newState the new state of the combobox
      */
+    @Override
     public void disableCombo(final boolean newState) {
         cmbPreset.setDisable(newState);
     }

@@ -1,6 +1,6 @@
 package controller;
 
-import controller.view.EnvironmentControllerView;
+import controller.view.EnvironmentView;
 import model.audiomanager.AudioManager;
 import model.environment.Environment;
 import model.environment.EnvironmentFactory;
@@ -9,16 +9,19 @@ import model.source.FRSource;
 import model.utility.Vec3f;
 import view.utility.TypeSprite;
 
-public class EnvironmentController implements ControllerApplication<EnvironmentControllerView> {
+public class EnvironmentController implements ControllerApplication<EnvironmentView> {
+
+    private static final String VOID = "void";
 
     private final MainController mainCtr;
-    private EnvironmentControllerView ctrlView;
+    private EnvironmentView ctrlView;
 
     private final EnvironmentFactory envFac = new EnvironmentFactoryImpl();
     private Environment env;
 
     /**
      * Constructor of the EnvironmentController, and initialize env void.
+     * 
      * @param mainCtr
      */
     public EnvironmentController(final MainController mainCtr) {
@@ -29,14 +32,16 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * Add listener to ctrlView.
+     * 
      * @param type of listener.
      */
     public void addListener(final TypeSprite type) {
-        this.ctrlView.addSprite(type, -1, env.getListener().getPosition());
+        this.ctrlView.addSprite(type, (int) env.getListener().getCurrentContext().getId(), env.getListener().getPosition());
     }
 
     /**
      * Get last selected source.
+     * 
      * @return FRSource selected in this.env.
      */
     public FRSource getSelectedSource() {
@@ -45,6 +50,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * Get current environment.
+     * 
      * @return return this.env.
      */
     public Environment getEnv() {
@@ -52,9 +58,11 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
     }
 
     /**
-     * Add source at sourcehub of Env, and add source with typeSprite to canvas of ctrlView.
+     * Add source at sourcehub of Env, and add source with typeSprite to canvas of
+     * ctrlView.
+     * 
      * @param source to add
-     * @param type to draw
+     * @param type   to draw
      */
     public void addSourcetoSourceHub(final FRSource source, final TypeSprite type) {
         this.env.addSourceToSourceHub(source);
@@ -63,6 +71,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * remove source from sourcehub and from canvas.
+     * 
      * @param source to remove
      */
     public void removeSource(final FRSource source) {
@@ -72,8 +81,9 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * Move the source with passed id, in to pos.
+     * 
      * @param pos new
-     * @param id source to move.
+     * @param id  source to move.
      */
     public void moveSource(final Vec3f pos, final int id) {
         this.env.moveSource(this.env.getSourceHub().getSource(id), pos);
@@ -81,6 +91,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * Move listener in Env, signals its displacement.
+     * 
      * @param pos
      */
     public void moveListener(final Vec3f pos) {
@@ -90,6 +101,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * Change type and background of Environment.
+     * 
      * @param preset has type env.
      */
     public void changeEnv(final String preset) {
@@ -100,11 +112,11 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
             break;
         case "mono":
             this.env = envFac.createMonoEnvironment();
-            this.ctrlView.setTxBackGround("void");
+            this.ctrlView.setTxBackGround(VOID);
             break;
         case "Stereo":
             this.env = envFac.createStereoEnvironment();
-            this.ctrlView.setTxBackGround("void");
+            this.ctrlView.setTxBackGround(VOID);
             break;
         case "HomeHIFI":
             this.env = envFac.createHIFIEnvironment();
@@ -112,18 +124,12 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
             break;
         default:
             this.env = envFac.createVoidEnvironment();
-            this.ctrlView.setTxBackGround("void");
+            this.ctrlView.setTxBackGround(VOID);
             break;
         }
         this.ctrlView.reset();
-        this.mainCtr.getSpaceController().setSpinner(this.env.getSpace().getXmax(),
-                this.getEnv().getSpace().getYmax());
+        this.mainCtr.getSpaceController().setSpinner(this.env.getSpace().getXmax(), this.getEnv().getSpace().getYmax());
         this.ctrlView.setSize(this.env.getSpace().getXmax(), this.getEnv().getSpace().getYmax());
-//        if ("cinema".equals(preset)) {
-//            addListener(TypeSprite.LISTENERCINEMA);
-//        } else {
-//            addListener(TypeSprite.LISTENER);
-//        }
         addListener(TypeSprite.LISTENER);
         this.env.getSourceHub().getAll().stream().forEach(e -> {
             TypeSprite type = TypeSprite.SOURCEFULL;
@@ -150,6 +156,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * Set new dimension of env space.
+     * 
      * @param x to Xmax
      * @param y to Ymax
      */
@@ -161,15 +168,17 @@ public class EnvironmentController implements ControllerApplication<EnvironmentC
 
     /**
      * {@inheritDoc}
+     * 
      * @param controllerView
      */
-    public void setControllerView(final EnvironmentControllerView controllerView) {
+    public void setControllerView(final EnvironmentView controllerView) {
         ctrlView = controllerView;
         addListener(TypeSprite.LISTENER);
     }
 
     /**
      * Change last selected source in new type.
+     * 
      * @param type new
      */
     public void upgradeSourceType(final TypeSprite type) {

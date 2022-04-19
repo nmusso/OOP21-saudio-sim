@@ -26,7 +26,7 @@ import view.utility.SpriteImpl;
 import view.utility.TextureImpl;
 import view.utility.TypeSprite;
 
-public class EnvironmentControllerView implements Initializable, ControllerView {
+public class EnvironmentControllerView implements Initializable, ControllerView, EnvironmentView {
 
     private EnvironmentController ctrl;
     @FXML
@@ -133,9 +133,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     }
 
     /**
-     * Set backGround for specific env.
-     * @param back
+     * {@inheritDoc}
      */
+    @Override
     public void setTxBackGround(final String back) {
         if (!"void".equals(back)) {
             txBackGround = new TextureImpl(back);
@@ -180,11 +180,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
     }
 
     /**
-     * Add sprite to set.
-     * @param type of new Sprite
-     * @param id of sprite
-     * @param posElement pos where draw the sprite.
+     * {@inheritDoc}
      */
+    @Override
     public void addSprite(final TypeSprite type, final int id, final Vec3f posElement) {
         final SpriteImpl sprite = new SpriteImpl(id);
         sprite.setTypeSprite(type);
@@ -222,50 +220,34 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
         this.ctrl.lastSelectedSourceChange();
     }
 
-   /**
-    * Get maxX of space.
-    * @return double x
-    */
-    public double getX() {
-        return x;
-    }
-
     /**
-     * Get maxY of space.
-     * @return double y
+     * {@inheritDoc}
      */
-    public double gety() {
-        return y;
-    }
-
-    /**
-     * Get id of the lastSelectedSource if present.
-     * @return int Id of source or -1
-     */
+    @Override
     public int getLastSelectedSource() {
         return lastSelectedSource.isPresent() ? lastSelectedSource.get().getId() : -1;
     }
 
     /**
-     * Remove the lastSelectedSource.
+     * {@inheritDoc}
      */
+    @Override
     public void removeSpriteSource() {
         sprites.remove(lastSelectedSource.get());
     }
 
     /**
-     * Change the typeSprite of lastSelectedSource in new Type.
-     * @param type to draw
+     * {@inheritDoc}
      */
+    @Override
     public void upgradeTypeSpriteSource(final TypeSprite type) {
         lastSelectedSource.get().setTypeSprite(type);
     }
 
     /**
-     * Set size of space, and change the new pos for all sprites.
-     * @param x width
-     * @param y height
+     * {@inheritDoc}
      */
+    @Override
     public void setSize(final double x, final double y) {
         this.x = x;
         this.y = y;
@@ -284,8 +266,9 @@ public class EnvironmentControllerView implements Initializable, ControllerView 
 
 
     /**
-     * Reset set of sprites.
+     * {@inheritDoc}
      */
+    @Override
     public void reset() {
         sprites.clear();
     }

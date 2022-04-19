@@ -1,11 +1,11 @@
 package controller;
 
-import controller.view.SpaceControllerView;
+import controller.view.SpaceView;
 
-public class SpaceController implements ControllerApplication<SpaceControllerView> {
+public class SpaceController implements ControllerApplication<SpaceView> {
 
     private final MainController mainCtr;
-    private SpaceControllerView ctrlView;
+    private SpaceView ctrlView;
 
     /**
      * Construct a new SpaceController.
@@ -19,7 +19,7 @@ public class SpaceController implements ControllerApplication<SpaceControllerVie
      * Set the controller of the view.
      * @param controllerView  the controller view
      */
-    public void setControllerView(final SpaceControllerView controllerView) {
+    public void setControllerView(final SpaceView controllerView) {
         ctrlView = controllerView;
     }
  
