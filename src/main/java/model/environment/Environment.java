@@ -47,15 +47,15 @@ public interface Environment {
 
     /**
      * remove source from sourceHub. 
-     * @param sourceToRemove
+     * @param sourceToRemove from set
      */
     void removeSourceFromSourceHub(FRSource sourceToRemove);
 
 
     /**
      * move the selected source to pos.
-     * @param  source
-     * @param pos
+     * @param source selected
+     * @param pos new vec3f to move
      */
     void moveSource(FRSource source, Vec3f pos);
 }

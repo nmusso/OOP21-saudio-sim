@@ -14,7 +14,7 @@ public interface Space {
 
      /**
       * Set Height.
-      * @param y
+      * @param y height
       */
      void setYMax(float y);
 
@@ -26,14 +26,14 @@ public interface Space {
 
      /**
       * Set Width.
-      * @param x
+      * @param x width
       */
      void setXMax(float x);
 
      /**
       * check pos if is outOfBorder or busy (CONSOLE).
-      * @param pos
-      * @param position
+      * @param pos possible position to occupy
+      * @param position busy
       * @return True if the pos is correct..
       */
      boolean isAvailable(Vec3f pos, Set<Vec3f> position);

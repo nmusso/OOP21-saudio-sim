@@ -25,8 +25,8 @@ public class SpaceController implements ControllerApplication<SpaceView> {
  
     /**
      * Set new size in Env changed by spaceView.
-     * @param x
-     * @param y
+     * @param x width
+     * @param y height
      */
     public void setSize(final double x, final double y) {
         this.mainCtr.getEnvironmentController().setSizeEnv(x, y);
@@ -34,7 +34,7 @@ public class SpaceController implements ControllerApplication<SpaceView> {
 
     /**
      * Set new Preset for Env changed by spaceView.
-     * @param preset
+     * @param preset new type env.
      */
     public void changePreset(final String preset) {
         this.mainCtr.getEnvironmentController().changeEnv(preset);
@@ -42,8 +42,8 @@ public class SpaceController implements ControllerApplication<SpaceView> {
 
     /**
      * Set value for spinner in spaceView.
-     * @param x
-     * @param y
+     * @param x width
+     * @param y height
      */
     public void setSpinner(final double x, final double y) {
         this.ctrlView.setX(x);

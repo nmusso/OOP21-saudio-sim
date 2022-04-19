@@ -29,9 +29,9 @@ public interface EnvironmentFactory {
 
     /**
      * Create an Environment with param set.
-     * @param sources
-     * @param listener
-     * @param space
+     * @param sources set to add at sourcehub
+     * @param listener created earlier
+     * @param space specific
      * @return Environment
      */
     Environment createNEnvironment(Set<FRSource> sources, Listener listener, Optional<Space> space);

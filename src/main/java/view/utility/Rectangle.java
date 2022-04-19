@@ -13,27 +13,27 @@ public interface Rectangle {
     double getWidth();
     /**
      * Set width of rectangle.
-     * @param width
+     * @param width double x
      */
     void setWidth(double width);
     /**
      * Get the height of Rectangle.
-     * @return height
+     * @return height 
      */
-    double getHeight();
+    double getHeight(); 
     /**
      * Set height of rectangle.
-     * @param height
+     * @param height double y
      */
     void setHeight(double height);
     /**
      * Set position of rectangle.
-     * @param position Pair<Double, Double>
+     * @param position to occupy
      */
     void setPosition(Pair<Double, Double> position);
     /**
      * Get the position of rectangle.
-     * @return Pair<Double, Double> that position
+     * @return position
      */
     Pair<Double, Double> getPosition();
     /**

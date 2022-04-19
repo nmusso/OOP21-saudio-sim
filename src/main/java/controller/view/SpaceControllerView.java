@@ -59,9 +59,9 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
     private void addPresetTocmb() {
         final List<String> listPreset = new ArrayList<>();
         listPreset.add("nothing");
-        listPreset.add("mono");
+        listPreset.add("Mono");
         listPreset.add("Stereo");
-        listPreset.add("cinema");
+        listPreset.add("Cinema");
         listPreset.add("HomeHIFI");
         final ObservableList<String> comboItems = FXCollections.observableArrayList(listPreset);
         cmbPreset.setItems(comboItems);
@@ -69,24 +69,8 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
     }
 
     /**
-     * event on click BTNADD disabled.
-     * @param event
-     */
-    @FXML public final void handleBtnAddEnv(final Event event) {
-        System.out.println("addEnv");
-     }
-
-    /**
-     * event on click BTNDEL disabled.
-     * @param event
-     */
-    @FXML public final void handleBtnDelEnv(final Event event) {
-        System.out.println("removeEnv");
-     }
-
-    /**
      * event on choose of preset from cmb, signals to the controller that the selection has changed.
-     * @param event
+     * @param event the event who trigger the method
      */
     @FXML public final void handleCmbPreset(final Event event) {
         selectedPreset = cmbPreset.getSelectionModel().getSelectedItem().toString();
@@ -95,7 +79,7 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
 
     /**
      * changes with the new spinner values and signals the controller of the change.
-     * @param event
+     * @param event the event who trigger the method
      */
     @FXML public final void handleUpdateSpin(final Event event) {
         x = spnSizeX.getValue();
@@ -113,7 +97,7 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
 
     /**
      * Set value passed by the controller to both the global variable and the spinner .
-     * @param x
+     * @param x width double
      */
     @Override
     public void setX(final double x) {
@@ -131,7 +115,7 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
 
    /**
     * Set value passed by the controller to both the global variable and the spinner Y.
-    * @param y
+    * @param y height double
     */
     @Override
     public void setY(final double y) {

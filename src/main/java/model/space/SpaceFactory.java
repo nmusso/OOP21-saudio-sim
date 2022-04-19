@@ -9,8 +9,8 @@ public interface SpaceFactory {
     SpaceImpl createDefaultSpace();
     /**
      * Create Space XxY.
-     * @param x
-     * @param y
+     * @param x width
+     * @param y height
      * @return space with this size.
      */
     SpaceImpl createCustomizedSpace(float x, float y);

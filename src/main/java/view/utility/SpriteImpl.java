@@ -6,7 +6,7 @@ import model.utility.Pair;
 public class SpriteImpl implements Sprite {
 
     private final int id;
-    private final Pair<Double, Double> position = new Pair<Double, Double>(0.0, 0.0);
+    private final Pair<Double, Double> position = new Pair<>(0.0, 0.0);
     private TypeSprite spriteType;
     private Rectangle size;
     private Texture texture;
@@ -100,7 +100,7 @@ public class SpriteImpl implements Sprite {
 
     /**
      * Sprite Constructor; initializes to position (0,0).
-     * @param id
+     * @param id int 
      */
     public SpriteImpl(final int id) {
         setSize(new RectangleImpl());

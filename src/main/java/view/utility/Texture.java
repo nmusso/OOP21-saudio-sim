@@ -14,7 +14,7 @@ public interface Texture {
 
     /**
      * Set the Rectangle region of Texture.
-     * @param region
+     * @param region new rectangle size
      */
     void setRegion(Rectangle region);
 

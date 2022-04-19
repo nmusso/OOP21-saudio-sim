@@ -4,13 +4,13 @@ public interface SpaceView {
 
     /**
      * Set value passed by the controller to both the global variable and the spinner .
-     * @param x
+     * @param x width
      */
     void setX(double x);
 
     /**
     * Set value passed by the controller to both the global variable and the spinner Y.
-    * @param y
+    * @param y height
     */
     void setY(double y);
 
@@ -19,5 +19,4 @@ public interface SpaceView {
      * @param newState the new state of the combobox
      */
     void disableCombo(boolean newState);
-
 }

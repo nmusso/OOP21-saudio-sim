@@ -22,7 +22,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
     /**
      * Constructor of the EnvironmentController, and initialize env void.
      * 
-     * @param mainCtr
+     * @param mainCtr the main controller.
      */
     public EnvironmentController(final MainController mainCtr) {
         AudioManager.initContext();
@@ -92,7 +92,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
     /**
      * Move listener in Env, signals its displacement.
      * 
-     * @param pos
+     * @param pos new position to move
      */
     public void moveListener(final Vec3f pos) {
         this.env.getListener().setPosition(pos);
@@ -106,11 +106,11 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      */
     public void changeEnv(final String preset) {
         switch (preset) {
-        case "cinema":
+        case "Cinema":
             this.env = envFac.createCinemaEnvironment();
             this.ctrlView.setTxBackGround(preset);
             break;
-        case "mono":
+        case "Mono":
             this.env = envFac.createMonoEnvironment();
             this.ctrlView.setTxBackGround(VOID);
             break;
@@ -167,13 +167,11 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
     }
 
     /**
-     * {@inheritDoc}
-     * 
-     * @param controllerView
+     *{@inheritDoc}
      */
     public void setControllerView(final EnvironmentView controllerView) {
         ctrlView = controllerView;
-        addListener(TypeSprite.LISTENER);
+        this.changeEnv(VOID);
     }
 
     /**

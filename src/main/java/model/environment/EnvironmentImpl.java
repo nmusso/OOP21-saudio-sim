@@ -14,9 +14,9 @@ public class EnvironmentImpl implements Environment {
 
     /**
      * Construct a new EnviromentImpl.
-     * @param sourcesHub
-     * @param listener
-     * @param space
+     * @param sourcesHub set of source
+     * @param listener specific listener
+     * @param space specific space
      */
     public EnvironmentImpl(final SourcesHub sourcesHub, final Listener listener, final Space space) {
         super();

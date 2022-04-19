@@ -7,7 +7,7 @@ public interface EnvironmentView {
 
     /**
      * Set backGround for specific env.
-     * @param back
+     * @param back path for new Background.
      */
     void setTxBackGround(String back);
 

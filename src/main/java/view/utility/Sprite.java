@@ -18,8 +18,8 @@ public interface Sprite {
      Pair<Double, Double> getPosition();
     /**
      * Set new pos with coordinates x and y.
-     * @param x
-     * @param y
+     * @param x width
+     * @param y height
      */
     void setPosition(double x, double y);
 
@@ -41,13 +41,13 @@ public interface Sprite {
     Rectangle getSize();
     /**
      * Set a new Rectangle.
-     * @param size
+     * @param size of rectangle.
      */
     void setSize(Rectangle size);
     /**
      * Set a new size in case of new Texture.
-     * @param width
-     * @param height
+     * @param width x
+     * @param height y
      */
     void setSize(double width, double height);
 
@@ -57,9 +57,10 @@ public interface Sprite {
      * @return Texture
      */
     Texture getTexture();
+
     /**
-     * 
-     * @param tex
+     * Set new Texture.
+     * @param tex new with img and size
      */
     void setTexture(Texture tex);
 

@@ -107,7 +107,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView,
 
     /**
      * Handle on mouse click or drag on canvas, for check and move sprites.
-     * @param event
+     * @param event the event who triggered the method
      */
     @FXML public final void handleOnMouseClickedOrDrag(final Event event) {
         final Optional<Sprite> temp = sprites.stream()
