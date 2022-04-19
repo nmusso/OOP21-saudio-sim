@@ -109,11 +109,10 @@ public class ListenerController {
     }
 
     /**
-     * 
-     * @param pluginName
+     * @return plugin manager istance.
      */
-    public void removePlugin(final String pluginName) {
-        this.mng.removePlugin(pluginName);
+    public PluginManager getPluginManager() {
+        return this.mng;
     }
 
     /**

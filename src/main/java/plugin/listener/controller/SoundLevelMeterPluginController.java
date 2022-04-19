@@ -76,7 +76,7 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
     @Override
     public void removePlugin() {
         this.thMeter.stopTh();
-        this.mainController.getListenerCtr().removePlugin(this.plugin.getClassName());
+        this.mainController.getListenerCtr().getPluginManager().removePlugin(this.plugin.getClassName());
 
     }
 
