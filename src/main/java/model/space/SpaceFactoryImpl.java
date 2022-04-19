@@ -2,13 +2,15 @@ package model.space;
 
 public class SpaceFactoryImpl  implements SpaceFactory {
 
+    private static final float DIM = 10f; 
+
     /**
     *
     *{@inheritDoc}
     */
     @Override
     public SpaceImpl createDefaultSpace() {
-        return new SpaceImpl(10f, 10f);
+        return new SpaceImpl(DIM, DIM);
     }
 
     /**
