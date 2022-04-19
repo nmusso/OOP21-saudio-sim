@@ -29,7 +29,13 @@ public interface Listener {
      * @param at
      * @param up
      */
-    void setOrientation(Vec3f at, Vec3f up);
+    void setOrientation(Vec3f up, Vec3f at);
+
+    /**
+     * 
+     * @param at
+     */
+    void setAtOrientation(Vec3f at);
 
     /**
      * 

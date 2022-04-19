@@ -23,7 +23,7 @@ class ListenerTest {
     }
 
 
-    private void checkListenerSpec(final Listener listener, final Optional<Vec3f> pos, final Optional<Vec3f> at, final Optional<Vec3f> up) {
+    private void checkListenerSpec(final Listener listener, final Optional<Vec3f> pos, final Optional<Vec3f> up, final Optional<Vec3f> at) {
         pos.ifPresent(val -> assertEquals(listener.getPosition(), val));
         at.ifPresent(val -> assertEquals(listener.getAtOrientation(), val));
         up.ifPresent(val -> assertEquals(listener.getUpOrientation(), val));
@@ -43,21 +43,11 @@ class ListenerTest {
     void testOrientation() {
         final Listener listener = lsFactory.createListener(AudioManager.getContext());
 
-        /*TODO check real orientation value*/
         final Vec3f atLin = new Vec3f(1.0f, 0.0f, 0.0f);
         final Vec3f upLin = new Vec3f(0.0f, 0.0f, 1.0f);
-        listener.setOrientation(atLin, upLin);
+        listener.setOrientation(upLin, atLin);
 
-        checkListenerSpec(listener, Optional.empty(), Optional.of(atLin), Optional.of(upLin));
-
-
-        /*at and up vector are not linearly independent*/
-        final Vec3f atDip = new Vec3f(3.0f, 0.0f, 2.0f);
-        final Vec3f upDip = new Vec3f(0.0f, 1.0f, 3.0f);
-        listener.setOrientation(atDip, upDip);
-
-        checkListenerSpec(listener, Optional.empty(), Optional.of(atLin), Optional.of(upLin));
-
+        checkListenerSpec(listener, Optional.empty(), Optional.of(upLin), Optional.of(atLin));
     }
 
     @Test
@@ -74,8 +64,8 @@ class ListenerTest {
 
         final Vec3f at = new Vec3f(2.0f, 0.0f, 0.0f);
         final Vec3f up = new Vec3f(0.0f, 1.0f, 1.0f);
-        listener2 = lsFactory.createListener(AudioManager.getContext(), pos, at, up);
-        checkListenerSpec(listener2, Optional.of(pos), Optional.of(at), Optional.of(up));
+        listener2 = lsFactory.createListener(AudioManager.getContext(), pos, up, at);
+        checkListenerSpec(listener2, Optional.of(pos), Optional.of(up), Optional.of(at));
 
 
     }

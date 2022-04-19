@@ -50,9 +50,9 @@ public class ListenerControllerView implements Initializable, ListenerView {
         this.sliderAtOr.setValue(0);
 
         this.sliderAtOr.valueProperty().addListener((obs, oldV, newV) -> {
-            this.ctrListener.getListener().setOrientation(new Vec3f(0.0f, 0.0f, -1.0f), new Vec3f((float) Math.sin(Math.toRadians(-newV.intValue())),
-                                                                                                  (float) Math.cos(Math.toRadians(-newV.intValue())), 
-                                                                                                  0.0f));
+            this.ctrListener.getListener().setAtOrientation(new Vec3f((float) Math.sin(Math.toRadians(-newV.intValue())),
+                                                                      (float) Math.cos(Math.toRadians(-newV.intValue())), 
+                                                                       0.0f));
             this.lblDegrees.setText(String.valueOf(newV.intValue()));
         });
 

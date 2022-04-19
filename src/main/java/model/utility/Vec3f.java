@@ -94,6 +94,10 @@ public class Vec3f {
                 && Float.floatToIntBits(y) == Float.floatToIntBits(other.y)
                 && Float.floatToIntBits(z) == Float.floatToIntBits(other.z);
     }
+    
+    public String toString() {
+        return "x: " + x + "y: " + y + "z:" + z;
+    }
 
 
 }

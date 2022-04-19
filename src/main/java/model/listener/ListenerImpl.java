@@ -26,10 +26,10 @@ public class ListenerImpl implements Listener {
         this(context, position, new Vec3f(0.0f, 0.0f, -1.0f), new Vec3f(0.0f, 1.0f, 0.0f));
     }
 
-    ListenerImpl(final Context context, final Vec3f position, final Vec3f at, final Vec3f up) {
+    ListenerImpl(final Context context, final Vec3f position, final Vec3f up, final Vec3f at) {
         this.context = context;
         this.setPosition(position);
-        this.setOrientation(at, up);
+        this.setOrientation(up, at);
         alListenerf(EXTEfx.AL_METERS_PER_UNIT, 1.0f);
     }
 
@@ -57,15 +57,21 @@ public class ListenerImpl implements Listener {
      * @inheritDoc
      */
     @Override
-    public final void setOrientation(final Vec3f at, final Vec3f up) {
-        //if (!this.checkLinearlyInd(at, up)) return;
-
+    public final void setOrientation(final Vec3f up, final Vec3f at) {
         this.atOrientation = at;
         this.upOrientation = up;
-        final float[] atUpVec = { this.atOrientation.getX(), this.atOrientation.getY(), this.atOrientation.getZ(),
-                this.upOrientation.getX(), this.upOrientation.getY(), this.upOrientation.getZ() };
+        final float[] atUpVec = { this.upOrientation.getX(), this.upOrientation.getY(), this.upOrientation.getZ(),
+                this.atOrientation.getX(), this.atOrientation.getY(), this.atOrientation.getZ() };
         alListenerfv(AL10.AL_ORIENTATION, atUpVec);
 
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setAtOrientation(final Vec3f at) {
+        this.setOrientation(this.upOrientation, at);
     }
 
     /**
@@ -93,11 +99,6 @@ public class ListenerImpl implements Listener {
     @Override
     public Context getCurrentContext() {
         return this.context;
-    }
-
-    /*TODO check division by 0*/
-    private boolean checkLinearlyInd(final Vec3f at, final Vec3f up) {
-        return true;
     }
 
     /**
