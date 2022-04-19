@@ -20,10 +20,6 @@ public class PathBuffer extends AbstractBuffer {
 
     /**
      * {@inheritDoc}
-     * 
-     * @throws IOException
-     * @throws UnsupportedAudioFileException
-     * @throws FileNotFoundException
      */
     @Override
     protected AudioInputStream getAudioStream()
