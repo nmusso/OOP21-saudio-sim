@@ -70,7 +70,7 @@ public class SpaceImpl implements Space {
     * @return true if pos is ok
     */
     private boolean checkBorder(final Vec3f pos) {
-        return (pos.getX() > 0f || pos.getX() < this.xMax) && (pos.getY() > 0f || pos.getY() < this.yMax);
+        return pos.getX() <= this.xMax && pos.getX() >= 0f && pos.getY() >= 0f && pos.getY() <= this.yMax;
     }
 
     /**

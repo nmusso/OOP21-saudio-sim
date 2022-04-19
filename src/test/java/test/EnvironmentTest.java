@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -26,6 +27,7 @@ import model.listener.ListenerFactoryImpl;
 import model.source.FRSource;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
+import model.utility.Vec3f;
 
 class EnvironmentTest {
 
@@ -96,6 +98,7 @@ class EnvironmentTest {
 
         assertEquals(env.getSpace().getXmax(), 10.0f);
         assertNotEquals(env.getSpace().getXmax(), 2.0f);
+        assertTrue(env.getSpace().isAvailable(new Vec3f(10f), new HashSet<>()));
     }
 
     @Test
