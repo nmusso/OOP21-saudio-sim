@@ -124,15 +124,39 @@ L’interazione dell’utente con l’equalizzatore, composto da slider, mi ha p
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
+\begin{itemize}
+	\item Buffer: test di caricamento sia attraverso file system sia da classpath, oltre al test del corretto funzionamento del caching
+	\item Extensions: test per assicurarsi che l’applicazione di filtri ed effetti utilizzando i metodi scritti non producesse errori, cosa consultabile attraverso un preciso metodo della libreria
+\end{itemize}
+
 \section{Metodologia di lavoro}
 \subsection{Niccolò Mussoni}
+Buffer, BufferCache, view per l’importazione di un file WAV, Extensions (effetti + filtri), view per l’applicazione degli effetti su tutte le sorgenti attraverso un semplice equalizzatore
 \subsection{Alessandro Sciarrillo}
 \subsection{Alex Presepi}
 \subsection{Simone Lugaresi}
 \section{Note di sviluppo}
+\subsection{Niccolò Mussoni}
+\begin{itemize}
+	\item Lambda expressions
+	\item Stream
+	\item Optional
+	\item JavaFX, per la GUI
+	\item OpenAL, libreria audio su cui si basa l’intero progetto
+	\item Spring Framework, per accedere a tutte le risorse all’interno di una cartella del classpath
+	\item Per la conversione da WAV stereo a WAV mono mi sono affidato a del codice online, non avendo le competenze necessarie per manipolarlo, che ho poi adattato alla singola conversione di cui necessitavo: \url{http://www.java2s.com/example/java/javax.sound.sampled/converts-re-samples-and-mono-tofrom-stereo-audio-data.html}
+\end{itemize}
+\subsection{Alessandro Sciarrillo}
+\subsection{Alex Presepi}
+\subsection{Simone Lugaresi}
 
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
+\subsection{Niccolò Mussoni}
+\subsection{Alessandro Sciarrillo}
+\subsection{Alex Presepi}
+\subsection{Simone Lugaresi}
+
 \section{Difficoltà incontrate e commenti per i docenti OPZIONALE}
 
 \appendix
@@ -140,6 +164,15 @@ L’interazione dell’utente con l’equalizzatore, composto da slider, mi ha p
 
 \chapter{Esercitazioni di laboratorio}
 \subsection{Niccolò Mussoni}
+\begin{itemize}
+	\item Laboratorio 05: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=87881#p136373}
+	\item Laboratorio 06: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=87880#p139071}
+	\item Laboratorio 07: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=88829#p136368}
+	\item Laboratorio 08: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=89272#p139072}
+	\item Laboratorio 09: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=90125#p138604}
+	\item Laboratorio 10: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=91128#p139736}
+\end{itemize}
+
 \subsection{Alessandro Sciarrillo}
 \subsection{Alex Presepi}
 \subsection{Simone Lugaresi}
