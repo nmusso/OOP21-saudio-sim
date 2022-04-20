@@ -70,7 +70,7 @@ public class RectangleImpl implements Rectangle {
     public RectangleImpl() {
         width = 1;
         height = 1;
-        position = new Pair<Double, Double>(0.0, 0.0);
+        position = new Pair<>(0.0, 0.0);
     }
 
     /**
@@ -83,7 +83,7 @@ public class RectangleImpl implements Rectangle {
      * @param h height
      */
     public RectangleImpl(final double x, final double y, final double w, final  double h) {
-        position = new Pair<Double, Double>(x, y);
+        position = new Pair<>(x, y);
         width = w;
         height = h;
     }
@@ -92,8 +92,7 @@ public class RectangleImpl implements Rectangle {
      * {@inheritDoc}
      */
     public boolean overlap(final Rectangle other) {
-        boolean notOverlap = (position.getX() + width < other.getPosition().getX()) || (position.getY() + height < other.getPosition().getY())
-                || (other.getPosition().getX() + other.getWidth() < position.getX()) || (other.getPosition().getY() + other.getHeight() < position.getY());
-        return !(notOverlap);
+        return !(position.getX() + width < other.getPosition().getX() || position.getY() + height < other.getPosition().getY()
+                || other.getPosition().getX() + other.getWidth() < position.getX() || other.getPosition().getY() + other.getHeight() < position.getY());
     }
 }

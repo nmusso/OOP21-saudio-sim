@@ -88,7 +88,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      * @param id  source to move.
      */
     public void moveSource(final Vec3f pos, final int id) {
-        Optional<FRSource> s = this.env.getSourceHub().getSource(id);
+        final Optional<FRSource> s = this.env.getSourceHub().getSource(id);
         if (s.isPresent()) {
             this.env.moveSource(s.get(), pos);
         }
