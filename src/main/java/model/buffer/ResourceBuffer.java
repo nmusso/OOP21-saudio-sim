@@ -13,6 +13,14 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class ResourceBuffer extends AbstractBuffer {
 
+    /**
+     * Construct a buffer from a resource in the classpath.
+     * 
+     * @param file the path of the file
+     * @throws UnsupportedAudioFileException if the type of the file is not
+     *                                       supported
+     * @throws IOException                   if an error occur during read
+     */
     public ResourceBuffer(final String file) throws UnsupportedAudioFileException, IOException {
         super(file);
     }

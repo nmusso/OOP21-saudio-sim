@@ -8,21 +8,23 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import model.buffer.Buffer;
-import model.source.*;
+import model.buffer.ResourceBuffer;
+import model.source.FRSource;
+import model.source.Source;
+import model.source.SourceFactory;
+import model.source.SourceFactoryImpl;
+import model.source.SourceImpl;
+import model.source.SourceType;
 import model.source.hub.SourcesHub;
 import model.source.hub.SourcesHubFactory;
 import model.source.hub.SourcesHubFactoryImpl;
+import model.utility.Vec3f;
 import model.audiomanager.AudioManager;
-import model.buffer.*;
-import model.utility.*;
 
 class SourceTest {
 

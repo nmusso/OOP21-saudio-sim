@@ -14,6 +14,14 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class PathBuffer extends AbstractBuffer {
 
+    /**
+     * Construct a buffer from a path in the file system.
+     * 
+     * @param file the path of the file
+     * @throws UnsupportedAudioFileException if the type of the file is not
+     *                                       supported
+     * @throws IOException                   if an error occur during read
+     */
     public PathBuffer(final String file) throws UnsupportedAudioFileException, IOException {
         super(file);
     }
