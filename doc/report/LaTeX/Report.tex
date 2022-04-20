@@ -180,6 +180,26 @@ SourcesHub è come spiega il nome è un Hub che permette di avere un insieme di 
 \label{img:sourcesHub}
 \end{figure}
 %
+La gestione dell'MVC è alquanto semplice, il SourceController ha una comunicazione bilaterale con SourceControllerView, questo perchè la View deve richiedere operazioni in relazione alle interazione con l'utente (aggiunta, rimozione e modifica di uno speaker) e allo stesso tempo il Controller deve poter aggiornare la View quando lo speaker selezionato cambia e le componenti della view devono essere modificare per mantenerle sonsistenti allo speaker selezionato attualmente.
+Il controller poi effettua i cambiamenti sulle sorgenti che sono contenute in SourcesHub contenuti da Environment.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/source/SourcesMVC.png}
+\caption{Rappresentazione schematica MVC.}
+\label{img:sourcesHub}
+\end{figure}
+%
+
+
+
+
+
+
+
+
+
+
 
 
 \subsection*{Alex Presepi}
