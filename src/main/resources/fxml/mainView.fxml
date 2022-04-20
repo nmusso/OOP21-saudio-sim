@@ -22,9 +22,9 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="33.0" prefHeight="30.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" percentHeight="33.0" prefHeight="30.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" percentHeight="34.0" prefHeight="30.0" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
                   <BorderPane fx:id="equalizerPane" />
@@ -37,8 +37,8 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="333.0" minHeight="10.0" prefHeight="333.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="67.0" vgrow="ALWAYS" />
+                <RowConstraints minHeight="10.0" percentHeight="80.0" prefHeight="333.0" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
                   <GridPane gridLinesVisible="true">
@@ -54,7 +54,7 @@
                         <BorderPane fx:id="spaceConfigPane" prefHeight="67.0" prefWidth="236.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
-                  <BorderPane fx:id="environmentPane" prefHeight="300.0" prefWidth="420.0" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                  <BorderPane fx:id="environmentPane" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                </children>
             </GridPane>
          </children>

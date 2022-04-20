@@ -36,9 +36,8 @@
             </GridPane>
             <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="128.0" minWidth="10.0" prefWidth="81.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="219.0" minWidth="10.0" prefWidth="219.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="186.0" minWidth="10.0" prefWidth="29.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="20.0" prefWidth="81.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="80.0" prefWidth="219.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
@@ -61,7 +60,7 @@
               </rowConstraints>
                <children>
                   <ComboBox fx:id="cmbPreset" onAction="#handleCmbPreset" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                  <Label text="Demo" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Label text="Preset" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                </children>
             </GridPane>
          </children>
