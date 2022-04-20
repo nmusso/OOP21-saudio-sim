@@ -17,6 +17,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.Pane;
 
+/**
+ * Controller of the view SourceView.
+ *
+ */
 public class SourceControllerView implements Initializable, ControllerView, SourceView {
 
     private static final int CHART_MAXSIZE_W = 40;

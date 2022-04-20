@@ -2,18 +2,22 @@ package model.source;
 
 import model.utility.Vec3f;
 
+/**
+ * Factory for Sources and FRSources with parameters variation.
+ *
+ */
 public class SourceFactoryImpl implements SourceFactory {
 
     /**
-    * @inheritDoc
-    */
+     * {@inheritDoc}
+     */
     @Override
     public Source createSource() {
         return new SourceImpl();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Source createSource(final Vec3f position) {
@@ -21,7 +25,7 @@ public class SourceFactoryImpl implements SourceFactory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public FRSource createFRSource() {
@@ -29,15 +33,15 @@ public class SourceFactoryImpl implements SourceFactory {
     }
 
     /**
-    * @inheritDoc
-    */
+     * {@inheritDoc}
+     */
     @Override
     public FRSource createFRSource(final SourceType type) {
         return new FRSourceImpl(type);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public FRSource createFRSource(final Vec3f position, final SourceType type) {

@@ -1,5 +1,9 @@
 package model.source;
 
+/**
+ * Types of frequency range.
+ *
+ */
 public enum SourceType {
     /**
      *  Low range type.

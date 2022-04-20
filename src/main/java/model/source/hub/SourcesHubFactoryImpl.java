@@ -4,10 +4,14 @@ import java.util.Set;
 
 import model.source.FRSource;
 
+/**
+ * Factory of SourcesHub.
+ * 
+ */
 public class SourcesHubFactoryImpl implements SourcesHubFactory {
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public SourcesHub createSourcesHub() {
@@ -15,7 +19,7 @@ public class SourcesHubFactoryImpl implements SourcesHubFactory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public SourcesHub createSourcesHub(final Set<FRSource> sources) {

@@ -3,7 +3,7 @@ package model.source;
 import model.utility.Vec3f;
 
 /**
- * Factory for Sources and FRSources with param variation.
+ * Interface of Factory for Sources and FRSources with parameters variation.
  *
  */
 public interface SourceFactory {

@@ -1,5 +1,9 @@
 package controller.view;
 
+/**
+ * Source View related to the control of the speakers.
+ *
+ */
 public interface SourceView extends ControllerView {
 
     /**

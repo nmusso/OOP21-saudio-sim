@@ -6,6 +6,11 @@ import model.extension.filter.Filter;
 import model.extension.filter.FilterImpl;
 import model.utility.Vec3f;
 
+/**
+ * Frequency Range Source.
+ * Extension of Source that adds methods for manage the frequency range.
+ *
+ */
 public class FRSourceImpl extends SourceImpl implements FRSource {
 
     private SourceType type;
@@ -31,7 +36,7 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public SourceType getType() {
@@ -39,7 +44,7 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public final void setType(final SourceType type) {
@@ -53,7 +58,7 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
@@ -63,7 +68,7 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(final Object obj) {
@@ -79,5 +84,4 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
         final FRSourceImpl other = (FRSourceImpl) obj;
         return Objects.equals(filter, other.filter) && type == other.type;
     }
-
 }

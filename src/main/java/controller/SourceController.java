@@ -3,7 +3,6 @@ package controller;
 import java.util.Optional;
 import java.util.function.Function;
 
-import controller.view.SourceControllerView;
 import controller.view.SourceView;
 import model.source.FRSource;
 import model.source.SourceFactory;
@@ -11,6 +10,10 @@ import model.source.SourceFactoryImpl;
 import model.source.SourceType;
 import view.utility.TypeSprite;
 
+/**
+ * Controller for the SourceView which will communicate with model and his ViewController.
+ *
+ */
 public class SourceController implements ControllerApplication<SourceView> {
 
     private final MainController mainCtr;
@@ -74,7 +77,7 @@ public class SourceController implements ControllerApplication<SourceView> {
      * 
      */
     public void updateSelectedSource() {
-        Optional<FRSource> s =  mainCtr.getEnvironmentController().getSelectedSource();
+        final Optional<FRSource> s =  mainCtr.getEnvironmentController().getSelectedSource();
         if (s.isPresent()) {
             this.selectedSource = s.get();
             this.controllerView.updateSelectedSpeaker();
@@ -110,7 +113,7 @@ public class SourceController implements ControllerApplication<SourceView> {
     }
 
     /**
-     * Get the percentages for the frequencies and update the PieChart.
+     * Get the percentages for the frequencies and update the frequency data.
      * 
      */
     public void updatePieChartData() {

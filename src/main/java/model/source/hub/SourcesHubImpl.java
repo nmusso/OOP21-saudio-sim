@@ -13,6 +13,10 @@ import model.source.FRSource;
 import model.source.Source;
 import model.utility.Vec3f;
 
+/**
+ * Hub that gathers a group of Sources in it and that helps to manage this group as a whole.
+ *
+ */
 public class SourcesHubImpl implements SourcesHub {
 
     private final Set<FRSource> sources;
@@ -30,7 +34,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Set<FRSource> getAll() {
@@ -38,7 +42,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public List<Vec3f> getAllPositions() {
@@ -46,7 +50,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Set<FRSource> getPlaying() {
@@ -54,7 +58,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Optional<FRSource> getSource(final Integer id) {
@@ -62,7 +66,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Optional<FRSource> getSourceFromPos(final Vec3f position) {
@@ -70,7 +74,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void addSource(final FRSource s) {
@@ -78,7 +82,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void removeSource(final FRSource s) {
@@ -86,7 +90,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void playAll() {
@@ -94,7 +98,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void pauseAll() {
@@ -102,7 +106,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void stopAll() {
@@ -110,7 +114,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void generateAllSources(final int buffer) {
@@ -118,7 +122,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void applyEffect(final ALEffects effect, final float value) {
@@ -126,7 +130,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void removeEffect(final ALEffects effect) {
@@ -134,7 +138,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void deleteAll() {

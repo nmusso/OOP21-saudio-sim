@@ -13,6 +13,11 @@ import static org.lwjgl.openal.AL10.alDeleteSources;
 import model.utility.Vec3f;
 import java.util.Objects;
 
+/**
+ * Basic Source.
+ * Source with fundamental methods.
+ *
+ */
 public class SourceImpl implements Source {
 
     private final Integer id;
@@ -30,7 +35,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Integer getId() {
@@ -38,7 +43,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void play() {
@@ -47,7 +52,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void pause() {
@@ -56,7 +61,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void stop() {
@@ -65,7 +70,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isPlaying() {
@@ -73,7 +78,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void generateSource(final int buffer) {
@@ -81,7 +86,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public final void setPosition(final Vec3f position) {
@@ -90,7 +95,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Vec3f getPosition() {
@@ -98,7 +103,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void delete() {
@@ -106,7 +111,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
@@ -114,7 +119,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(final Object obj) {

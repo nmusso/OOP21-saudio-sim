@@ -9,7 +9,7 @@ import model.source.FRSource;
 import model.utility.Vec3f;
 
 /**
- * Sources Hub
+ * Sources Hub Interface.
  * Hub that gathers a group of Sources in it and that helps to manage this group as a whole.
  *
  */

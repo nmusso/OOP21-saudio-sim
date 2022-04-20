@@ -5,8 +5,8 @@ import java.util.Set;
 import model.source.FRSource;
 
 /**
- * Source Hub Factory
- * Factory of SourcesHub.
+ * SourcesHub Factory Intereface.
+ * 
  */
 public interface SourcesHubFactory {
 
@@ -20,6 +20,7 @@ public interface SourcesHubFactory {
     /**
      * Create a SourcesHub from a set of Sources.
      * 
+     * @param sources
      * @return SourcesHub from Set of Sources
      */
     SourcesHub createSourcesHub(Set<FRSource> sources);
