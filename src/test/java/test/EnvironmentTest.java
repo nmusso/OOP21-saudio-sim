@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -27,7 +26,6 @@ import model.listener.ListenerFactoryImpl;
 import model.source.FRSource;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
-import model.utility.Vec3f;
 
 class EnvironmentTest {
 
@@ -87,18 +85,9 @@ class EnvironmentTest {
         sources.add(source3);
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
-        assertEquals(env.getSourceHub().getSource(1), source1);
-        assertEquals(env.getSourceHub().getSource(2), source2);
-        assertNotEquals(env.getSourceHub().getSource(1), source2);
-    }
-
-    @Test
-    void testSpace() {
-        final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
-
-        assertEquals(env.getSpace().getXmax(), 10.0f);
-        assertNotEquals(env.getSpace().getXmax(), 2.0f);
-        assertTrue(env.getSpace().isAvailable(new Vec3f(10f), new HashSet<>()));
+        assertEquals(env.getSourceHub().getSource(1), Optional.of(source1));
+        assertEquals(env.getSourceHub().getSource(2), Optional.of(source2));
+        assertNotEquals(env.getSourceHub().getSource(1), Optional.of(source2));
     }
 
     @Test

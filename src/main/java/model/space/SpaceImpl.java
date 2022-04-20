@@ -1,6 +1,8 @@
 package model.space;
 
-import java.util.Set;
+
+
+import java.util.List;
 
 import model.utility.Vec3f;
 
@@ -60,7 +62,7 @@ public class SpaceImpl implements Space {
     *{@inheritDoc}
     */
     @Override
-    public boolean isAvailable(final Vec3f pos, final Set<Vec3f> positions) {
+    public boolean isAvailable(final Vec3f pos, final List<Vec3f> positions) {
        return checkBorder(pos) && checkBusyPos(pos, positions);
     }
 
@@ -78,7 +80,7 @@ public class SpaceImpl implements Space {
     * @param vec3f pos to check
     * @return true if pos is free else false
     */
-    private boolean checkBusyPos(final Vec3f pos, final Set<Vec3f> position) {
+    private boolean checkBusyPos(final Vec3f pos, final List<Vec3f> position) {
         return !position.contains(pos);
     }
 }

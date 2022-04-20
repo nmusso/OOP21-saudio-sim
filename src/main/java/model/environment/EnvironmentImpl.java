@@ -97,7 +97,7 @@ public class EnvironmentImpl implements Environment {
      */
     @Override
     public void moveSource(final FRSource source, final Vec3f pos) {
-        Optional<FRSource> s = this.sourcesHub.getSource(source.getId());
+        final Optional<FRSource> s = this.sourcesHub.getSource(source.getId());
         if (s.isPresent()) {
             s.get().setPosition(pos);
         }

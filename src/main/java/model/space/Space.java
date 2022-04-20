@@ -1,6 +1,6 @@
 package model.space;
 
-import java.util.Set;
+import java.util.List;
 
 import model.utility.Vec3f;
 
@@ -36,5 +36,5 @@ public interface Space {
       * @param position busy
       * @return True if the pos is correct..
       */
-     boolean isAvailable(Vec3f pos, Set<Vec3f> position);
+     boolean isAvailable(Vec3f pos, List<Vec3f> position);
 }
