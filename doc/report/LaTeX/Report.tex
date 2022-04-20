@@ -64,15 +64,15 @@ La prima parte del mio lavoro è centrata su due argomenti:
 
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/Buffer.png}
+\includegraphics[width=\textwidth]{img/buffer/Buffer.png}
 \caption{Rappresentazione UML dell’applicazione del pattern Template Method per i diversi tipi di Buffer}
 \label{img:templatebuffer}
 \end{figure}
-Il primo problema da gestire è stato il fatto che il Buffer potesse essere generato sia da un file nel File System, sia da un file incluso nelle risorse del Classpath. Visto che i Buffer differiscono solo per come viene importato inizialmente lo Stream, per risolvere questo problema ho sfruttato il pattern template method, in modo da poter essere usato anche per altri tipi di Buffer non presenti nel progetto. Nel mio caso, il metodo template è generateBuffer, mentre il metodo primitivo è getAudioStream, come da figura 1.1.
+Il primo problema da gestire è stato il fatto che il Buffer potesse essere generato sia da un file nel File System, sia da un file incluso nelle risorse del Classpath. Visto che i Buffer differiscono solo per come viene importato inizialmente lo Stream, per risolvere questo problema ho sfruttato il pattern template method, in modo da poter essere usato anche per altri tipi di Buffer non presenti nel progetto. Nel mio caso, il metodo template è generateBuffer, mentre il metodo primitivo è getAudioStream, come da figura 2.1.
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/BufferImport.png}
+\includegraphics[width=\textwidth]{img/buffer/BufferImport.png}
 \caption{Rappresentazione UML della Factory per Buffer e dell’applicazione del pattern Singleton per il caching}
 \label{img:cachebuffer}
 \end{figure}
@@ -80,7 +80,7 @@ Il secondo problema da gestire era evitare Buffer duplicati e per risolvere ciò
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/BufferMVC.png}
+\includegraphics[width=\textwidth]{img/buffer/BufferMVC.png}
 \caption{Rappresentazione UML della Factory per Buffer e dell’applicazione del pattern Singleton per il caching}
 \label{img:buffermvc}
 \end{figure}
@@ -88,7 +88,7 @@ Quando dalla view viene richiesta l’importazione di un file, esso viene tratta
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/Extensions.png}
+\includegraphics[width=\textwidth]{img/extension/Extensions.png}
 \caption{Rappresentazione UML della parte comune delle estensioni}
 \label{img:extensions}
 \end{figure}
@@ -96,7 +96,7 @@ Sia filtri che effetti condividono la parte in cui vengono applicati alla sorgen
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/Filter.png}
+\includegraphics[width=\textwidth]{img/extension/Filter.png}
 \caption{Rappresentazione UML della gestione dei filtri}
 \label{img:filter}
 \end{figure}
@@ -104,7 +104,7 @@ I filtri hanno un valore impostato a priori per i tre tipi di filtro (passa-bass
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/Effect.png}
+\includegraphics[width=\textwidth]{img/extension/Effect.png}
 \caption{Rappresentazione UML della gestione degli effetti attraverso enum}
 \label{img:effects}
 \end{figure}
@@ -112,7 +112,7 @@ Per la gestione degli effetti e dei suoi attributi mi sono affidato ad un enum c
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/EffectsMVC.png}
+\includegraphics[width=\textwidth]{img/extension/EffectsMVC.png}
 \caption{Rappresentazione UML dello schema MVC relativo all’utilizzo degli effetti}
 \label{img:effectsmvc}
 \end{figure}
@@ -129,7 +129,7 @@ Due sono gli argomenti principali da me gestiti:
 
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/Space.png}
+\includegraphics[width=\textwidth]{img/space/Space.png}
 \caption{Rappresentazione UML dell'nterfaccia Space e la sua implementazione}
 \label{img:space}
 \end{figure}
@@ -137,7 +137,7 @@ Space si pone l'obbiettivo di risolvere il problema di delimitare uno spazio in 
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/SpaceFactory.png}
+\includegraphics[width=\textwidth]{img/space/SpaceFactory.png}
 \caption{Rappresentazione UML della Factory per Space}
 \label{img:spacefactory}
 \end{figure}
@@ -145,7 +145,7 @@ Per agevolare la creazione di Space, sia da utilizzare nei preset degli Environm
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/SpaceMVC.png}
+\includegraphics[width=\textwidth]{img/space/SpaceMVC.png}
 \caption{Rappresentazione UML della gestione del MVC con space}
 \label{img:spacemvc}
 \end{figure}
@@ -153,7 +153,7 @@ La parte di MVC che riguarda space è molto semplice, nella sezione di SpaceView
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/Environment.png}
+\includegraphics[width=\textwidth]{img/environment/Environment.png}
 \caption{Rappresentazione UML della parte di Environment}
 \label{img:evnrionment}
 \end{figure}
@@ -162,7 +162,7 @@ Ho successivamente implementato la factory per poter creare Environment di defau
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/EnvironmentFactory.png}
+\includegraphics[width=\textwidth]{img/environment/EnvironmentFactory.png}
 \caption{Rappresentazione UML della factory di Environment}
 \label{img:environmentfactory}
 \end{figure}
@@ -170,7 +170,7 @@ Ho successivamente implementato la factory per poter creare Environment di defau
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/EnvironmentMVC.png}
+\includegraphics[width=\textwidth]{img/environment/EnvironmentMVC.png}
 \caption{Rappresentazione UML della gestione del MVC con Environment}
 \label{img:environmentmvc}
 \end{figure}
@@ -178,11 +178,11 @@ La parte MVC di environemnt è formata da EnvironmentView che è ciò che comuni
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/AudioManager.png}
+\includegraphics[width=\textwidth]{img/environment/AudioManager.png}
 \caption{Rappresentazione UML dello schema semplice di AudioManager}
 \label{img:audiomanager}
 \end{figure}
-Si tratta dell'implemetazione di tre classi semplici, che pero sono necessarie per una corretta comunicazione con la libreria e le nostre classi. Servono per creare il contesto nel quale le source dovranno riprodurre i suoni e il listener dovra riceverli.
+Si tratta dell'implementazione di tre classi semplici, che pero sono necessarie per una corretta comunicazione con la libreria e le nostre classi. Servono per creare il contesto nel quale le source dovranno riprodurre i suoni e il listener dovra riceverli.
 %
 
 \chapter{Sviluppo}

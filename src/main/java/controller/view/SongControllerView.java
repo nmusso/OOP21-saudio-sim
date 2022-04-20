@@ -165,7 +165,7 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
     private void addStartSongs() throws IOException {
         final ClassLoader loader = Thread.currentThread().getContextClassLoader();
         final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(loader);
-        Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream().map(res -> res.getFilename())
-                .forEach(res -> ctrl.addBufferFromResource(SONG_PATH + res));
+        Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream().map(res -> SONG_PATH + res.getFilename())
+                .forEach(ctrl::addBufferFromResource);
     }
 }

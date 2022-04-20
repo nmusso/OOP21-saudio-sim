@@ -11,9 +11,13 @@ import model.extension.AbstractExtension;
  */
 public abstract class AbstractFilter extends AbstractExtension implements Filter {
     /**
+     * Number of simultaneously filter supported in the buffer.
+     */
+    private static final int NUM_SIMUL_FILTER = 1;
+    /**
      * List containing slot attribute.
      */
-    private final int[] filter = new int[1];
+    private final int[] filter = new int[NUM_SIMUL_FILTER];
 
     /**
      * Initialise the filter buffers.
