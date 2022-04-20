@@ -20,7 +20,6 @@ import plugin.listener.model.PluginManager;
 public class ListenerController {
     private static final String PLUGIN_PATH = "plugin.listener.model";
     private static final String CONTROLLER_PATH = "plugin.listener.controller";
-    private static final String INTERFACE_PATH = "model.listener.plugin";
     private ListenerView controllerView;
     private final Listener listener;
     private final MainController mainCtr;
@@ -44,7 +43,7 @@ public class ListenerController {
         Set<String> pluginFound = new HashSet<>();
 
         try (ScanResult scanResult = new ClassGraph().enableAllInfo().acceptPackages(PLUGIN_PATH).scan()) {
-            final ClassInfoList widgetClasses = scanResult.getSubclasses(INTERFACE_PATH + ".AbstractPlugin");
+            final ClassInfoList widgetClasses = scanResult.getSubclasses(PLUGIN_PATH + ".AbstractPlugin");
             pluginFound = widgetClasses.getNames().stream()
                                                       .map(x -> Stream.of(x.split(PLUGIN_PATH + "."))
                                                               .collect(Collectors.toList())
