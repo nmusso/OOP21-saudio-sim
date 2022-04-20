@@ -15,7 +15,6 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
     private Optional<SourcesHub> sources;
     private final Listener listener;
 
-    /*TODO nel controller quando le source si stoppano ripassare il sourceHUb*/
     public SoundLevelMeterPlugin(final Listener listener) {
         this.listener = listener;
         this.sources = Optional.empty();
@@ -43,9 +42,10 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
      * @return distance from the nearest source or -1 if there are no sources. 
      */
     private double sourceDistanceMin() {
-        final Optional<Double> minDistance = this.sourceHubPresent() ? this.sources.get().getAllPositions().stream()
-                                                                .map(p -> Math.sqrt(Math.pow(p.getX() - this.listener.getPosition().getX(), 2)
-                                                                                   + Math.pow(p.getY() - this.listener.getPosition().getY(), 2)))
+        final Optional<Double> minDistance = this.sourceHubPresent() ? this.sources.get().getAll().stream()
+                                                                .filter(s -> s.isPlaying())
+                                                                .map(p -> Math.sqrt(Math.pow(p.getPosition().getX() - this.listener.getPosition().getX(), 2)
+                                                                                   + Math.pow(p.getPosition().getY() - this.listener.getPosition().getY(), 2)))
                                                                 .collect(Collectors.minBy(Comparator.naturalOrder()))
                                                                 : Optional.empty();
         return minDistance.orElse(-1d);

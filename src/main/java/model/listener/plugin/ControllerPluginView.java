@@ -2,13 +2,18 @@ package model.listener.plugin;
 
 import controller.view.ListenerView;
 
+/**
+ * 
+ *
+ * @param <C>
+ */
 public interface ControllerPluginView<C> {
 
     /**
      * 
-     * @param c
+     * @param controller 
      */
-    void setControllerApplication(C c);
+    void setControllerApplication(C controller);
 
     /**
      * @param view

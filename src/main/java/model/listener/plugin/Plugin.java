@@ -1,8 +1,11 @@
 package model.listener.plugin;
 
-
-
-
+/**
+ * Plug-in is an additional, visual or sound, feature of listener.
+ * This interface represents the basic operation that every
+ * plug-in implemented must have.
+ *
+ */
 public interface Plugin {
 
     /**
@@ -18,7 +21,7 @@ public interface Plugin {
 
     /**
      * 
-     * @return the state of activity of the plug-in
+     * @return the activity status of the plug-in
      */
     Boolean isEnabled();
 
