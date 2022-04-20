@@ -17,7 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.Pane;
 
-public class SourceControllerView implements Initializable, ControllerView {
+public class SourceControllerView implements Initializable, ControllerView, SourceView {
 
     private static final int CHART_MAXSIZE_W = 40;
     private static final int CHART_MAXSIZE_H = 40;
@@ -106,8 +106,8 @@ public class SourceControllerView implements Initializable, ControllerView {
 
     /**
      * Updates the radio button group selection in order to the selected speaker.
-     * 
      */
+    @Override
     public void updateSelectedSpeaker() {
         this.lblX.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getX()));
         this.lblY.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getY()));
@@ -138,7 +138,8 @@ public class SourceControllerView implements Initializable, ControllerView {
      * @param midValue
      * @param lowValue
      */
-    public void updatePieChartFreq(final double highValue, final double midValue, final double lowValue) {
+    @Override
+    public void updateFreqData(final double highValue, final double midValue, final double lowValue) {
         this.chart.setLabelsVisible(true);
         this.pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("High", highValue),
@@ -148,20 +149,18 @@ public class SourceControllerView implements Initializable, ControllerView {
     }
 
     /**
-     * Enable or disable being able to manage the speaker.
-     * 
-     * @param isSelected
+     * @inheritDoc
      */
+    @Override
     public void speakerIsSelected(final boolean isSelected) {
         this.rbtns.forEach(rbtn -> rbtn.setDisable(!isSelected));
         this.btnRemoveSpeaker.setDisable(!isSelected);
     }
 
     /**
-     * Enable or disable being able to add a speaker.
-     * 
-     * @param isDisable
+     * @inheritDoc
      */
+    @Override
     public void setDisableAddSpeaker(final boolean isDisable) {
         this.btnAddSpeaker.setDisable(isDisable);
     }

@@ -4,16 +4,17 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import controller.view.SourceControllerView;
+import controller.view.SourceView;
 import model.source.FRSource;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
 import model.source.SourceType;
 import view.utility.TypeSprite;
 
-public class SourceController implements ControllerApplication<SourceControllerView> {
+public class SourceController implements ControllerApplication<SourceView> {
 
     private final MainController mainCtr;
-    private SourceControllerView controllerView;
+    private SourceView controllerView;
     private FRSource selectedSource;
 
     public SourceController(final MainController mainCtr) {
@@ -25,7 +26,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
      * 
      * @param sourceController
      */
-    public void setControllerView(final SourceControllerView sourceController) {
+    public void setControllerView(final SourceView sourceController) {
         this.controllerView = sourceController;
     }
 
@@ -120,7 +121,7 @@ public class SourceController implements ControllerApplication<SourceControllerV
         final int low = getNumType(SourceType.LOW);
         final double tot = high + mid + low + full;
         final Function<Integer, Double> percValue = (v) -> (v + (full * weight)) / tot;
-        this.controllerView.updatePieChartFreq(percValue.apply(high), percValue.apply(mid), percValue.apply(low));
+        this.controllerView.updateFreqData(percValue.apply(high), percValue.apply(mid), percValue.apply(low));
     }
 
     private int getNumType(final SourceType type) {
