@@ -12,7 +12,6 @@ import model.audiomanager.AudioManager;
 import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
-import model.listener.plugin.PluginManager;
 import model.source.FRSource;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
@@ -22,6 +21,7 @@ import model.source.hub.SourcesHubFactory;
 import model.source.hub.SourcesHubFactoryImpl;
 import model.utility.Vec3f;
 import plugin.listener.model.DopplerPlugin;
+import plugin.listener.model.PluginManager;
 import plugin.listener.model.SoundLevelMeterPlugin;
 
 class TestPluginListener {
@@ -91,14 +91,14 @@ class TestPluginListener {
         assertEquals(plugin.getVelocity(), new Vec3f(0.0f));
 
         plugin.enable();
-        plugin.setDropplerLv(3.0f);
-        assertEquals(plugin.getDropplerLv(), 3.0f);
+        plugin.setDopplerLv(3.0f);
+        assertEquals(plugin.getDopplerLv(), 3.0f);
 
         plugin.disable();
-        assertNotEquals(plugin.getDropplerLv(), 3.0f);
+        assertNotEquals(plugin.getDopplerLv(), 3.0f);
 
         plugin.enable();
-        assertEquals(plugin.getDropplerLv(), 3.0f);
+        assertEquals(plugin.getDopplerLv(), 3.0f);
     }
 
     @Test
@@ -120,6 +120,9 @@ class TestPluginListener {
 
         plugin.setSourceHub(sources);
         assertTrue(plugin.sourceHubPresent());
+        assertEquals(plugin.getRgbColor(), new Vec3f(maxBit));
+
+        source.play();
         assertEquals(plugin.getRgbColor(), new Vec3f(maxBit, 0.0f, 0.0f));
 
         plugin.disable();

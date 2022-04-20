@@ -1,4 +1,4 @@
-package model.listener.plugin;
+package plugin.listener.model;
 
 /**
  * Plug-in is an additional, visual or sound, feature of listener.
@@ -15,7 +15,7 @@ public interface Plugin {
     void enable();
 
     /**
-     * Deactive the audio changes and restore the default value. 
+     * Disable the audio changes and restore the default value. 
      */
     void disable();
 

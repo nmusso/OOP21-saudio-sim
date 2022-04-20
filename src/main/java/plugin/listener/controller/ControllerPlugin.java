@@ -1,4 +1,6 @@
-package model.listener.plugin;
+package plugin.listener.controller;
+
+import plugin.listener.model.Plugin;
 
 /**
  * The plug-in controller represents the entity that connects model to view

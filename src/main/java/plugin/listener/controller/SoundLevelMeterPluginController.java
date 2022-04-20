@@ -5,11 +5,10 @@ import java.util.Optional;
 import controller.MainController;
 import controller.view.ListenerView;
 import model.listener.Listener;
-import model.listener.plugin.ControllerPlugin;
-import model.listener.plugin.Plugin;
-import model.listener.plugin.view.utility.PluginViewLoader;
+import plugin.listener.model.Plugin;
 import plugin.listener.model.SoundLevelMeterPlugin;
 import plugin.listener.view.SoundLevelMeterPluginView;
+import plugin.listener.view.utility.PluginViewLoader;
 
 public class SoundLevelMeterPluginController implements ControllerPlugin {
     private static final String FXML_VIEW_PATH = "/fxml/soundLevelMeterPlugin.fxml";

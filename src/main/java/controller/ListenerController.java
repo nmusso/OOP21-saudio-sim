@@ -13,9 +13,9 @@ import io.github.classgraph.ClassGraphException;
 import io.github.classgraph.ClassInfoList;
 import io.github.classgraph.ScanResult;
 import model.listener.Listener;
-import model.listener.plugin.ControllerPlugin;
-import model.listener.plugin.Plugin;
-import model.listener.plugin.PluginManager;
+import plugin.listener.controller.ControllerPlugin;
+import plugin.listener.model.Plugin;
+import plugin.listener.model.PluginManager;
 
 public class ListenerController {
     private static final String PLUGIN_PATH = "plugin.listener.model";

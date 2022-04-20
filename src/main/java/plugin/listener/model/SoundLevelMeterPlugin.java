@@ -5,13 +5,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import model.listener.Listener;
-import model.listener.plugin.AbstractPlugin;
 import model.source.hub.SourcesHub;
 import model.utility.Vec3f;
 
+/**
+ * Visual indicator to display the sound intensity
+ * relative to the position.
+ */
 public class SoundLevelMeterPlugin extends AbstractPlugin {
     private static final float SAFETY_DISTANCE = 3;
-    private static final int MAX_BIT_COLOR = 255;
+    private static final int MAX_VALUE_COLOR = 255;
     private Optional<SourcesHub> sources;
     private final Listener listener;
 
@@ -22,15 +25,14 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
     }
 
     /**
-     * 
-     * @return if the sourceHub is initializate.
+     * @return if the sourceHub is initialized.
      */
     public boolean sourceHubPresent() {
         return this.sources.isPresent();
     }
 
     /**
-     * 
+     * Set source hub instance.
      * @param sources
      */
     public void setSourceHub(final SourcesHub sources) {
@@ -38,7 +40,6 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
     }
 
     /**
-     * 
      * @return distance from the nearest source or -1 if there are no sources. 
      */
     private double sourceDistanceMin() {
@@ -52,37 +53,37 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
     }
 
     /**
-     * 
+     * Map the distance to a value in a defined range.
      * @param x
      * @return a.
      */
     private int getMappedColor(final double x) {
         if (x >= SAFETY_DISTANCE) {
-            return MAX_BIT_COLOR * 2;
+            return MAX_VALUE_COLOR * 2;
         }
         if (x <= 0.0f) {
             return 0;
         }
-        final float intervals = (MAX_BIT_COLOR * 2) / (SAFETY_DISTANCE * 10);
+        final float intervals = (MAX_VALUE_COLOR * 2) / (SAFETY_DISTANCE * 10);
         return (int) (Math.round(x * 10) * intervals);
     }
 
     /**
-     * 
-     * @return a.
+     * Calculates the color based on the distance from the source.
+     * @return vector that represent the RGB color.
      */
     public Vec3f getRgbColor() {
         final var distanceMin = this.sourceDistanceMin();
         if (!this.isEnabled() || !this.sourceHubPresent() || Double.compare(distanceMin, -1d) == 0) {
-            return new Vec3f(MAX_BIT_COLOR, MAX_BIT_COLOR, MAX_BIT_COLOR);
+            return new Vec3f(MAX_VALUE_COLOR, MAX_VALUE_COLOR, MAX_VALUE_COLOR);
         }
 
         final var mappedColor = this.getMappedColor(distanceMin);
-        if (mappedColor <= MAX_BIT_COLOR) {
-            return new Vec3f(MAX_BIT_COLOR, mappedColor, 0.0f); 
+        if (mappedColor <= MAX_VALUE_COLOR) {
+            return new Vec3f(MAX_VALUE_COLOR, mappedColor, 0.0f); 
         }
 
-        return new Vec3f(MAX_BIT_COLOR - (mappedColor - MAX_BIT_COLOR), MAX_BIT_COLOR, 0.0f);
+        return new Vec3f(MAX_VALUE_COLOR - (mappedColor - MAX_VALUE_COLOR), MAX_VALUE_COLOR, 0.0f);
     }
 
     /**
@@ -93,15 +94,19 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
         return "SoundLevelMeterPlugin";
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void restoreSettings() {
-        // TODO Auto-generated method stub
+    protected void restoreSettings() {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void saveSettings() {
-        // TODO Auto-generated method stub
+    protected void saveSettings() {
 
     }
 
