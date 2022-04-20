@@ -28,7 +28,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
     private static final int PANE_MAXSIZE_W = 40;
     private static final int PANE_MAXSIZE_H = 40;
     private static final int CHART_LABEL_LINE_LENGTH = 5; 
-    private static final int POS_PRECISION = 100; 
+    private static final double POS_PRECISION = 100.0; 
     @FXML private Button btnAddSpeaker;
     @FXML private Button btnRemoveSpeaker;
     @FXML private RadioButton rbtnDefault;
