@@ -39,18 +39,6 @@ public enum BufferCache {
     public Optional<Buffer> getBuffer(final String path) {
         return buffers.containsKey(path) ? Optional.of(buffers.get(path)) : Optional.empty();
     }
-
-    /**
-     * Get the buffer associated at the id.
-     * 
-     * @param id the id of the buffer
-     * @return the buffer
-     */
-    public Buffer getBufferFromID(final int id) {
-        return buffers.entrySet().stream().filter(e -> e.getValue().getID() == id).map(e -> e.getValue())
-                .collect(Collectors.toList()).get(0);
-    }
-
     /**
      * Getter of the cache map.
      * 
