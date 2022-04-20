@@ -28,6 +28,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
     private static final int PANE_MAXSIZE_W = 40;
     private static final int PANE_MAXSIZE_H = 40;
     private static final int CHART_LABEL_LINE_LENGTH = 5; 
+    private static final int POS_PRECISION = 100; 
     @FXML private Button btnAddSpeaker;
     @FXML private Button btnRemoveSpeaker;
     @FXML private RadioButton rbtnDefault;
@@ -113,8 +114,9 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
      */
     @Override
     public void updateSelectedSpeaker() {
-        this.lblX.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getX()));
-        this.lblY.setText(Float.toString(this.ctrSource.getSelectedSpeaker().getPosition().getY()));
+        this.lblX.setText(String.valueOf(Math.round(this.ctrSource.getSelectedSpeaker().getPosition().getX() * POS_PRECISION) / POS_PRECISION));
+        this.lblY.setText(String.valueOf(Math.round(this.ctrSource.getSelectedSpeaker().getPosition().getY() * POS_PRECISION) / POS_PRECISION));
+
 
         switch (this.ctrSource.getSelectedSpeaker().getType()) {
         case FULL:
