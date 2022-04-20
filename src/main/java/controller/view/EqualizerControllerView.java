@@ -67,11 +67,11 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
 
         if (!state) {
             btnTurn.setText("OFF");
-            btnTurn.setStyle("-fx-background-color: #F06249");
+            btnTurn.setStyle("-fx-background-color: #900505");
             ctrl.removeEffect();
         } else {
             btnTurn.setText("ON");
-            btnTurn.setStyle("-fx-background-color: #6CF049");
+            btnTurn.setStyle("-fx-background-color: #006B0D");
             final Alert alert = new Alert(AlertType.INFORMATION, "Keep the volume low while using the effects",
                     ButtonType.OK);
             alert.show();

@@ -9,24 +9,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.SpaceControllerView">
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.SpaceControllerView">
    <children>
-      <GridPane gridLinesVisible="true" HBox.hgrow="ALWAYS">
+      <GridPane gridLinesVisible="true" prefHeight="177.0" prefWidth="709.0" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="33.33" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="324.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ComboBox fx:id="cmbPreset" onAction="#handleCmbPreset" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Label text="Demo" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Button disable="true" mnemonicParsing="false" text="ADD ENV" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <Button disable="true" mnemonicParsing="false" text="DEL ENV" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-            <GridPane layoutX="110.0" layoutY="40.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <GridPane layoutX="110.0" layoutY="40.0" GridPane.columnIndex="2">
                <columnConstraints>
                   <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -35,21 +30,38 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
-                  <Spinner fx:id="spnSizeY" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
-                  <Label text="Y" />
+                  <Button disable="true" mnemonicParsing="false" text="ADD ENV" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                  <Button disable="true" mnemonicParsing="false" text="DEL ENV" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                </children>
             </GridPane>
-            <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <GridPane GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
               <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="128.0" minWidth="10.0" prefWidth="81.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="219.0" minWidth="10.0" prefWidth="219.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="186.0" minWidth="10.0" prefWidth="29.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-                  <Spinner fx:id="spnSizeX" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.rowIndex="1" />
+                  <Spinner fx:id="spnSizeX" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.columnIndex="1" />
                   <Label text="X" />
+                  <Label text="Y" GridPane.rowIndex="1" />
+                  <Spinner fx:id="spnSizeY" editable="true" onKeyPressed="#handleUpdateSpin" onKeyTyped="#handleUpdateSpin" onMouseClicked="#handleUpdateSpin" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+               </children>
+            </GridPane>
+            <GridPane>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="144.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ComboBox fx:id="cmbPreset" onAction="#handleCmbPreset" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                  <Label text="Demo" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
                </children>
             </GridPane>
          </children>

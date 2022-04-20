@@ -67,7 +67,7 @@
                         <Font name="System Bold" size="12.800000190734863" />
                      </font>
                   </Label>
-                  <ToggleButton fx:id="btnTurn" mnemonicParsing="false" onAction="#handlePress" style="-fx-background-color: #F06249;" text="OFF" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                  <ToggleButton fx:id="btnTurn" mnemonicParsing="false" onAction="#handlePress" style="-fx-background-color: #900505;" text="OFF" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
          </children>
