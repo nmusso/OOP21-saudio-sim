@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Optional;
+
 import controller.view.EnvironmentView;
 import model.audiomanager.AudioManager;
 import model.environment.Environment;
@@ -44,7 +46,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      * 
      * @return FRSource selected in this.env.
      */
-    public FRSource getSelectedSource() {
+    public Optional<FRSource> getSelectedSource() {
         return this.env.getSourceHub().getSource(this.ctrlView.getLastSelectedSource());
     }
 
@@ -86,7 +88,10 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      * @param id  source to move.
      */
     public void moveSource(final Vec3f pos, final int id) {
-        this.env.moveSource(this.env.getSourceHub().getSource(id), pos);
+        Optional<FRSource> s = this.env.getSourceHub().getSource(id);
+        if (s.isPresent()) {
+            this.env.moveSource(s.get(), pos);
+        }
     }
 
     /**

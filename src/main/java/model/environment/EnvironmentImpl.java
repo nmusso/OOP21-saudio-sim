@@ -1,5 +1,7 @@
 package model.environment;
 
+import java.util.Optional;
+
 import model.extension.effect.ALEffects;
 import model.listener.Listener;
 import model.source.FRSource;
@@ -95,6 +97,9 @@ public class EnvironmentImpl implements Environment {
      */
     @Override
     public void moveSource(final FRSource source, final Vec3f pos) {
-        this.sourcesHub.getSource(source.getId()).setPosition(pos);
+        Optional<FRSource> s = this.sourcesHub.getSource(source.getId());
+        if (s.isPresent()) {
+            s.get().setPosition(pos);
+        }
     }
 }

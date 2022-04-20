@@ -1,5 +1,7 @@
 package model.source.hub;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import model.extension.effect.ALEffects;
@@ -25,7 +27,7 @@ public interface SourcesHub {
      * 
      * @return Set of All Sources Positions
      */
-    Set<Vec3f> getAllPositions();
+    List<Vec3f> getAllPositions();
 
     /**
      * Gets the Sources they are playing.
@@ -38,17 +40,17 @@ public interface SourcesHub {
      * Gets the Source with the specified id.
      * 
      * @param id
-     * @return Source with the specified id
+     * @return Optional of Source with the specified id
      */
-    FRSource getSource(Integer id);
+    Optional<FRSource> getSource(Integer id);
 
     /**
      * Gets the Source with the specified position.
      * 
      * @param position
-     * @return Source with the specified position
+     * @return Optional of Source with the specified position
      */
-    FRSource getSourceFromPos(Vec3f position);
+    Optional<FRSource> getSourceFromPos(Vec3f position);
 
     /**
      * Add the Source s to the SourcesHub.
@@ -81,6 +83,8 @@ public interface SourcesHub {
 
     /**
      * Stop all sources.
+     * 
+     * @param buffer
      */
     void generateAllSources(int buffer);
 

@@ -2,6 +2,8 @@ package model.source.hub;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,7 +24,8 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     public SourcesHubImpl(final Set<FRSource> sources) {
-        this.sources = sources;
+        this.sources = new HashSet<>();
+        this.sources.addAll(sources);
         this.effectManager = new EffectImpl();
     }
 
@@ -38,8 +41,8 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public Set<Vec3f> getAllPositions() {
-        return Collections.unmodifiableSet(this.sources.stream().map(Source::getPosition).collect(Collectors.toSet()));
+    public List<Vec3f> getAllPositions() {
+        return Collections.unmodifiableList(this.sources.stream().map(Source::getPosition).collect(Collectors.toList()));
     }
 
     /**
@@ -54,16 +57,16 @@ public class SourcesHubImpl implements SourcesHub {
      * @inheritDoc
      */
     @Override
-    public FRSource getSource(final Integer id) {
-        return this.sources.stream().filter(s -> s.getId().equals(id)).findAny().get();
+    public Optional<FRSource> getSource(final Integer id) {
+        return this.sources.stream().filter(s -> s.getId().equals(id)).findAny();
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public FRSource getSourceFromPos(final Vec3f position) {
-        return this.sources.stream().filter(s -> s.getPosition().equals(position)).findAny().get();
+    public Optional<FRSource> getSourceFromPos(final Vec3f position) {
+        return this.sources.stream().filter(s -> s.getPosition().equals(position)).findAny();
     }
 
     /**
@@ -136,6 +139,7 @@ public class SourcesHubImpl implements SourcesHub {
     @Override
     public void deleteAll() {
         this.sources.forEach(Source::delete);
+        this.sources.clear();
     }
 
 }

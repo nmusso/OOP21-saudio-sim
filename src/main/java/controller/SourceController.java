@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 import controller.view.SourceControllerView;
@@ -72,8 +73,11 @@ public class SourceController implements ControllerApplication<SourceControllerV
      * 
      */
     public void updateSelectedSource() {
-        this.selectedSource = mainCtr.getEnvironmentController().getSelectedSource();
-        this.controllerView.updateSelectedSpeaker();
+        Optional<FRSource> s =  mainCtr.getEnvironmentController().getSelectedSource();
+        if (s.isPresent()) {
+            this.selectedSource = s.get();
+            this.controllerView.updateSelectedSpeaker();
+        }
     }
 
     /**
