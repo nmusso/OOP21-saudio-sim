@@ -68,7 +68,7 @@ La prima parte del mio lavoro è centrata su due argomenti:
 \caption{Rappresentazione UML dell’applicazione del pattern Template Method per i diversi tipi di Buffer}
 \label{img:templatebuffer}
 \end{figure}
-Il primo problema da gestire è stato il fatto che il Buffer potesse essere generato sia da un file nel File System, sia da un file incluso nelle risorse del Classpath. Visto che i Buffer differiscono solo per come viene importato inizialmente lo Stream, per risolvere questo problema ho sfruttato il pattern template method, in modo da poter essere usato anche per altri tipi di Buffer non presenti nel progetto. Nel mio caso, il metodo template è generateBuffer, mentre il metodo primitivo è getAudioStream, come da figura 1.1.
+Il primo problema da gestire è stato il fatto che il Buffer potesse essere generato sia da un file nel File System, sia da un file incluso nelle risorse del Classpath. Visto che i Buffer differiscono solo per come viene importato inizialmente lo Stream, per risolvere questo problema ho sfruttato il pattern template method, in modo da poter essere usato anche per altri tipi di Buffer non presenti nel progetto. Nel mio caso, il metodo template è generateBuffer, mentre il metodo primitivo è getAudioStream, come da figura 2.1.
 %
 \begin{figure}[H]
 \centering{}
