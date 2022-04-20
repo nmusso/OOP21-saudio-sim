@@ -119,6 +119,89 @@ Per la gestione degli effetti e dei suoi attributi mi sono affidato ad un enum c
 L’interazione dell’utente con l’equalizzatore, composto da slider, mi ha permesso di ricavare il valore dell’effetto il quale viene passato al controller che notificherà a tutte le sorgenti di applicare il determinato effetto con il determinato valore. In questa parte di MVC il controller non notifica nulla alla view, in quanto si tratta di un equalizzatore che non ha bisogno di aggiornare l’interfaccia in base alle azioni dell’utente.
 %
 \subsection*{Alessandro Sciarrillo}
+Il dominio su cui ho lavorato è quello delle sorgenti che comprende la loro implementazione come singole ma anche come insieme.
+
+Uno dei principali aspetti del mio lavoro riguarda l'implementazione di speaker con range di frequenza differenti, qui ho incontrato uno dei problemi strutturali maggiori, le qualità che volevo imprimere nella soluzione erano:
+\begin{itemize}
+	\item Le sorgenti con range di frequenza eterogenei dovevano avere come genitore una classe comune
+	\item Le differenze in termini di codice per implementare i vari tipi dovevano essere minimali
+\end{itemize}
+In modo schematico questa era l'idea:
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/source/FRSource(ereditarietà).png}
+\caption{Prima "bozza" rappresentazione schematica FRSource.}
+\label{img:sourcesHub}
+\end{figure}
+%
+Immediatamente sembra scontata la necissità di un Template method, ma dopo una analisi più dettagliata del tipo di operazioni e lo scopo 
+fondamentale di questa entità, cioè il poter cambiare in modo molto dinamico il range di frequenza sono arrivato alla conclusione che un implementazione del template method avrebbe appesantito molto il codice dell'utilizzatore in quanto il cambiamento di range di frequenza per una istanza (ad esempio da High a Low) avrebbe comportato la creazione di una nuova istanza della classe relativa alla nuova frequenza che sarebbe andata a sostituire quella precedente. In sostanza un cambiamento di frequenza avrebbe comportato il passaggio dell'istanza della source da una classe ad un altra la cui differenza è unicamente l'implementazione del metodo con cui impostare il proprio range di frequenza.
+Così ho optato per la costruzione di una classe FRSource che avesse un proprio tipo di range di frequenza SourceType.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/source/SourceType.png}
+\caption{Rappresentazione struttura FRSource con ralazione "has-a" relativa a SourceType e l'implementazione FRSourceImpl che usa Filter.}
+\label{img:sourcesHub}
+\end{figure}
+%
+In conclusione con questa struttura cambiare range di frequenza a uno speaker comporta unicamente una chiamata al metodo setType. Con altre strutture che avevo valutato invece sorgeva sempre la necessità di compiere operazioni aggiuntive da parte di chi doveva effettuare il
+cambio di range.
+%
+Risolta questa problematica riguardante il cambio di range ne ho dovuta affrontare una riguardante tutto il resto delle funzionalità di di una sorgente. Per agevolare la riusabilità ho optato per una classe più primitiva "Source" che riguardasse l'utilizzo di base lasciando a "FRSource"(Frequency Range Source) solamente le funzioni relative al range di frequenze:
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/source/Source-FRSource.png}
+\caption{Riuso del codice da parte di FRSource.}
+\label{img:sourcesHub}
+\end{figure}
+%
+Così facendo il codice scritto per la versione base "Source" è stato riusato come fondamenta della versione più avanzata "FRSource"
+lasciando però libertà in implementazioni future di creare altre forme avanzate di Source che non necessariamente debbano gestire
+range di frequenze.
+%
+Il primo passo nella gestione di un insieme di speaker invece è stato quello di ideare una struttura che permettesse di gestire le sorgenti come singole ma anche come un gruppo e da qui è nato il concetto di SourcesHub:
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/source/SourcesHub-Source.png}
+\caption{Rappresentazione schematica composizione di SourcesHub.}
+\label{img:sourcesHub}
+\end{figure}
+%
+SourcesHub è come spiega il nome è un Hub che permette di avere un insieme di Sources al suo interno e la sua funzione è indubbiamente utile per un progetto di questo tipo che spesso necessita di eseguire operazioni o procedure uguali su più di una Source che fanno parte dello stesso contesto.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/source/SourcesHub-Source-deeper.png}
+\caption{Rappresentazione schematica composizione di SourcesHub.}
+\label{img:sourcesHub}
+\end{figure}
+%
+La gestione dell'MVC è alquanto semplice, il SourceController ha una comunicazione bilaterale con SourceControllerView, questo perchè la View deve richiedere operazioni in relazione alle interazione con l'utente (aggiunta, rimozione e modifica di uno speaker) e allo stesso tempo il Controller deve poter aggiornare la View quando lo speaker selezionato cambia e le componenti della view devono essere modificare per mantenerle sonsistenti allo speaker selezionato attualmente.
+Il controller poi effettua i cambiamenti sulle sorgenti che sono contenute in SourcesHub contenuti da Environment.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/source/SourcesMVC.png}
+\caption{Rappresentazione schematica MVC.}
+\label{img:sourcesHub}
+\end{figure}
+%
+
+
+
+
+
+
+
+
+
+
+
+
 \subsection*{Alex Presepi}
 \subsection*{Simone Lugaresi}
 Due sono gli argomenti principali da me gestiti:
