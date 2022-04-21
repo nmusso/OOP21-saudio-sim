@@ -10,6 +10,11 @@ import plugin.listener.model.SoundLevelMeterPlugin;
 import plugin.listener.view.SoundLevelMeterPluginView;
 import plugin.listener.view.utility.PluginViewLoader;
 
+/**
+ * 
+ * Controller for SoundLevelMeterPlugin allows communications between model and view.
+ *
+ */
 public class SoundLevelMeterPluginController implements ControllerPlugin {
     private static final String FXML_VIEW_PATH = "/fxml/soundLevelMeterPlugin.fxml";
     private final SoundLevelMeterPlugin plugin;
@@ -43,9 +48,27 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
         return this.plugin;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removePlugin() {
+        this.thMeter.stopTh();
+        this.mainController.getListenerCtr().getPluginManager().removePlugin(this.plugin);
+
+    }
+
+    /**
+     * 
+     * Thread for real-time indicator update in the view. 
+     *
+     */
     class ThreadMeter extends Thread {
         private boolean isRunning = true;
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void run() {
             while (this.isRunning) {
@@ -62,19 +85,12 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
 
         }
 
+        /**
+         * Stop and terminate the thread.
+         */
        public void stopTh() {
            this.isRunning = false;
        }
-
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void removePlugin() {
-        this.thMeter.stopTh();
-        this.mainController.getListenerCtr().getPluginManager().removePlugin(this.plugin);
 
     }
 

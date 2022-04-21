@@ -90,14 +90,6 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
      * {@inheritDoc}
      */
     @Override
-    public String getClassName() {
-        return "SoundLevelMeterPlugin";
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     protected void restoreSettings() {
 
     }

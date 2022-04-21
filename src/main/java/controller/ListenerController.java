@@ -17,6 +17,11 @@ import plugin.listener.controller.ControllerPlugin;
 import plugin.listener.model.Plugin;
 import plugin.listener.model.PluginManager;
 
+/**
+ * 
+ * Controller class for the listener, allow to communicate Listener and ListenerView. 
+ * This controller can create plug-in controllers.
+ */
 public class ListenerController implements ControllerApplication<ListenerView> {
     private static final String PLUGIN_PATH = "plugin.listener.model";
     private static final String CONTROLLER_PATH = "plugin.listener.controller";
@@ -36,7 +41,7 @@ public class ListenerController implements ControllerApplication<ListenerView> {
     }
 
     /**
-     * 
+     * Access to the class path to get the plug-ins present.
      * @return avaiablePlugin
      */
     public Set<String> getAvailablePlugin() {
@@ -63,6 +68,7 @@ public class ListenerController implements ControllerApplication<ListenerView> {
     }
 
     /**
+     * {@inheritDoc}
      * @param controllerView
      */
     @Override
@@ -71,10 +77,8 @@ public class ListenerController implements ControllerApplication<ListenerView> {
     }
 
     /**
+     * Instance via reflection the plug-in controller passed as a parameter.
      * @param name
-     * @throws ClassNotFoundException
-     * @throws Exception
-     * 
      */
     public void createPluginController(final String name) {
         try {
@@ -96,34 +100,31 @@ public class ListenerController implements ControllerApplication<ListenerView> {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             this.controllerView.showMessage("Illegal argument in  class " + name);
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-            this.controllerView.showMessage("Class not found");
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
             this.controllerView.showMessage("Constructor not found in class" + name);
-        } catch (SecurityException e) {
+        } catch (SecurityException | InvocationTargetException e) {
             e.printStackTrace();
-            this.controllerView.showMessage("Class not found2");
+            this.controllerView.showMessage("Error while loading plugin: " + name + " classes");
         } 
     }
 
     /**
-     * @return plugin manager istance.
+     * @return plug-in manager instance.
      */
     public PluginManager getPluginManager() {
         return this.mng;
     }
 
     /**
-     * 
+     * Remove all plug-in in execution.
      */
     public void stopAllPlugin() {
         this.pluginsCtr.forEach(ctr -> ctr.removePlugin());
     }
 
     /**
-     * 
+     * Update the view when there is a shift of the listener.
      */
     public void positionChanged() {
         this.controllerView.positionChanged();
@@ -137,14 +138,14 @@ public class ListenerController implements ControllerApplication<ListenerView> {
     }
 
     /**
-     * 
+     * Enable all plug-in loaded.
      */
     public void enableAll() {
         this.mng.enableAll();
     }
 
     /**
-     * 
+     * Disable all plug-in loaded.
      */
     public void disableAll() {
         this.mng.disableAll();

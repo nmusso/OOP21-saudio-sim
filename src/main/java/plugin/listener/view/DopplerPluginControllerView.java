@@ -11,6 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import plugin.listener.controller.DopplerPluginController;
 
+/**
+ * 
+ * Controller for DopplerPluginView.
+ *
+ */
 public class DopplerPluginControllerView implements Initializable, DopplerPluginView  {
     @FXML private Tab dropplerPluginTab;
     @FXML private Label lblVelX;
@@ -19,24 +24,24 @@ public class DopplerPluginControllerView implements Initializable, DopplerPlugin
     private DopplerPluginController controller;
     private ListenerView listenerView;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        // TODO Auto-generated method stub
 
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void setControllerApplication(final DopplerPluginController controller) { 
         this.controller = controller;
     }
 
-
-
     /**
-     * 
+     * {@inheritDoc}
      * @param ctr
      */
     @Override
@@ -46,21 +51,28 @@ public class DopplerPluginControllerView implements Initializable, DopplerPlugin
     }
 
     /**
-     * 
+     * {@inheritDoc}
      * @param x
      * @param y
      */
+    @Override
     public void changeVelocity(final float x, final float y) {
         this.lblVelX.setText(String.valueOf(Math.round(x * 100.0) / 100.0));
         this.lblVelY.setText(String.valueOf(Math.round(y * 100.0) / 100.0));
     }
 
-    @FXML private void handleBtnRemove() { // NOPMD: called by javafx
+    /**
+     * Handle on mouse click on btnRemove to remove the plug-in.
+     */
+    @FXML private void handleBtnRemove() { //NOPMD: called by javaFX
         this.listenerView.removePlugin(this.dropplerPluginTab);
         this.controller.removePlugin();
     }
 
-    @FXML private void handleBtnStatus() { // NOPMD: called by javafx
+    /**
+     * Handle on mouse click on btnStatus to enable or disable plug-in.
+     */
+    @FXML private void handleBtnStatus() { //NOPMD: called by javaFX
         this.btnStatus.setText(this.controller.getPlugin().isEnabled() ? "Enable" : "Disable");
         if (this.controller.getPlugin().isEnabled()) {
             this.controller.getPlugin().disable();

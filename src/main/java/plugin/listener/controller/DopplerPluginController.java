@@ -1,6 +1,5 @@
 package plugin.listener.controller;
 
-
 import java.util.Optional;
 
 import controller.MainController;
@@ -13,6 +12,11 @@ import plugin.listener.model.Plugin;
 import plugin.listener.view.DopplerPluginView;
 import plugin.listener.view.utility.PluginViewLoader;
 
+/**
+ * 
+ * Controller for the DopplerPlugin allows communications between model and view.
+ *
+ */
 public class DopplerPluginController implements ControllerPlugin {
     private static final long TIME_LAPSE_VELOCITY = 100;
     private static final String FXML_VIEW_PATH = "/fxml/dopplerPlugin.fxml";
@@ -50,14 +54,14 @@ public class DopplerPluginController implements ControllerPlugin {
     }
 
     /**
-     * 
+     * Update velocity when the listener moves.
      */
     private void positionChange() {
         this.controllerView.changeVelocity(this.plugin.getVelocity().getX(), this.plugin.getVelocity().getY());
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     public void removePlugin() {
         this.thVel.stopTh();
@@ -65,9 +69,17 @@ public class DopplerPluginController implements ControllerPlugin {
     }
 
 
+    /**
+     * 
+     * Thread for calculate real-time velocity of listener.
+     *
+     */
     class ThreadVelocity extends Thread {
         private boolean isRunning = true;
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void run() {
             while (this.isRunning) {
@@ -78,7 +90,8 @@ public class DopplerPluginController implements ControllerPlugin {
                     final float x = Math.abs(posStart.getX() - posEnd.getX());
                     final float y = Math.abs(posStart.getY() - posEnd.getY());
 
-                    DopplerPluginController.this.plugin.setVelocity(new Vec3f(x / (TIME_LAPSE_VELOCITY / 1000f), y / (TIME_LAPSE_VELOCITY / 1000f), 0.0f));
+                    DopplerPluginController.this.plugin.setVelocity(
+                            new Vec3f(x / (TIME_LAPSE_VELOCITY / 1000f), y / (TIME_LAPSE_VELOCITY / 1000f), 0.0f));
                     Platform.runLater(() -> DopplerPluginController.this.positionChange());
 
                 } catch (InterruptedException e) {
@@ -88,9 +101,12 @@ public class DopplerPluginController implements ControllerPlugin {
 
         }
 
-       public void stopTh() {
-           this.isRunning = false;
-       }
+        /**
+         * Stop and terminate the thread.
+         */
+        public void stopTh() {
+            this.isRunning = false;
+        }
 
     }
 

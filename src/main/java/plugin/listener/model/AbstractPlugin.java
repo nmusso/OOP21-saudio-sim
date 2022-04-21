@@ -1,6 +1,7 @@
 package plugin.listener.model;
 
 import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * 
@@ -47,6 +48,17 @@ public abstract class AbstractPlugin implements Plugin {
     @Override
     public Boolean isEnabled() {
         return this.isEnabled;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getClassName() {
+        return Stream.of(this.getClass().toString()).map(l -> l.split("\\."))
+                                                    .map(w -> w[w.length - 1])
+                                                    .findAny()
+                                                    .orElse("Name not found");
     }
 
     /**
