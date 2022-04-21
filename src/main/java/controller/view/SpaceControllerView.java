@@ -72,7 +72,8 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
      * event on choose of preset from cmb, signals to the controller that the selection has changed.
      * @param event the event who trigger the method
      */
-    @FXML public final void handleCmbPreset(final Event event) {
+    @FXML 
+    private final void handleCmbPreset(final Event event) {// NOPMD: Called by JavaFX
         selectedPreset = cmbPreset.getSelectionModel().getSelectedItem().toString();
         this.ctrl.changePreset(selectedPreset);
     }
@@ -81,7 +82,8 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
      * changes with the new spinner values and signals the controller of the change.
      * @param event the event who trigger the method
      */
-    @FXML public final void handleUpdateSpin(final Event event) {
+    @FXML
+    private final void handleUpdateSpin(final Event event) {// NOPMD: Called by JavaFX
         x = spnSizeX.getValue();
         y = spnSizeY.getValue();
         this.ctrl.setSize(x, y);
