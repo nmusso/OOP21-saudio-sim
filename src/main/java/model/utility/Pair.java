@@ -14,36 +14,44 @@ public class Pair<X, Y> {
 
 
     /**
-     * 
-     * @return
+     * Set the field x.
+     * @param x value
      */
     public void setX(final X x) {
         this.x = x;
     }
 
     /**
-     * 
-     * @return
+     * Set the field y.
+     * @param y value
      */
     public void setY(final Y y) {
         this.y = y;
     }
 
+
     /**
-     * 
-     * @return
+     * Set both fields x and y.
+     * @param x X value
+     * @param y Y value
      */
+    public void setValues(final X x, final Y y) {
+        this.x = x;
+        this.y = y;
+    }
 
-
+    /**
+     * Getter for field X.
+     * @return the value of X
+     */
     public X getX() {
             return x;
     }
 
     /**
-     * 
-     * @return
+     * Getter for field Y.
+     * @return the value of Y
      */
-
     public Y getY() {
             return y;
     }
@@ -62,26 +70,36 @@ public class Pair<X, Y> {
             return result;
     }
 
-    
+
     @Override
-    public boolean equals(final Object obj) {
-            if (this == obj)
-                    return true;
-            if (obj == null)
-                    return false;
-            if (getClass() != obj.getClass())
-                    return false;
-            Pair other = (Pair) obj;
+    public final boolean equals(final Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+
+            final Pair other = (Pair) obj;
+
             if (x == null) {
-                    if (other.x != null)
-                            return false;
-            } else if (!x.equals(other.x))
+                if (other.x != null) {
                     return false;
+                }
+            } else if (!x.equals(other.x)) {
+                return false;
+            }
             if (y == null) {
-                    if (other.y != null)
-                            return false;
-            } else if (!y.equals(other.y))
+                if (other.y != null) {
                     return false;
+                }
+            } else if (!y.equals(other.y)) {
+                return false;
+            }
+
             return true;
     }
 
@@ -91,12 +109,6 @@ public class Pair<X, Y> {
     @Override
     public String toString() {
         return "Pair [x=" + x + ", y=" + y + "]";
-    }
-
-
-    public void setValues(final X x2, final Y y2) {
-        this.x = x2;
-        this.y = y2;
     }
 }
 
