@@ -105,7 +105,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView,
      * @param event the event who triggered the method
      */
     @FXML 
-    private final void handleOnMouseClickedOrDrag(final Event event) {// NOPMD: Called by JavaFX
+    private void handleOnMouseClickedOrDrag(final Event event) { // NOPMD: Called by JavaFX
         final Optional<Sprite> temp = sprites.stream()
                 .filter(s -> s.getSize()
                         .overlap(new RectangleImpl(((MouseEvent) event).getX(), ((MouseEvent) event).getY(), 0.0, 0.0)))

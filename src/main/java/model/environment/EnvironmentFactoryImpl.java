@@ -1,5 +1,6 @@
 package model.environment;
 
+import java.io.FileReader;
 import java.util.Optional;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
     */
     @Override
     public Environment createMonoEnvironment() {
-        final FRSource source = sourceFac.createFRSource(new Vec3f(2.f, 0.5f, 0), SourceType.FULL);
+        final FRSource source = sourceFac.createFRSource(new Vec3f(CENTER.getX(), CENTER.getY() - 1.5f, 0), SourceType.FULL);
         final SourcesHub sh = sourceHubFac.createSourcesHub();
         sh.addSource(source);
         final Space sp = spaceFac.createCustomizedSpace(5, 5);
@@ -68,6 +69,7 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
         sh.addSource(sourceFac.createFRSource(new Vec3f(25, 15, 0), SourceType.FULL));
         sh.addSource(sourceFac.createFRSource(new Vec3f(25, 10, 0), SourceType.FULL));
         sh.addSource(sourceFac.createFRSource(new Vec3f(25, 5, 0), SourceType.FULL));
+
 
         return new EnvironmentImpl(sh, listenerFac.createListener(AudioManager.getContext(), new Vec3f(12.5f, 7.5f, 0f)), spaceFac.createCustomizedSpace(25f, 15f));
     }
