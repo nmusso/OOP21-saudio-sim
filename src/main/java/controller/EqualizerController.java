@@ -39,7 +39,7 @@ public class EqualizerController implements ControllerApplication<EqualizerView>
        this.mainCtr.getEnvironmentController().getEnv().addEffect(effect, val);
 
        if (alGetError() != AL_NO_ERROR) {
-           ctrlView.showError("Something went wrong while applying the effect");
+           ctrlView.showMessage("Something went wrong while applying the effect");
        }
     }
 

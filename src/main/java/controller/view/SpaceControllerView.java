@@ -143,7 +143,7 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
     }
 
     @Override
-    public void showError(final String error) {
+    public void showMessage(final String error) {
 
     }
 

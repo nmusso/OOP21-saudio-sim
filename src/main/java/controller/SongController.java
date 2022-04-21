@@ -49,7 +49,7 @@ public class SongController implements ControllerApplication<SongView> {
             ctrlView.updateComboBox(getBufferList());
         } catch (ALFormatException | UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
-            ctrlView.showError("Something went wrong during the creation of the buffer");
+            ctrlView.showMessage("Something went wrong during the creation of the buffer");
         }
     }
 
@@ -63,7 +63,7 @@ public class SongController implements ControllerApplication<SongView> {
             ctrlView.updateComboBox(getBufferList());
         } catch (ALFormatException | UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
-            ctrlView.showError("Something went wrong during the creation of the buffer");
+            ctrlView.showMessage("Something went wrong during the creation of the buffer");
         }
     }
 

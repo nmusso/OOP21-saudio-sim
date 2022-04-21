@@ -56,7 +56,7 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
         try {
             addStartSongs();
         } catch (IOException e) {
-            showError("Something went wrong during load buffer resources");
+            showMessage("Something went wrong during load buffer resources");
         }
     }
 
@@ -72,7 +72,7 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
      * {@inheritDoc}
      */
     @Override
-    public void showError(final String error) {
+    public void showMessage(final String error) {
         final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
         alert.show();
     }

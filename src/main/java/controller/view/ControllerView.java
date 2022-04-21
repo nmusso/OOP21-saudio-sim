@@ -11,8 +11,8 @@ public interface ControllerView {
     void setControllerApplication(MainController ctrMain);
 
     /**
-     * Show an error.
-     * @param error  the error message
+     * Display a message.
+     * @param message  the message
      */
-    void showError(String error); 
+    void showMessage(String message); 
 }

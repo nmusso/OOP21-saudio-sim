@@ -11,13 +11,16 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import model.utility.Pair;
 import view.utility.PageLoader;
 
-public class MainControllerView implements Initializable {
+public class MainControllerView implements Initializable, ControllerView {
     private static final String FXML_PATH = "/fxml/";
     private final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private final double contHeight = screen.getHeight() * 0.75;
@@ -67,5 +70,14 @@ public class MainControllerView implements Initializable {
             pane.setCenter(x.getX());
             x.getY().setControllerApplication(this.ctrMain); /*TODO control if ctrMain is null*/
         });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void showMessage(final String error) {
+        final Alert alert = new Alert(AlertType.INFORMATION, error, ButtonType.OK);
+        alert.show();
     }
 }

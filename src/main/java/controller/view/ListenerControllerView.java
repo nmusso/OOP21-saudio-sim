@@ -118,7 +118,7 @@ public class ListenerControllerView implements Initializable, ListenerView {
      * 
      */
     @Override
-    public void showError(final String error) {
+    public void showMessage(final String error) {
         final var alert = new Alert(Alert.AlertType.WARNING, error);
         alert.show();
     }

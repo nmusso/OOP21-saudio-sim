@@ -53,10 +53,10 @@ public class ListenerController implements ControllerApplication<ListenerView> {
             pluginFound.removeAll(this.mng.getPlugins().stream().map(Plugin::getClassName).collect(Collectors.toSet()));
         } catch (ClassGraphException e) {
             e.printStackTrace();
-            this.controllerView.showError("Error to access in ClassPath");
+            this.controllerView.showMessage("Error to access in ClassPath");
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
-            this.controllerView.showError("Error in class name");
+            this.controllerView.showMessage("Error in class name");
         }
 
         return pluginFound;
@@ -86,25 +86,25 @@ public class ListenerController implements ControllerApplication<ListenerView> {
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            this.controllerView.showError("Class: " + name + " not found");
+            this.controllerView.showMessage("Class: " + name + " not found");
         } catch (InstantiationException e) {
             e.printStackTrace();
-            this.controllerView.showError("Error on instantiation class: " + name);
+            this.controllerView.showMessage("Error on instantiation class: " + name);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-            this.controllerView.showError("Illegal access class" + name);
+            this.controllerView.showMessage("Illegal access class" + name);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            this.controllerView.showError("Illegal argument in  class " + name);
+            this.controllerView.showMessage("Illegal argument in  class " + name);
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-            this.controllerView.showError("Class not found");
+            this.controllerView.showMessage("Class not found");
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
-            this.controllerView.showError("Constructor not found in class" + name);
+            this.controllerView.showMessage("Constructor not found in class" + name);
         } catch (SecurityException e) {
             e.printStackTrace();
-            this.controllerView.showError("Class not found2");
+            this.controllerView.showMessage("Class not found2");
         } 
     }
 

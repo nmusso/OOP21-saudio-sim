@@ -10,7 +10,7 @@ public class MainController implements ControllerApplication<MainControllerView>
     private final EqualizerController ctrEqualizer;
     private final SongController ctrSong;
     private final SpaceController ctrSpace;
-    private MainControllerView controllerView;
+    private MainControllerView ctrlView;
 
 
     public MainController() {
@@ -27,7 +27,8 @@ public class MainController implements ControllerApplication<MainControllerView>
      */
     @Override
     public void setControllerView(final MainControllerView controllerView) {
-        this.controllerView = controllerView;
+        this.ctrlView = controllerView;
+        showIntroduction();
     }
 
     /**
@@ -83,5 +84,12 @@ public class MainController implements ControllerApplication<MainControllerView>
      */
     public void closeAllThread() {
         this.ctrListener.stopAllPlugin();
+    }
+
+    /**
+     * Display introduction messages.
+     */
+    private void showIntroduction() {
+        ctrlView.showMessage("Use headphones for better experience");
     }
 }

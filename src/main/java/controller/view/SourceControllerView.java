@@ -175,7 +175,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
      * @inheritDoc
      */
     @Override
-    public void showError(final String error) {
+    public void showMessage(final String error) {
 
     }
 }

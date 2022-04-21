@@ -271,7 +271,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView,
 
 
     @Override
-    public void showError(final String error) {
+    public void showMessage(final String error) {
 
     }
 }

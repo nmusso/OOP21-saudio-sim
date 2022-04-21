@@ -50,7 +50,7 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
      * {@inheritDoc}
      */
     @Override
-    public void showError(final String error) {
+    public void showMessage(final String error) {
         final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
         alert.show();
     }
