@@ -55,12 +55,12 @@ public class DopplerPluginControllerView implements Initializable, DopplerPlugin
         this.lblVelY.setText(String.valueOf(Math.round(y * 100.0) / 100.0));
     }
 
-    @FXML public final void handleBtnRemove() {
+    @FXML private void handleBtnRemove() { // NOPMD: called by javafx
         this.listenerView.removePlugin(this.dropplerPluginTab);
         this.controller.removePlugin();
     }
 
-    @FXML public final void handleBtnStatus() {
+    @FXML private void handleBtnStatus() { // NOPMD: called by javafx
         this.btnStatus.setText(this.controller.getPlugin().isEnabled() ? "Enable" : "Disable");
         if (this.controller.getPlugin().isEnabled()) {
             this.controller.getPlugin().disable();
