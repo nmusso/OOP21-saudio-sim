@@ -136,7 +136,7 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
     private void handleStop() { // NOPMD: Called by JavaFX
         ctrl.stopSource();
 
-        btnImport.setDisable(true);
+        btnImport.setDisable(false);
         btnPlay.setDisable(false);
         btnPause.setDisable(true);
         btnStop.setDisable(true);
