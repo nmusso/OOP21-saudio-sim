@@ -149,7 +149,7 @@ Così ho optato per la costruzione di una classe FRSource che avesse un proprio 
 In conclusione con questa struttura cambiare range di frequenza a uno speaker comporta unicamente una chiamata al metodo setType. Con altre strutture che avevo valutato invece sorgeva sempre la necessità di compiere operazioni aggiuntive da parte di chi doveva effettuare il
 cambio di range.
 %
-Risolta questa problematica riguardante il cambio di range ne ho dovuta affrontare una riguardante tutto il resto delle funzionalità di di una sorgente. Per agevolare la riusabilità ho optato per una classe più primitiva "Source" che riguardasse l'utilizzo di base lasciando a "FRSource"(Frequency Range Source) solamente le funzioni relative al range di frequenze:
+Risolta questa problematica riguardante il cambio di range ne ho dovuta affrontare una riguardante tutto il resto delle funzionalità di una sorgente. Per agevolare la riusabilità ho optato per una classe più primitiva "Source" che riguardasse l'utilizzo di base lasciando a "FRSource"(Frequency Range Source) solamente le funzioni relative al range di frequenze:
 %
 \begin{figure}[H]
 \centering{}
