@@ -17,7 +17,7 @@ import plugin.listener.controller.ControllerPlugin;
 import plugin.listener.model.Plugin;
 import plugin.listener.model.PluginManager;
 
-public class ListenerController {
+public class ListenerController implements ControllerApplication<ListenerView> {
     private static final String PLUGIN_PATH = "plugin.listener.model";
     private static final String CONTROLLER_PATH = "plugin.listener.controller";
     private ListenerView controllerView;
@@ -65,6 +65,7 @@ public class ListenerController {
     /**
      * @param controllerView
      */
+    @Override
     public void setControllerView(final ListenerView controllerView) {
         this.controllerView = controllerView;
     }
@@ -138,7 +139,7 @@ public class ListenerController {
     /**
      * 
      */
-    public void enabledAll() {
+    public void enableAll() {
         this.mng.enableAll();
     }
 

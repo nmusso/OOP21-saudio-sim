@@ -9,13 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import model.utility.Vec3f;
 import plugin.listener.controller.SoundLevelMeterPluginController;
 
 public class SoundLevelMeterPluginControllerView implements Initializable, SoundLevelMeterPluginView {
     @FXML private Tab soundLevelMeterPluginTab;
-    @FXML private Circle circleShape;
+    @FXML private Rectangle rectangleShape;
     @FXML private Button btnStatus;
     private ListenerView listenerView;
     private SoundLevelMeterPluginController controller;
@@ -49,7 +49,7 @@ public class SoundLevelMeterPluginControllerView implements Initializable, Sound
      * {@inheritDoc}
      */
     public void setColor(final Vec3f rgb) {
-        this.circleShape.setFill(Color.rgb((int) rgb.getX(), (int) rgb.getY(), (int) rgb.getZ()));
+        this.rectangleShape.setFill(Color.rgb((int) rgb.getX(), (int) rgb.getY(), (int) rgb.getZ()));
     }
 
     @FXML public final void handleBtnRemove() {

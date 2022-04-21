@@ -75,7 +75,7 @@ public class ListenerControllerView implements Initializable, ListenerView {
     }
 
     @FXML public final void handleEnableAll() {
-        this.ctrListener.enabledAll();
+        this.ctrListener.enableAll();
         this.pluginPane.getTabs().filtered(x -> !x.equals(this.pluginTab))
                                  .forEach(x -> x.setDisable(false));
     }

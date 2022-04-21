@@ -35,7 +35,7 @@ public interface ListenerFactory {
      * @param up vector of listener
      * @return new listener or if already present the instance of that context.
      */
-    Listener createListener(Context context, Vec3f position, Vec3f at, Vec3f up);
+    Listener createListener(Context context, Vec3f position, Vec3f up, Vec3f at);
 
 
 }

@@ -61,7 +61,7 @@ public class DopplerPluginController implements ControllerPlugin {
      */
     public void removePlugin() {
         this.thVel.stopTh();
-        this.mainController.getListenerCtr().getPluginManager().removePlugin(this.plugin.getClassName());
+        this.mainController.getListenerCtr().getPluginManager().removePlugin(this.plugin);
     }
 
 

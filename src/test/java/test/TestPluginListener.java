@@ -42,7 +42,7 @@ class TestPluginListener {
         mng.addPlugin(doppler);
         assertTrue(mng.getPlugins().contains(doppler));
 
-        mng.removePlugin(doppler.getClassName());
+        mng.removePlugin(doppler);
         assertTrue(mng.getPlugins().isEmpty());
 
         mng.addPlugin(doppler);

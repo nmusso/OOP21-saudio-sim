@@ -3,7 +3,6 @@ package plugin.listener.model;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * This class manage all plug-in related to a listener and allows
@@ -35,12 +34,10 @@ public class PluginManager {
 
     /**
      * Remove the plug-in from the manager.
-     * @param pluginClassName
+     * @param plugin
      */
-    public void removePlugin(final String pluginClassName) {
-        this.plugins.removeAll(this.plugins.stream()
-                                            .filter(x -> x.getClassName().equals(pluginClassName))
-                                            .collect(Collectors.toSet()));
+    public void removePlugin(final Plugin plugin) {
+        this.plugins.remove(plugin);
     }
 
     /**
