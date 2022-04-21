@@ -83,11 +83,6 @@ public class EnvironmentControllerView implements Initializable, ControllerView,
                     final Pair<Double, Double> pos = checkOutOfBorder(
                             new Pair<Double, Double>(e.getPosition().getX(), e.getPosition().getY()), e.getSize());
                     e.setPosition(pos.getX(), pos.getY());
-//                    if (e.getTypeSprite().equals(TypeSprite.LISTENER)) {
-//                        listenerDraw(e, e.getPosition());
-//                    } else {
-//                        e.draw(contextView);
-//                    }
                     e.draw(contextView);
                 });
             }

@@ -66,8 +66,8 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      * @param source to add
      * @param type   to draw
      */
-    public void addSourcetoSourceHub(final FRSource source, final TypeSprite type) {
-        this.env.addSourceToSourceHub(source);
+    public void addSourcetoSourcesHub(final FRSource source, final TypeSprite type) {
+        this.env.addSourceToSourcesHub(source);
         this.ctrlView.addSprite(type, source.getId(), source.getPosition());
     }
 
@@ -77,7 +77,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      * @param source to remove
      */
     public void removeSource(final FRSource source) {
-        this.env.removeSourceFromSourceHub(source);
+        this.env.removeSourceFromSourcesHub(source);
         this.ctrlView.removeSpriteSource();
     }
 

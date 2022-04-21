@@ -82,31 +82,31 @@ public class EnvironmentFactoryImpl implements EnvironmentFactory {
 
         sh.addSource(sourceFac.createFRSource(new Vec3f(1.1f, 0.3f, 0f), SourceType.MID));
         sh.addSource(sourceFac.createFRSource(new Vec3f(1.4f, 0f, 0f), SourceType.MID));
-        
+
         sh.addSource(sourceFac.createFRSource(new Vec3f(2.0f, 0f, 0f), SourceType.HIGH));
         sh.addSource(sourceFac.createFRSource(new Vec3f(2.3f, 0f, 0f), SourceType.HIGH));
         sh.addSource(sourceFac.createFRSource(new Vec3f(2.6f, 0f, 0f), SourceType.HIGH));
         sh.addSource(sourceFac.createFRSource(new Vec3f(2.9f, 0f, 0f), SourceType.HIGH));
-        
+
         sh.addSource(sourceFac.createFRSource(new Vec3f(3.5f, 0f, 0f), SourceType.MID));
         sh.addSource(sourceFac.createFRSource(new Vec3f(3.8f, 0.3f, 0f), SourceType.MID));
-        
+
         sh.addSource(sourceFac.createFRSource(new Vec3f(0f, 1.5f, 0f), SourceType.HIGH));
         sh.addSource(sourceFac.createFRSource(new Vec3f(0f, 1.8f, 0f), SourceType.MID));
         sh.addSource(sourceFac.createFRSource(new Vec3f(0f, 2.1f, 0f), SourceType.LOW));
-        
+
         sh.addSource(sourceFac.createFRSource(new Vec3f(5f, 1.5f, 0f), SourceType.HIGH));
         sh.addSource(sourceFac.createFRSource(new Vec3f(5f, 1.8f, 0f), SourceType.MID));
         sh.addSource(sourceFac.createFRSource(new Vec3f(5f, 2.1f, 0f), SourceType.LOW));
-        
+
         sh.addSource(sourceFac.createFRSource(new Vec3f(0.1f, 3.5f, 0f), SourceType.HIGH));
         sh.addSource(sourceFac.createFRSource(new Vec3f(0.3f, 3.8f, 0f), SourceType.MID));
         sh.addSource(sourceFac.createFRSource(new Vec3f(0.6f, 4.4f, 0f), SourceType.LOW));
-        
+
         sh.addSource(sourceFac.createFRSource(new Vec3f(4.5f, 3.5f, 0f), SourceType.HIGH));
         sh.addSource(sourceFac.createFRSource(new Vec3f(4.3f, 3.8f, 0f), SourceType.MID));
         sh.addSource(sourceFac.createFRSource(new Vec3f(4.0f, 4.4f, 0f), SourceType.LOW));
-        
+
         sh.addSource(sourceFac.createFRSource(new Vec3f(2.0f, 5f, 0f), SourceType.LOW));
         sh.addSource(sourceFac.createFRSource(new Vec3f(2.3f, 5f, 0f), SourceType.LOW));
         sh.addSource(sourceFac.createFRSource(new Vec3f(2.6f, 5f, 0f), SourceType.LOW));
