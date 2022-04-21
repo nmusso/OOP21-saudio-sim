@@ -31,7 +31,7 @@ public interface Environment {
      * add source to the source hub.
      * @param source to add
      */
-    void addSourceToSourceHub(FRSource source);
+    void addSourceToSourcesHub(FRSource source);
 
     /**
      * add effect to all source.
@@ -49,7 +49,7 @@ public interface Environment {
      * remove source from sourceHub. 
      * @param sourceToRemove from set
      */
-    void removeSourceFromSourceHub(FRSource sourceToRemove);
+    void removeSourceFromSourcesHub(FRSource sourceToRemove);
 
 
     /**

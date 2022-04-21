@@ -1,12 +1,12 @@
 package view.utility;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class TextureImpl implements Texture {
-    private final Image image;
     private Rectangle region;
     private final ImageView imageView = new ImageView();
 
@@ -46,12 +46,15 @@ public class TextureImpl implements Texture {
      * @param path name of the image file to load
      */
     public TextureImpl(final String path) {
-        final InputStream file = getClass().getResourceAsStream("/img/" + path + ".png");
-        this.image = new Image(file);
-        this.imageView.setImage(image);
-        this.imageView.setFitWidth(image.getWidth());
-        this.imageView.setFitHeight(image.getHeight());
-        this.imageView.setPreserveRatio(true);
-        region = new RectangleImpl(0, 0,  imageView.getFitWidth(), imageView.getFitHeight());
+        try (InputStream file = getClass().getResourceAsStream("/img/" + path + ".png")) {
+            final Image image = new Image(file);
+            this.imageView.setImage(image);
+            this.imageView.setFitWidth(image.getWidth());
+            this.imageView.setFitHeight(image.getHeight());
+            this.imageView.setPreserveRatio(true);
+            region = new RectangleImpl(0, 0,  imageView.getFitWidth(), imageView.getFitHeight());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

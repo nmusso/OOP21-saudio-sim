@@ -1,7 +1,5 @@
 package model.space;
 
-
-
 import java.util.List;
 
 import model.utility.Vec3f;
@@ -68,17 +66,17 @@ public class SpaceImpl implements Space {
 
     /**
     *check if the position is out of borderMax.
-    *@param vec3f pos to check
-    * @return true if pos is ok
+    *@param vec3f position to check
+    * @return true if position is okay
     */
     private boolean checkBorder(final Vec3f pos) {
         return pos.getX() <= this.xMax && pos.getX() >= 0f && pos.getY() >= 0f && pos.getY() <= this.yMax;
     }
 
     /**
-    * check busy positions. 
-    * @param vec3f pos to check
-    * @return true if pos is free else false
+    * check busy positions.
+    * @param vec3f position to check
+    * @return true if position is free else false
     */
     private boolean checkBusyPos(final Vec3f pos, final List<Vec3f> position) {
         return !position.contains(pos);

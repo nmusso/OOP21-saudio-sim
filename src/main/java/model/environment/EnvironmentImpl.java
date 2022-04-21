@@ -77,7 +77,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void addSourceToSourceHub(final FRSource source) {
+    public void addSourceToSourcesHub(final FRSource source) {
         sourcesHub.addSource(source);
     }
 
@@ -86,7 +86,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void removeSourceFromSourceHub(final FRSource sourceToRemove) {
+    public void removeSourceFromSourcesHub(final FRSource sourceToRemove) {
         this.sourcesHub.removeSource(sourceToRemove);
         sourceToRemove.delete();
     }
