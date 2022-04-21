@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import controller.MainController;
 import controller.SongController;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -84,9 +83,9 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
      * @param event the event who triggered the method
      */
     @FXML
-    public final void handlePress(final Event event) {
+    private void handlePress() { // NOPMD: Called by JavaFX
         final FileChooser fc = new FileChooser();
-        fc.setTitle("Open Resource file");
+        fc.setTitle("Open file");
         fc.getExtensionFilters().add(new ExtensionFilter("wav", "*.wav"));
 
         final List<File> selected = fc.showOpenMultipleDialog(null);
@@ -103,7 +102,7 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
      * @param event the event who triggered the method
      */
     @FXML
-    public final void handlePlay(final Event event) {
+    private void handlePlay() { // NOPMD: Called by JavaFX
         final int bufferID = cmbSongs.getSelectionModel().getSelectedItem().getID();
         ctrl.playSource(bufferID);
 
@@ -120,7 +119,7 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
      * @param event the event who triggered the method
      */
     @FXML
-    public final void handlePause(final Event event) {
+    private void handlePause() { // NOPMD: Called by JavaFX
         ctrl.pauseSource();
 
         btnPlay.setDisable(false);
@@ -134,7 +133,7 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
      * @param event the event who triggered the method
      */
     @FXML
-    public final void handleStop(final Event event) {
+    private void handleStop() { // NOPMD: Called by JavaFX
         ctrl.stopSource();
 
         btnImport.setDisable(true);

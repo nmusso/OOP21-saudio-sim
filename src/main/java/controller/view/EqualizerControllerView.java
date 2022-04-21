@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import controller.EqualizerController;
 import controller.MainController;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -62,7 +61,7 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
      * @param event the event who triggered the method
      */
     @FXML
-    public final void handlePress(final Event event) {
+    private void handlePress() { // NOPMD: Called by JavaFX
         final boolean state = btnTurn.isSelected();
 
         if (!state) {
