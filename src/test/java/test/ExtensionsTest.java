@@ -24,7 +24,7 @@ import model.source.SourceType;
 
 class ExtensionsTest {
 
-    private static final String PATH = "src/main/resources/songs/";
+    private static final String PATH = "/songs/";
     private static final float OFFSET = 0.1f;
     private final BufferFactory bufferFactory = new BufferFactoryImpl();
     private final SourceFactory sourceFactory = new SourceFactoryImpl();
@@ -37,7 +37,7 @@ class ExtensionsTest {
 
     @Test
     void testLowPass() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        buffer = bufferFactory.createBufferFromPath(PATH + "InnoItalia.wav");
+        buffer = bufferFactory.createBufferFromResource(PATH + "InnoItalia.wav");
 
         FRSource source = sourceFactory.createFRSource(SourceType.LOW);
         source.generateSource(buffer.getID());
@@ -60,7 +60,7 @@ class ExtensionsTest {
 
     @Test
     void testBandPass() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        buffer = bufferFactory.createBufferFromPath(PATH + "Battle.wav");
+        buffer = bufferFactory.createBufferFromResource(PATH + "Battle.wav");
 
         FRSource source = sourceFactory.createFRSource(SourceType.LOW);
         source.generateSource(buffer.getID());
@@ -83,7 +83,7 @@ class ExtensionsTest {
 
     @Test
     void testHighPass() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        buffer = bufferFactory.createBufferFromPath(PATH + "DriftMono.wav");
+        buffer = bufferFactory.createBufferFromResource(PATH + "DriftMono.wav");
 
         FRSource source = sourceFactory.createFRSource(SourceType.LOW);
         source.generateSource(buffer.getID());
@@ -108,7 +108,9 @@ class ExtensionsTest {
     void testEffects() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
         final Effect manager = new EffectImpl();
         final FRSource source = sourceFactory.createFRSource();
+        buffer = bufferFactory.createBufferFromResource(PATH + "DriftMono.wav");
 
+        source.generateSource(buffer.getID());
         ALEffects effect = ALEffects.AUTOWAH;
 
         manager.apply(effect, source, effect.getMinValue());
