@@ -73,7 +73,7 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
      * @param event the event who trigger the method
      */
     @FXML 
-    private final void handleCmbPreset(final Event event) {// NOPMD: Called by JavaFX
+    private void handleCmbPreset(final Event event) { // NOPMD: Called by JavaFX
         selectedPreset = cmbPreset.getSelectionModel().getSelectedItem().toString();
         this.ctrl.changePreset(selectedPreset);
     }
@@ -83,7 +83,7 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
      * @param event the event who trigger the method
      */
     @FXML
-    private final void handleUpdateSpin(final Event event) {// NOPMD: Called by JavaFX
+    private void handleUpdateSpin(final Event event) { // NOPMD: Called by JavaFX
         x = spnSizeX.getValue();
         y = spnSizeY.getValue();
         this.ctrl.setSize(x, y);
