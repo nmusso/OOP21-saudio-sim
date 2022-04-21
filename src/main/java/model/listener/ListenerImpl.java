@@ -35,7 +35,7 @@ public class ListenerImpl implements Listener {
 
     /**
      * 
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public final void setPosition(final Vec3f pos) {
@@ -45,7 +45,7 @@ public class ListenerImpl implements Listener {
 
     /**
      * 
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public Vec3f getPosition() {
@@ -54,7 +54,7 @@ public class ListenerImpl implements Listener {
 
     /**
      * 
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public final void setOrientation(final Vec3f up, final Vec3f at) {
@@ -76,7 +76,7 @@ public class ListenerImpl implements Listener {
 
     /**
      * 
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public Vec3f getAtOrientation() {
@@ -85,7 +85,7 @@ public class ListenerImpl implements Listener {
 
     /**
      * 
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public Vec3f getUpOrientation() {
@@ -94,7 +94,7 @@ public class ListenerImpl implements Listener {
 
     /**
      * 
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public Context getCurrentContext() {
@@ -103,7 +103,7 @@ public class ListenerImpl implements Listener {
 
     /**
      * 
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public int hashCode() {
@@ -112,7 +112,7 @@ public class ListenerImpl implements Listener {
 
     /**
      * 
-     * @{inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public boolean equals(final Object obj) {
