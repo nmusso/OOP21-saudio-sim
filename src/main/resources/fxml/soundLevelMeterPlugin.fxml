@@ -13,19 +13,19 @@
 
 
  <Tab fx:id="soundLevelMeterPluginTab" text="SoundLevelMeter" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="plugin.listener.view.SoundLevelMeterPluginControllerView">
-                    <content>
+                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>                              
-                              <GridPane prefHeight="240.0" prefWidth="208.0">
+                           <children>
+                              <GridPane AnchorPane.bottomAnchor="-0.5" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columnConstraints>
-                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="32.0" />
-                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="141.0" />
-                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="38.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="15.0" prefWidth="32.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="70.0" prefWidth="141.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="15.0" prefWidth="38.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints minHeight="0.0" prefHeight="33.0" valignment="CENTER" vgrow="ALWAYS" />
-                                  <RowConstraints minHeight="10.0" prefHeight="173.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints minHeight="10.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+                                  <RowConstraints minHeight="0.0" percentHeight="15.0" prefHeight="33.0" valignment="CENTER" vgrow="ALWAYS" />
+                                  <RowConstraints minHeight="10.0" percentHeight="70.0" prefHeight="173.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
                                 </rowConstraints>
                                  <children>
                                     <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#handleBtnRemove" text="X" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />

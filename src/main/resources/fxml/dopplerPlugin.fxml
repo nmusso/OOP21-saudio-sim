@@ -15,19 +15,19 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <GridPane prefHeight="240.0" prefWidth="208.0">
+                              <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columnConstraints>
-                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="64.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="75.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="46.0" />
-                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="38.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="35.0" prefWidth="64.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="35.0" prefWidth="75.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="15.0" prefWidth="46.0" />
+                                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="15.0" prefWidth="38.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints minHeight="5.0" prefHeight="32.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints minHeight="10.0" prefHeight="41.0" valignment="CENTER" vgrow="ALWAYS" />
-                                  <RowConstraints minHeight="10.0" prefHeight="33.0" valignment="CENTER" vgrow="ALWAYS" />
-                                    <RowConstraints minHeight="10.0" prefHeight="34.0" valignment="CENTER" vgrow="ALWAYS" />
-                                  <RowConstraints minHeight="10.0" prefHeight="101.0" valignment="CENTER" vgrow="ALWAYS" />
+                                  <RowConstraints minHeight="5.0" percentHeight="15.0" prefHeight="32.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="41.0" valignment="CENTER" vgrow="ALWAYS" />
+                                  <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="33.0" valignment="CENTER" vgrow="ALWAYS" />
+                                    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="34.0" valignment="CENTER" vgrow="ALWAYS" />
+                                  <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="101.0" valignment="CENTER" vgrow="ALWAYS" />
                                 </rowConstraints>
                                  <children>
                                     <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#handleBtnRemove" text="X" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
