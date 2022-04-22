@@ -115,7 +115,7 @@ class TestPluginListener {
         assertEquals(plugin.getRgbColor(), new Vec3f(maxBit));
 
         listener.setPosition(new Vec3f(2.0f));
-        final FRSource source = sourceFac.createFRSource(new Vec3f(2.0f), SourceType.FULL);
+        final FRSource source = sourceFac.createFRSourceWithPosition(new Vec3f(2.0f), SourceType.FULL);
         sources.addSource(source);
 
         plugin.setSourceHub(sources);

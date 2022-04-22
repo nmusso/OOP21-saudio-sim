@@ -56,8 +56,8 @@ class EnvironmentTest {
 
     @Test
     void  testSimplePlayStop() {
-        sources.add(genSource(sourceFac.createFRSource()));
-        sources.add(genSource(sourceFac.createFRSource()));
+        sources.add(genSource(sourceFac.createDefaultFRSource()));
+        sources.add(genSource(sourceFac.createDefaultFRSource()));
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         env.getSourceHub().playAll();
@@ -68,21 +68,21 @@ class EnvironmentTest {
 
     @Test
     void testAddSource() {
-        sources.add(genSource(sourceFac.createFRSource()));
-        sources.add(genSource(sourceFac.createFRSource()));
+        sources.add(genSource(sourceFac.createDefaultFRSource()));
+        sources.add(genSource(sourceFac.createDefaultFRSource()));
 
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         assertEquals(env.getSourceHub().getAll().size(), sources.size());
-        env.getSourceHub().addSource(genSource(sourceFac.createFRSource()));
+        env.getSourceHub().addSource(genSource(sourceFac.createDefaultFRSource()));
         assertEquals(env.getSourceHub().getAll().size(), sources.size() + 1);
     }
 
     @Test
     void testGetX() {
-        final FRSource source1 = genSource(sourceFac.createFRSource());
-        final FRSource source2 = genSource(sourceFac.createFRSource());
-        final FRSource source3 = genSource(sourceFac.createFRSource());
+        final FRSource source1 = genSource(sourceFac.createDefaultFRSource());
+        final FRSource source2 = genSource(sourceFac.createDefaultFRSource());
+        final FRSource source3 = genSource(sourceFac.createDefaultFRSource());
         sources.add(source1);
         sources.add(source2);
         sources.add(source3);

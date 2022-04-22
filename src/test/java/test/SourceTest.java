@@ -31,7 +31,7 @@ class SourceTest {
     private final SourceFactory sFactory = new SourceFactoryImpl();
     private final SourcesHubFactory sHubFactory = new SourcesHubFactoryImpl();
     private final Source s = sFactory.createSource();
-    private final FRSource frs = sFactory.createFRSource();
+    private final FRSource frs = sFactory.createDefaultFRSource();
 
     @BeforeAll
     static void init() {
@@ -124,9 +124,9 @@ class SourceTest {
     @Test
     void testSourcesHub() {
         final SourcesHub sHub = sHubFactory.createSourcesHub();
-        final FRSource s1 = sFactory.createFRSource();
-        final FRSource s2 = sFactory.createFRSource();
-        final FRSource s3 = sFactory.createFRSource();
+        final FRSource s1 = sFactory.createDefaultFRSource();
+        final FRSource s2 = sFactory.createDefaultFRSource();
+        final FRSource s3 = sFactory.createDefaultFRSource();
         final Vec3f origin = new Vec3f(0.0f); 
         final Vec3f fiveV = new Vec3f(5.0f);
 

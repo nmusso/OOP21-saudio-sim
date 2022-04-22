@@ -22,7 +22,7 @@ public class SourcesHubFactoryImpl implements SourcesHubFactory {
      * {@inheritDoc}
      */
     @Override
-    public SourcesHub createSourcesHub(final Set<FRSource> sources) {
+    public SourcesHub createSourcesHubFromSet(final Set<FRSource> sources) {
         return new SourcesHubImpl(sources);
     }
 

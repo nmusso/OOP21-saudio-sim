@@ -21,14 +21,14 @@ public interface SourceFactory {
      * @param position
      * @return basic Source in the specified position
      */
-    Source createSource(Vec3f position);
+    Source createSourceWithPosition(Vec3f position);
 
     /**
      * Create a FreqRangeSource with default Frequency Range (FULL).
      * 
      * @return Source with a given Frequency Range
      */
-    FRSource createFRSource();
+    FRSource createDefaultFRSource();
 
     /**
      * Create a FRSource with a given Frequency Range.
@@ -45,5 +45,5 @@ public interface SourceFactory {
      * @param type
      * @return FRSource with a given Frequency Range in the specified position
      */
-    FRSource createFRSource(Vec3f position, SourceType type);
+    FRSource createFRSourceWithPosition(Vec3f position, SourceType type);
 }
