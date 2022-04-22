@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -12,8 +11,6 @@ import java.util.stream.Collectors;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -99,14 +96,4 @@ class EnvironmentTest {
 
         assertEquals(env.getListener(), listener);
     }
-
-    /*
-    @Test
-    void testesempio() {
-        System.out.println("test Json");
-        final JSONObject obj = new JSONObject(getClass().getResource("/json/data.json"));
-        assertNotNull(obj);
-        final JSONArray pageName = obj.getJSONArray("Cinema");
-        System.out.println(pageName.get(1));
-    }*/
 }
