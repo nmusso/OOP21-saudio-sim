@@ -16,16 +16,12 @@ public interface EnvironmentFactory {
      Environment createVoidEnvironment();
 
     /**
-    * create an Environment with an initial mono source.
-    * @return Environment
-    */
-    Environment createMonoEnvironment();
-
-    /**
-    * create an Environment with an initial stereo source.
-    * @return Environment
-    */
-    Environment createStereoEnvironment();
+     * create ad Environment from json set.
+     * @param json all string with preset
+     * @param typeEnv exemple Cinema, Mono, Stereo ...
+     * @return Environment
+     */
+    Environment createEnvironmentFromJson(String json, String typeEnv);
 
     /**
      * Create an Environment with param set.
@@ -35,16 +31,4 @@ public interface EnvironmentFactory {
      * @return Environment
      */
     Environment createNEnvironment(Set<FRSource> sources, Listener listener, Optional<Space> space);
-
-    /**
-    * create an Environment with specific set, like Cinema.
-    * @return Environment
-    */
-    Environment createCinemaEnvironment();
-
-    /**
-    * create an Environment with specific set, like HIFI HOME STUDIO.
-    * @return Environment
-    */
-    Environment createHIFIEnvironment();
 }

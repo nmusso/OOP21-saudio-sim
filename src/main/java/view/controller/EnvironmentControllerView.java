@@ -134,7 +134,7 @@ public class EnvironmentControllerView implements Initializable, ControllerView,
      */
     @Override
     public void setTxBackGround(final String back) {
-        if (!"void".equals(back)) {
+        if ("Cinema".equals(back) || "HomeHIFI".equals(back)) {
             txBackGround = new TextureImpl(back);
             backGround.setTexture(txBackGround);
             backGroundStatus = true;

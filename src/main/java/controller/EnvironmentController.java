@@ -1,5 +1,9 @@
 package controller;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Optional;
 
 import model.audiomanager.AudioManager;
@@ -13,7 +17,7 @@ import view.utility.TypeSprite;
 
 public class EnvironmentController implements ControllerApplication<EnvironmentView> {
 
-    private static final String VOID = "void";
+    private static final String PATH = "/json/data.json";
 
     private final MainController mainCtr;
     private EnvironmentView ctrlView;
@@ -35,10 +39,9 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
     /**
      * Add listener to ctrlView.
      * 
-     * @param type of listener.
      */
-    public void addListener(final TypeSprite type) {
-        this.ctrlView.addSprite(type, (int) env.getListener().getCurrentContext().getId(), env.getListener().getPosition());
+    public void addListener() {
+        this.ctrlView.addSprite(TypeSprite.LISTENER, (int) env.getListener().getCurrentContext().getId(), env.getListener().getPosition());
     }
 
     /**
@@ -110,32 +113,23 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      * @param preset has type env.
      */
     public void changeEnv(final String preset) {
-        switch (preset) {
-        case "Cinema":
-            this.env = envFac.createCinemaEnvironment();
-            this.ctrlView.setTxBackGround(preset);
-            break;
-        case "Mono":
-            this.env = envFac.createMonoEnvironment();
-            this.ctrlView.setTxBackGround(VOID);
-            break;
-        case "Stereo":
-            this.env = envFac.createStereoEnvironment();
-            this.ctrlView.setTxBackGround(VOID);
-            break;
-        case "HomeHIFI":
-            this.env = envFac.createHIFIEnvironment();
-            this.ctrlView.setTxBackGround(preset);
-            break;
-        default:
+        if (!"void".equals(preset)) {
+            String json;
+            try {
+                json = Files.readString(Path.of(getClass().getResource(PATH).toURI()));
+                this.env = envFac.createEnvironmentFromJson(json, preset);
+            } catch (IOException | URISyntaxException e1) {
+                e1.printStackTrace();
+            }
+        } else {
             this.env = envFac.createVoidEnvironment();
-            this.ctrlView.setTxBackGround(VOID);
-            break;
         }
+        this.ctrlView.setTxBackGround(preset);
+
         this.ctrlView.reset();
         this.mainCtr.getSpaceController().setSpinner(this.env.getSpace().getXmax(), this.getEnv().getSpace().getYmax());
         this.ctrlView.setSize(this.env.getSpace().getXmax(), this.getEnv().getSpace().getYmax());
-        addListener(TypeSprite.LISTENER);
+        addListener();
         this.env.getSourceHub().getAll().stream().forEach(e -> {
             TypeSprite type = TypeSprite.SOURCEFULL;
             switch (e.getType()) {
@@ -176,7 +170,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      */
     public void setControllerView(final EnvironmentView controllerView) {
         ctrlView = controllerView;
-        this.changeEnv(VOID);
+        this.changeEnv("void");
     }
 
     /**
