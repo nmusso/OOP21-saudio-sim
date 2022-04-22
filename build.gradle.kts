@@ -33,33 +33,21 @@ val javaFXModules = listOf("base", "controls", "fxml", "swing", "graphics")
 val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
 val javaFxVersion = 15
 val lwjglVersion = "3.3.1"
-val lwjglNatives = Pair(
-	System.getProperty("os.name")!!,
-	System.getProperty("os.arch")!!
-).let { (name, arch) ->
-	when {
-		arrayOf("Linux", "FreeBSD", "SunOS", "Unit").any { name.startsWith(it) } ->
-			if (arrayOf("arm", "aarch64").any { arch.startsWith(it) })
-				"natives-linux${if (arch.contains("64") || arch.startsWith("armv8")) "-arm64" else "-arm32"}"
-			else
-				"natives-linux"
-		arrayOf("Mac OS X", "Darwin").any { name.startsWith(it) }                ->
-			"natives-macos${if (arch.startsWith("aarch64")) "-arm64" else ""}"
-		arrayOf("Windows").any { name.startsWith(it) }                           ->
-			if (arch.contains("64"))
-				"natives-windows${if (arch.startsWith("aarch64")) "-arm64" else ""}"
-			else
-				"natives-windows-x86"
-		else -> throw Error("Unrecognized or unsupported platform. Please set \"lwjglNatives\" manually")
-	}
-}
-
+val lwjglPlatforms = listOf("natives-linux",
+							"natives-linux-arm64",
+							"natives-linux-arm32",
+							"natives-macos",
+							"natives-macos-arm64",
+							"natives-windows",
+							"natives-windows-x86",
+							"natives-windows-arm64")
 
 dependencies {
     // Maven dependencies are composed by a group name, a name and a version, separated by colons
     implementation("com.diffplug.durian:durian:3.4.0")
     implementation("com.google.apis:google-api-services-books:v1-rev20201021-1.31.0")
     implementation("com.omertron:API-OMDB:1.5")
+    implementation("org.springframework:spring-core:5.3.19")
 
     // This dependency is used by the application.
     implementation("com.google.guava:guava:30.1.1-jre")
@@ -73,18 +61,19 @@ dependencies {
      
     // LWJGL   
     implementation(platform("org.lwjgl:lwjgl-bom:$lwjglVersion"))
-    implementation("org.lwjgl", "lwjgl")
-	implementation("org.lwjgl", "lwjgl-assimp")
-	implementation("org.lwjgl", "lwjgl-glfw")
+	implementation("org.lwjgl", "lwjgl")
 	implementation("org.lwjgl", "lwjgl-openal")
-	implementation("org.lwjgl", "lwjgl-opengl")
-	implementation("org.lwjgl", "lwjgl-stb")
-	runtimeOnly("org.lwjgl", "lwjgl", classifier = lwjglNatives)
-	runtimeOnly("org.lwjgl", "lwjgl-assimp", classifier = lwjglNatives)
-	runtimeOnly("org.lwjgl", "lwjgl-glfw", classifier = lwjglNatives)
-	runtimeOnly("org.lwjgl", "lwjgl-openal", classifier = lwjglNatives)
-	runtimeOnly("org.lwjgl", "lwjgl-opengl", classifier = lwjglNatives)
-	runtimeOnly("org.lwjgl", "lwjgl-stb", classifier = lwjglNatives)
+	
+	for (platform in lwjglPlatforms) {
+		runtimeOnly("org.lwjgl", "lwjgl", classifier = platform)
+		runtimeOnly("org.lwjgl", "lwjgl-openal", classifier = platform)
+	}
+	
+	//ClassGraph
+	implementation("io.github.classgraph:classgraph:4.8.143")
+	
+	//JSON
+	implementation("org.json:json:20220320")
 	
 	/*
      * Simple Logging Facade for Java (SLF4J) with Apache Log4j
@@ -103,7 +92,7 @@ dependencies {
 
 application { 
     // Define the main class for the application.
-    mainClass.set("controller.AppMain")
+    mainClass.set("launcher.ApplicationLauncher")
 }
 
 java {

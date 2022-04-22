@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -11,40 +12,42 @@ import java.util.stream.Collectors;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import model.audiomanager.AudioManager;
 import model.buffer.Buffer;
-import model.buffer.BufferImpl;
+import model.buffer.ResourceBuffer;
 import model.environment.Environment;
 import model.environment.EnvironmentFactory;
 import model.environment.EnvironmentFactoryImpl;
 import model.listener.Listener;
 import model.listener.ListenerFactory;
 import model.listener.ListenerFactoryImpl;
-import model.source.Source;
+import model.source.FRSource;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
-import model.source.SourceImpl;
 
 class EnvironmentTest {
 
-    private final Set<Source> sources = new HashSet<Source>();
+    private final Set<FRSource> sources = new HashSet<>();
     private final ListenerFactory listFac = new ListenerFactoryImpl();
     private final Listener listener = listFac.createListener(AudioManager.getContext());
-    //private final SourceFactory sourceFac = new SourceFactoryImpl();
-    //TODO Utilizza sourceFac
+    private final SourceFactory sourceFac = new SourceFactoryImpl();
     private final EnvironmentFactory envFac = new EnvironmentFactoryImpl();
 
     @BeforeAll
     static void init() {
         AudioManager.initContext();
     }
-    private Source genSource(final Source s) {
-        final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
+
+    private FRSource genSource(final FRSource s) {
+        Buffer b;
         try {
-            s.generateSource(b.generateBuffer());
+            b = new ResourceBuffer("/songs/DriftMono.wav");
+            s.generateSource(b.getID());
         } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
         }
@@ -53,49 +56,41 @@ class EnvironmentTest {
 
     @Test
     void  testSimplePlayStop() {
-        sources.add(genSource(new SourceImpl()));
-        sources.add(genSource(new SourceImpl()));
+        sources.add(genSource(sourceFac.createDefaultFRSource()));
+        sources.add(genSource(sourceFac.createDefaultFRSource()));
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         env.getSourceHub().playAll();
-        assertEquals(env.getSourceHub().getPalying(), sources);
+        assertEquals(env.getSourceHub().getPlaying(), sources);
         env.getSourceHub().stopAll();
-        assertNotEquals(env.getSourceHub().getPalying(), sources);
+        assertNotEquals(env.getSourceHub().getPlaying(), sources);
     }
 
     @Test
     void testAddSource() {
-        sources.add(genSource(new SourceImpl()));
-        sources.add(genSource(new SourceImpl()));
+        sources.add(genSource(sourceFac.createDefaultFRSource()));
+        sources.add(genSource(sourceFac.createDefaultFRSource()));
 
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         assertEquals(env.getSourceHub().getAll().size(), sources.size());
-        env.getSourceHub().addSource((genSource(new SourceImpl())));
+        env.getSourceHub().addSource(genSource(sourceFac.createDefaultFRSource()));
         assertEquals(env.getSourceHub().getAll().size(), sources.size() + 1);
     }
 
     @Test
     void testGetX() {
-        final Source source1 = genSource(new SourceImpl());
-        final Source source2 = genSource(new SourceImpl());
-        final Source source3 = genSource(new SourceImpl());
+        final FRSource source1 = genSource(sourceFac.createDefaultFRSource());
+        final FRSource source2 = genSource(sourceFac.createDefaultFRSource());
+        final FRSource source3 = genSource(sourceFac.createDefaultFRSource());
         sources.add(source1);
         sources.add(source2);
         sources.add(source3);
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
-        assertEquals(env.getSourceHub().getSource(1), source1);
-        assertEquals(env.getSourceHub().getSource(2), source2);
-        assertNotEquals(env.getSourceHub().getSource(1), source2);
-    }
-
-    @Test
-    void testSpace() {
-        final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
-
-        assertEquals(env.getSpace().getLenght(), 10.0f);
-        assertNotEquals(env.getSpace().getWidth(), 2.0f);
+        assertEquals(env.getSourceHub().getSource(1), Optional.of(source1));
+        assertEquals(env.getSourceHub().getSource(2), Optional.of(source2));
+        assertNotEquals(env.getSourceHub().getSource(1), Optional.of(source2));
     }
 
     @Test
@@ -104,4 +99,14 @@ class EnvironmentTest {
 
         assertEquals(env.getListener(), listener);
     }
+
+    /*
+    @Test
+    void testesempio() {
+        System.out.println("test Json");
+        final JSONObject obj = new JSONObject(getClass().getResource("/json/data.json"));
+        assertNotNull(obj);
+        final JSONArray pageName = obj.getJSONArray("Cinema");
+        System.out.println(pageName.get(1));
+    }*/
 }

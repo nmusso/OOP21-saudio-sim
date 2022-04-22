@@ -1,5 +1,9 @@
 package model.source;
 
+/**
+ * Types of frequency range.
+ *
+ */
 public enum SourceType {
     /**
      *  Low range type.
@@ -12,5 +16,9 @@ public enum SourceType {
     /**
      *  High range type.
      */
-    HIGH;
+    HIGH,
+    /**
+     *  Full range type.
+     */
+    FULL;
 }

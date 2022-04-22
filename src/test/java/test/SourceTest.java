@@ -6,34 +6,42 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import model.buffer.Buffer;
-import model.environment.Environment;
-import model.environment.EnvironmentImpl;
-import model.listener.Listener;
-import model.listener.ListenerImpl;
-import model.source.*;
+import model.buffer.ResourceBuffer;
+import model.source.FRSource;
+import model.source.Source;
+import model.source.SourceFactory;
+import model.source.SourceFactoryImpl;
+import model.source.SourceImpl;
+import model.source.SourceType;
+import model.source.hub.SourcesHub;
+import model.source.hub.SourcesHubFactory;
+import model.source.hub.SourcesHubFactoryImpl;
+import model.utility.Vec3f;
 import model.audiomanager.AudioManager;
-import model.buffer.*;
-import model.utility.*;
 
 class SourceTest {
 
-    private final Source s = new SourceImpl();
+    private final SourceFactory sFactory = new SourceFactoryImpl();
+    private final SourcesHubFactory sHubFactory = new SourcesHubFactoryImpl();
+    private final Source s = sFactory.createSource();
+    private final FRSource frs = sFactory.createDefaultFRSource();
 
     @BeforeAll
     static void init() {
         AudioManager.initContext();
     }
 
-    private void genSource() {
-        final Buffer b = new BufferImpl("src/main/resources/InnoItalia.wav");
+    private void genSource(final Source s) {
+        Buffer b;
         try {
-            b.generateBuffer();
+            b = new ResourceBuffer("/songs/InnoItalia.wav");
             s.generateSource(b.getID());
         } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
@@ -42,7 +50,7 @@ class SourceTest {
 
     @Test
     void testBasicPlayPauseStop() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        genSource();
+        genSource(this.s);
 
         s.play();
         assertTrue(s.isPlaying());
@@ -55,7 +63,7 @@ class SourceTest {
 
     @Test
     void testAdvancedPlayPauseStop() {
-        genSource();
+        genSource(this.s);
 
         s.play();
         s.pause();
@@ -72,7 +80,7 @@ class SourceTest {
 
     @Test
     void testBasicChangePosition() {
-        genSource();
+        genSource(this.s);
         final float x = 1.0f;
         final float y = -10.0f;
         final float z = 0.5f;
@@ -82,5 +90,71 @@ class SourceTest {
         final Vec3f pos = new Vec3f(x, y, z);
         s.setPosition(pos);
         assertEquals(s.getPosition(), pos);
+    }
+
+    @Test
+    void testBasicFRSource() {
+        genSource(this.frs);
+
+        assertEquals(frs.getType(), SourceType.FULL);
+        frs.setType(SourceType.HIGH);
+        assertEquals(frs.getType(), SourceType.HIGH);
+        frs.setType(SourceType.MID);
+        assertEquals(frs.getType(), SourceType.MID);
+        frs.setType(SourceType.LOW);
+        assertEquals(frs.getType(), SourceType.LOW);
+    }
+
+    @Test
+    void testAdvancedFRSource() {
+        genSource(this.frs);
+
+        frs.setType(SourceType.HIGH);
+        assertEquals(frs.getType(), SourceType.HIGH);
+        frs.setType(SourceType.FULL);
+        assertEquals(frs.getType(), SourceType.FULL);
+        frs.setType(SourceType.LOW);
+        assertEquals(frs.getType(), SourceType.LOW);
+        frs.setType(SourceType.LOW);
+        assertEquals(frs.getType(), SourceType.LOW);
+        frs.setType(SourceType.FULL);
+        assertEquals(frs.getType(), SourceType.FULL);
+    }
+
+    @Test
+    void testSourcesHub() {
+        final SourcesHub sHub = sHubFactory.createSourcesHub();
+        final FRSource s1 = sFactory.createDefaultFRSource();
+        final FRSource s2 = sFactory.createDefaultFRSource();
+        final FRSource s3 = sFactory.createDefaultFRSource();
+        final Vec3f origin = new Vec3f(0.0f); 
+        final Vec3f fiveV = new Vec3f(5.0f);
+
+        sHub.addSource(s1);
+        sHub.addSource(s2);
+        sHub.addSource(s3);
+
+        assertEquals(sHub.getAll(), Set.of(s1, s2, s3));
+        assertEquals(sHub.getAllPositions(), List.of(origin, origin, origin));
+
+        sHub.playAll();
+        assertEquals(sHub.getPlaying(), Set.of(s1, s2, s3));
+        sHub.pauseAll();
+        assertEquals(sHub.getPlaying(), Collections.EMPTY_SET);
+        sHub.playAll();
+        assertEquals(sHub.getPlaying(), Set.of(s1, s2, s3));
+        sHub.stopAll();
+        assertEquals(sHub.getPlaying(), Collections.EMPTY_SET);
+
+        s3.setPosition(fiveV);
+        assertEquals(sHub.getSourceFromPos(fiveV).get(), s3);
+        assertEquals(sHub.getSource(s3.getId()).get(), s3);
+
+        sHub.removeSource(s3);
+        assertEquals(sHub.getSourceFromPos(fiveV).isPresent(), false);
+        assertEquals(sHub.getSource(s3.getId()).isPresent(), false);
+
+        sHub.deleteAll();
+        assertEquals(sHub.getAll(), Collections.EMPTY_SET);
     }
 }

@@ -1,11 +1,18 @@
 package model.source.hub;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
-import model.effect.ALEffect;
-import model.source.Source;
+import model.extension.effect.ALEffects;
+import model.source.FRSource;
 import model.utility.Vec3f;
 
+/**
+ * Sources Hub Interface.
+ * Hub that gathers a group of Sources in it and that helps to manage this group as a whole.
+ *
+ */
 public interface SourcesHub {
 
     /**
@@ -13,44 +20,51 @@ public interface SourcesHub {
      * 
      * @return Set of All Sources
      */
-    Set<Source> getAll();
+    Set<FRSource> getAll();
+
+    /**
+     * Gets a Set of Vec3f.
+     * 
+     * @return Set of All Sources Positions
+     */
+    List<Vec3f> getAllPositions();
 
     /**
      * Gets the Sources they are playing.
      * 
      * @return Set of Sources that are playing
      */
-    Set<Source> getPalying();
+    Set<FRSource> getPlaying();
 
     /**
      * Gets the Source with the specified id.
      * 
      * @param id
-     * @return Source with the specified id
+     * @return Optional of Source with the specified id
      */
-    Source getSource(Integer id);
+    Optional<FRSource> getSource(Integer id);
 
     /**
      * Gets the Source with the specified position.
      * 
      * @param position
-     * @return Source with the specified position
+     * @return Optional of Source with the specified position
      */
-    Source getSourceFromPos(Vec3f position);
+    Optional<FRSource> getSourceFromPos(Vec3f position);
 
     /**
      * Add the Source s to the SourcesHub.
      * 
      * @param s
      */
-    void addSource(Source s);
+    void addSource(FRSource s);
 
     /**
      * Remove the Source s to the SourcesHub.
      * 
      * @param s
      */
-    void removeSource(Source s);
+    void removeSource(FRSource s);
 
     /**
      * Play all sources.
@@ -68,19 +82,26 @@ public interface SourcesHub {
     void stopAll();
 
     /**
+     * Stop all sources.
+     * 
+     * @param buffer
+     */
+    void generateAllSources(int buffer);
+
+    /**
     * Apply the effect to all sources with the specified value.
     * 
     * @param effect
     * @param value
     */
-    void applyFilter(ALEffect effect, float value);
+    void applyEffect(ALEffects effect, float value);
 
     /**
      * Removes the filter from all sources.
      * 
      * @param effect
      */
-    void removeFilter(ALEffect effect);
+    void removeEffect(ALEffects effect);
 
     /**
      * Delete all sources.

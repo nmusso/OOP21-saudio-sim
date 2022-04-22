@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import org.lwjgl.BufferUtils;
 
-import model.effect.ALEffect;
+import model.extension.effect.ALEffects;
 
 public class Context {
     private final Device device;
@@ -20,7 +20,7 @@ public class Context {
         final IntBuffer contextAttribList = BufferUtils.createIntBuffer(3);
         // ALC_MAX_AUXILIARY_SENDS won't go above compile-time max. Set to compile-time max if greater.
         contextAttribList.put(ALC_MAX_AUXILIARY_SENDS);
-        contextAttribList.put(ALEffect.values().length);
+        contextAttribList.put(ALEffects.values().length);
 
         contextAttribList.put(0);
         contextAttribList.flip();

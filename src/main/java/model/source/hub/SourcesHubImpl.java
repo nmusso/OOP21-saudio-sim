@@ -2,79 +2,95 @@ package model.source.hub;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import model.effect.ALEffect;
-import model.effect.EffectManager;
+import model.extension.effect.ALEffects;
+import model.extension.effect.EffectImpl;
+import model.source.FRSource;
 import model.source.Source;
 import model.utility.Vec3f;
 
+/**
+ * Hub that gathers a group of Sources in it and that helps to manage this group as a whole.
+ *
+ */
 public class SourcesHubImpl implements SourcesHub {
 
-    private final Set<Source> sources;
-    private final EffectManager effectManager;
+    private final Set<FRSource> sources;
+    private final EffectImpl effectManager;
 
     public SourcesHubImpl() {
         this.sources = new HashSet<>();
-        this.effectManager = new EffectManager();
+        this.effectManager = new EffectImpl();
     }
 
-    public SourcesHubImpl(final Set<Source> sources) {
-        this.sources = sources;
-        this.effectManager = new EffectManager();
+    public SourcesHubImpl(final Set<FRSource> sources) {
+        this.sources = new HashSet<>();
+        this.sources.addAll(sources);
+        this.effectManager = new EffectImpl();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public Set<Source> getAll() {
+    public Set<FRSource> getAll() {
         return Collections.unmodifiableSet(this.sources);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public Set<Source> getPalying() {
+    public List<Vec3f> getAllPositions() {
+        return Collections.unmodifiableList(this.sources.stream().map(Source::getPosition).collect(Collectors.toList()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Set<FRSource> getPlaying() {
         return this.sources.stream().filter(Source::isPlaying).collect(Collectors.toSet());
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public Source getSource(final Integer id) {
-        return this.sources.stream().filter(s -> s.getId().equals(id)).findAny().get();
+    public Optional<FRSource> getSource(final Integer id) {
+        return this.sources.stream().filter(s -> s.getId().equals(id)).findAny();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public Source getSourceFromPos(final Vec3f position) {
-        return this.sources.stream().filter(s -> s.getPosition().equals(position)).findAny().get();
+    public Optional<FRSource> getSourceFromPos(final Vec3f position) {
+        return this.sources.stream().filter(s -> s.getPosition().equals(position)).findAny();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void addSource(final Source s) {
+    public void addSource(final FRSource s) {
         this.sources.add(s);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void removeSource(final Source s) {
+    public void removeSource(final FRSource s) {
         this.sources.remove(s);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void playAll() {
@@ -82,7 +98,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void pauseAll() {
@@ -90,7 +106,7 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void stopAll() {
@@ -98,27 +114,36 @@ public class SourcesHubImpl implements SourcesHub {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void applyFilter(final ALEffect effect, final float value) {
+    public void generateAllSources(final int buffer) {
+        this.sources.forEach(s -> s.generateSource(buffer));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyEffect(final ALEffects effect, final float value) {
         this.sources.forEach(s -> this.effectManager.apply(effect, s, value));
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void removeFilter(final ALEffect effect) {
+    public void removeEffect(final ALEffects effect) {
         this.sources.forEach(s -> this.effectManager.remove(effect, s));
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void deleteAll() {
         this.sources.forEach(Source::delete);
+        this.sources.clear();
     }
 
 }

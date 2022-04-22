@@ -1,15 +1,23 @@
 package model.source;
 
+import static org.lwjgl.openal.AL10.AL_BUFFER;
+import static org.lwjgl.openal.AL10.AL_POSITION;
+import static org.lwjgl.openal.AL10.alGenSources;
+import static org.lwjgl.openal.AL10.alSourcePlay;
+import static org.lwjgl.openal.AL10.alSourcePause;
+import static org.lwjgl.openal.AL10.alSourceStop;
+import static org.lwjgl.openal.AL10.alSourcei;
+import static org.lwjgl.openal.AL10.alSource3f;
+import static org.lwjgl.openal.AL10.alDeleteSources;
+
 import model.utility.Vec3f;
-import static org.lwjgl.openal.AL10.*;
-import static org.lwjgl.openal.AL11.*;
-import org.lwjgl.openal.*;
-import static javax.sound.sampled.AudioSystem.*;
-import java.io.*;
-import javax.sound.sampled.*;
-import java.nio.*;
+import java.util.Objects;
 
-
+/**
+ * Basic Source.
+ * Source with fundamental methods.
+ *
+ */
 public class SourceImpl implements Source {
 
     private final Integer id;
@@ -27,7 +35,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Integer getId() {
@@ -35,7 +43,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void play() {
@@ -44,7 +52,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void pause() {
@@ -53,7 +61,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void stop() {
@@ -62,7 +70,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isPlaying() {
@@ -70,16 +78,15 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public Source generateSource(final int  buffer) {
+    public void generateSource(final int buffer) {
         alSourcei(this.id, AL_BUFFER, buffer);
-        return this;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public final void setPosition(final Vec3f position) {
@@ -88,7 +95,7 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Vec3f getPosition() {
@@ -96,11 +103,37 @@ public class SourceImpl implements Source {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void delete() {
         alDeleteSources(this.id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final SourceImpl other = (SourceImpl) obj;
+        return Objects.equals(id, other.id) && isPlaying == other.isPlaying && Objects.equals(position, other.position);
     }
 
 }

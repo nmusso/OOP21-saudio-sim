@@ -2,38 +2,50 @@ package model.source;
 
 import model.utility.Vec3f;
 
+/**
+ * Factory for Source and FRSource with parameters variation.
+ *
+ */
 public class SourceFactoryImpl implements SourceFactory {
 
     /**
-    * @inheritDoc
-    */
+     * {@inheritDoc}
+     */
     @Override
     public Source createSource() {
         return new SourceImpl();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public Source createSourceWithPos(final Vec3f position) {
+    public Source createSourceWithPosition(final Vec3f position) {
         return new SourceImpl(position);
     }
 
     /**
-    * @inheritDoc
-    */
+     * {@inheritDoc}
+     */
     @Override
-    public Source createFreqRangeSource(final SourceType type) {
-        return new FreqRangeSourceImpl(type);
+    public FRSource createFRSource(final SourceType type) {
+        return new FRSourceImpl(type);
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public Source createFreqRangeSourceWithPos(final Vec3f position, final SourceType type) {
-        return new FreqRangeSourceImpl(position, type);
+    public FRSource createDefaultFRSource() {
+        return new FRSourceImpl(SourceType.FULL);
     }
- 
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public FRSource createFRSourceWithPosition(final Vec3f position, final SourceType type) {
+        return new FRSourceImpl(position, type);
+    }
+
 }

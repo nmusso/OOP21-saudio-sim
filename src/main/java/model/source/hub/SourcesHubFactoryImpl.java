@@ -2,12 +2,16 @@ package model.source.hub;
 
 import java.util.Set;
 
-import model.source.Source;
+import model.source.FRSource;
 
+/**
+ * Factory of SourcesHub.
+ * 
+ */
 public class SourcesHubFactoryImpl implements SourcesHubFactory {
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public SourcesHub createSourcesHub() {
@@ -15,10 +19,10 @@ public class SourcesHubFactoryImpl implements SourcesHubFactory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public SourcesHub createSourceHubFromSet(final Set<Source> sources) {
+    public SourcesHub createSourcesHubFromSet(final Set<FRSource> sources) {
         return new SourcesHubImpl(sources);
     }
 

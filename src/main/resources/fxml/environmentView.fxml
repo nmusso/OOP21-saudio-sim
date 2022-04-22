@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.view.EnvironmentControllerView">
+   <children>
+      <BorderPane fx:id="borderPaneCanvas" HBox.hgrow="ALWAYS">
+         <center>
+            <AnchorPane fx:id="conteinerCanvas" BorderPane.alignment="CENTER">
+               <children>
+                  <Canvas fx:id="canvas" focusTraversable="true" height="396.0" onMouseClicked="#handleOnMouseClickedOrDrag" onMouseDragged="#handleOnMouseClickedOrDrag" width="564.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Canvas>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</HBox>

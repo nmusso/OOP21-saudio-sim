@@ -1,35 +1,31 @@
 package model.environment;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Optional;
 
-import model.effect.ALEffect;
+import model.extension.effect.ALEffects;
 import model.listener.Listener;
+import model.source.FRSource;
 import model.source.hub.SourcesHub;
+import model.space.Space;
 import model.utility.Vec3f;
 
 public class EnvironmentImpl implements Environment {
     private final SourcesHub sourcesHub;
     private final Listener listener;
     private final Space space;
-    private final Set<ALEffect> effect;
 
+    /**
+     * Construct a new EnviromentImpl.
+     * @param sourcesHub set of source
+     * @param listener specific listener
+     * @param space specific space
+     */
     public EnvironmentImpl(final SourcesHub sourcesHub, final Listener listener, final Space space) {
         super();
         this.sourcesHub = sourcesHub;
         this.listener = listener;
         this.space = space;
-        this.effect = new HashSet<ALEffect>();
     }
-
-//    public EnvironmentImpl() {
-//        super();
-//        final ListenerFactory listFac = new ListenerFactoryImpl();
-//        //TODO this.sourcesHub = 
-//        this.listener = listFac.createListener(AudioManager.getContext());
-//        this.space = new SpaceImpl(10, 10);
-//    }
 
     /**
     * 
@@ -63,49 +59,47 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public void moveSourceWithID(final int id, final Vec3f pos) {
-        if (this.space.isAvailable(pos)) {
-            this.sourcesHub.getSource(id).setPosition(pos);
+    public void addEffect(final ALEffects effect, final float level) {
+        this.sourcesHub.applyEffect(effect, level);
+    }
+
+    /**
+     * 
+     *{@inheritDoc}
+     */
+    @Override
+    public void removeEffect() {
+        ALEffects.getValuesAsList().forEach(effect -> sourcesHub.removeEffect(effect));
+    }
+
+    /**
+     * 
+     *{@inheritDoc}
+     */
+    @Override
+    public void addSourceToSourcesHub(final FRSource source) {
+        sourcesHub.addSource(source);
+    }
+
+    /**
+     * 
+     *{@inheritDoc}
+     */
+    @Override
+    public void removeSourceFromSourcesHub(final FRSource sourceToRemove) {
+        this.sourcesHub.removeSource(sourceToRemove);
+        sourceToRemove.delete();
+    }
+
+    /**
+     * 
+     *{@inheritDoc}
+     */
+    @Override
+    public void moveSource(final FRSource source, final Vec3f pos) {
+        final Optional<FRSource> s = this.sourcesHub.getSource(source.getId());
+        if (s.isPresent()) {
+            s.get().setPosition(pos);
         }
     }
-
-    /**
-     * 
-     *{@inheritDoc}
-     */
-    @Override
-    public void moveSourceWithVec3f(final Vec3f oldPos, final Vec3f newPos) {
-        if (this.space.isAvailable(newPos)) {
-            this.sourcesHub.getSourceFromPos(oldPos).setPosition(newPos);
-        }
-    }
-
-    /**
-     * 
-     *{@inheritDoc}
-     */
-    @Override
-    public void setEffect(final ALEffect effect, final float level) {
-        this.effect.add(effect);
-        this.sourcesHub.applyFilter(effect, level);
-    }
-
-    /**
-     * 
-     *{@inheritDoc}
-     */
-    @Override
-    public void removeEffect(final ALEffect effect) {
-        this.effect.remove(effect);
-        //this.sourcesHub.removeFilter(effect);
-    }
-    /**
-     * 
-     *{@inheritDoc}
-     */
-    @Override
-    public Set<ALEffect> getEffectSet() {
-        return Collections.unmodifiableSet(this.effect);
-    }
-
 }

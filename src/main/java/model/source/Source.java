@@ -2,6 +2,11 @@ package model.source;
 
 import model.utility.Vec3f;
 
+/**
+ * Basic Source Interface.
+ * Source with fundamental methods.
+ *
+ */
 public interface Source {
 
 
@@ -30,7 +35,7 @@ public interface Source {
     /**
      * Returns true if the source is playing, false otherwise.
      * 
-     * @return boolean
+     * @return isPplaying
      */
     boolean isPlaying();
 
@@ -38,9 +43,8 @@ public interface Source {
      * Generate the Source with the buffer.
      * 
      * @param buffer
-     * @return this
      */
-    Source generateSource(int buffer);
+    void generateSource(int buffer);
 
     /**
      * Sets the position of the Source.
@@ -60,4 +64,5 @@ public interface Source {
      * Delete the source.
      */
     void delete();
+
 }

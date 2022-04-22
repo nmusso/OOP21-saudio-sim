@@ -3,12 +3,13 @@ package model.listener;
 import model.audiomanager.Context;
 import model.utility.Vec3f;
 
+/**
+ * The listener represent the listening point in the virtual plan.
+ * 
+ */
 public interface Listener {
-
-
     /**
-     * 
-     * @return context where this listener is usable
+     * @return context where this listener is usable.
      */
     Context getCurrentContext();
 
@@ -19,26 +20,29 @@ public interface Listener {
     void setPosition(Vec3f pos);
 
     /**
-     * 
      * @return vector of 3 float that representing x,y,z value.
      */
     Vec3f getPosition();
 
     /**
-     * 
-     * @param at
-     * @param up
+     * Set the orientation of listener in 3d plan.
+     * @param at vector represents the right or left rotation. 
+     * @param up vector represents tilt up or down.
      */
-    void setOrientation(Vec3f at, Vec3f up);
+    void setOrientation(Vec3f up, Vec3f at);
 
     /**
-     * 
-     * @return at vector 
+     * Set the orientation of listener in 2d plan.
+     * @param at
+     */
+    void setAtOrientation(Vec3f at);
+
+    /**
+     * @return at vector
      */
     Vec3f getAtOrientation();
 
     /**
-     * 
      * @return up vector
      */
     Vec3f getUpOrientation();

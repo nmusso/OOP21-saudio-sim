@@ -2,8 +2,12 @@ package model.source.hub;
 
 import java.util.Set;
 
-import model.source.Source;
+import model.source.FRSource;
 
+/**
+ * SourcesHub Factory Intereface.
+ * 
+ */
 public interface SourcesHubFactory {
 
     /**
@@ -16,7 +20,8 @@ public interface SourcesHubFactory {
     /**
      * Create a SourcesHub from a set of Sources.
      * 
+     * @param sources
      * @return SourcesHub from Set of Sources
      */
-    SourcesHub createSourceHubFromSet(Set<Source> sources);
+    SourcesHub createSourcesHubFromSet(Set<FRSource> sources);
 }
