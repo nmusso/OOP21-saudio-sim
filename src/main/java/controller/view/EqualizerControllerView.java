@@ -109,7 +109,9 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
      * @return a list of sliders
      */
     private List<Slider> getSliders() {
-        return slidersPane.getChildren().stream().filter(node -> node instanceof Slider).map(node -> (Slider) node)
+        return slidersPane.getChildren().stream()
+                .filter(node -> node instanceof Slider)
+                .map(node -> (Slider) node)
                 .collect(Collectors.toList());
     }
 
