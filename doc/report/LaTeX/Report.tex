@@ -180,14 +180,14 @@ Inizialmente mi sono occupato della strutturazione delle sorgenti che modellano 
 \centering{}
 \includegraphics[width=\textwidth]{img/source/Source-FRSource.png}
 \caption{Riuso del codice da parte di FRSource.}
-\label{img:sourcesHub}
+\label{img:sourcesAndFRSource}
 \end{figure}
 
 Così facendo il codice scritto per la versione base "Source" è stato riusato come fondamenta della versione più avanzata "FRSource"
 lasciando però libertà in implementazioni future di creare altre forme avanzate di Source che non necessariamente debbano gestire
 range di frequenze.
 
-Uno dei principali aspetti del mio lavoro riguarda inoltre l'implementazione di speaker con range di frequenza differenti, qui ho incontrato uno dei problemi strutturali maggiori, le qualità che volevo imprimere nella soluzione erano:
+Uno dei principali aspetti del mio lavoro riguarda l'implementazione di speaker con range di frequenza differenti, qui ho incontrato uno dei problemi strutturali maggiori, le qualità che volevo imprimere nella soluzione erano:
 \begin{itemize}
 	\item Le sorgenti con range di frequenza eterogenei dovevano essere riconducibili a una classe padre comune a tutte.
 	\item La quantità di codice necessaria ad implementare i vari tipi di range doveva essere estremamente ridotta.
@@ -198,38 +198,47 @@ Quindi la prima soluzione a cui ho pensato aveva questa forma:
 \centering{}
 \includegraphics[width=\textwidth]{img/source/FRSource(ereditarieta).png}
 \caption{Prima "bozza" rappresentazione schematica FRSource.}
-\label{img:sourcesHub}
+\label{img:ereditarietaFRSource}
 \end{figure}
 
 Inizialmente sembrava scontata la necissità di un Template method per il metodo applyFilter, ma dopo una analisi più dettagliata del tipo di operazioni e lo scopo 
-fondamentale di questa entità, cioè il poter cambiare in modo molto dinamico il range di frequenza sono arrivato alla conclusione che un implementazione del template method avrebbe appesantito il codice dell'utilizzatore in quanto il cambiamento di range di frequenza per una istanza (ad esempio da High a Low) avrebbe comportato la creazione di una nuova istanza della classe relativa alla nuova frequenza che sarebbe andata a sostituire quella precedente. In sostanza un cambiamento di frequenza avrebbe comportato il passaggio della source da una classe ad un altra quando la differenza tra quest'ultime è unicamente l'implementazione del metodo con cui impostare il proprio range di frequenza al buffer a loro associato.
+fondamentale di questa entità, cioè il poter cambiare in modo molto dinamico il range di frequenza sono arrivato alla conclusione che un implementazione del template method in questo modo avrebbe appesantito il codice dell'utilizzatore in quanto il cambiamento di range di frequenza per una istanza (ad esempio da High a Low) avrebbe comportato la creazione di una nuova istanza della classe relativa alla nuova frequenza che sarebbe andata a sostituire quella precedente. In sostanza un cambiamento di frequenza avrebbe comportato il "passaggio" della source da una classe ad un altra quando la differenza tra quest'ultime è unicamente l'implementazione del metodo con cui impostano il proprio range di frequenza al buffer a loro associato.
 Così ho optato per la costruzione di una classe FRSource che avesse un proprio tipo di range di frequenza SourceType:
 %
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/source/SourceType.png}
 \caption{Rappresentazione struttura FRSource con ralazione "has-a" relativa a SourceType e l'implementazione FRSourceImpl che usa Filter.}
-\label{img:sourcesHub}
+\label{img:sourceType}
 \end{figure}
 
-In conclusione con questa struttura cambiare range di frequenza a uno speaker comporta unicamente una chiamata al metodo setType. Con altre strutture valutate invece sorgeva sempre la necessità di compiere operazioni aggiuntive dal chiamante che doveva effettuare il cambio di range.
+In conclusione con questa struttura cambiare range di frequenza a uno speaker comporta unicamente una chiamata al metodo setType. Con altre strutture valutate invece, sorgeva sempre la necessità di compiere operazioni aggiuntive da parte del chiamante che voleva effettuare il cambio di range.
 
-In seguito primo passo nella gestione di un insieme di speaker invece è stato quello di ideare una struttura che permettesse di gestire le sorgenti come singole ma anche come un gruppo e da qui è nato il concetto di SourcesHub:
+In seguito il primo passo nella gestione di un insieme di speaker invece è stato quello di ideare una struttura che permettesse di gestire le sorgenti come singole ma anche come un gruppo e da qui è nato il concetto di SourcesHub:
 %
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/source/SourcesHub-Source.png}
 \caption{Rappresentazione schematica composizione di SourcesHub.}
-\label{img:sourcesHub}
+\label{img:sourcesHubIdea}
 \end{figure}
 
-SourcesHub è come spiega il nome è un Hub che permette di avere un insieme di Sources al suo interno e la sua funzione è indubbiamente utile per un progetto di questo tipo che spesso necessita di eseguire operazioni o procedure uguali su più di una Source che fa parte dello stesso contesto.
+SourcesHub è, come spiega il nome, un Hub che permette di avere un insieme di Sources al suo interno e la cui funzione è indubbiamente utile per un progetto di questo tipo che spesso necessita di eseguire operazioni o procedure uguali su più Source che fanno parte dello stesso contesto.
 %
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/source/SourcesHub-Source-deeper.png}
 \caption{Rappresentazione schematica composizione di SourcesHub.}
 \label{img:sourcesHub}
+\end{figure}
+
+Per la creazione di Source, FRSource e SourcesHubs ho utilizzato il  pattern Simple Factory 
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/source/Factory.png}
+\caption{Rappresentazione SourceFactory e SourcesHubFactory.}
+\label{img:factory}
 \end{figure}
 
 La gestione dell'MVC è alquanto semplice, il SourceController ha una comunicazione bilaterale con SourceControllerView, questo perchè la View deve richiedere operazioni in risposta alle interazione con l'utente (aggiunta, rimozione e modifica di uno speaker) e allo stesso tempo il Controller deve poter aggiornare la View quando lo speaker selezionato cambia e le componenti della view devono essere aggiornate per essere mantenute consonsistenti alle informazioni dello speaker correntemente selezionato.
@@ -239,7 +248,7 @@ Il controller inoltre effettua i cambiamenti sulle sorgenti che sono contenute i
 \centering{}
 \includegraphics[width=\textwidth]{img/source/SourcesMVC.png}
 \caption{Rappresentazione schematica MVC.}
-\label{img:sourcesHub}
+\label{img:sourcesMVC}
 \end{figure}
 
 
@@ -377,8 +386,9 @@ La suite utilizzata per i test automatizzati è JUnit. Durante il processo di im
 	\item Filter: test di applicazione dei tre tipi di filtri su delle sorgenti.
 	\item Space: test di una corretta esecuzione dei metodi, e dei loro risultati con determinati input.
 	\item Environment: test di corretta counicazione tra tutti gli elementi presenti dentro Environment, e i suoi metodi.
+	\item Source: test sulla consistenza degli stati di riproduzione delle source play-pause-stop, il loro spostamento e la corretta applicazione di filtri.
+	\item SourcesHub: test sui metodi con cui ci si interfaccia a SourcesHub per agire sulle FRSource come aggiunta, rimozione, riproduzione e spostamento sia agendo su esse come singole, che come gruppo.
 	\item Listener: 
-	\item Source: 
 	\item Plugin: 
 \end{itemize}
 Altre funzionalità richiedevano un test uditivo per verificarne la correttezza, che ci era difficile verificare in modo automatizzato.
@@ -390,6 +400,7 @@ Una ingente parte di ricerca è stata svolta prima della creazione del progetto 
 \subsection*{Niccolò Mussoni}
 Buffer, BufferCache, view per l’importazione di un file WAV, Extensions (effetti + filtri), view per l’applicazione degli effetti su tutte le sorgenti attraverso un semplice equalizzatore
 \subsection*{Alessandro Sciarrillo}
+ Source, FRSource, SourcesHub, view per la creazione, eliminazione, modifica ed esposizione dati degli speakers.
 \subsection*{Alex Presepi}
 \subsection*{Simone Lugaresi}
 Environment, Space, view per la gestione degli elementi all'interno della canvas, view per la gestione degli spazio simulati.
@@ -405,6 +416,14 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Per la conversione da WAV stereo a WAV mono mi sono affidato a del codice online, non avendo le competenze necessarie per manipolarlo, che ho poi adattato alla singola conversione di cui necessitavo: \url{http://www.java2s.com/example/java/javax.sound.sampled/converts-re-samples-and-mono-tofrom-stereo-audio-data.html}
 \end{itemize}
 \subsection*{Alessandro Sciarrillo}
+\begin{itemize}
+	\item Lambda expressions
+	\item Stream
+	\item Optional
+	\item JavaFX (GUI)
+	\item LWJGL, libreria audio su cui si basa l’intero progetto
+
+\end{itemize}
 \subsection*{Alex Presepi}
 \subsection*{Simone Lugaresi}
 \begin{itemize}
@@ -419,6 +438,9 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 \section{Autovalutazione e lavori futuri}
 \subsection*{Niccolò Mussoni}
 \subsection*{Alessandro Sciarrillo}
+Considerando il monteore a disposizione e il prodotto finale valuto la mia prestazione in modo positivo.
+Sicuramente c'è molto margine di miglioramento nell'utilizzo di MVC, che abbiamo cercato di implementare al meglio, ma non è di certo nella sua forma ideale, visto è il primo vero progetto in cui lo applichiamo e non è qualcosa che si impara a utilizzare al meglio con una esperienza così ridotta. Un grande punto di forza della mia parte penso che sia la sua estendibilità per quanto riguarda le Source ma anche il corretto utilizzo della libreria LWJGL che a inizio progetto era del tutto nuova. D'altra parte riconosco una carenza nell'uso dei generici che avrebbero permesso un riutilizzo più flessibile del SourcesHub e che sicuramente avrei integrato se avessi avuto più tempo.
+Senza dubbio questo è un progetto che non si fermerà qui per quanto mi riguarda, soprattuto perchè l'idea iniziale è nata da me e il risultato attuale è molto vicino a quella che era la mia visione, che vorrei quindi portare avanti, sia per rivedere e migliorare l'architettura generale ma anche per aggiungere nuove funzionalità.
 \subsection*{Alex Presepi}
 \subsection*{Simone Lugaresi}
 
@@ -439,6 +461,11 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 \end{itemize}
 
 \subsection*{Alessandro Sciarrillo}
+\begin{itemize}
+	\item Laboratorio 07: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=88829#p136652}
+	\item Laboratorio 09: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=90125#p139086}
+	\item Laboratorio 10: \url{https://virtuale.unibo.it/mod/forum/discuss.php?d=91128#p139984}
+\end{itemize}
 \subsection*{Alex Presepi}
 \subsection*{Simone Lugaresi}
 \begin{itemize}
