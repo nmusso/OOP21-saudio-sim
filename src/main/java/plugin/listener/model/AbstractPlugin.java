@@ -55,10 +55,8 @@ public abstract class AbstractPlugin implements Plugin {
      */
     @Override
     public String getClassName() {
-        return Stream.of(this.getClass().toString()).map(l -> l.split("\\."))
-                                                    .map(w -> w[w.length - 1])
-                                                    .findAny()
-                                                    .orElse("Name not found");
+        return Stream.of(this.getClass().toString().split("\\.")).reduce((x, y) -> y)
+                                                                 .orElse("Name not found");
     }
 
     /**

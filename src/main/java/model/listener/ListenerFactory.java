@@ -24,7 +24,7 @@ public interface ListenerFactory {
      * @param position 
      * @return new listener or if already present the instance of that context.
      */
-    Listener createListener(Context context, Vec3f position);
+    Listener createListenerWithPos(Context context, Vec3f position);
 
     /**
      * Create a Listener with position and orientation specified.
@@ -35,7 +35,7 @@ public interface ListenerFactory {
      * @param up vector of listener
      * @return new listener or if already present the instance of that context.
      */
-    Listener createListener(Context context, Vec3f position, Vec3f up, Vec3f at);
+    Listener createListenerOriented(Context context, Vec3f position, Vec3f up, Vec3f at);
 
 
 }
