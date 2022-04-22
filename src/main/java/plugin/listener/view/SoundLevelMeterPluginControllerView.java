@@ -13,6 +13,11 @@ import javafx.scene.shape.Circle;
 import model.utility.Vec3f;
 import plugin.listener.controller.SoundLevelMeterPluginController;
 
+/**
+ * 
+ * Controller for SoundLevelMeterPluginView.
+ *
+ */
 public class SoundLevelMeterPluginControllerView implements Initializable, SoundLevelMeterPluginView {
     @FXML private Tab soundLevelMeterPluginTab;
     @FXML private Circle circleShape;
@@ -20,9 +25,11 @@ public class SoundLevelMeterPluginControllerView implements Initializable, Sound
     private ListenerView listenerView;
     private SoundLevelMeterPluginController controller;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-        // TODO Auto-generated method stub
 
     }
 
@@ -52,12 +59,18 @@ public class SoundLevelMeterPluginControllerView implements Initializable, Sound
         this.circleShape.setFill(Color.rgb((int) rgb.getX(), (int) rgb.getY(), (int) rgb.getZ()));
     }
 
-    @FXML public final void handleBtnRemove() {
+    /**
+    * Handle on mouse click on btnRemove to remove the plug-in.
+     */
+    @FXML private void handleBtnRemove() { //NOPMD: called by javaFX
         this.listenerView.removePlugin(this.soundLevelMeterPluginTab);
         this.controller.removePlugin();
     }
 
-    @FXML public final void handleBtnStatus() {
+    /**
+     * Handle on mouse click on btnStatus to enable or disable plug-in.
+     */
+    @FXML private void handleBtnStatus() { //NOPMD: called by javaFX
         this.btnStatus.setText(this.controller.getPlugin().isEnabled() ? "Enable" : "Disable");
         if (this.controller.getPlugin().isEnabled()) {
             this.controller.getPlugin().disable();

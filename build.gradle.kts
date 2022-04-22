@@ -80,6 +80,9 @@ dependencies {
 	//ClassGraph
 	implementation("io.github.classgraph:classgraph:4.8.143")
 	
+	//JSON
+	implementation("org.json:json:20220320")
+	
 	/*
      * Simple Logging Facade for Java (SLF4J) with Apache Log4j
      * See: http://www.slf4j.org/

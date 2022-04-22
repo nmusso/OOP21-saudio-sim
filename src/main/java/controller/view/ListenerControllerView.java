@@ -8,7 +8,6 @@ import controller.ListenerController;
 import controller.MainController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -21,7 +20,11 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import model.utility.Vec3f;
 
-
+/**
+ * 
+ * Controller for the ListenerView.
+ *
+ */
 public class ListenerControllerView implements Initializable, ListenerView {
     private static final int MIN_ANGLE_OR = -180;
     private static final int MAX_ANGLE_OR = 180;
@@ -40,7 +43,7 @@ public class ListenerControllerView implements Initializable, ListenerView {
 
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -58,8 +61,10 @@ public class ListenerControllerView implements Initializable, ListenerView {
 
     }
 
-
-    @FXML public final void handleAddPlugin(final Event event) {
+    /**
+     * Handle on mouse click btnAddPlugin for load the plug-in selected.
+     */
+    @FXML private void handleAddPlugin() { //NOPMD: called by javaFX
         final String pluginName = this.comboBoxPlugin.getValue();
 
         if (!this.comboBoxPlugin.getSelectionModel().isEmpty()) {
@@ -68,19 +73,28 @@ public class ListenerControllerView implements Initializable, ListenerView {
         }
     }
 
-    @FXML public final void handleRefreshListPlugin() {
+    /**
+     * Handle on mouse click btnRefresh for refresh plug-in list in the combo-box.
+     */
+    @FXML private void handleRefreshListPlugin() { //NOPMD: called by javaFX
         final var aviablePlugin = this.ctrListener.getAvailablePlugin();
         this.pluginItems.clear();
         aviablePlugin.forEach(x -> this.pluginItems.add(x));
     }
 
-    @FXML public final void handleEnableAll() {
+    /**
+     * Handle on mouse click btnEnable for enable all loaded plug-in.
+     */
+    @FXML private void handleEnableAll() { //NOPMD: called by javaFX
         this.ctrListener.enableAll();
         this.pluginPane.getTabs().filtered(x -> !x.equals(this.pluginTab))
                                  .forEach(x -> x.setDisable(false));
     }
 
-    @FXML public final void handleDisableAll() {
+    /**
+     * Handle on mouse click btnDisable for disable all loaded plug-in.
+     */
+    @FXML private void handleDisableAll() { //NOPMD: called by javaFX
         this.ctrListener.disableAll();
         this.pluginPane.getTabs().filtered(x -> !x.equals(this.pluginTab))
                                  .forEach(x -> x.setDisable(true));
@@ -88,6 +102,7 @@ public class ListenerControllerView implements Initializable, ListenerView {
 
 
     /**
+     * {@inheritDoc}
      * @param tab
      */
     @Override
@@ -96,7 +111,7 @@ public class ListenerControllerView implements Initializable, ListenerView {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      * @param tab
      */
     @Override
@@ -115,7 +130,7 @@ public class ListenerControllerView implements Initializable, ListenerView {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void showMessage(final String error) {
@@ -124,7 +139,7 @@ public class ListenerControllerView implements Initializable, ListenerView {
     }
 
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void positionChanged() {

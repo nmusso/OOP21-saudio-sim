@@ -26,37 +26,72 @@ Per ascolto realistico si intende l'esperienza uditiva che si può sperimentare 
 %
 Invece con ambiente dinamico ci si riferisce ad un sistema di cui si possono spostare i componenti.
 
-\section{Requisiti funzionali}
+\section{Requisiti}
+\subsection*{Requisiti funzionali}
 \begin{itemize}
 	\item  Permettere all'utente di ascoltare tramite le proprie cuffie una riproduzione realistica in relazione alla posizione all'interno di un ambiente personalizzabile.
 	\item Garantire all'utente la possibilità di spostare l'ascoltatore e le sorgenti sonore.
-		Un ascoltatote ha una posizione all'interno di un ambiente ed è colui nel quale l'utente si impersona.
+		Un ascoltatore ha una posizione all'interno di un ambiente ed è colui nel quale l'utente si impersona.
 		Le sorgenti sonore rappresentano i dispositivi da cui il suono viene riprodotto. 
+	\item Fornire un equalizzatore per poter applicare vari effetti alle sorgenti sonore.
+	\item Cambiare il range di frequenza di un dato speaker.
+	\item L'ascoltatore dovrà poter avere un orientamento di 360 gradi modificabile.
 \end{itemize}
 
-\section{Requisiti non funzionali}
+\subsection*{Requisiti non funzionali}
 \begin{itemize}
-	\item L'importazione dovrà supportare anche tracce stereo (2 canali) oltre a quelle mono (1 canale).
+	\item Sarà possibile importare file audio e dovranno essere supportate anche tracce stereo (2 canali) oltre a quelle mono (1 canale).
+	\item Possibilità di aggiungere funzionalità visive e uditive aggiuntive per l'ascoltatore.
 \end{itemize}
 
 \section{Analisi e modello del dominio}
-SaudioSim dovrà essere in grado di scegliere una traccia audio che potrà essere modificata da un equalizzatore, posizionare le sorgenti e il punto di ascolto. Il Listener e le Sources dovranno essere collocate in uno spazio definito dall' Environment. Inoltre le Sources dovranno riprodurre le tracce associate a dei Buffer.
+Saudio-sim dovrà essere in grado di scegliere una traccia audio che potrà essere modificata da un equalizzatore, posizionare le sorgenti da cui verrà riprodotta e il punto da cui verranno ascoltate. Il Listener e le Sources faranno parte di un Environment, che ne definirà lo spazio nel quale potranno essere posizionate. Inoltre le Sources dovranno riprodurre le tracce associate a dei Buffer, con uno specifico range di frequenza, apportato tramite filtri.
 %
-Uno dei principali problemi è quello di simulare in modo realistico l'ascolto in relazione a: posizione del Listener, dimensione dello Spazio, posizione e tipo di Sources. Tra le maggiori difficoltà c'è quella di applicare filtri alle tracce.
+Uno dei principali problemi è quello di simulare in modo realistico l'ascolto in relazione a: 
+\begin{itemize}
+	\item posizione del Listener 
+	\item dimensione dello Spazio 
+	\item posizione e tipo di Sources. 
+\end{itemize}
+Tra le maggiori difficoltà c'è quella di applicare filtri ed effetti alle tracce.
+%
 \begin{figure}[H]
 \centering{}
-\includegraphics{img/analysis.pdf}
-\caption{ TODO(with MVC) Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro}
+\includegraphics[width=\textwidth]{img/analysis.png}
+\caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro}
 \label{img:analysis}
 \end{figure}
-
 
 \chapter{Design}
 \section{Architettura}
 
+\subsection*{MVC}
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/architecture/architecture.png}
+\caption{Schema UML dell'MVC}
+\label{img:analysis}
+\end{figure}
+
+\subsection*{Controller}
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/architecture/controller.png}
+\caption{Schema UML dei controller}
+\label{img:analysis}
+\end{figure}
+
+\subsection*{View}
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/architecture/view.png}
+\caption{Schema UML della view}
+\label{img:analysis}
+\end{figure}
+
 \section{Design dettagliato}
 \subsection*{Niccolò Mussoni}
-La prima parte del mio lavoro è centrata su due argomenti:
+Il mio dominio di lavoro è centrato su due argomenti:
 \begin{itemize}
 	\item I Buffer, che sulla base del file importato generano un ID univoco associato ad esso, attraverso il quale le sorgenti possono riprodurre il file. 
 	\item Le estensioni, che riguardano la gestione di filtri ed effetti per le sorgenti.

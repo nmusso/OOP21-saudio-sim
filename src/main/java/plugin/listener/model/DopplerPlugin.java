@@ -81,12 +81,4 @@ public class DopplerPlugin extends AbstractPlugin {
         return this.dropplerLv;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String getClassName() {
-        return "DopplerPlugin";
-    }
-
 }

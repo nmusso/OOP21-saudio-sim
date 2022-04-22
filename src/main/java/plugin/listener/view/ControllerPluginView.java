@@ -3,7 +3,7 @@ package plugin.listener.view;
 import controller.view.ListenerView;
 
 /**
- * The fxml controller for plug-in view.
+ * The FXML controller for plug-in view.
  * @param <C> the ControllerPlugin specific class type.
  */
 public interface ControllerPluginView<C> {
