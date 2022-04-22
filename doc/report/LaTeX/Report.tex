@@ -37,13 +37,13 @@ Invece con ambiente dinamico ci si riferisce ad un sistema di cui si possono spo
 	\item Cambiare il range di frequenza di un dato speaker.
 	\item L'ascoltatore dovrà poter avere un orientamento di 360 gradi modificabile.
 \end{itemize}
-
+%
 \subsection*{Requisiti non funzionali}
 \begin{itemize}
 	\item Sarà possibile importare file audio e dovranno essere supportate anche tracce stereo (2 canali) oltre a quelle mono (1 canale).
 	\item Possibilità di aggiungere funzionalità visive e uditive aggiuntive per l'ascoltatore.
 \end{itemize}
-
+%
 \section{Analisi e modello del dominio}
 Saudio-sim dovrà essere in grado di scegliere una traccia audio che potrà essere modificata da un equalizzatore, posizionare le sorgenti da cui verrà riprodotta e il punto da cui verranno ascoltate. Il Listener e le Sources faranno parte di un Environment, che ne definirà lo spazio nel quale potranno essere posizionate. Inoltre le Sources dovranno riprodurre le tracce associate a dei Buffer, con uno specifico range di frequenza, apportato tramite filtri.
 %
@@ -66,22 +66,40 @@ Tra le maggiori difficoltà c'è quella di applicare filtri ed effetti alle trac
 \section{Architettura}
 
 \subsection*{MVC}
+Nella strutturazione del progetto abbiamo cercato di seguire una linea standard con l'implementazione di MVC, cercando di rendere ogni parte di quest'ultimo il più modulare possibile dividendo in comparti ben definiti ogni sezione. Il model ha una struttura classica, invece abbiamo dovuto aggiungere componenti che avessero la funzione di coordinare controller e view.
+%
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/architecture/architecture.png}
 \caption{Schema UML dell'MVC}
 \label{img:analysis}
 \end{figure}
-
+%
+\subsection*{Model}
+L'interfaccia principale del model è offerta dall'Environment, che coordina le entità principali e ne contiene le istanze, ma ogni sua sottoparte ha comunque punti di ingresso per essere utilizzata dal proprio controller specifico, in modo da diversificare gli entry point e rendere il tutto più modulare.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/architecture/model.png}
+\caption{Schema UML del model}
+\label{img:analysis}
+\end{figure}
+%
 \subsection*{Controller}
+Abbiamo deciso di creare un MainController che gestisce tutti gli SpecificController in modo da rendere l'interazione tra essi più semplice. Esso mette a disposizione a ogni ControllerApplication la possibilità di accedere agli altri. 
+\\La scelta di creare i vari SpecificController è dettata dal fatto che ognuno ha bisogno di gestire in modo specifico una parte di model e la creazione di un numero più ridotto di controller sarebbe stata troppo caotica e avrebbe limitato l'estendibilità e la manutenibilità del codice.
+%
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/architecture/controller.png}
 \caption{Schema UML dei controller}
 \label{img:analysis}
 \end{figure}
-
+%
 \subsection*{View}
+Questa parte è risultata la più critica da progettare, data la poca esperienza con la tecnologia grafica utilizzata visto che abbiamo voluto mantenere una salda divisione tra le parti anche in questa fase di sviluppo. 
+\\L'obiettivo era di traslare la modularità del model e del controller anche nella view e questo ci ha portato a definire diverse view per ogni entità principale. Abbiamo introdotto dei controller all'interno della parte di View relativa all'MVC, in modo da dividere la mera parte visiva da quella di controllo, permettendo ai ControllerView di gestire la specifica tecnologia grafica e creando delle interfacce view che non facessero trasparire la tecnologia utilizzata.
+
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/architecture/view.png}
@@ -103,7 +121,7 @@ Il mio dominio di lavoro è centrato su due argomenti:
 \caption{Rappresentazione UML dell’applicazione del pattern Template Method per i diversi tipi di Buffer}
 \label{img:templatebuffer}
 \end{figure}
-Il primo problema da gestire è stato il fatto che il Buffer potesse essere generato sia da un file nel File System, sia da un file incluso nelle risorse del Classpath. Visto che i Buffer differiscono solo per come viene importato inizialmente lo Stream, per risolvere questo problema ho sfruttato il pattern template method, in modo da poter essere usato anche per altri tipi di Buffer non presenti nel progetto. Nel mio caso, il metodo template è generateBuffer, mentre il metodo primitivo è getAudioStream, come da figura 2.1.
+Il primo problema da gestire è stato il fatto che il Buffer potesse essere generato sia da un file nel File System, sia da un file incluso nelle risorse del Classpath. Visto che i Buffer differiscono solo per come viene importato inizialmente lo Stream, per risolvere questo problema ho sfruttato il pattern template method, in modo da poter essere usato anche per altri tipi di Buffer non presenti nel progetto. Nel mio caso, il metodo template è generateBuffer, mentre il metodo primitivo è getAudioStream.
 %
 \begin{figure}[H]
 \centering{}
@@ -305,14 +323,23 @@ Si tratta dell'implementazione di tre classi semplici, che pero sono necessarie 
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
+La suite utilizzata per i test automatizzati è JUnit. Durante il processo di implementazione siamo stati accompagnati dai test effettuati tramite le actions di GitHub, che ne verificavano l'assenza di errori sui principali sistemi operativi (Windows, MacOSX, Ubuntu).
+\\In particolare, si è deciso di sottoporre a test automatizzato i seguenti componenti:
 \begin{itemize}
-	\item Buffer: test di caricamento sia attraverso file system sia da classpath, oltre al test del corretto funzionamento del caching
-	\item Extensions: test per assicurarsi che l’applicazione di filtri ed effetti utilizzando i metodi scritti non producesse errori, cosa consultabile attraverso un preciso metodo della libreria
+	\item Buffer: test di caricamento sia attraverso file system sia da classpath, oltre al test del corretto funzionamento del caching.
+	\item Filter: test di applicazione dei tre tipi di filtri su delle sorgenti.
 	\item Space: test di una corretta esecuzione dei metodi, e dei loro risultati con determinati input.
 	\item Environment: test di corretta counicazione tra tutti gli elementi presenti dentro Environment, e i suoi metodi.
+	\item Listener: 
+	\item Source: 
+	\item Plugin: 
 \end{itemize}
-
+Altre funzionalità richiedevano un test uditivo per verificarne la correttezza, che ci era difficile verificare in modo automatizzato.
+%
 \section{Metodologia di lavoro}
+Una ingente parte di ricerca è stata svolta prima della creazione del progetto e dell'analisi, poichè avevamo la necessità di verificare la fattibilità del progetto che avevamo ideato e che ha comportato la valutazione di varie librerie con tutto quello che ne consegue, come test di prototipi e studio delle documentazioni. La scelta finale è ricaduta su OpenAL, cercando successivamente librerie Java che facessero da API ad essa, di cui abbiamo valutato JOAL e LWJGL, selezionando quest'ultima dopo un'analisi dei pro e contro di entrambe da cui abbiamo riscontrato incompatibilità critiche in JOAL.
+\\Visto che nessuno dei componenti aveva esperienza pregressa nell'utilizzo di GitHub in progetti di questa entità, abbiamo optato per una gestione di base attraverso una semplice strategia "push e pull", lavorando spesso sullo stesso branch, salvo poche eccezioni, per evitare complicazioni e concentrarci sulla pura implementazione.
+\\Il lavoro in comune è stato effettuato per definire le interfacce che servivano come punto di accesso tra le diverse parti, nei componenti "manager" (come MainController e MainControllerView) e nei vari package utility.
 \subsection*{Niccolò Mussoni}
 Buffer, BufferCache, view per l’importazione di un file WAV, Extensions (effetti + filtri), view per l’applicazione degli effetti su tutte le sorgenti attraverso un semplice equalizzatore
 \subsection*{Alessandro Sciarrillo}
@@ -326,7 +353,7 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Stream
 	\item Optional
 	\item JavaFX, per la GUI
-	\item OpenAL, libreria audio su cui si basa l’intero progetto
+	\item LWJGL, libreria audio su cui si basa l’intero progetto
 	\item Spring Framework, per accedere a tutte le risorse all’interno di una cartella del classpath
 	\item Per la conversione da WAV stereo a WAV mono mi sono affidato a del codice online, non avendo le competenze necessarie per manipolarlo, che ho poi adattato alla singola conversione di cui necessitavo: \url{http://www.java2s.com/example/java/javax.sound.sampled/converts-re-samples-and-mono-tofrom-stereo-audio-data.html}
 \end{itemize}
