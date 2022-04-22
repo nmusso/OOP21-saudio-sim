@@ -10,9 +10,13 @@ public final class AudioManager {
     private static Context context;
     private static ALCCapabilities alcCapabilities;
     private static ALCapabilities alCapabilities;
+
     private AudioManager() {
     }
 
+    /**
+     * Initialize a context.
+     */
     public static void initContext() {
         final Device device = new Device();
         context = new Context(device);
@@ -22,6 +26,10 @@ public final class AudioManager {
         AL.setCurrentProcess(alCapabilities);
     }
 
+    /**
+     * Getter for the current context.
+     * @return the context
+     */
     public static Context getContext() {
         return context;
     }

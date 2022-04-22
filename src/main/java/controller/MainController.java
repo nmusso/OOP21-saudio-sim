@@ -2,6 +2,10 @@ package controller;
 
 import view.controller.MainControllerView;
 
+/**
+ * Controller which communicate with MainViewController.
+ *
+ */
 public class MainController implements ControllerApplication<MainControllerView> {
 
     private final EnvironmentController ctrEnvironment;
@@ -12,7 +16,9 @@ public class MainController implements ControllerApplication<MainControllerView>
     private final SpaceController ctrSpace;
     private MainControllerView ctrlView;
 
-
+    /**
+     * Construct a MainController.
+     */
     public MainController() {
         this.ctrEnvironment = new EnvironmentController(this);
         this.ctrSource = new SourceController(this);

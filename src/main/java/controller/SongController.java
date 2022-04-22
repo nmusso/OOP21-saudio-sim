@@ -15,7 +15,7 @@ import model.source.hub.SourcesHub;
 import view.SongView;
 
 /**
- * Controller for the SongView which will communicate with model and his ViewController.
+ * Controller which communicate with model and SongView.
  *
  */
 public class SongController implements ControllerApplication<SongView> {
