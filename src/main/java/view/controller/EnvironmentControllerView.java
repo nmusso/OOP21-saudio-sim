@@ -1,4 +1,4 @@
-package controller.view;
+package view.controller;
 
 import java.net.URL;
 import java.util.HashSet;
@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import model.utility.Pair;
 import model.utility.Vec3f;
+import view.EnvironmentView;
 import view.utility.Rectangle;
 import view.utility.RectangleImpl;
 import view.utility.Sprite;

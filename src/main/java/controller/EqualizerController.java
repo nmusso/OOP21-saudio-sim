@@ -2,8 +2,9 @@ package controller;
 
 import static org.lwjgl.openal.AL10.alGetError;
 import static org.lwjgl.openal.AL10.AL_NO_ERROR;
-import controller.view.EqualizerView;
+
 import model.extension.effect.ALEffects;
+import view.EqualizerView;
 
 /**
  * Controller for the EqualizerView which will communicate with model and his ViewController.

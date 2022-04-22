@@ -1,9 +1,10 @@
-package controller.view;
+package view;
 
 import java.util.List;
 
 import javafx.scene.control.ComboBox;
 import model.buffer.Buffer;
+import view.controller.ControllerView;
 
 /**
  * Interface for SongViewController.

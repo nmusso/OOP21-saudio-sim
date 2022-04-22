@@ -1,4 +1,4 @@
-package controller.view;
+package view.controller;
 
 import java.net.URL;
 import java.util.List;
@@ -16,6 +16,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import model.extension.effect.ALEffects;
+import view.EqualizerView;
 
 /**
  * Controller of the view EqualizerView.

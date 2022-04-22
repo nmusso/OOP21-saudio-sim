@@ -1,4 +1,6 @@
-package controller.view;
+package view;
+
+import view.controller.ControllerView;
 
 /**
  * Source View related to the control of the speakers.

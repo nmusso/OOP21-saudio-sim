@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import controller.view.SongView;
+
 import model.buffer.ALFormatException;
 import model.buffer.Buffer;
 import model.buffer.BufferCache;
 import model.buffer.BufferFactory;
 import model.buffer.BufferFactoryImpl;
 import model.source.hub.SourcesHub;
+import view.SongView;
 
 /**
  * Controller for the SongView which will communicate with model and his ViewController.

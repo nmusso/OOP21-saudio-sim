@@ -1,6 +1,6 @@
 package controller;
 
-import controller.view.MainControllerView;
+import view.controller.MainControllerView;
 
 public class MainController implements ControllerApplication<MainControllerView> {
 
@@ -28,7 +28,6 @@ public class MainController implements ControllerApplication<MainControllerView>
     @Override
     public void setControllerView(final MainControllerView controllerView) {
         this.ctrlView = controllerView;
-        showIntroduction();
     }
 
     /**
@@ -89,7 +88,7 @@ public class MainController implements ControllerApplication<MainControllerView>
     /**
      * Display introduction messages.
      */
-    private void showIntroduction() {
+    public void showIntroduction() {
         ctrlView.showMessage("Use headphones for better experience");
     }
 }

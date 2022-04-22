@@ -3,11 +3,11 @@ package controller;
 import java.util.Optional;
 import java.util.function.Function;
 
-import controller.view.SourceView;
 import model.source.FRSource;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
 import model.source.SourceType;
+import view.SourceView;
 import view.utility.TypeSprite;
 
 /**

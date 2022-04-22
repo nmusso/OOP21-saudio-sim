@@ -1,4 +1,4 @@
-package controller.view;
+package view.controller;
 
 
 import java.net.URL;
@@ -19,6 +19,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import model.utility.Vec3f;
+import view.ListenerView;
 
 /**
  * 

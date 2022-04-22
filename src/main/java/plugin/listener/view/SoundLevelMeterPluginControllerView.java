@@ -3,7 +3,6 @@ package plugin.listener.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import controller.view.ListenerView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import model.utility.Vec3f;
 import plugin.listener.controller.SoundLevelMeterPluginController;
+import view.ListenerView;
 
 /**
  * 

@@ -3,7 +3,6 @@ package plugin.listener.controller;
 import java.util.Optional;
 
 import controller.MainController;
-import controller.view.ListenerView;
 import javafx.application.Platform;
 import model.listener.Listener;
 import model.utility.Vec3f;
@@ -11,6 +10,7 @@ import plugin.listener.model.DopplerPlugin;
 import plugin.listener.model.Plugin;
 import plugin.listener.view.DopplerPluginView;
 import plugin.listener.view.utility.PluginViewLoader;
+import view.ListenerView;
 
 /**
  * 

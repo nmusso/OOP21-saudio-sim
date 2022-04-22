@@ -1,13 +1,13 @@
 package view;
 
 import controller.MainController;
-import controller.view.MainControllerView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.controller.MainControllerView;
 
 public class MainView extends Application {
     private static final String FXML_PATH = "/fxml/";
@@ -38,5 +38,6 @@ public class MainView extends Application {
         mainStage.setResizable(false);
         mainStage.setScene(scene);
         mainStage.show();
+        ctrMainApp.showIntroduction();
     }
 }

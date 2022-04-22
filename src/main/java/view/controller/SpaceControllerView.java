@@ -1,4 +1,4 @@
-package controller.view;
+package view.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
+import view.SpaceView;
 
 public class SpaceControllerView  implements Initializable, ControllerView, SpaceView { 
 

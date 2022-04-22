@@ -1,6 +1,6 @@
 package plugin.listener.view;
 
-import controller.view.ListenerView;
+import view.ListenerView;
 
 /**
  * The FXML controller for plug-in view.

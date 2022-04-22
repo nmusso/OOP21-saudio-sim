@@ -1,4 +1,4 @@
-package controller.view;
+package view;
 
 import model.utility.Vec3f;
 import view.utility.TypeSprite;

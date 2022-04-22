@@ -1,4 +1,4 @@
-package controller.view;
+package view.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import model.buffer.Buffer;
+import view.SongView;
 
 /**
  * Controller of the view SongView.

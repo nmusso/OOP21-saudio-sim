@@ -1,6 +1,7 @@
-package controller.view;
+package view;
 
 import javafx.scene.control.Tab;
+import view.controller.ControllerView;
 
 /**
  * 

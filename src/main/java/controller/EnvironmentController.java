@@ -2,13 +2,13 @@ package controller;
 
 import java.util.Optional;
 
-import controller.view.EnvironmentView;
 import model.audiomanager.AudioManager;
 import model.environment.Environment;
 import model.environment.EnvironmentFactory;
 import model.environment.EnvironmentFactoryImpl;
 import model.source.FRSource;
 import model.utility.Vec3f;
+import view.EnvironmentView;
 import view.utility.TypeSprite;
 
 public class EnvironmentController implements ControllerApplication<EnvironmentView> {

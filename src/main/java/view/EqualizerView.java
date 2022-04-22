@@ -1,4 +1,6 @@
-package controller.view;
+package view;
+
+import view.controller.ControllerView;
 
 /**
  * Interface for EqualizerViewController.

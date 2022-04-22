@@ -1,4 +1,4 @@
-package controller.view;
+package view;
 
 public interface SpaceView {
 

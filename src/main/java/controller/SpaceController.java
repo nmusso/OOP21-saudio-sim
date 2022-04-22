@@ -1,6 +1,6 @@
 package controller;
 
-import controller.view.SpaceView;
+import view.SpaceView;
 
 public class SpaceController implements ControllerApplication<SpaceView> {
 

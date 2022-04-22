@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import controller.view.ListenerView;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassGraphException;
 import io.github.classgraph.ClassInfoList;
@@ -16,6 +15,7 @@ import model.listener.Listener;
 import plugin.listener.controller.ControllerPlugin;
 import plugin.listener.model.Plugin;
 import plugin.listener.model.PluginManager;
+import view.ListenerView;
 
 /**
  * 

@@ -3,12 +3,12 @@ package plugin.listener.controller;
 import java.util.Optional;
 
 import controller.MainController;
-import controller.view.ListenerView;
 import model.listener.Listener;
 import plugin.listener.model.Plugin;
 import plugin.listener.model.SoundLevelMeterPlugin;
 import plugin.listener.view.SoundLevelMeterPluginView;
 import plugin.listener.view.utility.PluginViewLoader;
+import view.ListenerView;
 
 /**
  * 
