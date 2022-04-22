@@ -7,7 +7,7 @@ import model.extension.effect.ALEffects;
 import view.EqualizerView;
 
 /**
- * Controller for the EqualizerView which will communicate with model and his ViewController.
+ * Controller which communicate with model and EqualizerView.
  *
  */
 public class EqualizerController implements ControllerApplication<EqualizerView> {

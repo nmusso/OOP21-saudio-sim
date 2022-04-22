@@ -18,7 +18,6 @@ public class Context {
 
     public Context(final Device device) {
         final IntBuffer contextAttribList = BufferUtils.createIntBuffer(3);
-        // ALC_MAX_AUXILIARY_SENDS won't go above compile-time max. Set to compile-time max if greater.
         contextAttribList.put(ALC_MAX_AUXILIARY_SENDS);
         contextAttribList.put(ALEffects.values().length);
 
@@ -28,6 +27,7 @@ public class Context {
         id = alcCreateContext(device.getId(), contextAttribList);
         this.device = device;
     }
+
     /**
     *
     * @return id of Context

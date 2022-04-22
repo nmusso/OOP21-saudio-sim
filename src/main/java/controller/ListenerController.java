@@ -69,7 +69,6 @@ public class ListenerController implements ControllerApplication<ListenerView> {
 
     /**
      * {@inheritDoc}
-     * @param controllerView
      */
     @Override
     public void setControllerView(final ListenerView controllerView) {
