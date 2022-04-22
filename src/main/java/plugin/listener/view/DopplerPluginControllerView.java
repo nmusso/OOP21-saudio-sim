@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import controller.view.ListenerView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -29,7 +30,8 @@ public class DopplerPluginControllerView implements Initializable, DopplerPlugin
      */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
-
+        final var alert = new Alert(Alert.AlertType.WARNING, "Use this Plugin only with a single source. Use with multiple sources may cause a delay in some sources. ");
+        alert.show();
     }
 
     /**

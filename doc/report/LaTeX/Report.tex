@@ -243,18 +243,65 @@ Il controller inoltre effettua i cambiamenti sulle sorgenti che sono contenute i
 \end{figure}
 
 
-
-
-
-
-
-
-
-
-
-
-
 \subsection*{Alex Presepi}
+La progettazione e lo sviluppo da me affrontato riguarda principalmente due argomenti: Listener, e dei relativi plugin 
+che ne estendono le funzionalita' visive e/o sonore.
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/listener/Listener.png}
+\caption{Rappresentazione UML dell'nterfaccia Listener e relativa implementazione.}
+\label{img:Listener}
+\end{figure}
+%
+Il Listener deve essere univoco in ogni contesto di eseguzione percio' per risolvere questo primo problema ho optato per creare una Simple Factory che permetesse di gestire l univocita per ogni contesto e mettesse a disposizione diverse modalita di creazione. Quando si richiama il metodo di creazione, 
+passandogli il conteso di esecuzione, esso controllera se per quel contesto esiste gia un listener e ritorna o l istanza presente o ne crea una nuova. 
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/listener/ListenerFactory.png}
+\caption{Rappresentazione della struttura Simple Factory.}
+\label{img:Listener}
+\end{figure}
+%
+Nello sviluppo dei Plugin volevo ottenere una struttura il piu modulare e estendibile possibile. Per prima cosa ho creato un interfaccia e una classe astratta che contenessero le operazioni di base. Inoltre ho usato un Tamplate method interno alla classe atratta (protected) per gestire il salvataggio e il ricaricamento dei setting ogni volta che si abilita o disabilita un Plugin.
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/listener/Plugin.png}
+\caption{Utilizzo di Tamplate Method in Abstract Plugin.}
+\label{img:Listener}
+\end{figure}
+%
+Per la gestione dei Plugin ho scelto di creare un classe che facesse da manager in modo da poter effetuare in modo semplice ed organizzato operazioni comuni su tutti i componenti gestiti. In ottica futura risultera' utille per poter getire piu listener, dove oguno avra' un proprio manager associato, o implementare e  gestire piu operazioni comuni tra Plugin.
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/listener/PluginManager.png}
+\caption{Schema UML della classe PluginManager.}
+\label{img:Listener}
+\end{figure}
+%
+La parte piu complessa nei Plugin e' stata:
+\begin{itemize}
+	\item la gestione del interfaccia utente.
+	\item il caricamento di tutte le classi e risorse necessarie.
+\end{itemize}
+Per la comunicazione con la view ho creato un sotto pattern MVC. Cosi facendo lo sviluppo e l integrazione dei Plugin non influisce in alcun modo con
+la struttura MVC dell' applicazione. Ogni plugin avra' quindi la propria parte di model, di controller, e di view (controller e FXML), come nel MVC generale. Inoltre e' presente un collegamento tra il controllerView del Plugin e il ListenerControllerView per aggiornare la view del applicazione, scelta dovuta dalla tecnologia grafica in uso. Infine ho reso possibile accedere, ai ControllerApplication (MVC generale), per dare la possibilita' di ottenere informazioni sullo stato del applicazione, mediante la composizione con il MainController.
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/listener/PluginMVC.png}
+\caption{Utilizzo pattern MVC nei Plugin.}
+\label{img:Listener}
+\end{figure}
+%
+Per il secondo problema mi sono avvalso del utilizzo delle Reflection. Questa decisione e' nata dal trovare una soluzione alla creazione di istanze di classi specifiche che in fase di compilazione non conosco. L utilizzo di esse aumenta l estendibilita' in quato l integrazione di plugin futuri e' resa possibile senza intaccare il codice del Applicazione. Il ListenerController crea via Reflection il ControllerPlugin desiderato e sara' esso a istanziare il model e la view relarive a quel determinato Plugin. TODO AGGIUNGERE SPIEGAZIONI 
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/listener/PluginCreates.png}
+\caption{Shema creazione Plugin.}
+\label{img:Listener}
+\end{figure}
+
+
+
 \subsection*{Simone Lugaresi}
 Due sono gli argomenti principali da me gestiti:
 \begin{itemize}
