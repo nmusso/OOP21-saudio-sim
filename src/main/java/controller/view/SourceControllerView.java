@@ -79,7 +79,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
      * @param event
      */
     @FXML 
-    public void handleAddSpeaker(final Event event) {
+    private void handleAddSpeaker() { // NOPMD: Called by JavaFX
         this.ctrSource.addSpeaker();
         this.ctrSource.updatePieChartData();
     }
@@ -90,7 +90,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
      * @param event
      */
     @FXML 
-    public void handleRemoveSpeaker(final Event event) {
+    private void handleRemoveSpeaker() { // NOPMD: Called by JavaFX
         this.ctrSource.removeSpeaker();
         this.lblX.setText("");
         this.lblY.setText("");
@@ -104,7 +104,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
      * @param event
      */
     @FXML 
-    public void handleRadioButtonChanged(final Event event) {
+    private void handleRadioButtonChanged(final Event event) { // NOPMD: Called by JavaFX
         this.ctrSource.setSpeakerType(this.ctrSource.getSelectedSpeaker(), ((RadioButton) event.getSource()).getId());
         this.ctrSource.updatePieChartData();
     }
@@ -116,7 +116,6 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
     public void updateSelectedSpeaker() {
         this.lblX.setText(String.valueOf(Math.round(this.ctrSource.getSelectedSpeaker().getPosition().getX() * POS_PRECISION) / POS_PRECISION));
         this.lblY.setText(String.valueOf(Math.round(this.ctrSource.getSelectedSpeaker().getPosition().getY() * POS_PRECISION) / POS_PRECISION));
-
 
         switch (this.ctrSource.getSelectedSpeaker().getType()) {
         case FULL:
