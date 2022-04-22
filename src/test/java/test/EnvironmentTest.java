@@ -98,11 +98,9 @@ class EnvironmentTest {
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
         assertEquals(env.getListener(), listener);
-        
-        
-
     }
-    
+
+    /*
     @Test
     void testesempio() {
         System.out.println("test Json");
@@ -110,6 +108,5 @@ class EnvironmentTest {
         assertNotNull(obj);
         final JSONArray pageName = obj.getJSONArray("Cinema");
         System.out.println(pageName.get(1));
-
-    }
+    }*/
 }
