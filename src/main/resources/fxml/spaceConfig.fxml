@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpaceControllerView">
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="view.controller.SpaceControllerView">
    <children>
       <GridPane gridLinesVisible="true" prefHeight="177.0" prefWidth="709.0" HBox.hgrow="ALWAYS">
         <columnConstraints>

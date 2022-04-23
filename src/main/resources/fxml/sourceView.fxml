@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SourceControllerView">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="view.controller.SourceControllerView">
    <children>
       <Label text="Speakers" />
       <GridPane prefHeight="150.0" prefWidth="748.0" VBox.vgrow="ALWAYS">

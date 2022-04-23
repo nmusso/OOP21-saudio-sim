@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.EnvironmentControllerView">
+<HBox alignment="CENTER" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="view.controller.EnvironmentControllerView">
    <children>
       <BorderPane fx:id="borderPaneCanvas" HBox.hgrow="ALWAYS">
          <center>

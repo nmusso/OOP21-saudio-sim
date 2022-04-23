@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="271.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.ListenerControllerView">
+<VBox prefHeight="271.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="view.controller.ListenerControllerView">
    <children>
       <GridPane VBox.vgrow="ALWAYS">
         <columnConstraints>

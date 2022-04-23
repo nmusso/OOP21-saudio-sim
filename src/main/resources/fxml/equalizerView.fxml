@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="container" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.EqualizerControllerView">
+<VBox fx:id="container" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="view.controller.EqualizerControllerView">
    <children>
       <GridPane VBox.vgrow="ALWAYS">
         <columnConstraints>
