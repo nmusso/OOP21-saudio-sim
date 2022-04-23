@@ -19,7 +19,6 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
 
     private final MainController mainCtr;
     private EnvironmentView ctrlView;
-
     private final EnvironmentFactory envFac = new EnvironmentFactoryImpl();
     private Environment env;
 
@@ -111,7 +110,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      * @param preset has type env.
      */
     public void changeEnv(final String preset) {
-        if (!"void".equals(preset)) {
+        if (!"Empty".equals(preset)) {
             String json;
             try (InputStream is = getClass().getResourceAsStream(PATH)) {
                 json = new String(is.readAllBytes());
@@ -168,7 +167,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      */
     public void setControllerView(final EnvironmentView controllerView) {
         ctrlView = controllerView;
-        this.changeEnv("void");
+        this.changeEnv("Empty");
     }
 
     /**

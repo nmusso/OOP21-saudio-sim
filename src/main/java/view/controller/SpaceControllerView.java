@@ -58,7 +58,7 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
     public void addPresetTocmb(final List<String> listPreset) {
         final ObservableList<String> comboItems = FXCollections.observableArrayList(listPreset);
         cmbPreset.setItems(comboItems);
-        cmbPreset.setPromptText("void");
+        cmbPreset.setPromptText("Empty");
     }
 
     /**

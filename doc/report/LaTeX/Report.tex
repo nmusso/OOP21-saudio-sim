@@ -421,7 +421,6 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Optional
 	\item JavaFX (GUI)
 	\item LWJGL, libreria audio su cui si basa l’intero progetto
-
 \end{itemize}
 \subsection*{Alex Presepi}
 \subsection*{Simone Lugaresi}
@@ -430,8 +429,8 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Stream
 	\item Optional
 	\item JavaFX
+	\item LWJGL, libreria audio su cui si basa l’intero progetto
 	\item Per la gestione degli sprite all'interno della canvas mi sono basato sull'implementazione di codice visto online che poi ho modificato e riadattato alle mie esigenze: \url{https://github.com/stemkoski/BAGEL-Java-2022}( che però ora è in una versione più aggiornata rispetto alla versione dalla quale avevo preso spunto io, di conseguenza alcune classi potrebbero non esserci piu o essere state cambiate.
-	\item OpenAL, libreria audio su cui si basa l’intero progetto
 \end{itemize}
 
 \chapter{Commenti finali}
@@ -440,29 +439,83 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 \subsection*{Alessandro Sciarrillo}
 Considerando il monteore a disposizione e il prodotto finale valuto la mia prestazione in modo positivo.
 Sicuramente c'è molto margine di miglioramento nell'utilizzo di MVC, che abbiamo cercato di implementare al meglio, ma non è di certo nella sua forma ideale, visto è il primo vero progetto in cui lo applichiamo e non è qualcosa che si impara a utilizzare al meglio con una esperienza così ridotta. Un grande punto di forza della mia parte penso che sia la sua estendibilità per quanto riguarda le Source ma anche il corretto utilizzo della libreria LWJGL che a inizio progetto era del tutto nuova. D'altra parte riconosco una carenza nell'uso dei generici che avrebbero permesso un riutilizzo più flessibile del SourcesHub e che sicuramente avrei integrato se avessi avuto più tempo.
-Senza dubbio questo è un progetto che non si fermerà qui per quanto mi riguarda, soprattuto perchè l'idea iniziale è nata da me e il risultato attuale è molto vicino a quella che era la mia visione, che vorrei quindi portare avanti, sia per rivedere e migliorare l'architettura generale ma anche per aggiungere nuove funzionalità.
+Senza dubbio questo è un progetto che non si fermerà qui per quanto mi riguarda, soprattutto perchè l'idea iniziale è nata da me e il risultato attuale è molto vicino a quella che era la mia visione, che vorrei quindi portare avanti, sia per rivedere e migliorare l'architettura generale ma anche per aggiungere nuove funzionalità.
 \subsection*{Alex Presepi}
 \subsection*{Simone Lugaresi}
 
 \appendix
 \chapter{Guida utente}
-All'avvio l'applicazione si presenta nel seguente modo, con una configurazione già pronta
-%
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/guide/full.png}
 \caption{Schermata completa}
 \label{img:fullapp}
 \end{figure}
-
-\begin{figure}
+%
+All'avvio l'applicazione si presenta nel seguente modo. La schermata è divisa in varie sezioni: 
+%
+\begin{figure}[H]
 \centering{}
-\includegraphics[height=.5\linewidth]{img/guide/plugin1.png}
-\includegraphics[height=.5\linewidth]{img/guide/plugin2.png}
+\includegraphics[width=.75\textwidth]{img/guide/song.png}
+\caption{Player}
+\label{img:player}
+\end{figure}
+%
+In questa sezione è possibile importare un file WAV o scegliere tra alcuni preimportati e avviare, mettere in pausa o stoppare la traccia selezionata.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=.75\textwidth]{img/guide/space.png}
+\caption{Gestione dell'ambiente di ascolto}
+\label{img:space}
+\end{figure}
+%
+Da qui è possibile selezionare un ambiente di ascolto già pronto e modificare le dimensioni virtuali dell'ambiente stesso.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=.75\textwidth]{img/guide/equalizer.png}
+\caption{Equalizzatore}
+\label{img:equalizer}
+\end{figure}
+%
+Questo è un piccolo equalizzatore che è possibile accendere o spegnere tramite il bottone ON/OFF. Quando è acceso, è possibile applicare diversi effetti sull'intero ambiente d'ascolto modificandone il livello, mentre allo spegnimento rimuove tutti gli effetti.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=.75\textwidth]{img/guide/speaker.png}
+\caption{Gestione degli speaker}
+\label{img:speakers}
+\end{figure}
+%
+Da qui è possibile aggiungere e rimuovere sorgenti d'ascolto, visualizzare la posizione della sorgente selezionata e modificarne il tipo tra quelli proposti. È inoltre mostrato un grafico che rappresenta la percentuale delle tipologie di sorgenti presenti nell'ambiente.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=.75\textwidth]{img/guide/listener.png}
+\caption{Gestione dell'ascoltatore}
+\label{img:listener}
+\end{figure}
+%
+Nella sezione dell'ascoltatore è possibile visualizzare la posizione di esso all'interno dell'ambiente, modificarne l'orientamento e aggiungere dei plugin ad esso. In caso di aggiunta o chiusura di plugin il tasto Refresh riaggionerà la lista dei plugin disponibili all'utilizzatore.
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[height=.5\textwidth]{img/guide/plugin1.png}
+\includegraphics[height=.5\textwidth]{img/guide/plugin2.png}
 \caption{Esempi di plugin}
 \label{img:plugins}
 \end{figure}
-
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=.75\textwidth]{img/guide/environment.png}
+\caption{Ambiente d'ascolto}
+\label{img:environment}
+\end{figure}
+%
+Infine è presente l'ambiente d'ascolto, dove l'utente può muovere a suo piacimento l'ascoltatore e le sorgenti.
+%
 \chapter{Esercitazioni di laboratorio}
 \subsection*{Niccolò Mussoni}
 \begin{itemize}
