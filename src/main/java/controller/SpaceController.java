@@ -29,7 +29,7 @@ public class SpaceController implements ControllerApplication<SpaceView> {
     public void setControllerView(final SpaceView controllerView) {
         this.ctrlView = controllerView;
         final List<String> x = new ArrayList<>(); 
-        x.add("void");
+        x.add("Empty");
         final String json;
         try (InputStream is = getClass().getResourceAsStream(PATH)) {
             json = new String(is.readAllBytes());
