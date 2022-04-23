@@ -50,7 +50,7 @@ public class EnvironmentImpl implements Environment {
      *{@inheritDoc}
      */
     @Override
-    public SourcesHub getSourceHub() {
+    public SourcesHub getSourcesHub() {
         return this.sourcesHub;
     }
 

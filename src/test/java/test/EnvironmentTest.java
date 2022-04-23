@@ -57,10 +57,10 @@ class EnvironmentTest {
         sources.add(genSource(sourceFac.createDefaultFRSource()));
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
-        env.getSourceHub().playAll();
-        assertEquals(env.getSourceHub().getPlaying(), sources);
-        env.getSourceHub().stopAll();
-        assertNotEquals(env.getSourceHub().getPlaying(), sources);
+        env.getSourcesHub().playAll();
+        assertEquals(env.getSourcesHub().getPlaying(), sources);
+        env.getSourcesHub().stopAll();
+        assertNotEquals(env.getSourcesHub().getPlaying(), sources);
     }
 
     @Test
@@ -70,9 +70,9 @@ class EnvironmentTest {
 
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
-        assertEquals(env.getSourceHub().getAll().size(), sources.size());
-        env.getSourceHub().addSource(genSource(sourceFac.createDefaultFRSource()));
-        assertEquals(env.getSourceHub().getAll().size(), sources.size() + 1);
+        assertEquals(env.getSourcesHub().getAll().size(), sources.size());
+        env.getSourcesHub().addSource(genSource(sourceFac.createDefaultFRSource()));
+        assertEquals(env.getSourcesHub().getAll().size(), sources.size() + 1);
     }
 
     @Test
@@ -85,9 +85,9 @@ class EnvironmentTest {
         sources.add(source3);
         final Environment env = envFac.createNEnvironment(sources.stream().collect(Collectors.toSet()), listener, Optional.empty());
 
-        assertEquals(env.getSourceHub().getSource(1), Optional.of(source1));
-        assertEquals(env.getSourceHub().getSource(2), Optional.of(source2));
-        assertNotEquals(env.getSourceHub().getSource(1), Optional.of(source2));
+        assertEquals(env.getSourcesHub().getSource(1), Optional.of(source1));
+        assertEquals(env.getSourcesHub().getSource(2), Optional.of(source2));
+        assertNotEquals(env.getSourcesHub().getSource(1), Optional.of(source2));
     }
 
     @Test

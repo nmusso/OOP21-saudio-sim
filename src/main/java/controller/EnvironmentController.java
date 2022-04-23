@@ -48,7 +48,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      * @return FRSource selected in this.env.
      */
     public Optional<FRSource> getSelectedSource() {
-        return this.env.getSourceHub().getSource(this.ctrlView.getLastSelectedSource());
+        return this.env.getSourcesHub().getSource(this.ctrlView.getLastSelectedSource());
     }
 
     /**
@@ -89,7 +89,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
      * @param id  source to move.
      */
     public void moveSource(final Vec3f pos, final int id) {
-        final Optional<FRSource> s = this.env.getSourceHub().getSource(id);
+        final Optional<FRSource> s = this.env.getSourcesHub().getSource(id);
         if (s.isPresent()) {
             this.env.moveSource(s.get(), pos);
         }
@@ -128,7 +128,7 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
         this.mainCtr.getSpaceController().setSpinner(this.env.getSpace().getXmax(), this.getEnv().getSpace().getYmax());
         this.ctrlView.setSize(this.env.getSpace().getXmax(), this.getEnv().getSpace().getYmax());
         addListener();
-        this.env.getSourceHub().getAll().stream().forEach(e -> {
+        this.env.getSourcesHub().getAll().stream().forEach(e -> {
             TypeSprite type = TypeSprite.SOURCEFULL;
             switch (e.getType()) {
             case FULL:

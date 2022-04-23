@@ -13,7 +13,7 @@ public interface Environment {
      * Get the sourceHub of env.
      * @return the source Hub
      */
-    SourcesHub getSourceHub();
+    SourcesHub getSourcesHub();
 
     /**
      * Get the listener of env.

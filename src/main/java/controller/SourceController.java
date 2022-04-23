@@ -128,7 +128,7 @@ public class SourceController implements ControllerApplication<SourceView> {
     }
 
     private int getNumType(final SourceType type) {
-        return ((Long) this.mainCtr.getEnvironmentController().getEnv().getSourceHub().getAll().stream()
+        return ((Long) this.mainCtr.getEnvironmentController().getEnv().getSourcesHub().getAll().stream()
                                                                                           .filter(s -> s.getType().equals(type))
                                                                                           .count()).intValue();
     }
