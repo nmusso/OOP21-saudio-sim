@@ -254,25 +254,35 @@ Il controller inoltre effettua i cambiamenti sulle sorgenti che sono contenute i
 
 
 \subsection*{Alex Presepi}
-La progettazione e lo sviluppo da me affrontato riguarda principalmente due argomenti: Listener, e dei relativi plugin 
+La progettazione e lo sviluppo da me affrontato riguarda principalmente due argomenti: Listener, e relativi plugin 
 che ne estendono le funzionalita' visive e/o sonore.
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/Listener.png}
-\caption{Rappresentazione UML dell'nterfaccia Listener e relativa implementazione.}
+\caption{Rappresentazione UML dell' interfaccia Listener e relativa implementazione.}
 \label{img:Listener}
 \end{figure}
 %
-Il Listener deve essere univoco in ogni contesto di eseguzione percio' per risolvere questo primo problema ho optato per creare una Simple Factory che permetesse di gestire l univocita per ogni contesto e mettesse a disposizione diverse modalita di creazione. Quando si richiama il metodo di creazione, 
+Il Listener deve essere univoco in ogni contesto di eseguzione percio' per risolvere questo primo problema ho optato per creare una Factory Method che permetesse di gestire l univocita per ogni contesto e mettesse a disposizione diverse modalita di creazione. Cosi facendo, si mette a disposizione una struttura, per future  implementazioni di diverse politche di gestione del univocita. Quando si richiama il metodo di creazione, 
 passandogli il conteso di esecuzione, esso controllera se per quel contesto esiste gia un listener e ritorna o l istanza presente o ne crea una nuova. 
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/ListenerFactory.png}
-\caption{Rappresentazione della struttura Simple Factory.}
+\caption{Rappresentazione della struttura Factory Method.}
 \label{img:Listener}
 \end{figure}
 %
-Nello sviluppo dei Plugin volevo ottenere una struttura il piu modulare e estendibile possibile. Per prima cosa ho creato un interfaccia e una classe astratta che contenessero le operazioni di base. Inoltre ho usato un Tamplate method interno alla classe atratta (protected) per gestire il salvataggio e il ricaricamento dei setting ogni volta che si abilita o disabilita un Plugin.
+L' utilizzo del pattern MVC, della parte relativa al Listener, segue il filo generale descritto nella sezione precedente. In particolare il controller viene notificato
+dal EnvironmentController ogni volta che si verifica uno spostamento del Listener. Inoltre il controller e' il punto di accesso per verificare quali Plugin sono presenti al interno del ClassPath, e su richiesta notificara' il  ListenerCotrollerView. Il ListenerController gestisce anche la parte di managment dei Plugin, attraverso la view si richiede una modifica e il controller notifichera' il PluginManager.
+
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/listener/ListenerMVC.png}
+\caption{Design MVC per il Listener.}
+\label{img:Listener}
+\end{figure}
+%
+Nello sviluppo dei Plugin volevo ottenere una struttura il piu modulare e estendibile possibile. Per prima cosa ho creato un interfaccia e una classe astratta che contenessero le operazioni di base. Inoltre ho usato un Tamplate Method interno alla classe atratta (protected) per gestire le divese fasi di salvataggio e ricaricamento dei setting, ogni volta che viene abilitato o disabilito il Plugin.
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/Plugin.png}
@@ -302,11 +312,11 @@ la struttura MVC dell' applicazione. Ogni plugin avra' quindi la propria parte d
 \label{img:Listener}
 \end{figure}
 %
-Per il secondo problema mi sono avvalso del utilizzo delle Reflection. Questa decisione e' nata dal trovare una soluzione alla creazione di istanze di classi specifiche che in fase di compilazione non conosco. L utilizzo di esse aumenta l estendibilita' in quato l integrazione di plugin futuri e' resa possibile senza intaccare il codice del Applicazione. Il ListenerController crea via Reflection il ControllerPlugin desiderato e sara' esso a istanziare il model e la view relarive a quel determinato Plugin. TODO AGGIUNGERE SPIEGAZIONI 
+Per il secondo problema mi sono avvalso del utilizzo delle Reflection. Questa decisione e' nata dal trovare una soluzione alla creazione di istanze di classi specifiche che in fase di compilazione non conosco. L utilizzo di esse aumenta l estendibilita' in quato l integrazione di plugin futuri e' resa possibile senza intaccare il codice del Applicazione. Il ListenerController crea via Reflection il ControllerPlugin desiderato e sara' esso a istanziare il model e la view relarive a quel determinato Plugin. Grazie a quesa struttuta, a cui sono arrivato dopo diverse analisi di design, si riesce a mantenere solida e indipendente la creazione di un Plugin, e tutte le risorse necessarie, dal resto dell Applicazione. Inoltre pone le basi per una possibile integrazione di Plugin anche durante l esecuzione dell Applicazione (Hot-Swap).
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/PluginCreates.png}
-\caption{Shema creazione Plugin.}
+\caption{Schema creazione Plugin.}
 \label{img:Listener}
 \end{figure}
 
@@ -387,8 +397,8 @@ La suite utilizzata per i test automatizzati è JUnit. Durante il processo di im
 	\item Environment: test di corretta counicazione tra tutti gli elementi presenti dentro Environment, e i suoi metodi.
 	\item Source: test sulla consistenza degli stati di riproduzione delle source play-pause-stop, il loro spostamento e la corretta applicazione di filtri.
 	\item SourcesHub: test sui metodi con cui ci si interfaccia a SourcesHub per agire sulle FRSource come aggiunta, rimozione, riproduzione e spostamento sia agendo su esse come singole, che come gruppo.
-	\item Listener: 
-	\item Plugin: 
+	\item Listener: test di corretto settaggio di posizione e orientamento, e test sulla gestione del univocita' del listener per singolo contesto.
+	\item Plugin: test sulle operazioni di gestione dei plugin nel manager, e singoli test di corretto funzionameto dei plugin implementati.
 \end{itemize}
 Altre funzionalità richiedevano un test uditivo per verificarne la correttezza, che ci era difficile verificare in modo automatizzato.
 %
@@ -401,6 +411,7 @@ Buffer, BufferCache, view per l’importazione di un file WAV, Extensions (effet
 \subsection*{Alessandro Sciarrillo}
  Source, FRSource, SourcesHub, view per la creazione, eliminazione, modifica ed esposizione dati degli speakers.
 \subsection*{Alex Presepi}
+Listener, Plugin, PluginManager, view per la visualizzazione e la gestione dei parametri del Listener, e view relativa alla gestione dei plugin creazione, abilitazione, disabilitazione e chiusura di essi.
 \subsection*{Simone Lugaresi}
 Environment, Space, view per la gestione degli elementi all'interno della canvas, view per la gestione degli spazio simulati.
 \section{Note di sviluppo}
@@ -423,6 +434,17 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item LWJGL, libreria audio su cui si basa l’intero progetto
 \end{itemize}
 \subsection*{Alex Presepi}
+\begin{itemize}
+	\item Lambda expressions
+	\item Stream
+	\item Optional
+	\item JavaFX (GUI)
+	\item Reflection
+	\item Thread, semplice utilizzo per calcoli real-time.
+	\item OpenAL,  libreria audio su cui si basa l’intero progetto.
+	\item LWJGL, libreria che mette a disposizione delle API per la libreria OpenAL.
+	\item ClassGraph, libreria per visualizzare le classi caricate nel ClassPath, utilizzata per cercare i plugin presenti.
+\end{itemize}
 \subsection*{Simone Lugaresi}
 \begin{itemize}
 	\item Lambda expressions
