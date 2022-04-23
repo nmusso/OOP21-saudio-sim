@@ -214,7 +214,7 @@ Così ho optato per la costruzione di una classe FRSource che avesse un proprio 
 
 In conclusione con questa struttura cambiare range di frequenza a uno speaker comporta unicamente una chiamata al metodo setType. Con altre strutture valutate invece, sorgeva sempre la necessità di compiere operazioni aggiuntive da parte del chiamante che voleva effettuare il cambio di range.
 
-In seguito il primo passo nella gestione di un insieme di speaker invece è stato quello di ideare una struttura che permettesse di gestire le sorgenti come singole ma anche come un gruppo e da qui è nato il concetto di SourcesHub:
+In seguito il primo passo nella gestione di un insieme di speaker è stato quello di ideare una struttura che permettesse di gestire le sorgenti come singole ma anche come gruppo e da qui è nato il concetto di SourcesHub:
 %
 \begin{figure}[H]
 \centering{}
@@ -232,7 +232,7 @@ SourcesHub è, come spiega il nome, un Hub che permette di avere un insieme di S
 \label{img:sourcesHub}
 \end{figure}
 
-Per la creazione di Source, FRSource e SourcesHubs ho utilizzato il  pattern Simple Factory 
+Per la creazione di Source, FRSource e SourcesHub ho utilizzato il  pattern Simple Factory:
 %
 \begin{figure}[H]
 \centering{}
@@ -241,7 +241,7 @@ Per la creazione di Source, FRSource e SourcesHubs ho utilizzato il  pattern Sim
 \label{img:factory}
 \end{figure}
 
-La gestione dell'MVC è alquanto semplice, il SourceController ha una comunicazione bilaterale con SourceControllerView, questo perchè la View deve richiedere operazioni in risposta alle interazione con l'utente (aggiunta, rimozione e modifica di uno speaker) e allo stesso tempo il Controller deve poter aggiornare la View quando lo speaker selezionato cambia e le componenti della view devono essere aggiornate per essere mantenute consonsistenti alle informazioni dello speaker correntemente selezionato.
+La gestione dell'MVC è alquanto semplice, il SourceController aggiorna SourceControllerView interfacciandosi con SourceView, tra i due è presente una comunicazione bilaterale, poichè la View deve poter richiedere operazioni in risposta alle interazione con l'utente (aggiunta, rimozione e modifica di uno speaker) e allo stesso tempo il Controller deve poter aggiornare la View quando EnvironmentController lo notifica che lo speaker selezionato è cambiato e le componenti della view devono essere aggiornate per essere mantenute consonsistenti alle informazioni dello speaker correntemente selezionato.
 Il controller inoltre effettua i cambiamenti sulle sorgenti che sono contenute in SourcesHub all'interno di Environment interfacciandosi a lato pratico con EnvironmentController.
 %
 \begin{figure}[H]
