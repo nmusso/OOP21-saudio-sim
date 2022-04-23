@@ -12,9 +12,12 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import view.SourceView;
 
@@ -176,6 +179,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
      */
     @Override
     public void showMessage(final String error) {
-
+        final Alert alert = new Alert(AlertType.ERROR, error, ButtonType.OK);
+        alert.show();
     }
 }
