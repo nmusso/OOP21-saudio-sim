@@ -47,5 +47,4 @@ public class SourceFactoryImpl implements SourceFactory {
     public FRSource createFRSourceWithPosition(final Vec3f position, final SourceType type) {
         return new FRSourceImpl(position, type);
     }
-
 }

@@ -64,5 +64,4 @@ public interface Source {
      * Delete the source.
      */
     void delete();
-
 }

@@ -145,5 +145,4 @@ public class SourcesHubImpl implements SourcesHub {
         this.sources.forEach(Source::delete);
         this.sources.clear();
     }
-
 }

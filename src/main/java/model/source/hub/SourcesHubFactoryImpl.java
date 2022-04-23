@@ -25,5 +25,4 @@ public class SourcesHubFactoryImpl implements SourcesHubFactory {
     public SourcesHub createSourcesHubFromSet(final Set<FRSource> sources) {
         return new SourcesHubImpl(sources);
     }
-
 }

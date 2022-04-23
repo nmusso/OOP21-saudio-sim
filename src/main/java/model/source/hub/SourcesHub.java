@@ -107,5 +107,4 @@ public interface SourcesHub {
      * Delete all sources.
      */
     void deleteAll();
-
 }

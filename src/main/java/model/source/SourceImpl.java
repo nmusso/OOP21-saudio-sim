@@ -135,5 +135,4 @@ public class SourceImpl implements Source {
         final SourceImpl other = (SourceImpl) obj;
         return Objects.equals(id, other.id) && isPlaying == other.isPlaying && Objects.equals(position, other.position);
     }
-
 }
