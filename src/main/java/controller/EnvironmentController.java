@@ -1,9 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStream;
 import java.util.Optional;
 
 import model.audiomanager.AudioManager;
@@ -115,10 +113,10 @@ public class EnvironmentController implements ControllerApplication<EnvironmentV
     public void changeEnv(final String preset) {
         if (!"void".equals(preset)) {
             String json;
-            try {
-                json = Files.readString(Path.of(getClass().getResource(PATH).toURI()));
+            try (InputStream is = getClass().getResourceAsStream(PATH)) {
+                json = new String(is.readAllBytes());
                 this.env = envFac.createEnvironmentFromJson(json, preset);
-            } catch (IOException | URISyntaxException e1) {
+            } catch (IOException e1) {
                 e1.printStackTrace();
             }
         } else {

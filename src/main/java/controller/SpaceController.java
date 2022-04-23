@@ -1,14 +1,10 @@
 package controller;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONObject;
-
 import view.SpaceView;
 
 public class SpaceController implements ControllerApplication<SpaceView> {
@@ -35,12 +31,12 @@ public class SpaceController implements ControllerApplication<SpaceView> {
         final List<String> x = new ArrayList<>(); 
         x.add("void");
         final String json;
-        try {
-            json = Files.readString(Path.of(getClass().getResource(PATH).toURI()));
+        try (InputStream is = getClass().getResourceAsStream(PATH)) {
+            json = new String(is.readAllBytes());
             final JSONObject obj = new JSONObject(json);
             obj.names().toList().stream().forEach(p -> x.add(p.toString()));
             this.ctrlView.addPresetTocmb(x);
-        } catch (IOException | URISyntaxException e1) {
+        } catch (IOException e1) {
             e1.printStackTrace();
         }
     }
