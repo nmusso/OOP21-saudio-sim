@@ -1,7 +1,6 @@
 package view.controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -51,19 +50,12 @@ public class SpaceControllerView  implements Initializable, ControllerView, Spac
     public void initialize(final URL location, final ResourceBundle resources) {
         spnSizeX.setValueFactory(new DoubleSpinnerValueFactory(MINVALUESPIN, MAXVALUESPIN, 10, STEPVALUESPIN));
         spnSizeY.setValueFactory(new DoubleSpinnerValueFactory(MINVALUESPIN, MAXVALUESPIN, 10, STEPVALUESPIN));
-        addPresetTocmb();
     }
 
     /**
-     * Add String preset to comboBox.
+     * {@inheritDoc}
      */
-    private void addPresetTocmb() {
-        final List<String> listPreset = new ArrayList<>();
-        listPreset.add("void");
-        listPreset.add("Mono");
-        listPreset.add("Stereo");
-        listPreset.add("Cinema");
-        listPreset.add("HomeHIFI");
+    public void addPresetTocmb(final List<String> listPreset) {
         final ObservableList<String> comboItems = FXCollections.observableArrayList(listPreset);
         cmbPreset.setItems(comboItems);
         cmbPreset.setPromptText("void");

@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 public interface SpaceView {
 
     /**
@@ -19,4 +21,10 @@ public interface SpaceView {
      * @param newState the new state of the combobox
      */
     void disableCombo(boolean newState);
+
+    /**
+     * Add String preset to comboBox.
+     * @param listPreset from json
+     */
+    void addPresetTocmb(List<String> listPreset);
 }
