@@ -22,7 +22,7 @@
 \chapter{Analisi}
 Il software ha l'obiettivo di permettere all'utente di sperimentare un ascolto realistico in un ambiente dinamico.
 %
-Per ascolto realistico si intende l'esperienza uditiva che si può sperimentare tramite un ascolto con cuffia che trasmette all'utente effetto di spazialità.
+Per ascolto realistico si intende l'esperienza uditiva che si può sperimentare tramite un ascolto con cuffia che trasmette all'utente un effetto di spazialità.
 %
 Invece con ambiente dinamico ci si riferisce ad un sistema di cui si possono spostare i componenti.
 
@@ -305,16 +305,16 @@ Per il secondo problema mi sono avvalso del utilizzo delle Reflection. Questa de
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/PluginCreates.png}
-\caption{Shema creazione Plugin.}
+\caption{Schema creazione Plugin.}
 \label{img:Listener}
 \end{figure}
 
 \subsection*{Simone Lugaresi}
-Due sono gli argomenti principali da me gestiti:
+Gli argomenti principali da me elaborati sono 3:
 \begin{itemize}
 	\item Space, che serve a delimitare uno spazio 2D di lavoro nel quale si potranno muovere Source e Listener.
-	\item Environment, che è il contenitore di tutti gli elementi, sourceHub, Listener, space.
-	\item AudioManager
+	\item Environment, che è il "contenitore" di tutti gli elementi, sourceHub, Listener, space.
+	\item AudioManager, inizializza il contesto audio della libreria che abbiamo utilizzato.
 \end{itemize}
 
 \begin{figure}[H]
@@ -323,7 +323,7 @@ Due sono gli argomenti principali da me gestiti:
 \caption{Rappresentazione UML dell'nterfaccia Space e la sua implementazione}
 \label{img:space}
 \end{figure}
-Space si pone l'obbiettivo di risolvere il problema di delimitare uno spazio in cui poter utilizzare gli elementi, in questa implementazione viene utilizzato principalemte per fissare le dimensioni massime a Space che vengono costruiti nella factory di Environment, dato che la maggior parte dei controlli sulle posizioni vengono gestiti dalla View, rimane però la possibilita di controllare le posizioni degli spostamenti nell'ipotesi di un'interfaccia da console.
+Space si pone l'obbiettivo di risolvere il problema di delimitare uno spazio in cui poter utilizzare e spostare gli elementi come possono essere le casse (source) o l'ascoltatore(listener). \\In questa implementazione viene utilizzato principalmente per fissare le dimensioni massime degli ambienti, dato che la maggior parte dei controlli sulla corretta posizione degli oggetti viene gestita dalla View, rimane però la possibilita di controllare le posizioni degli spostamenti nell'ipotesi di un'interfaccia da console.
 %
 \begin{figure}[H]
 \centering{}
@@ -331,7 +331,7 @@ Space si pone l'obbiettivo di risolvere il problema di delimitare uno spazio in 
 \caption{Rappresentazione UML della Factory per Space}
 \label{img:spacefactory}
 \end{figure}
-Per agevolare la creazione di Space, sia da utilizzare nei preset degli Environment sia per i Test, da la possibilità di scelta su due tipi di creazione di space, uno con dimensioni di default e uno con dei paramentri.
+Per agevolare la creazione di Space, sia da utilizzare nei preset degli Environment sia per i Test, mi sono avvalso di Simple Factory che da la possibilità di scelta su due tipi di creazione di space, uno con dimensioni di default e uno con paramentri.
 %
 \begin{figure}[H]
 \centering{}
@@ -339,7 +339,7 @@ Per agevolare la creazione di Space, sia da utilizzare nei preset degli Environm
 \caption{Rappresentazione UML della gestione del MVC con space}
 \label{img:spacemvc}
 \end{figure}
-La parte di MVC che riguarda space è molto semplice, nella sezione di SpaceView c'è  la possibilita di cambiare il tipo di environment tramite dei preset, e in più si agisce direttamente sulle dimensioni fisiche virtuali dello spazio in cui ono posizionati listener, e sources. Il tutto comunica con SpaceController che aggiorna o viene aggiornato a seconda delle circostanze da EnvironmentCotroller.
+La parte di MVC che riguarda Space è molto semplice, SpaceController comunica dinamicamente con SpaceView che notifica quest'ultimo qualora l'utente cambiasse dei settaggi, in tal caso si rende necessaria anche una comunicazione con Environment per apportare tali modifiche, questa comunicazione per un corretto funzionamento necessita di una sorta di sistema half-duplex in modo da poter aggiornare anche i dati di SpaceView inviati da Environment, un esempio può essere la selezione di un determinato preset.
 %
 \begin{figure}[H]
 \centering{}
@@ -347,8 +347,8 @@ La parte di MVC che riguarda space è molto semplice, nella sezione di SpaceView
 \caption{Rappresentazione UML della parte di Environment}
 \label{img:environment}
 \end{figure}
-Per un miglior approccio agli elementi del programma quali listener, source, effects, Environment serve per raggruppare tutti gli elementi in un solo ambiente, in modo da poterlo rendere unico e riutilizzabile, anche in un ottica di un futuro aggiornamento nel quale si possono tenere aperti piu Environemnt e lavorare in contemporanea con essi.
-Ho successivamente implementato la factory per poter creare Environment di default come Mono e Stereo, ma anche piu articolati come cinema e homeHIFI, in una sola riga.
+Environment ha come scopo migliorare l'approccio agli elementi del programma quali listener, source, effects, raggruppandoli tutti insieme in un solo "ambiente", in modo da poterlo rendere unico e riutilizzabile, anche in un ottica di un futuro aggiornamento nel quale si possono gestire più Environemnt e lavorare in contemporanea su più di uno.
+Per una creazione più semplice e user friendly possibilie mi sono servito di SimpleFactory, nel quale do la possibilità di scelta tra un Environment vuoto, creato tramite i parametri Sources-Listener-Space, oppure tramite un file json correttamente impostato.
 %
 \begin{figure}[H]
 \centering{}
@@ -364,7 +364,7 @@ Ho successivamente implementato la factory per poter creare Environment di defau
 \caption{Rappresentazione UML della gestione del MVC con Environment}
 \label{img:environmentmvc}
 \end{figure}
-La parte MVC di environemnt è formata da EnvironmentView che è ciò che comunica con EnvironmentController di envetuali cambiamenti avvenuti nella view, i quali possono essere solamente di un genere, ossia lo spostamente di un elemento nello space, di conseguenza EnvironmentController viene aggiornato, e aggiorna eventuali cambiamenti sui controller piu specifici come SourceController, ListenerController, SpaceController, ma anche EnvironmentView chen ha bisogno di essere aggiornata qualora ci siano aggiunte o rimozioni o cambiamenti di alcuni elementi come possono essere le source.
+La parte di MVC per Environment è stata gestita similmente alle altre, EnvironmentController viene notificato dalla sua View di eventuali cambiamenti, che possono essere di un solo genere ossia lo spostamento di un elemento nell'ambiente, sarà poi Environmentcontroller a comunicare con i controller degli altri elementi interessati come Source e Listener, che però rimarrà  aperto a ricevere  update da quest'ultimi, o da altri come SpaceController, e se necessario applicandoli alla view.
 %
 \begin{figure}[H]
 \centering{}
@@ -372,7 +372,7 @@ La parte MVC di environemnt è formata da EnvironmentView che è ciò che comuni
 \caption{Rappresentazione UML dello schema semplice di AudioManager}
 \label{img:audiomanager}
 \end{figure}
-Si tratta dell'implementazione di tre classi semplici, che pero sono necessarie per una corretta comunicazione con la libreria e le nostre classi. Servono per creare il contesto nel quale le source dovranno riprodurre i suoni e il listener dovra riceverli.
+Si tratta dell'implementazione di tre semplici classi statiche, che pero sono necessarie per una corretta comunicazione con la libreria e le nostre classi. Hanno lo scopo di creare il contesto di esecuzione per il listener e le source, di conseguenza per la nostra implementazione a monoEnvironment(per ora)  abbiamo dovuto optare per una soluzione statica.
 %
 
 \chapter{Sviluppo}
@@ -428,7 +428,8 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Lambda expressions
 	\item Stream
 	\item Optional
-	\item JavaFX, per la GUI, e la gestione degli sprite
+	\item JavaFX
+	\item Per la gestione degli sprite all'interno della canvas mi sono basato sull'implementazione di codice visto online che poi ho modificato e riadattato alle mie esigenze: \url{https://github.com/stemkoski/BAGEL-Java-2022}( che però ora è in una versione più aggiornata rispetto alla versione dalla quale avevo preso spunto io, di conseguenza alcune classi potrebbero non esserci piu o essere state cambiate.}
 	\item OpenAL, libreria audio su cui si basa l’intero progetto
 \end{itemize}
 
