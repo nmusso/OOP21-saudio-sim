@@ -86,7 +86,7 @@ public class MainControllerView implements Initializable, ControllerView {
 
         infoElm.ifPresent(x -> {
             pane.setCenter(x.getX());
-            x.getY().setControllerApplication(this.ctrMain); /*TODO control if ctrMain is null*/
+            x.getY().setControllerApplication(this.ctrMain);
         });
     }
 }

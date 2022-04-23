@@ -4,8 +4,7 @@ import model.audiomanager.Context;
 import model.utility.Vec3f;
 
 /**
- * This Factory helps to create listener with specified parameters
- * and keeps unique the listener in an execution context. 
+ * This Factory helps to create listener with specified parameters.
  */
 public interface ListenerFactory {
 

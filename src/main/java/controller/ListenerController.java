@@ -123,7 +123,7 @@ public class ListenerController implements ControllerApplication<ListenerView> {
     }
 
     /**
-     * Update the view when there is a shift of the listener.
+     * Update the view when there is a movement of the listener.
      */
     public void positionChanged() {
         this.controllerView.positionChanged();

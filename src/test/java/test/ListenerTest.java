@@ -52,7 +52,6 @@ class ListenerTest {
 
     @Test
     void testFactory() {
-        /*Create listener in the same thread*/
         Listener listener = lsFactory.createListener(AudioManager.getContext());
         Listener listener2 = lsFactory.createListener(AudioManager.getContext());
         final Vec3f pos = new Vec3f(3.0f);

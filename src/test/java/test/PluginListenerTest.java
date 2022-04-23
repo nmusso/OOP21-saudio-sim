@@ -24,7 +24,7 @@ import plugin.listener.model.DopplerPlugin;
 import plugin.listener.model.PluginManager;
 import plugin.listener.model.SoundLevelMeterPlugin;
 
-class TestPluginListener {
+class PluginListenerTest {
     private final ListenerFactory lsFactory = new ListenerFactoryImpl();
 
     @BeforeAll
@@ -65,11 +65,11 @@ class TestPluginListener {
 
         mng.getPlugins().forEach(p -> assertFalse(p.isEnabled()));
         doppler.enable();
-        assertTrue(mng.getPlugins().stream().filter(p -> p.getClassName().equals(doppler.getClassName()))
+        assertTrue(mng.getPlugins().stream().filter(p -> p.equals(doppler))
                                             .findAny()
                                             .get()
                                             .isEnabled());
-        assertFalse(mng.getPlugins().stream().filter(p -> p.getClassName().equals(soundL.getClassName()))
+        assertFalse(mng.getPlugins().stream().filter(p -> p.equals(soundL))
                                              .findAny()
                                              .get()
                                              .isEnabled());

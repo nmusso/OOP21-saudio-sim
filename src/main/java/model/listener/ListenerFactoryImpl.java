@@ -6,6 +6,11 @@ import java.util.Map;
 import model.audiomanager.Context;
 import model.utility.Vec3f;
 
+/**
+ * 
+ * Implementation of ListenerFactory where the listener is kept unique in an execution context. 
+ *
+ */
 public class ListenerFactoryImpl implements ListenerFactory {
     private final Map<Context, Listener> listeners = new HashMap<>();
 
