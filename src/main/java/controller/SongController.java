@@ -86,7 +86,7 @@ public class SongController implements ControllerApplication<SongView> {
      * @param bufferID  the id of the buffer
      */
     public void playSource(final int bufferID) {
-        final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourcesHub();
         sources.generateAllSources(bufferID);
         sources.playAll();
         this.mainCtr.getSourceController().setDisableAddSource(true);
@@ -97,7 +97,7 @@ public class SongController implements ControllerApplication<SongView> {
      * Pause all the sources.
      */
     public void pauseSource() {
-        final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourcesHub();
         sources.pauseAll();
     }
 
@@ -105,7 +105,7 @@ public class SongController implements ControllerApplication<SongView> {
      * Stop all the sources.
      */
     public void stopSource() {
-        final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourceHub();
+        final SourcesHub sources = mainCtr.getEnvironmentController().getEnv().getSourcesHub();
         sources.stopAll();
         this.mainCtr.getSourceController().setDisableAddSource(false);
         this.mainCtr.getSpaceController().disableChange(false);

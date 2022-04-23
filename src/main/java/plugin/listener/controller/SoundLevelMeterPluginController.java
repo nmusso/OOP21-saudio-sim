@@ -73,7 +73,7 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
         public void run() {
             while (this.isRunning) {
                 try {
-                    SoundLevelMeterPluginController.this.plugin.setSourceHub(SoundLevelMeterPluginController.this.mainController.getEnvironmentController().getEnv().getSourceHub());
+                    SoundLevelMeterPluginController.this.plugin.setSourceHub(SoundLevelMeterPluginController.this.mainController.getEnvironmentController().getEnv().getSourcesHub());
                     final var color = SoundLevelMeterPluginController.this.plugin.getRgbColor();
                     SoundLevelMeterPluginController.this.controllerView.setColor(color);
                     Thread.sleep(100);
