@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{float}
+\usepackage{subcaption}
 \usepackage{hyperref}
 \usepackage[italian]{babel}
 \usepackage[italian]{cleveref}
@@ -445,6 +446,22 @@ Senza dubbio questo è un progetto che non si fermerà qui per quanto mi riguard
 
 \appendix
 \chapter{Guida utente}
+All'avvio l'applicazione si presenta nel seguente modo, con una configurazione già pronta
+%
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/guide/full.png}
+\caption{Schermata completa}
+\label{img:fullapp}
+\end{figure}
+
+\begin{figure}
+\centering{}
+\includegraphics[height=.5\linewidth]{img/guide/plugin1.png}
+\includegraphics[height=.5\linewidth]{img/guide/plugin2.png}
+\caption{Esempi di plugin}
+\label{img:plugins}
+\end{figure}
 
 \chapter{Esercitazioni di laboratorio}
 \subsection*{Niccolò Mussoni}
