@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
  * Implementation of Texture.
  */
 public class TextureImpl implements Texture {
+    private static final String IMG_PATH = "/img/";
     private Rectangle region;
     private final ImageView imageView = new ImageView();
 
@@ -49,7 +50,7 @@ public class TextureImpl implements Texture {
      * @param path name of the image file to load
      */
     public TextureImpl(final String path) {
-        try (InputStream file = getClass().getResourceAsStream("/img/" + path + ".png")) {
+        try (InputStream file = getClass().getResourceAsStream(IMG_PATH + path + ".png")) {
             final Image image = new Image(file);
             this.imageView.setImage(image);
             this.imageView.setFitWidth(image.getWidth());

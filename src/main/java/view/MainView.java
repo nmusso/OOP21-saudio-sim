@@ -6,12 +6,14 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import view.controller.MainControllerView;
 
 public class MainView extends Application {
     private static final String FXML_PATH = "/fxml/";
     private static final String CSS_PATH = "/css/";
+    private static final String IMG_PATH = "/img/";
 
     /**
      * 
@@ -37,6 +39,7 @@ public class MainView extends Application {
 
         mainStage.setResizable(false);
         mainStage.setScene(scene);
+        mainStage.getIcons().add(new Image(getClass().getResourceAsStream(IMG_PATH + "SOURCEFULL.png")));
         mainStage.show();
         ctrMainApp.showIntroduction();
     }
