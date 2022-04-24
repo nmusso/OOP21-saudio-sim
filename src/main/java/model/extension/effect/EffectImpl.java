@@ -31,14 +31,18 @@ public class EffectImpl extends AbstractEffect {
      */
     @Override
     public void apply(final ALEffects alEffect, final FRSource source, final float val) {
-        final int effect = getEffect()[0];
-        final int slot = getSlot()[0];
+        if (Float.compare(val, alEffect.getMinValue()) == 0) {
+            remove(alEffect, source);
+        } else {
+            final int effect = getEffect()[0];
+            final int slot = getSlot()[0];
 
-        alEffecti(effect, AL_EFFECT_TYPE, alEffect.getEffect());
-        alEffectf(effect, alEffect.getAttribute(), val);
-        alAuxiliaryEffectSloti(slot, AL_EFFECTSLOT_EFFECT, effect);
+            alEffecti(effect, AL_EFFECT_TYPE, alEffect.getEffect());
+            alEffectf(effect, alEffect.getAttribute(), val);
+            alAuxiliaryEffectSloti(slot, AL_EFFECTSLOT_EFFECT, effect);
 
-        setOnSource(source, getSourceType(source), slot, alEffect.ordinal());
+            setOnSource(source, getSourceType(source), slot, alEffect.ordinal());
+        }
     }
 
     /**

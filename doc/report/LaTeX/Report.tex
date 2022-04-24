@@ -115,22 +115,25 @@ Il mio dominio di lavoro è centrato su due argomenti:
 	\item I Buffer, che sulla base del file importato generano un ID univoco associato ad esso, attraverso il quale le sorgenti possono riprodurre il file. 
 	\item Le estensioni, che riguardano la gestione di filtri ed effetti per le sorgenti.
 \end{itemize}
-
+%
+\subsubsection*{Buffer}
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/buffer/Buffer.png}
 \caption{Rappresentazione UML dell’applicazione del pattern Template Method per i diversi tipi di Buffer}
 \label{img:templatebuffer}
 \end{figure}
-Il primo problema da gestire è stato il fatto che il Buffer potesse essere generato sia da un file nel File System, sia da un file incluso nelle risorse del Classpath. Visto che i Buffer differiscono solo per come viene importato inizialmente lo Stream, per risolvere questo problema ho sfruttato il pattern template method, in modo da poter essere usato anche per altri tipi di Buffer non presenti nel progetto. Nel mio caso, il metodo template è generateBuffer, mentre il metodo primitivo è getAudioStream.
+Il primo problema da gestire è stato il fatto che il Buffer potesse essere generato sia da un file nel file system, sia da un file incluso nelle risorse del classpath. Visto che i Buffer differiscono solo per come viene importato inizialmente lo Stream, per risolvere questo problema ho sfruttato il pattern \textit{Template Method}, in modo da poter essere usato anche per altri tipi di Buffer non presenti nel progetto. Nel mio caso, il metodo template è generateBuffer, mentre il metodo primitivo è getAudioStream.
 %
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/buffer/BufferImport.png}
-\caption{Rappresentazione UML della Factory per Buffer e dell’applicazione del pattern Singleton per il caching}
-\label{img:cachebuffer}
+\includegraphics[width=\textwidth]{img/buffer/BufferFactory.png}
+\caption{Rappresentazione UML del pattern Abstract Factory dell’applicazione del pattern Singleton per il caching}
+\label{img:factory}
 \end{figure}
-Il secondo problema da gestire era evitare Buffer duplicati e per risolvere ciò mi sono affidato a un istanza Singleton che potesse fare da cache in maniera thread-safe, grazie alla versione di J. Bloch. La factory, prima di creare un nuovo Buffer, controlla che non sia già presente nella cache e successivamente procede a crearne uno nuovo.
+Il secondo problema da gestire era evitare Buffer duplicati e per risolvere ciò mi sono affidato a un istanza Singleton che potesse fare da cache in maniera thread-safe, grazie alla versione attraverso enum di J. Bloch. Questo mi ha risparmiato di aprire un nuovo InputStream e analizzarlo per la creazione del Buffer nel caso la path del file che volesse essere importato fosse già salvata in memoria.
+\\Per la creazione dei diversi tipi di Buffer mi sono affidato a una factory, applicando il template \textit{Abstract Factory}: in particolare ho implementato BufferFactoryWithCache che, prima di creare un nuovo Buffer, controlla che non sia già presente nella cache e successivamente procede a crearne uno nuovo e BufferFactoryBasic che ritorna direttamente una nuova istanza di Buffer, ma grazie al template se ne possono creare ulteriori tipi.
+\\I due Factory Method all'interno di BufferFactory rappresentano i due tipi di Buffer che si desidera creare.
 %
 \begin{figure}[H]
 \centering{}
@@ -138,13 +141,14 @@ Il secondo problema da gestire era evitare Buffer duplicati e per risolvere ciò
 \caption{Rappresentazione UML della Factory per Buffer e dell’applicazione del pattern Singleton per il caching}
 \label{img:buffermvc}
 \end{figure}
-Quando dalla view viene richiesta l’importazione di un file, esso viene trattato come PathBuffer, in quanto viene selezionato dall’utente. Al momento dell’inizializzazione invece tutti i file audio presenti come risorse del progetto vengono trattati come ResourcePath. Questo mi ha aiutato a poter differenziare anche i metodi nel controller senza ricorrere a variabili booleane o intere per identificare che tipo di file fosse. Il controller, dopo aver ricevuto la richiesta di creare un nuovo buffer, chiama la factory, che procede a creare il Buffer, che se non è presente viene aggiunto anche nella cache. Inoltre la cache è risultata utile anche per poter aggiornare la view successivamente al caricamento di un file, in quanto il controller ricava il nome dei file presenti nella cache e notifica alla view di aggiornarsi sulla base della lista dei file.
+Quando dalla view viene richiesta l’importazione di un file, esso viene trattato come PathBuffer, in quanto viene selezionato dall’utente. Al momento dell’inizializzazione invece tutti i file audio presenti come risorse del progetto vengono trattati come ResourceBuffer. Questo mi ha aiutato a poter differenziare anche i metodi nel controller senza ricorrere a variabili per identificare che tipo di file fosse. Il controller, dopo aver ricevuto la richiesta di creare un nuovo buffer, chiama la factory, che procede a creare il Buffer, che se non è presente viene aggiunto anche nella cache. Inoltre la cache è risultata utile anche per poter aggiornare la view successivamente al caricamento di un file, in quanto il controller ricava il solo nome dei file presenti nella cache e notifica alla view di aggiornarsi sulla base della lista dei file.
 %
+\subsubsection*{Extension}
 \begin{figure}[H]
 \centering{}
-\includegraphics[width=\textwidth]{img/extension/Extensions.png}
+\includegraphics[width=\textwidth]{img/extension/Extension.png}
 \caption{Rappresentazione UML della parte comune delle estensioni}
-\label{img:extensions}
+\label{img:extension}
 \end{figure}
 Sia filtri che effetti condividono la parte in cui vengono applicati alla sorgente, ma non i buffer necessari alla creazione di essi, quindi ho deciso di creare un’interfaccia comune per la parte di applicazione, e successivamente una sua implementazione astratta, che implementa l’applicazione delle estensioni, ma non l’inizializzazione, la quale viene lasciata alle due classi che ereditano. Invece la creazione/rimozione del filtro o effetto attraverso la libreria era differente, quindi ho sfruttato due interfacce separate, mostrate nelle due figure successive.
 %
@@ -154,7 +158,7 @@ Sia filtri che effetti condividono la parte in cui vengono applicati alla sorgen
 \caption{Rappresentazione UML della gestione dei filtri}
 \label{img:filter}
 \end{figure}
-I filtri hanno un valore impostato a priori per i tre tipi di filtro (passa-basso, passa-banda, passa-alto), quindi mi è bastato solo implementare la creazione e la rimozione. 
+I filtri hanno un valore impostato a priori per i tre tipi di filtro (passa-basso, passa-banda, passa-alto), quindi mi è bastato solo implementare la creazione, sulla base del filtro richiesto, e la rimozione. 
 %
 \begin{figure}[H]
 \centering{}
@@ -407,7 +411,7 @@ Una ingente parte di ricerca è stata svolta prima della creazione del progetto 
 \\Visto che nessuno dei componenti aveva esperienza pregressa nell'utilizzo di GitHub in progetti di questa entità, abbiamo optato per una gestione di base attraverso una semplice strategia "push e pull", lavorando spesso sullo stesso branch, salvo poche eccezioni, per evitare complicazioni e concentrarci sulla pura implementazione.
 \\Il lavoro in comune è stato effettuato per definire le interfacce che servivano come punto di accesso tra le diverse parti, nei componenti "manager" (come MainController e MainControllerView) e nei vari package utility.
 \subsection*{Niccolò Mussoni}
-Buffer, BufferCache, view per l’importazione di un file WAV, Extensions (effetti + filtri), view per l’applicazione degli effetti su tutte le sorgenti attraverso un semplice equalizzatore
+Buffer, BufferCache,  Extensions (Effect + Filter), view per il player e per l’importazione di un file WAV, view per l’applicazione degli effetti su tutte le sorgenti attraverso un semplice equalizzatore, con relativi SongController e EqualizerController per la comunicazione tra view e model.
 \subsection*{Alessandro Sciarrillo}
  Source, FRSource, SourcesHub, view per la creazione, eliminazione, modifica ed esposizione dati degli speakers.
 \subsection*{Alex Presepi}
@@ -420,10 +424,11 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Lambda expressions
 	\item Stream
 	\item Optional
-	\item JavaFX, per la GUI
-	\item LWJGL, libreria audio su cui si basa l’intero progetto
-	\item Spring Framework, per accedere a tutte le risorse all’interno di una cartella del classpath
-	\item Per la conversione da WAV stereo a WAV mono mi sono affidato a del codice online, non avendo le competenze necessarie per manipolarlo, che ho poi adattato alla singola conversione di cui necessitavo: \url{http://www.java2s.com/example/java/javax.sound.sampled/converts-re-samples-and-mono-tofrom-stereo-audio-data.html}
+	\item JavaFX, per la GUI.
+	\item OpenAL, libreria audio su cui si basa l’intero progetto.
+	\item LWJGL, libreria che mette a disposizione delle API per la libreria OpenAL.
+	\item Spring Framework, per accedere a più risorse all'interno di una cartella del classpath.
+	\item Per la conversione da WAV stereo a WAV mono mi sono affidato a del codice online, consultabile \textit{\underline{\href{http://www.java2s.com/example/java/javax.sound.sampled/converts-re-samples-and-mono-tofrom-stereo-audio-data.html}{qui}}}, non avendo le competenze necessarie per la manipolazione dei file WAV, che ho poi adattato alla singola conversione di cui necessitavo.
 \end{itemize}
 \subsection*{Alessandro Sciarrillo}
 \begin{itemize}
@@ -458,6 +463,8 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
 \subsection*{Niccolò Mussoni}
+Essendo il primo progetto al quale lavoravo in team e considerando le dimensioni del progetto mi ritengo abbastanza soddisfatto del lavoro svolto. Su certi aspetti del lavoro si poteva lavorare meglio, ma la continua comunicazione tra i componenti ci ha portato a risolvere molti dei problemi sorti. Nella progettazione non credo di aver fatto un brutto lavoro: credo la parte di Extension potesse essere progettata in maniera migliore, soprattutto per l'utilizzo di un enum, mentre in quella relativa al Buffer ritengo sia stata effettuata una buona analisi e progettazione. 
+\\Nell'immediato non credo di essere interessato a portare avanti il progetto, vista la mia volontà di volermi focalizzare su nuovi progetti, ma in futuro non escludo di poterci rimettere mano per includere nuove parti della mia sezione, ampliare le possibilità di utilizzo e migliorarne il modo in cui è stato progettato.
 \subsection*{Alessandro Sciarrillo}
 Considerando il monteore a disposizione e il prodotto finale valuto la mia prestazione in modo positivo.
 Sicuramente c'è molto margine di miglioramento nell'utilizzo di MVC, che abbiamo cercato di implementare al meglio, ma non è di certo nella sua forma ideale, visto è il primo vero progetto in cui lo applichiamo e non è qualcosa che si impara a utilizzare al meglio con una esperienza così ridotta. Un grande punto di forza della mia parte penso che sia la sua estendibilità per quanto riguarda le Source ma anche il corretto utilizzo della libreria LWJGL che a inizio progetto era del tutto nuova. D'altra parte riconosco una carenza nell'uso dei generici che avrebbero permesso un riutilizzo più flessibile del SourcesHub e che sicuramente avrei integrato se avessi avuto più tempo.

@@ -1,6 +1,9 @@
 package controller;
 
 import static org.lwjgl.openal.AL10.alGetError;
+
+import java.util.Optional;
+
 import static org.lwjgl.openal.AL10.AL_NO_ERROR;
 
 import model.extension.effect.ALEffects;
@@ -49,5 +52,29 @@ public class EqualizerController implements ControllerApplication<EqualizerView>
      */
     public void removeEffect() {
         this.mainCtr.getEnvironmentController().getEnv().removeEffect();
+    }
+
+    /**
+     * Get the effect associated to the slider.
+     * 
+     * @param id the id of the slider
+     * @return an optional containing the effect, or empty if there isn't an effect
+     *         associated to the id
+     */
+    public Optional<ALEffects> getEffect(final String id) {
+        switch (id) {
+        case "sldReverb":
+            return Optional.of(ALEffects.REVERB);
+        case "sldEcho":
+            return Optional.of(ALEffects.ECHO);
+        case "sldFlanger":
+            return Optional.of(ALEffects.FLANGER);
+        case "sldAutowah":
+            return Optional.of(ALEffects.AUTOWAH);
+        case "sldChorus":
+            return Optional.of(ALEffects.CHORUS);
+        default:
+            return Optional.empty();
+        }
     }
 }

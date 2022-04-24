@@ -65,7 +65,6 @@ public class SongController implements ControllerApplication<SongView> {
     public final void addBufferFromResource(final String file) {
         try {
             factory.createBufferFromResource(file);
-            ctrlView.updateComboBox(getBufferList());
         } catch (ALFormatException | UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
             ctrlView.showMessage("Something went wrong during the creation of the buffer");
@@ -135,5 +134,7 @@ public class SongController implements ControllerApplication<SongView> {
         Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream()
                 .map(res -> SONG_PATH + res.getFilename())
                 .forEach(this::addBufferFromResource);
+
+        ctrlView.updateComboBox(getBufferList());
     }
 }

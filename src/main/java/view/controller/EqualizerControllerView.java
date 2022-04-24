@@ -81,30 +81,6 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
     }
 
     /**
-     * Get the effect associated to the slider.
-     * 
-     * @param id the id of the slider
-     * @return an optional containing the effect, or empty if there isn't an effect
-     *         associated to the id
-     */
-    private Optional<ALEffects> getEffect(final String id) {
-        switch (id) {
-        case "sldReverb":
-            return Optional.of(ALEffects.REVERB);
-        case "sldEcho":
-            return Optional.of(ALEffects.ECHO);
-        case "sldFlanger":
-            return Optional.of(ALEffects.FLANGER);
-        case "sldAutowah":
-            return Optional.of(ALEffects.AUTOWAH);
-        case "sldChorus":
-            return Optional.of(ALEffects.CHORUS);
-        default:
-            return Optional.empty();
-        }
-    }
-
-    /**
      * Get all the sliders.
      * 
      * @return a list of sliders
@@ -121,7 +97,7 @@ public class EqualizerControllerView implements Initializable, ControllerView, E
      */
     private void initSliders() {
         getSliders().forEach(slider -> {
-            final Optional<ALEffects> effect = getEffect(slider.getId());
+            final Optional<ALEffects> effect = ctrl.getEffect(slider.getId());
             if (effect.isPresent()) {
                 final var eff = effect.get();
                 slider.setMin(eff.getMinValue());
