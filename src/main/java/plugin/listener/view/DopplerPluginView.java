@@ -11,8 +11,8 @@ public interface DopplerPluginView extends ControllerPluginView<DopplerPluginCon
 
     /**
      * Update velocity in x and y axes.
-     * @param x 
-     * @param y
+     * @param x velocity in x axes. 
+     * @param y velocity in y axes.
      */
     void changeVelocity(float x, float y);
 }

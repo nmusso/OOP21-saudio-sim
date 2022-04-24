@@ -22,6 +22,13 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
     private final MainController mainController;
     private final ThreadMeter thMeter;
 
+    /**
+     * Constructor for this class.
+     * @param listener instance of listener.
+     * @param mainController controller main.
+     * @param listenerView view of listener.
+     * @throws ClassNotFoundException in FXML view.
+     */
     public SoundLevelMeterPluginController(final Listener listener, final MainController mainController, final ListenerView listenerView) throws ClassNotFoundException {
         final Optional<SoundLevelMeterPluginView> temp = PluginViewLoader.tabPluginLoader(FXML_VIEW_PATH);
 

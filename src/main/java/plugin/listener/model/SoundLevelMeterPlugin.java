@@ -33,7 +33,7 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
 
     /**
      * Set source hub instance.
-     * @param sources
+     * @param sources the SourceHub.
      */
     public void setSourceHub(final SourcesHub sources) {
         this.sources = Optional.of(sources);
@@ -54,18 +54,18 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
 
     /**
      * Map the distance to a value in a defined range.
-     * @param x
-     * @return a.
+     * @param distance value of minimum distance.
+     * @return mapped color.
      */
-    private int getMappedColor(final double x) {
-        if (x >= SAFETY_DISTANCE) {
+    private int getMappedColor(final double distance) {
+        if (distance >= SAFETY_DISTANCE) {
             return MAX_VALUE_COLOR * 2;
         }
-        if (x <= 0.0f) {
+        if (distance <= 0.0f) {
             return 0;
         }
         final float intervals = (MAX_VALUE_COLOR * 2) / (SAFETY_DISTANCE * 10);
-        return (int) (Math.round(x * 10) * intervals);
+        return (int) (Math.round(distance * 10) * intervals);
     }
 
     /**

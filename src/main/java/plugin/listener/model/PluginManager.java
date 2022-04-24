@@ -26,7 +26,7 @@ public class PluginManager {
 
     /**
      * Add a plug-in in the manager.
-     * @param plugin
+     * @param plugin to be added.
      */
     public void addPlugin(final Plugin plugin) {
         this.plugins.add(plugin);
@@ -34,7 +34,7 @@ public class PluginManager {
 
     /**
      * Remove the plug-in from the manager.
-     * @param plugin
+     * @param plugin to be removed.
      */
     public void removePlugin(final Plugin plugin) {
         this.plugins.remove(plugin);

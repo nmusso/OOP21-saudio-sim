@@ -33,7 +33,7 @@ public interface Listener {
 
     /**
      * Set the orientation of listener in 2d plan.
-     * @param at
+     * @param at vector represents the right or left rotation.
      */
     void setAtOrientation(Vec3f at);
 

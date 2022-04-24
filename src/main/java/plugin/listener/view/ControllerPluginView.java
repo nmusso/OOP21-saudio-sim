@@ -10,13 +10,13 @@ public interface ControllerPluginView<C> {
 
     /**
      * Set the specific controller.
-     * @param controller 
+     * @param controller plug-in controller.
      */
     void setControllerApplication(C controller);
 
     /**
      * Set the listener view.
-     * @param view
+     * @param view the view of listener.
      */
     void setListenerControllerView(ListenerView view);
 }

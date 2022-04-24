@@ -47,7 +47,7 @@ public class DopplerPlugin extends AbstractPlugin {
 
     /**
      * Set velocity vector of the listener.
-     * @param vector
+     * @param vector the velocity vector.
      */
     public void setVelocity(final Vec3f vector) {
         if (this.isEnabled()) {
@@ -66,7 +66,7 @@ public class DopplerPlugin extends AbstractPlugin {
 
     /**
      * Set how much the effect affects.
-     * @param value 
+     * @param value doppler intensity level.
      */
     public void setDopplerLv(final float value) {
         if (this.isEnabled()) {

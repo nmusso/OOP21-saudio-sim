@@ -11,7 +11,7 @@ import plugin.listener.controller.SoundLevelMeterPluginController;
 public interface SoundLevelMeterPluginView extends ControllerPluginView<SoundLevelMeterPluginController> {
     /**
      * Update the color of visual indicator.
-     * @param rgb
+     * @param rgb vector of red, green and blue value.
      */
     void setColor(Vec3f rgb);
 }
