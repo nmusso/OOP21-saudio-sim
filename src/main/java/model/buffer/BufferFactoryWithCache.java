@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- * Implementation of the interface BufferFactory.
+ * Implementation of the interface BufferFactory using BufferCache.
  *
  */
 public class BufferFactoryWithCache implements BufferFactory {

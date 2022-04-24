@@ -24,11 +24,18 @@ public class SourceImpl implements Source {
     private Vec3f position;
     private boolean isPlaying;
 
+    /**
+     * Construct a new SourceImpl.
+     */
     public SourceImpl() {
         this.id = alGenSources();
         this.setPosition(new Vec3f(0.0f));
     }
 
+    /**
+     * Construct a new SourceImpl with the given position.
+     * @param position the position of the source
+     */
     public SourceImpl(final Vec3f position) {
         this.id = alGenSources();
         this.setPosition(position);

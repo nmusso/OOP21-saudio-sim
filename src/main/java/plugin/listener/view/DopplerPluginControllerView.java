@@ -44,7 +44,6 @@ public class DopplerPluginControllerView implements Initializable, DopplerPlugin
 
     /**
      * {@inheritDoc}
-     * @param ctr
      */
     @Override
     public void setListenerControllerView(final ListenerView ctr) {
@@ -54,8 +53,6 @@ public class DopplerPluginControllerView implements Initializable, DopplerPlugin
 
     /**
      * {@inheritDoc}
-     * @param x
-     * @param y
      */
     @Override
     public void changeVelocity(final float x, final float y) {

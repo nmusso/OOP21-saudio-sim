@@ -104,7 +104,6 @@ public class ListenerControllerView implements Initializable, ListenerView {
 
     /**
      * {@inheritDoc}
-     * @param tab
      */
     @Override
     public void setPlugin(final Tab tab) {
@@ -113,7 +112,6 @@ public class ListenerControllerView implements Initializable, ListenerView {
 
     /**
      * {@inheritDoc}
-     * @param tab
      */
     @Override
     public void removePlugin(final Tab tab) {

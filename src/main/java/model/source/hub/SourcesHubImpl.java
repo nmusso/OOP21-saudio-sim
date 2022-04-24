@@ -22,11 +22,18 @@ public class SourcesHubImpl implements SourcesHub {
     private final Set<FRSource> sources;
     private final EffectImpl effectManager;
 
+    /**
+     * Construct an empty SourceHubImpl.
+     */
     public SourcesHubImpl() {
         this.sources = new HashSet<>();
         this.effectManager = new EffectImpl();
     }
 
+    /**
+     * Construct a SourceHubImpl from a given set.
+     * @param sources the set of sources
+     */
     public SourcesHubImpl(final Set<FRSource> sources) {
         this.sources = new HashSet<>();
         this.sources.addAll(sources);

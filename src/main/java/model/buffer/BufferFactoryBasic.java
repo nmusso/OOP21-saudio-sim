@@ -5,6 +5,10 @@ import java.io.IOException;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+/**
+ * Implementation of the interface BufferFactory.
+ *
+ */
 public class BufferFactoryBasic implements BufferFactory {
 
     /**

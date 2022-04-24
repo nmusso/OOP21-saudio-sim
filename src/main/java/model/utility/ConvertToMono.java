@@ -1,4 +1,5 @@
 package model.utility;
+
 /*Copyright 2009 The Open University
 http://www.open.ac.uk/lts/projects/audioapplets/
 
@@ -19,6 +20,10 @@ along with the "Open University audio applets" project.
 If not, see <http://www.gnu.org/licenses/>.
  */
 
+/**
+ * Utility class for conversion stereo-mono.
+ *
+ */
 public final class ConvertToMono {
     private static final int OFFSET = 0xff;
 

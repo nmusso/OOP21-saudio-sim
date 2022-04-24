@@ -12,6 +12,9 @@ import java.util.Set;
 public class PluginManager {
     private final Set<Plugin> plugins;
 
+    /**
+     * Construct a new PluginManager.
+     */
     public PluginManager() {
         this.plugins = new HashSet<>();
     }

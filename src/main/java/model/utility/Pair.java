@@ -1,7 +1,12 @@
 package model.utility;
 
+/**
+ * Class for a pair of two elements.
+ *
+ * @param <X> The type of the element x.
+ * @param <Y> The type of the element y.
+ */
 public class Pair<X, Y> {
-
     private X x;
     private Y y;
 

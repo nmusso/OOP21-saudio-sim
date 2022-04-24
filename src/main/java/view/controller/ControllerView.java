@@ -2,6 +2,10 @@ package view.controller;
 
 import controller.MainController;
 
+/**
+ * Interface for the controller of the views.
+ *
+ */
 public interface ControllerView {
 
     /**

@@ -6,6 +6,10 @@ import org.lwjgl.openal.AL;
 import org.lwjgl.openal.ALC;
 import static org.lwjgl.openal.ALC10.alcMakeContextCurrent;
 
+/**
+ * AudioManager class for initialization.
+ *
+ */
 public final class AudioManager {
     private static Context context;
     private static ALCCapabilities alcCapabilities;

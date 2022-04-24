@@ -11,6 +11,10 @@ import static org.lwjgl.openal.AL10.alListenerfv;
 import static org.lwjgl.openal.AL10.alListenerf;
 import java.util.Objects;
 
+/**
+ * Implementation of interface Listener.
+ *
+ */
 public class ListenerImpl implements Listener {
 
     private final Context context;
@@ -34,7 +38,6 @@ public class ListenerImpl implements Listener {
     }
 
     /**
-     * 
      * {@inheritDoc}
      */
     @Override

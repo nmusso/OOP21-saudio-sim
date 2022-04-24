@@ -20,6 +20,9 @@ public class DopplerPlugin extends AbstractPlugin {
     private float dropplerLv;
     private Optional<Float> lastDropplerLv = Optional.empty();
 
+    /**
+     * Construct a new DopplerPlugin.
+     */
     public DopplerPlugin() {
         this.velocity = new Vec3f(0.0f, 0.0f, 0.0f);
         this.dropplerLv = 1.0f;

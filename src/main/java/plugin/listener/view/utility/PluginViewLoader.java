@@ -16,7 +16,7 @@ public final class PluginViewLoader {
     /**
      * Load view and get the controller-view associated if present.
      * @param <C> controller type.
-     * @param fileName
+     * @param fileName the name of the file.
      * @return optional of controller-view.
      */
     public static <C> Optional<C> tabPluginLoader(final String fileName) {

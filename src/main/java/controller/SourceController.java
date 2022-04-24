@@ -20,6 +20,10 @@ public class SourceController implements ControllerApplication<SourceView> {
     private SourceView controllerView;
     private FRSource selectedSource;
 
+    /**
+     * Construct a SourceController.
+     * @param mainCtr the MainController
+     */
     public SourceController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
     }

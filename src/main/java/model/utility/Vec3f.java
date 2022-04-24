@@ -2,21 +2,36 @@ package model.utility;
 
 import java.util.Objects;
 
+/**
+ * Class for a three value vector.
+ *
+ */
 public class Vec3f {
 
     private float x;
     private float y;
     private float z;
 
+    /**
+     * Construct a new Vec3f with the given coordinates.
+     * @param x X value
+     * @param y Y value
+     * @param z Z value
+     */
     public Vec3f(final float x, final float y, final float z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
-    public Vec3f(final float pos) {
-        this.x = pos;
-        this.y = pos;
-        this.z = pos;
+
+    /**
+     * Construct a new Vec3f with the given value.
+     * @param val the value of the three coordinates
+     */
+    public Vec3f(final float val) {
+        this.x = val;
+        this.y = val;
+        this.z = val;
     }
 
     /**

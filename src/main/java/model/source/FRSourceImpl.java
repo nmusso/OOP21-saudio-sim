@@ -16,11 +16,20 @@ public class FRSourceImpl extends SourceImpl implements FRSource {
     private SourceType type;
     private Filter filter;
 
+    /**
+     * Construct a new FRSource with the given type.
+     * @param type the type of the source
+     */
     public FRSourceImpl(final SourceType type) {
         super();
         this.initFilterAndType(type);
     }
 
+    /**
+     * Construct a new FRSource with the given type and position.
+     * @param position the position of the source
+     * @param type the type of the source
+     */
     public FRSourceImpl(final Vec3f position, final SourceType type) {
         super(position);
         this.initFilterAndType(type);

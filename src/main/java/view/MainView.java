@@ -10,6 +10,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import view.controller.MainControllerView;
 
+/**
+ * Main view of the application, loads all the sub-views.
+ *
+ */
 public class MainView extends Application {
     private static final String FXML_PATH = "/fxml/";
     private static final String CSS_PATH = "/css/";

@@ -5,6 +5,10 @@ import java.util.Optional;
 import javafx.fxml.FXMLLoader;
 import model.utility.Pair;
 
+/**
+ * Class who load view pages and the associated controllers.
+ *
+ */
 public final class PageLoader {
 
     private PageLoader() {

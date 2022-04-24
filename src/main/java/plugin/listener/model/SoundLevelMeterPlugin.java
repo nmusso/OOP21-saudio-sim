@@ -18,6 +18,10 @@ public class SoundLevelMeterPlugin extends AbstractPlugin {
     private Optional<SourcesHub> sources;
     private final Listener listener;
 
+    /**
+     * Construct a new SoundLevelMeterPlugin.
+     * @param listener the listener
+     */
     public SoundLevelMeterPlugin(final Listener listener) {
         this.listener = listener;
         this.sources = Optional.empty();

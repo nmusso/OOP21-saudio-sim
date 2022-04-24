@@ -12,10 +12,18 @@ import org.lwjgl.BufferUtils;
 
 import model.extension.effect.ALEffects;
 
+/**
+ * Context class.
+ *
+ */
 public class Context {
     private final Device device;
     private final long id;
 
+    /**
+     * Construct a Context.
+     * @param device the device associated to the context
+     */
     public Context(final Device device) {
         final IntBuffer contextAttribList = BufferUtils.createIntBuffer(3);
         contextAttribList.put(ALC_MAX_AUXILIARY_SENDS);

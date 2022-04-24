@@ -31,8 +31,10 @@ public class ListenerController implements ControllerApplication<ListenerView> {
     private final PluginManager mng;
     private final Set<ControllerPlugin> pluginsCtr;
 
-
-
+    /**
+     * Construct a ListenerController.
+     * @param mainCtr the MainController
+     */
     public ListenerController(final MainController mainCtr) {
         this.mainCtr = mainCtr;
         this.listener = this.mainCtr.getEnvironmentController().getEnv().getListener();
@@ -77,7 +79,7 @@ public class ListenerController implements ControllerApplication<ListenerView> {
 
     /**
      * Instance via reflection the plug-in controller passed as a parameter.
-     * @param name
+     * @param name Name of the plug-in class
      */
     public void createPluginController(final String name) {
         try {

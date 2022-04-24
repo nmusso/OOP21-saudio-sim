@@ -26,6 +26,13 @@ public class DopplerPluginController implements ControllerPlugin {
     private final DopplerPlugin plugin;
     private final ThreadVelocity thVel;
 
+    /**
+     * Construct a new DopplerPluginController.
+     * @param listener the listener
+     * @param mainController the MainController
+     * @param listenerView the ListenerView
+     * @throws ClassNotFoundException if the file of the plugin doesn't exists.
+     */
     public DopplerPluginController(final Listener listener, final MainController mainController, final ListenerView listenerView) throws ClassNotFoundException {
         final Optional<DopplerPluginView> temp = PluginViewLoader.tabPluginLoader(FXML_VIEW_PATH);
 
