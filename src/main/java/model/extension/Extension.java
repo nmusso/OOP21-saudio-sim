@@ -2,6 +2,10 @@ package model.extension;
 
 import model.source.Source;
 
+/**
+ * Interface for extensions, used by Effect and Filter.
+ *
+ */
 public interface Extension {
     /**
      * Set the effect in the slot on the source.
