@@ -74,7 +74,7 @@ public class DopplerPluginController implements ControllerPlugin {
      * Thread for calculate real-time velocity of listener.
      *
      */
-    class ThreadVelocity extends Thread {
+    private class ThreadVelocity extends Thread {
         private boolean isRunning = true;
 
         /**

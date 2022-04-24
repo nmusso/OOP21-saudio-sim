@@ -258,7 +258,7 @@ Il controller inoltre effettua i cambiamenti sulle sorgenti che sono contenute i
 
 \subsection*{Alex Presepi}
 La progettazione e lo sviluppo da me affrontato riguarda principalmente due argomenti: Listener, e relativi plugin 
-che ne estendono le funzionalita' visive e/o sonore.
+che ne estendono le funzionalità visive e/o sonore.
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/Listener.png}
@@ -266,8 +266,8 @@ che ne estendono le funzionalita' visive e/o sonore.
 \label{img:Listener}
 \end{figure}
 %
-Il Listener deve essere univoco in ogni contesto di eseguzione percio' per risolvere questo primo problema ho optato per creare una Factory Method che permetesse di gestire l univocita per ogni contesto e mettesse a disposizione diverse modalita di creazione. Cosi facendo, si mette a disposizione una struttura, per future  implementazioni di diverse politche di gestione del univocita. Quando si richiama il metodo di creazione, 
-passandogli il conteso di esecuzione, esso controllera se per quel contesto esiste gia un listener e ritorna o l istanza presente o ne crea una nuova. 
+Il Listener deve essere univoco in ogni contesto di eseguzione perciò per risolvere questo primo problema ho optato per creare un Factory Method che permetesse di gestire l' univocità per ogni contesto e mettesse a disposizione diverse modalità di creazione. Cosi facendo, si mette a disposizione una struttura, per future  implementazioni di diverse politche di gestione dell' univocità. Quando si richiama il metodo di creazione, 
+passandogli il conteso di esecuzione, esso controlla se per quel contesto esiste già un listener e ritorna o l' istanza presente o ne crea una nuova. 
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/ListenerFactory.png}
@@ -276,7 +276,7 @@ passandogli il conteso di esecuzione, esso controllera se per quel contesto esis
 \end{figure}
 %
 L' utilizzo del pattern MVC, della parte relativa al Listener, segue il filo generale descritto nella sezione precedente. In particolare il controller viene notificato
-dal EnvironmentController ogni volta che si verifica uno spostamento del Listener. Inoltre il controller e' il punto di accesso per verificare quali Plugin sono presenti al interno del ClassPath, e su richiesta notificara' il  ListenerCotrollerView. Il ListenerController gestisce anche la parte di managment dei Plugin, attraverso la view si richiede una modifica e il controller notifichera' il PluginManager.
+dal EnvironmentController ogni volta che si verifica uno spostamento del Listener. Inoltre il controller è il punto di accesso per verificare quali Plugin sono presenti al interno del ClassPath, e su richiesta notifica il ListenerCotrollerView. Il ListenerController gestisce anche la parte di managment dei Plugin, attraverso la view si richiede una modifica e il controller notifica il PluginManager.
 
 \begin{figure}[H]
 \centering{}
@@ -285,7 +285,7 @@ dal EnvironmentController ogni volta che si verifica uno spostamento del Listene
 \label{img:Listener}
 \end{figure}
 %
-Nello sviluppo dei Plugin volevo ottenere una struttura il piu modulare e estendibile possibile. Per prima cosa ho creato un interfaccia e una classe astratta che contenessero le operazioni di base. Inoltre ho usato un Tamplate Method interno alla classe atratta (protected) per gestire le divese fasi di salvataggio e ricaricamento dei setting, ogni volta che viene abilitato o disabilito il Plugin.
+Nello sviluppo dei Plugin volevo ottenere una struttura il più modulare e estendibile possibile.\\Per prima cosa ho creato un interfaccia e una classe astratta che contenessero le operazioni di base. Inoltre ho usato un Tamplate Method interno alla classe atratta (protected) per gestire le divese fasi di salvataggio e ricaricamento dei setting, ogni volta che viene abilitato o disabilito il Plugin.
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/Plugin.png}
@@ -293,7 +293,7 @@ Nello sviluppo dei Plugin volevo ottenere una struttura il piu modulare e estend
 \label{img:Listener}
 \end{figure}
 %
-Per la gestione dei Plugin ho scelto di creare un classe che facesse da manager in modo da poter effetuare in modo semplice ed organizzato operazioni comuni su tutti i componenti gestiti. In ottica futura risultera' utille per poter getire piu listener, dove oguno avra' un proprio manager associato, o implementare e  gestire piu operazioni comuni tra Plugin.
+Per la gestione dei Plugin ho scelto di creare un classe che facesse da manager in modo da poter effetuare in modo semplice ed organizzato operazioni comuni su tutti i componenti gestiti. In ottica futura risulterà utille per poter getire piu listener, dove oguno avrà un proprio manager associato, o implementare e  gestire più operazioni comuni tra Plugin.
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/PluginManager.png}
@@ -301,13 +301,13 @@ Per la gestione dei Plugin ho scelto di creare un classe che facesse da manager 
 \label{img:Listener}
 \end{figure}
 %
-La parte piu complessa nei Plugin e' stata:
+La parte piu complessa nei Plugin è stata:
 \begin{itemize}
 	\item la gestione del interfaccia utente.
 	\item il caricamento di tutte le classi e risorse necessarie.
 \end{itemize}
-Per la comunicazione con la view ho creato un sotto pattern MVC. Cosi facendo lo sviluppo e l integrazione dei Plugin non influisce in alcun modo con
-la struttura MVC dell' applicazione. Ogni plugin avra' quindi la propria parte di model, di controller, e di view (controller e FXML), come nel MVC generale. Inoltre e' presente un collegamento tra il controllerView del Plugin e il ListenerControllerView per aggiornare la view del applicazione, scelta dovuta dalla tecnologia grafica in uso. Infine ho reso possibile accedere, ai ControllerApplication (MVC generale), per dare la possibilita' di ottenere informazioni sullo stato del applicazione, mediante la composizione con il MainController.
+Per la comunicazione con la view ho creato un sotto pattern MVC. Cosi facendo lo sviluppo e l' integrazione dei Plugin non influisce in alcun modo con
+la struttura MVC dell' applicazione. Ogni plugin ha quindi la propria parte di model, di controller, e di view (controller e FXML), come nel MVC generale. Inoltre è presente un collegamento tra il controllerView del Plugin e il ListenerControllerView per aggiornare la view del applicazione, scelta dovuta dalla tecnologia grafica in uso. Infine ho reso possibile accedere, ai ControllerApplication (MVC generale), per dare la possibilità di ottenere informazioni sullo stato dell' applicazione, mediante la composizione con il MainController.
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/PluginMVC.png}
@@ -315,11 +315,19 @@ la struttura MVC dell' applicazione. Ogni plugin avra' quindi la propria parte d
 \label{img:Listener}
 \end{figure}
 %
-Per il secondo problema mi sono avvalso del utilizzo delle Reflection. Questa decisione e' nata dal trovare una soluzione alla creazione di istanze di classi specifiche che in fase di compilazione non conosco. L utilizzo di esse aumenta l estendibilita' in quato l integrazione di plugin futuri e' resa possibile senza intaccare il codice del Applicazione. Il ListenerController crea via Reflection il ControllerPlugin desiderato e sara' esso a istanziare il model e la view relarive a quel determinato Plugin. Grazie a quesa struttuta, a cui sono arrivato dopo diverse analisi di design, si riesce a mantenere solida e indipendente la creazione di un Plugin, e tutte le risorse necessarie, dal resto dell Applicazione. Inoltre pone le basi per una possibile integrazione di Plugin anche durante l esecuzione dell Applicazione (Hot-Swap).
+Per il secondo problema mi sono avvalso del utilizzo delle Reflection. Questa decisione è nata dal trovare una soluzione alla creazione di istanze di classi specifiche, che in fase di compilazione non conosco. L' utilizzo di esse aumenta l' estendibilità in quato l' integrazione di plugin futuri è resa possibile senza intaccare il codice dell' applicazione. Il ListenerController crea via Reflection il ControllerPlugin desiderato e sarà esso a istanziare il model e la view relarive a quel determinato Plugin. Grazie a quesa struttuta, a cui sono arrivato dopo diverse analisi di design, si riesce a mantenere solida e indipendente la creazione di un Plugin, e tutte le risorse necessarie, dal resto dell' applicazione. Inoltre pone le basi per una possibile integrazione di Plugin anche durante l' esecuzione dell' applicazione (Hot-Swap), utile in questo tipo si software.
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/listener/PluginCreates.png}
 \caption{Schema creazione Plugin.}
+\label{img:Listener}
+\end{figure}
+%
+Infine per la realizzazione dei due Plugin, che sono riuscito ad implementare, mi sono tornati utili i Thread, per fare calcoli real-time continuativi. Ho pensato che l' utilizzo dei thread nei plugin fosse a discrezione di ogni plugin e fosse un caso, che i due implemenati, utilizassero entrambi dei thread. L' implemenatazione deve essere comunque indipendente da tutto, quindi ho deciso di creare una classe interna privata ad ogni ControllerPlugin che estendesse la classe Thread. In questo modo sono riuscito a gestire facilmente l' interupt di terminazione del thread.
+\begin{figure}[H]
+\centering{}
+\includegraphics[width=\textwidth]{img/listener/PluginThread.png}
+\caption{Schema gestione Thread.}
 \label{img:Listener}
 \end{figure}
 
@@ -424,6 +432,7 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Stream
 	\item Optional
 	\item JavaFX, per la GUI.
+	\item Gradle Build Tool.
 	\item OpenAL, libreria audio su cui si basa l’intero progetto.
 	\item LWJGL, libreria che mette a disposizione delle API per la libreria OpenAL.
 	\item Spring Framework, per accedere a più risorse all'interno di una cartella del classpath.
@@ -435,6 +444,7 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Stream
 	\item Optional
 	\item JavaFX (GUI)
+	\item Gradle Build Tool.
 	\item LWJGL, libreria audio su cui si basa l’intero progetto
 \end{itemize}
 \subsection*{Alex Presepi}
@@ -443,6 +453,7 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Stream
 	\item Optional
 	\item JavaFX (GUI)
+	\item Gradle Build Tool.
 	\item Reflection
 	\item Thread, semplice utilizzo per calcoli real-time.
 	\item OpenAL,  libreria audio su cui si basa l’intero progetto.
@@ -455,6 +466,7 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Stream
 	\item Optional
 	\item JavaFX
+	\item Gradle Build Tool.
 	\item LWJGL, libreria audio su cui si basa l’intero progetto
 	\item Per la gestione degli sprite all'interno della canvas mi sono basato sull'implementazione di codice visto online che poi ho modificato e riadattato alle mie esigenze: \url{https://github.com/stemkoski/BAGEL-Java-2022}( che però ora è in una versione più aggiornata rispetto alla versione dalla quale avevo preso spunto io, di conseguenza alcune classi potrebbero non esserci piu o essere state cambiate.
 \end{itemize}
@@ -469,6 +481,7 @@ Considerando il monteore a disposizione e il prodotto finale valuto la mia prest
 Sicuramente c'è molto margine di miglioramento nell'utilizzo di MVC, che abbiamo cercato di implementare al meglio, ma non è di certo nella sua forma ideale, visto è il primo vero progetto in cui lo applichiamo e non è qualcosa che si impara a utilizzare al meglio con una esperienza così ridotta. Un grande punto di forza della mia parte penso che sia la sua estendibilità per quanto riguarda le Source ma anche il corretto utilizzo della libreria LWJGL che a inizio progetto era del tutto nuova. D'altra parte riconosco una carenza nell'uso dei generici che avrebbero permesso un riutilizzo più flessibile del SourcesHub e che sicuramente avrei integrato se avessi avuto più tempo.
 Senza dubbio questo è un progetto che non si fermerà qui per quanto mi riguarda, soprattutto perchè l'idea iniziale è nata da me e il risultato attuale è molto vicino a quella che era la mia visione, che vorrei quindi portare avanti, sia per rivedere e migliorare l'architettura generale ma anche per aggiungere nuove funzionalità.
 \subsection*{Alex Presepi}
+Valutando il tempo messo a disposizione per sviluppare il progetto mi sento soddisfatto e appagato. Guardando l' applicazione in sé, mi sarebbe piaciuto arrivare ad un livello di dettaglio del suono, simulato, più preciso e realistico. Per questo mi piacerebbe continuare lo sviluppo per rendere l' applicazione davvero utile. Preciso che per me è il primo progetto di questo livello, sviluppato in gruppo, e nel l'utilizzo del DVCS riconosco una non buona gestione,  ho però imparato molto grazie ad esso. Penso che la struttura dei Plugin da me realizzata goda e soddisfi, vari principi, anche se avrei potutto creare delle basi piu astratte per implementare plugin non solo relativi al Listener. Ultima nota che vorrei precisare, nel post del progetto non si citavano i Plugin sui quali ho principalmente lavorato perchè pensavo ad delle feature singole, poi in fase di progettazione dettagliata/sviluppo ho optato per quest' idea.
 \subsection*{Simone Lugaresi}
 Come primo vero progetto mi ritengo abbastanza soddisfatto di come è stato implementato, mi piace molto la facilità di comunicazione che hanno le diverse classi e i controller grazie all'impostazione che abbiamo scelto di seguire. Della mia parte in generale mi possono ritenere mediamente soddifatto, mi piace la semplicità di utilizzo la ritengo minimale ed efficace, sicuramente con l'implementazione di qualche pattern un pò più sofisticato avrei migliorato la riusabilità.\\ Personalmente ritango che 80 ore siano un pò sproporzionate al carico di lavoro che necessita un progetto del genere per essere implementato almeno "benino", considerando anche la prova scritta e tutto il resto. Alla fine il prodotto finale mi soddifa molto, le idee per la continuazione e l'implementazione per nuove feature ci sono, staremo a vedere se ci sarà il tempo.
 

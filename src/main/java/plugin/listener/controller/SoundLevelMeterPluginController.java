@@ -63,7 +63,7 @@ public class SoundLevelMeterPluginController implements ControllerPlugin {
      * Thread for real-time indicator update in the view. 
      *
      */
-    class ThreadMeter extends Thread {
+    private class ThreadMeter extends Thread {
         private boolean isRunning = true;
 
         /**
