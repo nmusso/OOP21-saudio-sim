@@ -109,7 +109,7 @@ Questa parte è risultata la più critica da progettare, data la poca esperienza
 \end{figure}
 
 \section{Design dettagliato}
-\subsection*{Niccolò Mussoni}
+\subsection{Niccolò Mussoni}
 Il mio dominio di lavoro è centrato su due argomenti:
 \begin{itemize}
 	\item I Buffer, che sulla base della traccia importata generano un ID univoco associato ad esso, attraverso il quale le sorgenti possono riprodurre la traccia. 
@@ -175,7 +175,7 @@ Per la gestione degli effetti e dei suoi attributi mi sono affidato ad un enum c
 \end{figure}
 L’interazione dell’utente con l’equalizzatore, composto da slider, mi ha permesso di ricavare il valore dell’effetto il quale viene passato al controller che notificherà a tutte le sorgenti di applicare il determinato effetto con il determinato valore. In questa parte di MVC il controller non notifica nulla alla view, in quanto si tratta di un equalizzatore che non ha bisogno di aggiornare l’interfaccia in base alle azioni dell’utente.
 %
-\subsection*{Alessandro Sciarrillo}
+\subsection{Alessandro Sciarrillo}
 Il dominio su cui ho lavorato è quello delle sorgenti che comprende la loro implementazione sia come singole ma anche come gruppo.
 
 Inizialmente mi sono occupato della strutturazione delle sorgenti che modellano i diversi tipi di speakers nelle sezioni a loro comuni e non. Per agevolare la riusabilità ho optato per una classe più primitiva "Source" che riguardasse l'utilizzo di base comune a ogni speaker, lasciando a "FRSource" (Frequency Range Source) solamente le funzioni relative al range di frequenze:
@@ -256,7 +256,7 @@ Il controller inoltre effettua i cambiamenti sulle sorgenti che sono contenute i
 \end{figure}
 
 
-\subsection*{Alex Presepi}
+\subsection{Alex Presepi}
 La progettazione e lo sviluppo da me affrontato riguarda principalmente due argomenti: Listener e relativi plugin che ne estendono le funzionalità visive e/o sonore.
 \begin{figure}[H]
 \centering{}
@@ -330,7 +330,7 @@ Infine per la realizzazione dei due Plugin, che sono riuscito ad implementare, m
 \label{img:Listener}
 \end{figure}
 
-\subsection*{Simone Lugaresi}
+\subsection{Simone Lugaresi}
 Gli argomenti principali da me elaborati sono 3:
 \begin{itemize}
 	\item Space, che serve a delimitare uno spazio 2D di lavoro nel quale si potranno muovere Source e Listener.
@@ -352,7 +352,7 @@ Space si pone l'obbiettivo di risolvere il problema di delimitare uno spazio in 
 \caption{Rappresentazione UML della Factory per Space}
 \label{img:spacefactory}
 \end{figure}
-Per agevolare la creazione di Space, sia da utilizzare nei preset degli Environment sia per i Test, mi sono avvalso del template Factory Method, partendo dall'interfaccia SpaceFactory che da la possibilità di scelta su due tipi di creazione di space, uno con dimensioni di default e uno con paramentri, dando però la possibilità in un futuro ad un'ulteriore implementazion della factory.
+Per agevolare la creazione di Space, sia da utilizzare nei preset degli Environment sia per i Test, mi sono avvalso del template Factory Method, partendo dall'interfaccia SpaceFactory che da la possibilità di scelta su due tipi di creazione di space, uno con dimensioni di default e uno con paramentri, dando però la possibilità in un futuro ad un'ulteriore implementazione della factory.
 %
 \begin{figure}[H]
 \centering{}
@@ -369,7 +369,7 @@ La parte di MVC che riguarda Space è molto semplice, SpaceController comunica d
 \label{img:environment}
 \end{figure}
 Environment ha come scopo migliorare l'approccio agli elementi del programma quali listener, source, effects, raggruppandoli tutti insieme in un solo "ambiente", in modo da poterlo rendere unico e riutilizzabile, anche in un ottica di un futuro aggiornamento nel quale si possono gestire più Environemnt e lavorare in contemporanea su più di uno.
-Per una creazione più semplice e user friendly possibilie mi sono servito anche qui di Factory Method, nell'intefaccia principale,EnvironmentFacotry, do la possibilità di scelta tra un Environment vuoto, creato tramite i parametri Sources-Listener-Space, oppure tramite un file json correttamente impostato, ma lasciando cosi libertà di implementazione di una nuova facotry, magari con diversi tipi di struttura del json etc.
+Per una creazione più semplice e user friendly possibile mi sono servito anche qui di Factory Method: nell'interfaccia principale, EnvironmentFactory, do la possibilità di scelta tra un Environment vuoto, creato tramite i parametri Sources-Listener-Space, oppure tramite un file JSON correttamente impostato, ma lasciando cosi libertà di implementazione di nuove factory, magari con diversi tipi di struttura del JSON, etc.
 %
 \begin{figure}[H]
 \centering{}
@@ -385,7 +385,7 @@ Per una creazione più semplice e user friendly possibilie mi sono servito anche
 \caption{Rappresentazione UML della gestione del MVC con Environment}
 \label{img:environmentmvc}
 \end{figure}
-La parte di MVC per Environment è stata gestita similmente alle altre, EnvironmentController viene notificato dalla sua View di eventuali cambiamenti, che possono essere di un solo genere ossia lo spostamento di un elemento nell'ambiente, sarà poi Environmentcontroller a comunicare con i controller degli altri elementi interessati come Source e Listener, che però rimarrà  aperto a ricevere  update da quest'ultimi, o da altri come SpaceController, e se necessario applicandoli alla view.
+La parte di MVC per Environment è stata gestita similmente alle altre: EnvironmentController viene notificato dalla sua View di eventuali cambiamenti, che possono essere di un solo genere ossia lo spostamento di un elemento nell'ambiente, sarà poi EnvironmentController a comunicare con i controller degli altri elementi interessati, come Source e Listener, che però rimarrà aperto a ricevere update da quest'ultimi, o da altri controller come SpaceController, e se necessario applicandoli alla view.
 %
 \begin{figure}[H]
 \centering{}
@@ -393,9 +393,8 @@ La parte di MVC per Environment è stata gestita similmente alle altre, Environm
 \caption{Rappresentazione UML dello schema semplice di AudioManager}
 \label{img:audiomanager}
 \end{figure}
-Si tratta dell'implementazione di tre semplici classi statiche, che pero sono necessarie per una corretta comunicazione con la libreria e le nostre classi. Hanno lo scopo di creare il contesto di esecuzione per il listener e le source, di conseguenza per la nostra implementazione a monoEnvironment(per ora)  abbiamo dovuto optare per una soluzione statica.
+Si tratta dell'implementazione di tre semplici classi, di cui AudioManager è statica, che pero sono necessarie per una corretta inizializzazione della libreria e, di conseguenza, delle nostre classi. Hanno lo scopo di creare il contesto di esecuzione per il listener e le source, quindi per la nostra implementazione al supporto di un singolo Environment per volta abbiamo optato per una soluzione statica.
 %
-
 \chapter{Sviluppo}
 \section{Testing automatizzato}
 La suite utilizzata per i test automatizzati è JUnit. Durante il processo di implementazione siamo stati accompagnati dai test effettuati tramite le actions di GitHub, che ne verificavano l'assenza di errori sui principali sistemi operativi (Windows, MacOSX, Ubuntu).
