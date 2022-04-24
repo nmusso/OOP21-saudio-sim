@@ -352,7 +352,7 @@ Space si pone l'obbiettivo di risolvere il problema di delimitare uno spazio in 
 \caption{Rappresentazione UML della Factory per Space}
 \label{img:spacefactory}
 \end{figure}
-Per agevolare la creazione di Space, sia da utilizzare nei preset degli Environment sia per i Test, mi sono avvalso di Simple Factory che da la possibilità di scelta su due tipi di creazione di space, uno con dimensioni di default e uno con paramentri.
+Per agevolare la creazione di Space, sia da utilizzare nei preset degli Environment sia per i Test, mi sono avvalso del template Factory Method, partendo dall'interfaccia SpaceFactory che da la possibilità di scelta su due tipi di creazione di space, uno con dimensioni di default e uno con paramentri, dando però la possibilità in un futuro ad un'ulteriore implementazion della factory.
 %
 \begin{figure}[H]
 \centering{}
@@ -369,7 +369,7 @@ La parte di MVC che riguarda Space è molto semplice, SpaceController comunica d
 \label{img:environment}
 \end{figure}
 Environment ha come scopo migliorare l'approccio agli elementi del programma quali listener, source, effects, raggruppandoli tutti insieme in un solo "ambiente", in modo da poterlo rendere unico e riutilizzabile, anche in un ottica di un futuro aggiornamento nel quale si possono gestire più Environemnt e lavorare in contemporanea su più di uno.
-Per una creazione più semplice e user friendly possibilie mi sono servito di SimpleFactory, nel quale do la possibilità di scelta tra un Environment vuoto, creato tramite i parametri Sources-Listener-Space, oppure tramite un file json correttamente impostato.
+Per una creazione più semplice e user friendly possibilie mi sono servito anche qui di Factory Method, nell'intefaccia principale,EnvironmentFacotry, do la possibilità di scelta tra un Environment vuoto, creato tramite i parametri Sources-Listener-Space, oppure tramite un file json correttamente impostato, ma lasciando cosi libertà di implementazione di una nuova facotry, magari con diversi tipi di struttura del json etc.
 %
 \begin{figure}[H]
 \centering{}
@@ -444,7 +444,8 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Optional
 	\item JavaFX (GUI)
 	\item Gradle Build Tool.
-	\item LWJGL, libreria audio su cui si basa l’intero progetto
+	\item OpenAL, libreria audio su cui si basa l’intero progetto.
+	\item LWJGL, libreria che mette a disposizione delle API per la libreria OpenAL.
 \end{itemize}
 \subsection*{Alex Presepi}
 \begin{itemize}
@@ -466,7 +467,8 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Optional
 	\item JavaFX
 	\item Gradle Build Tool.
-	\item LWJGL, libreria audio su cui si basa l’intero progetto
+	\item OpenAL, libreria audio su cui si basa l’intero progetto.
+	\item LWJGL, libreria che mette a disposizione delle API per la libreria OpenAL.
 	\item Per la gestione degli sprite all'interno della canvas mi sono basato sull'implementazione di codice visto online che poi ho modificato e riadattato alle mie esigenze: \url{https://github.com/stemkoski/BAGEL-Java-2022}( che però ora è in una versione più aggiornata rispetto alla versione dalla quale avevo preso spunto io, di conseguenza alcune classi potrebbero non esserci piu o essere state cambiate.
 \end{itemize}
 

@@ -7,6 +7,10 @@ import model.source.hub.SourcesHub;
 import model.space.Space;
 import model.utility.Vec3f;
 
+/**
+ * Interface for Environment.
+ *
+ */
 public interface Environment {
 
     /**

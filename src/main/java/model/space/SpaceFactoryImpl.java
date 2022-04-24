@@ -1,5 +1,9 @@
 package model.space;
 
+/**
+ * Implementation of SpaceFactory.
+ *
+ */
 public class SpaceFactoryImpl  implements SpaceFactory {
 
     private static final float DIM = 10f; 

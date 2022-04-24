@@ -6,6 +6,9 @@ import java.io.InputStream;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * Implementation of Texture.
+ */
 public class TextureImpl implements Texture {
     private Rectangle region;
     private final ImageView imageView = new ImageView();

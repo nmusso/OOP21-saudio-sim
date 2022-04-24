@@ -27,6 +27,10 @@ import view.utility.SpriteImpl;
 import view.utility.TextureImpl;
 import view.utility.TypeSprite;
 
+/**
+ * Controller of the view EnvironmentView.
+ *
+ */
 public class EnvironmentControllerView implements Initializable, ControllerView, EnvironmentView {
 
     private EnvironmentController ctrl;

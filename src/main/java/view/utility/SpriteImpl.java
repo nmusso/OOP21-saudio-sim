@@ -3,6 +3,9 @@ package view.utility;
 import javafx.scene.canvas.GraphicsContext;
 import model.utility.Pair;
 
+/**
+ * Implementation of Sprite.
+ */
 public class SpriteImpl implements Sprite {
 
     private final int id;

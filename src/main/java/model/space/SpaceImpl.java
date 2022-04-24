@@ -4,6 +4,10 @@ import java.util.List;
 
 import model.utility.Vec3f;
 
+/**
+ * Implementation of Space.
+ *
+ */
 public class SpaceImpl implements Space {
     private float yMax;
     private float xMax;

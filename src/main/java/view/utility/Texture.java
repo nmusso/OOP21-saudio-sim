@@ -3,7 +3,7 @@ package view.utility;
 import javafx.scene.image.ImageView;
 
 /**
- * Stores an image and a rectangle to specify the region of the image to draw.
+ * Interface of Texture, to stores an image and a rectangle to specify the region of the image to draw.
  */
 public interface Texture {
     /**

@@ -2,6 +2,9 @@ package view;
 
 import java.util.List;
 
+/**
+ * Interface for SpaceViewController.
+ */
 public interface SpaceView {
 
     /**

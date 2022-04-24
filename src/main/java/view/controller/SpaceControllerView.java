@@ -16,6 +16,10 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.DoubleSpinnerValueFactory;
 import view.SpaceView;
 
+/**
+ * Controller of the view SpaceView.
+ *
+ */
 public class SpaceControllerView  implements Initializable, ControllerView, SpaceView { 
 
     private SpaceController ctrl;

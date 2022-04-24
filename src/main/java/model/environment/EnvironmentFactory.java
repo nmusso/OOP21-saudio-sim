@@ -7,6 +7,10 @@ import model.listener.Listener;
 import model.source.FRSource;
 import model.space.Space;
 
+/**
+ * Interface for EnvironmentFactory.
+ *
+ */
 public interface EnvironmentFactory {
 
     /**

@@ -1,5 +1,9 @@
 package model.space;
 
+/**
+ * Interface for SpaceFactory.
+ *
+ */
 public interface SpaceFactory {
 
     /**

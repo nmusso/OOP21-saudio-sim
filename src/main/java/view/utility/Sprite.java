@@ -3,6 +3,10 @@ package view.utility;
 import javafx.scene.canvas.GraphicsContext;
 import model.utility.Pair;
 
+/**
+ * Interface of Sprite, object to insert in the canvas of the view.
+ *
+ */
 public interface Sprite {
 
     /**

@@ -3,6 +3,9 @@ package view;
 import model.utility.Vec3f;
 import view.utility.TypeSprite;
 
+/**
+ * Interface for EnvironmentViewController.
+ */
 public interface EnvironmentView {
 
     /**

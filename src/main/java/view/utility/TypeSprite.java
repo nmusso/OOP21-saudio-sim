@@ -1,5 +1,9 @@
 package view.utility;
 
+/**
+ * Types of Sprite that can be drawn.
+ *
+ */
 public enum TypeSprite {
     /**
      *  Low range type.

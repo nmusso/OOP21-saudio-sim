@@ -13,6 +13,10 @@ import model.utility.Vec3f;
 import view.EnvironmentView;
 import view.utility.TypeSprite;
 
+/**
+ * 
+ * Controller that communicates with EnvironmentView and model.environment.
+ */
 public class EnvironmentController implements ControllerApplication<EnvironmentView> {
 
     private static final String PATH = "/json/data.json";

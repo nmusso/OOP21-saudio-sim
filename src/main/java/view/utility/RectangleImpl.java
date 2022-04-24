@@ -3,7 +3,7 @@ package view.utility;
 import model.utility.Pair;
 
 /**
- * Rectangles store position and size; used to check overlap between sprites.
+ * Implementation of Rectangle.
  */
 public class RectangleImpl implements Rectangle {
 

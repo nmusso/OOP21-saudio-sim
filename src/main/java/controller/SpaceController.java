@@ -7,6 +7,10 @@ import java.util.List;
 import org.json.JSONObject;
 import view.SpaceView;
 
+/**
+ * 
+ * Controller that communicates with SpaceView and controller.Environmet to communicates with model.space.
+ */
 public class SpaceController implements ControllerApplication<SpaceView> {
 
     private static final String PATH = "/json/data.json";

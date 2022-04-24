@@ -23,6 +23,9 @@ import model.space.SpaceFactoryImpl;
 import model.utility.Pair;
 import model.utility.Vec3f;
 
+/**
+ * Implementation of EnvironmentFacory.
+ */
 public class EnvironmentFactoryImpl implements EnvironmentFactory {
 
     private final SourcesHubFactory sourceHubFac = new SourcesHubFactoryImpl();

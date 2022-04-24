@@ -9,6 +9,10 @@ import model.source.hub.SourcesHub;
 import model.space.Space;
 import model.utility.Vec3f;
 
+/**
+ * Implementation of Environment.
+ *
+ */
 public class EnvironmentImpl implements Environment {
     private final SourcesHub sourcesHub;
     private final Listener listener;

@@ -3,7 +3,10 @@ package model.space;
 import java.util.List;
 
 import model.utility.Vec3f;
-
+/**
+ * Interface for Space.
+ *
+ */
 public interface Space {
 
      /**
