@@ -128,12 +128,11 @@ Il primo problema da gestire è stato il fatto che il Buffer potesse essere gene
 \begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/buffer/BufferFactory.png}
-\caption{Rappresentazione UML del pattern Abstract Factory dell’applicazione del pattern Singleton per il caching}
+\caption{Rappresentazione UML del pattern Factory Method e del pattern Singleton per il caching}
 \label{img:factory}
 \end{figure}
 Il secondo problema da gestire era evitare Buffer duplicati e per risolvere ciò mi sono affidato a un istanza Singleton che potesse fare da cache in maniera thread-safe, grazie alla versione attraverso enum di J. Bloch. Questo mi ha risparmiato di aprire un nuovo InputStream e analizzarlo per la creazione del Buffer nel caso la path del file che volesse essere importato fosse già salvata in memoria.
-\\Per la creazione dei diversi tipi di Buffer mi sono affidato a una factory, applicando il template \textit{Abstract Factory}: in particolare ho implementato BufferFactoryWithCache che, prima di creare un nuovo Buffer, controlla che non sia già presente nella cache e successivamente procede a crearne uno nuovo e BufferFactoryBasic che ritorna direttamente una nuova istanza di Buffer, ma grazie al template se ne possono creare ulteriori tipi.
-\\I due Factory Method all'interno di BufferFactory rappresentano i due tipi di Buffer che si desidera creare.
+\\Per la creazione dei diversi tipi di Buffer mi sono affidato a una factory, applicando il template \textit{Factory Method}: l'interfaccia di partenza è BufferFactory con all'interno i diversi tipi di Buffer che è possibile creare: in particolare ho implementato BufferFactoryWithCache che, prima di creare un nuovo Buffer, controlla che non sia già presente nella cache e successivamente procede a crearne uno nuovo e BufferFactoryBasic che ritorna direttamente una nuova istanza di Buffer, ma grazie al template se ne possono creare ulteriori tipi.
 %
 \begin{figure}[H]
 \centering{}
