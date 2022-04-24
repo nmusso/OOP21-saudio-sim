@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import model.audiomanager.AudioManager;
 import model.buffer.Buffer;
 import model.buffer.BufferFactory;
-import model.buffer.BufferFactoryImpl;
+import model.buffer.BufferFactoryWithCache;
 import model.source.FRSource;
 import model.source.SourceFactory;
 import model.source.SourceFactoryImpl;
@@ -20,7 +20,7 @@ import model.source.SourceType;
 class FilterTest {
 
     private static final String PATH = "/songs/";
-    private final BufferFactory bufferFactory = new BufferFactoryImpl();
+    private final BufferFactory bufferFactory = new BufferFactoryWithCache();
     private final SourceFactory sourceFactory = new SourceFactoryImpl();
     private Buffer buffer;
 

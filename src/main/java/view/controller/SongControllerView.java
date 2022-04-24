@@ -27,7 +27,6 @@ import view.SongView;
  */
 public class SongControllerView implements Initializable, ControllerView, SongView {
 
-    private static final String SONG_PATH = "/songs/";
     @FXML
     private Button btnImport;
     @FXML
@@ -55,7 +54,7 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
         this.ctrl = ctrMain.getSongController();
         this.ctrl.setControllerView(this);
         try {
-            addStartSongs();
+            ctrl.addStartSongs();
         } catch (IOException e) {
             showMessage("Something went wrong during load buffer resources");
         }
@@ -155,18 +154,5 @@ public class SongControllerView implements Initializable, ControllerView, SongVi
         if (!cmbSongs.getItems().isEmpty()) {
             cmbSongs.getSelectionModel().select(0);
         }
-    }
-
-    /**
-     * Import automatically all the wav in the resources path.
-     * 
-     * @throws IOException
-     */
-    private void addStartSongs() throws IOException {
-        final ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(loader);
-        Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream()
-                .map(res -> SONG_PATH + res.getFilename())
-                .forEach(ctrl::addBufferFromResource);
     }
 }

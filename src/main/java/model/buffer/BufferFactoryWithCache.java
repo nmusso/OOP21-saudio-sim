@@ -8,7 +8,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * Implementation of the interface BufferFactory.
  *
  */
-public class BufferFactoryImpl implements BufferFactory {
+public class BufferFactoryWithCache implements BufferFactory {
 
     private final BufferCache cache = BufferCache.INSTANCE;
 
@@ -21,6 +21,7 @@ public class BufferFactoryImpl implements BufferFactory {
         if (cache.getBuffer(file).isEmpty()) {
             final Buffer buffer = new PathBuffer(file);
             cache.addToCache(file, buffer);
+            return buffer;
         }
 
         return cache.getBuffer(file).get();
@@ -35,6 +36,7 @@ public class BufferFactoryImpl implements BufferFactory {
         if (cache.getBuffer(file).isEmpty()) {
             final Buffer buffer = new ResourceBuffer(file);
             cache.addToCache(file, buffer);
+            return buffer;
         }
 
         return cache.getBuffer(file).get();

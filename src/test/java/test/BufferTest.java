@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
 import model.audiomanager.AudioManager;
 import model.buffer.Buffer;
 import model.buffer.BufferFactory;
-import model.buffer.BufferFactoryImpl;
+import model.buffer.BufferFactoryBasic;
+import model.buffer.BufferFactoryWithCache;
 
 class BufferTest {
 
@@ -26,7 +27,7 @@ class BufferTest {
 
     @Test
     void testCreateFromPath() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        final BufferFactory factory = new BufferFactoryImpl();
+        final BufferFactory factory = new BufferFactoryBasic();
 
         Buffer buffer = factory.createBufferFromPath(FILE_PATH + "DriftMono.wav");
         assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
@@ -40,7 +41,7 @@ class BufferTest {
 
     @Test
     void testCreateFromResource() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        final BufferFactory factory = new BufferFactoryImpl();
+        final BufferFactory factory = new BufferFactoryBasic();
 
         Buffer buffer = factory.createBufferFromResource(RES_PATH + "DriftMono.wav");
         assertNotEquals(0, buffer.getID(), ERROR_GENERATE);
@@ -54,7 +55,7 @@ class BufferTest {
 
     @Test
     void testGetFromCache() throws FileNotFoundException, UnsupportedAudioFileException, IOException {
-        final BufferFactory factory = new BufferFactoryImpl();
+        final BufferFactory factory = new BufferFactoryWithCache();
         Buffer buffer;
         int same;
 

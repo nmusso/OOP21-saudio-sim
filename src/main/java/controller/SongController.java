@@ -2,15 +2,18 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import model.buffer.ALFormatException;
 import model.buffer.Buffer;
 import model.buffer.BufferCache;
 import model.buffer.BufferFactory;
-import model.buffer.BufferFactoryImpl;
+import model.buffer.BufferFactoryWithCache;
 import model.source.hub.SourcesHub;
 import view.SongView;
 
@@ -19,9 +22,10 @@ import view.SongView;
  *
  */
 public class SongController implements ControllerApplication<SongView> {
+    private static final String SONG_PATH = "/songs/";
     private final MainController mainCtr;
     private SongView ctrlView;
-    private final BufferFactory factory = new BufferFactoryImpl();
+    private final BufferFactory factory = new BufferFactoryWithCache();
 
     /**
      * Constructor of the SongController.
@@ -118,5 +122,18 @@ public class SongController implements ControllerApplication<SongView> {
     public int getSelectedID() {
         final var combobox = ctrlView.getCmbSongs();
         return combobox.getSelectionModel().getSelectedItem().getID();
+    }
+
+    /**
+     * Import automatically all the wav in the resources path.
+     * 
+     * @throws IOException
+     */
+    public void addStartSongs() throws IOException {
+        final ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        final PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver(loader);
+        Arrays.asList(resolver.getResources("classpath:songs/*.wav")).stream()
+                .map(res -> SONG_PATH + res.getFilename())
+                .forEach(this::addBufferFromResource);
     }
 }
