@@ -20,7 +20,7 @@ public interface SourcesHubFactory {
     /**
      * Create a SourcesHub from a set of Sources.
      * 
-     * @param sources
+     * @param sources the set of sources
      * @return SourcesHub from Set of Sources
      */
     SourcesHub createSourcesHubFromSet(Set<FRSource> sources);

@@ -49,7 +49,7 @@ public class Vec3f {
     /**
      * Sets the x of the position.
      * 
-     * @param x
+     * @param x X value
      */
     public void setX(final float x) {
         this.x = x;
@@ -58,7 +58,7 @@ public class Vec3f {
     /**
      * Sets the y of the position.
      * 
-     * @param y
+     * @param y Y value
      */
     public void setY(final float y) {
         this.y = y;
@@ -67,7 +67,7 @@ public class Vec3f {
     /**
      * Sets the z of the position.
      * 
-     * @param z
+     * @param z Z value
      */
     public void setZ(final float z) {
         this.z = z;

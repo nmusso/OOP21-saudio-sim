@@ -16,23 +16,23 @@ public interface SourceView extends ControllerView {
     /**
      * Enable or disable being able to manage the speaker.
      * 
-     * @param isSelected
+     * @param isSelected true if the speaker is selected, false otherwise
      */
     void speakerIsSelected(boolean isSelected);
 
     /**
      * Enable or disable being able to add a speaker.
      * 
-     * @param isDisable
+     * @param isDisable true if it should disabled, false otherwise
      */
     void setDisableAddSpeaker(boolean isDisable);
 
     /**
      * Updates the Frequency data.
      * 
-     * @param highValue
-     * @param midValue
-     * @param lowValue
+     * @param highValue percentage of high speakers
+     * @param midValue percentage of mid speakers
+     * @param lowValue percentage of low speakers
      */
     void updateFreqData(double highValue, double midValue, double lowValue);
 }

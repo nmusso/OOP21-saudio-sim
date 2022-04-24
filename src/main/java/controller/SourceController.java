@@ -27,7 +27,7 @@ public class SourceController implements ControllerApplication<SourceView> {
     /**
      * Sets the controller View.
      * 
-     * @param sourceController
+     * @param sourceController the controller
      */
     public void setControllerView(final SourceView sourceController) {
         this.controllerView = sourceController;
@@ -36,8 +36,8 @@ public class SourceController implements ControllerApplication<SourceView> {
     /**
      * Sets the speaker type.
      * 
-     * @param speaker
-     * @param type
+     * @param speaker the speaker
+     * @param type the type to be set.
      */
     public void setSpeakerType(final FRSource speaker, final String type) {
         switch (type) {
@@ -106,7 +106,7 @@ public class SourceController implements ControllerApplication<SourceView> {
     /**
      * Enable or disable adding a source.
      * 
-     * @param isDisable
+     * @param isDisable true if should be disabled, false otherwise
      */
     public void setDisableAddSource(final boolean isDisable) {
         this.controllerView.setDisableAddSpeaker(isDisable);

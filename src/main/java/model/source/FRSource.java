@@ -17,7 +17,7 @@ public interface FRSource extends Source {
     /**
      * Sets the source type.
      * 
-     * @param type
+     * @param type the type of the source
      */
     void setType(SourceType type);
 }

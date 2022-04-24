@@ -11,10 +11,10 @@ public final class PageLoader {
 
     }
     /**
-     * 
-     * @param <E>
-     * @param <C>
-     * @param fileName
+     * Getter for page and its associated controller.
+     * @param <E> the page
+     * @param <C> the controller
+     * @param fileName the name of the file to be loaded
      * @return an optional of pair page-controller
      */
     public static <E, C> Optional<Pair<E, C>> getPage(final String fileName) {

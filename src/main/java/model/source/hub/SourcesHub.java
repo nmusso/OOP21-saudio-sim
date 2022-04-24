@@ -39,7 +39,7 @@ public interface SourcesHub {
     /**
      * Gets the Source with the specified id.
      * 
-     * @param id
+     * @param id the id of the source
      * @return Optional of Source with the specified id
      */
     Optional<FRSource> getSource(Integer id);
@@ -47,7 +47,7 @@ public interface SourcesHub {
     /**
      * Gets the Source with the specified position.
      * 
-     * @param position
+     * @param position the position of the source
      * @return Optional of Source with the specified position
      */
     Optional<FRSource> getSourceFromPos(Vec3f position);
@@ -55,14 +55,14 @@ public interface SourcesHub {
     /**
      * Add the Source s to the SourcesHub.
      * 
-     * @param s
+     * @param s the source
      */
     void addSource(FRSource s);
 
     /**
      * Remove the Source s to the SourcesHub.
      * 
-     * @param s
+     * @param s the source
      */
     void removeSource(FRSource s);
 
@@ -84,22 +84,22 @@ public interface SourcesHub {
     /**
      * Stop all sources.
      * 
-     * @param buffer
+     * @param buffer the id of the buffer
      */
     void generateAllSources(int buffer);
 
     /**
     * Apply the effect to all sources with the specified value.
     * 
-    * @param effect
-    * @param value
+    * @param effect the effect to be applied
+    * @param value the level of the effect
     */
     void applyEffect(ALEffects effect, float value);
 
     /**
      * Removes the filter from all sources.
      * 
-     * @param effect
+     * @param effect the effect to be removed
      */
     void removeEffect(ALEffects effect);
 

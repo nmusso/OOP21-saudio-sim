@@ -69,7 +69,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setControllerApplication(final MainController ctrMain) {
@@ -79,8 +79,6 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
 
     /**
      * Adds a default speaker in the environment.
-     * 
-     * @param event
      */
     @FXML 
     private void handleAddSpeaker() { // NOPMD: Called by JavaFX
@@ -90,8 +88,6 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
 
     /**
      * Removes the selected speaker from the environment.
-     * 
-     * @param event
      */
     @FXML 
     private void handleRemoveSpeaker() { // NOPMD: Called by JavaFX
@@ -105,7 +101,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
     /**
      * Changes the type of the selected speaker.
      * 
-     * @param event
+     * @param event the event who triggered the method
      */
     @FXML 
     private void handleRadioButtonChanged(final Event event) { // NOPMD: Called by JavaFX
@@ -141,11 +137,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
     }
 
     /**
-     * Updates the PieChart data.
-     * 
-     * @param highValue
-     * @param midValue
-     * @param lowValue
+     * {@inheritDoc}
      */
     @Override
     public void updateFreqData(final double highValue, final double midValue, final double lowValue) {
@@ -158,7 +150,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void speakerIsSelected(final boolean isSelected) {
@@ -167,7 +159,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDisableAddSpeaker(final boolean isDisable) {
@@ -175,7 +167,7 @@ public class SourceControllerView implements Initializable, ControllerView, Sour
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void showMessage(final String error) {

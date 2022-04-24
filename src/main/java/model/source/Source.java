@@ -42,14 +42,14 @@ public interface Source {
     /**
      * Generate the Source with the buffer.
      * 
-     * @param buffer
+     * @param buffer the ID of the buffer
      */
     void generateSource(int buffer);
 
     /**
      * Sets the position of the Source.
      * 
-     * @param position
+     * @param position the position
      */
     void setPosition(Vec3f position);
 

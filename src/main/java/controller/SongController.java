@@ -126,7 +126,7 @@ public class SongController implements ControllerApplication<SongView> {
     /**
      * Import automatically all the wav in the resources path.
      * 
-     * @throws IOException
+     * @throws IOException if there's a problem while reading the file
      */
     public void addStartSongs() throws IOException {
         final ClassLoader loader = Thread.currentThread().getContextClassLoader();
