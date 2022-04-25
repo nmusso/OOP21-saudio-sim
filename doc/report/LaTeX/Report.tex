@@ -191,7 +191,7 @@ Così facendo il codice scritto per la versione base "Source" è stato riusato c
 lasciando però libertà in implementazioni future di creare altre forme avanzate di Source che non necessariamente debbano gestire
 range di frequenze.
 
-Uno dei principali aspetti del mio lavoro riguarda l'implementazione di speaker con range di frequenza differenti, qui ho incontrato uno dei problemi strutturali maggiori, le qualità che volevo imprimere nella soluzione erano:
+Uno dei principali aspetti del mio lavoro riguarda l'implementazione di speakers con range di frequenza differenti, qui ho incontrato uno dei problemi strutturali maggiori, le qualità che volevo imprimere nella soluzione erano:
 \begin{itemize}
 	\item Le sorgenti con range di frequenza eterogenei dovevano essere riconducibili a una classe padre comune a tutte.
 	\item La quantità di codice necessaria ad implementare i vari tipi di range doveva essere estremamente ridotta.
@@ -206,7 +206,7 @@ Quindi la prima soluzione a cui ho pensato aveva questa forma:
 \end{figure}
 
 Inizialmente sembrava scontata la necissità di un Template method per il metodo applyFilter, ma dopo una analisi più dettagliata del tipo di operazioni e lo scopo 
-fondamentale di questa entità, cioè il poter cambiare in modo molto dinamico il range di frequenza sono arrivato alla conclusione che un implementazione del template method in questo modo avrebbe appesantito il codice dell'utilizzatore in quanto il cambiamento di range di frequenza per una istanza (ad esempio da High a Low) avrebbe comportato la creazione di una nuova istanza della classe relativa alla nuova frequenza che sarebbe andata a sostituire quella precedente. In sostanza un cambiamento di frequenza avrebbe comportato il "passaggio" della source da una classe ad un altra quando la differenza tra quest'ultime è unicamente l'implementazione del metodo con cui impostano il proprio range di frequenza al buffer a loro associato.
+fondamentale di questa entità, cioè il poter cambiare in modo molto dinamico il range di frequenza, sono arrivato alla conclusione che un implementazione del template method in questo modo avrebbe appesantito il codice dell'utilizzatore, in quanto il cambiamento di range di frequenza per una istanza (ad esempio da High a Low) avrebbe comportato la creazione di una nuova istanza della classe relativa alla nuova frequenza, che sarebbe andata a sostituire quella precedente. In sostanza un cambiamento di frequenza avrebbe comportato il "passaggio" della source da una classe ad un altra quando la differenza tra quest'ultime è unicamente l'implementazione del metodo con cui impostano il proprio range di frequenza al buffer a loro associato.
 Così ho optato per la costruzione di una classe FRSource che avesse un proprio tipo di range di frequenza SourceType:
 %
 \begin{figure}[H]
@@ -236,7 +236,7 @@ SourcesHub è, come spiega il nome, un Hub che permette di avere un insieme di S
 \label{img:sourcesHub}
 \end{figure}
 
-Per la creazione di Source, FRSource e SourcesHub ho utilizzato il pattern Simple Factory:
+Successivamente per la creazione di Source/FRSource e SourcesHub ho seguito una strategia uguale per entrambe, ho creato un interfaccia con vari metodi che differiscono per parametri e il modo con cui creano le nuove istanze delle loro relative classi. Le ho poi implementate in un unico modo, lasciando comunque la possibilità di inserire nuove implementazioni che rispettino la stessa interfaccia, ma facendolo in modo diverso sfruttando così il Factory Method.
 %
 \begin{figure}[H]
 \centering{}
@@ -397,15 +397,15 @@ Si tratta dell'implementazione di tre semplici classi, di cui AudioManager è st
 %
 \chapter{Sviluppo}
 \section{Testing automatizzato}
-La suite utilizzata per i test automatizzati è JUnit. Durante il processo di implementazione siamo stati accompagnati dai test effettuati tramite le actions di GitHub, che ne verificavano l'assenza di errori sui principali sistemi operativi (Windows, MacOSX, Ubuntu).
+La suite utilizzata per i test automatizzati è JUnit. Durante il processo di implementazione siamo stati inizalmente accompagnati dai test effettuati tramite le actions di GitHub, che ne verificavano l'assenza di errori sui principali sistemi operativi (Windows, MacOSX, Ubuntu), ma che abbiamo dovuto abbandonare a causa della mancanza di una scheda audio nei sistemi su cui venivano eseguite che causava errori dato che vari test vengono inizializzati attraverso essa.
 \\In particolare, si è deciso di sottoporre a test automatizzato i seguenti componenti:
 \begin{itemize}
-	\item Buffer: test di caricamento sia attraverso file system sia da classpath, oltre al test del corretto funzionamento del caching.
+	\item Buffer: test di caricamento sia da file system che da classpath, oltre al test del corretto funzionamento del caching.
 	\item Filter: test di applicazione dei tre tipi di filtri su delle sorgenti.
 	\item Space: test di una corretta esecuzione dei metodi, e dei loro risultati con determinati input.
 	\item Environment: test di corretta counicazione tra tutti gli elementi presenti dentro Environment, e i suoi metodi.
-	\item Source: test sulla consistenza degli stati di riproduzione delle source play-pause-stop, il loro spostamento e la corretta applicazione di filtri.
-	\item SourcesHub: test sui metodi con cui ci si interfaccia a SourcesHub per agire sulle FRSource come aggiunta, rimozione, riproduzione e spostamento sia agendo su esse come singole, che come gruppo.
+	\item Source: test sulla consistenza degli stati di riproduzione delle sources (play-pause-stop), il loro spostamento e la corretta applicazione di filtri.
+	\item SourcesHub: test sui metodi con cui ci si interfaccia a SourcesHub per compiere operazioni sulle FRSource come aggiunta, rimozione, riproduzione e spostamento sia agendo su esse come singole, che come gruppo.
 	\item Listener: test di corretto settaggio di posizione e orientamento, e test sulla gestione dell'univocità del listener per singolo contesto.
 	\item Plugin: test sulle operazioni di gestione dei plugin nel manager, e singoli test di corretto funzionamento dei plugin implementati.
 \end{itemize}
@@ -434,8 +434,8 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item OpenAL, libreria audio su cui si basa l’intero progetto.
 	\item LWJGL, libreria che mette a disposizione delle API per la libreria OpenAL.
 	\item Spring Framework, per accedere a più risorse all'interno di una cartella del classpath.
-	\item Per la conversione da WAV stereo a WAV mono mi sono affidato a del codice online, consultabile \textit{\underline{\href{http://www.java2s.com/example/java/javax.sound.sampled/converts-re-samples-and-mono-tofrom-stereo-audio-data.html}{qui}}}, non avendo le competenze necessarie per la manipolazione dei file WAV, che ho poi adattato alla singola conversione di cui necessitavo.
 \end{itemize}
+Per la conversione da WAV stereo a WAV mono mi sono affidato a del codice online, consultabile \textit{\underline{\href{http://www.java2s.com/example/java/javax.sound.sampled/converts-re-samples-and-mono-tofrom-stereo-audio-data.html}{qui}}}, non avendo le competenze necessarie per la manipolazione dei file WAV, che ho poi adattato alla singola conversione di cui necessitavo.
 \subsection*{Alessandro Sciarrillo}
 \begin{itemize}
 	\item Lambda expressions
@@ -468,22 +468,26 @@ Environment, Space, view per la gestione degli elementi all'interno della canvas
 	\item Gradle Build Tool.
 	\item OpenAL, libreria audio su cui si basa l’intero progetto.
 	\item LWJGL, libreria che mette a disposizione delle API per la libreria OpenAL.
-	\item Per la gestione degli sprite all'interno della canvas mi sono basato sull'implementazione di codice visto online che poi ho modificato e riadattato alle mie esigenze: \url{https://github.com/stemkoski/BAGEL-Java-2022}( che però ora è in una versione più aggiornata rispetto alla versione dalla quale avevo preso spunto io, di conseguenza alcune classi potrebbero non esserci piu o essere state cambiate.
 \end{itemize}
+Per la gestione degli sprite all'interno della canvas mi sono basato sull'implementazione di codice visto online che poi ho modificato e riadattato alle mie esigenze: \url{https://github.com/stemkoski/BAGEL-Java-2022}( che però ora è in una versione più aggiornata rispetto alla versione dalla quale avevo preso spunto io, di conseguenza alcune classi potrebbero non esserci piu o essere state cambiate.
 
 \chapter{Commenti finali}
 \section{Autovalutazione e lavori futuri}
 \subsection*{Niccolò Mussoni}
-Essendo il primo progetto al quale lavoravo in team e considerando le dimensioni del progetto mi ritengo abbastanza soddisfatto del lavoro svolto. Su certi aspetti del lavoro si poteva lavorare meglio, ma la continua comunicazione tra i componenti ci ha portato a risolvere molti dei problemi sorti. Nella progettazione non credo di aver fatto un brutto lavoro: credo la parte di Extension potesse essere progettata in maniera migliore, soprattutto per l'utilizzo di un enum, mentre in quella relativa al Buffer ritengo sia stata effettuata una buona analisi e progettazione. 
+Essendo il primo progetto al quale lavoravo in team e considerando le dimensioni del progetto mi ritengo abbastanza soddisfatto del lavoro svolto. Certi aspetti dello sviluppo potevano  essere svolti in modo migliore, ma la continua comunicazione tra i componenti ci ha portato a risolvere molti dei problemi sorti. Nella progettazione non penso di aver fatto un brutto lavoro: credo che la parte di Extension potesse essere progettata in maniera migliore, soprattutto per l'utilizzo di un enum, mentre in quella relativa al Buffer ritengo sia stata effettuata una buona analisi e progettazione. 
 \\Nell'immediato non credo di essere interessato a portare avanti il progetto, vista la mia volontà di volermi focalizzare su nuovi progetti, ma in futuro non escludo di poterci rimettere mano per includere nuove parti della mia sezione, ampliare le possibilità di utilizzo e migliorarne il modo in cui è stato progettato.
 \subsection*{Alessandro Sciarrillo}
 Considerando il monteore a disposizione e il prodotto finale valuto la mia prestazione in modo positivo.
-Sicuramente c'è molto margine di miglioramento nell'utilizzo di MVC, che abbiamo cercato di implementare al meglio, ma non è di certo nella sua forma ideale, visto è il primo vero progetto in cui lo applichiamo e non è qualcosa che si impara a utilizzare al meglio con una esperienza così ridotta. Un grande punto di forza della mia parte penso che sia la sua estendibilità per quanto riguarda le Source ma anche il corretto utilizzo della libreria LWJGL che a inizio progetto era del tutto nuova. D'altra parte riconosco una carenza nell'uso dei generici che avrebbero permesso un riutilizzo più flessibile del SourcesHub e che sicuramente avrei integrato se avessi avuto più tempo.
+Sicuramente c'è molto margine di miglioramento nell'utilizzo di MVC, che abbiamo cercato di implementare al meglio, ma non è di certo nella sua forma ideale, visto che è il primo vero progetto in cui lo applichiamo e non è qualcosa che si impara a utilizzare al meglio con una esperienza così ridotta. Un grande punto di forza della mia parte penso che sia la sua estendibilità per quanto riguarda le Source ma anche il corretto utilizzo della libreria LWJGL che a inizio progetto era del tutto nuova. D'altra parte riconosco una carenza nell'uso dei generici che avrebbero permesso un riutilizzo più flessibile del SourcesHub e che sicuramente avrei integrato se avessi avuto più tempo.
 Senza dubbio questo è un progetto che non si fermerà qui per quanto mi riguarda, soprattutto perchè l'idea iniziale è nata da me e il risultato attuale è molto vicino a quella che era la mia visione, che vorrei quindi portare avanti, sia per rivedere e migliorare l'architettura generale ma anche per aggiungere nuove funzionalità.
 \subsection*{Alex Presepi}
 Valutando il tempo messo a disposizione per sviluppare il progetto mi sento soddisfatto e appagato. Guardando l'applicazione in sé, mi sarebbe piaciuto arrivare ad un livello di dettaglio del suono, simulato, più preciso e realistico. Per questo mi piacerebbe continuare lo sviluppo per rendere l'applicazione davvero utile. Preciso che per me è il primo progetto di questo livello, sviluppato in gruppo, e nell'utilizzo del DVCS riconosco una non buona gestione, ho però imparato molto grazie ad esso. Penso che la struttura dei Plugin da me realizzata goda e soddisfi vari principi, anche se avrei potuto creare delle basi più astratte per implementare plugin non solo relativi al Listener. Ultima nota che vorrei precisare: nel post del progetto non si citavano i Plugin sui quali ho principalmente lavorato perchè pensavo a delle feature singole, poi in fase di progettazione dettagliata/sviluppo ho optato per quest'idea.
 \subsection*{Simone Lugaresi}
-Come primo vero progetto mi ritengo abbastanza soddisfatto di come è stato implementato, mi piace molto la facilità di comunicazione che hanno le diverse classi e i controller grazie all'impostazione che abbiamo scelto di seguire. Della mia parte in generale mi possono ritenere mediamente soddifatto, mi piace la semplicità di utilizzo la ritengo minimale ed efficace, sicuramente con l'implementazione di qualche pattern un pò più sofisticato avrei migliorato la riusabilità.\\ Personalmente ritango che 80 ore siano un pò sproporzionate al carico di lavoro che necessita un progetto del genere per essere implementato almeno "benino", considerando anche la prova scritta e tutto il resto. Alla fine il prodotto finale mi soddifa molto, le idee per la continuazione e l'implementazione per nuove feature ci sono, staremo a vedere se ci sarà il tempo.
+Come primo vero progetto mi ritengo abbastanza soddisfatto di come è stato implementato, mi piace molto la facilità di comunicazione che hanno le diverse classi e i controller grazie all'impostazione che abbiamo scelto di seguire. Della mia parte in generale mi posso ritenere mediamente soddifatto, mi piace la semplicità di utilizzo, la ritengo minimale ed efficace, sicuramente con l'implementazione di qualche pattern un po' più sofisticato avrei migliorato la riusabilità.\\ Personalmente ritango che 80 ore siano un po' sproporzionate al carico di lavoro che necessita un progetto del genere per essere implementato almeno "benino", considerando anche la prova scritta e tutto il resto. Alla fine il prodotto finale mi soddifa molto, le idee per la continuazione e l'implementazione per nuove feature ci sono, staremo a vedere se ci sarà il tempo.
+\section{Difficoltà incontrate e commenti per i docenti}
+Se si avvia l'applicazione da terminale è possibile che la libreria OpenAL stampi due warning di questo tipo:\\
+ \scriptsize{} \texttt{ [ALSOFT] (EE) Failed to set real-time priority for thread: Operation not permitted (1) } \normalsize{}\\
+Questo è dato dal fatto che in alcuni sistemi Linux per una impostazione di sistema il tempo di esecuzione di un thread ha un valore che OpenAL valuta come non ottimale per una esecuzione real-time. Ricercando su vari blog specifici abbiamo appreso che è giusto ignorarlo se non si riscontrano problemi come nel nostro caso. Non siamo riusciti a sopprimeli poichè era necessaria la modifica di una variabile di sistema.
 
 \appendix
 \chapter{Guida utente}
@@ -521,7 +525,7 @@ Da qui è possibile selezionare un ambiente di ascolto già pronto e modificare 
 \label{img:equalizer}
 \end{figure}
 %
-Questo è un piccolo equalizzatore che è possibile accendere o spegnere tramite il bottone ON/OFF. Quando è acceso, è possibile applicare diversi effetti sull'intero ambiente d'ascolto modificandone il livello, mentre allo spegnimento rimuove tutti gli effetti.
+Questo è un piccolo equalizzatore che è possibile accendere o spegnere tramite il bottone ON/OFF. Quando è abilitato, è possibile applicare diversi effetti sull'intero ambiente d'ascolto modificandone il livello, mentre allo spegnimento rimuove tutti gli effetti.
 %
 \begin{figure}[H]
 \centering{}
@@ -530,7 +534,7 @@ Questo è un piccolo equalizzatore che è possibile accendere o spegnere tramite
 \label{img:speakers}
 \end{figure}
 %
-Da qui è possibile aggiungere e rimuovere sorgenti d'ascolto, visualizzare la posizione della sorgente selezionata e modificarne il tipo tra quelli proposti. È inoltre mostrato un grafico che rappresenta la percentuale delle tipologie di sorgenti presenti nell'ambiente.
+Questa è la sezione relativa agli speakers da cui si possono aggiungere e rimuovere speakers, cambiare il range di frequenza di quello selezionato e mostrare la sua posizione. Inoltre è presente un grafico a torta che mostra come sono distribuite le frequenze dell'insieme di speakers presenti,  aiutando così l'utente a creare un ambiente di ascolto bilanciato.
 %
 \begin{figure}[H]
 \centering{}
@@ -556,7 +560,7 @@ Nella sezione dell'ascoltatore è possibile visualizzare la posizione di esso al
 \label{img:environment}
 \end{figure}
 %
-Infine è presente l'ambiente d'ascolto, dove l'utente può muovere a suo piacimento l'ascoltatore e le sorgenti.
+Infine è presente l'ambiente d'ascolto, dove l'utente può muovere a suo piacimento l'ascoltatore e gli speakers.
 %
 \chapter{Esercitazioni di laboratorio}
 \subsection*{Niccolò Mussoni}

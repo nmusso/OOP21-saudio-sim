@@ -14,7 +14,6 @@ bin/
 *.synctex.blg
 *.log
 *.out
-Report.pdf
 *.aux
 *.bbl
 *.blg
